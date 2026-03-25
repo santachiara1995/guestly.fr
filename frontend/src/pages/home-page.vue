@@ -1,14 +1,7 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import {
-  ArrowRight,
-  BookOpenCheck,
-  Building2,
-  GraduationCap,
-  ShieldCheck,
-  Waypoints
-} from 'lucide-vue-next'
+import { ArrowRight, BookOpenCheck, ShieldCheck, Waypoints } from 'lucide-vue-next'
 
 import SectionTitle from '@/components/section-title.vue'
 import ImpactStat from '@/components/visual/impact-stat.vue'
@@ -22,20 +15,35 @@ const site = ref({
   positioning: {
     eyebrow: 'Titre professionnel RPMS',
     subtitle:
-      "Découvrez le titre professionnel Responsable petite et moyenne structure (RPMS), son niveau, son format à distance et les compétences qu'il permet de développer."
+      "Découvrez le titre professionnel Responsable petite et moyenne structure (RPMS), un diplôme de niveau Bac+2 référencé au RNCP, son format à distance et l'accompagnement pédagogique prévu pour avancer avec méthode.",
+    fitLine:
+      "Vous cherchez une formation à distance pour viser un diplôme de niveau Bac+2 tout en développant des compétences concrètes de pilotage, de management et d'organisation."
   },
   home: {
     proofItems: [],
     highlights: [],
-    journey: [],
-    competencyClusters: []
+    competencyClusters: [],
+    valueSection: {
+      eyebrow: 'Avant le contact',
+      title: 'Un parcours pour viser un niveau Bac+2 utile à votre projet',
+      description:
+        "Le RPMS rassemble les repères utiles pour comprendre le niveau Bac+2 visé, le format de travail et les compétences mobilisées avant de demander un rappel.",
+      items: []
+    },
+    contactBand: {
+      eyebrow: 'Échange',
+      title: 'Faire le point sur votre projet avec CITYZ’France',
+      description:
+        'Si vous souhaitez vérifier si le RPMS correspond à votre situation, vous pouvez demander un rappel depuis le site.',
+      supportLine:
+        "Le rappel permet de préciser votre projet et les questions à clarifier avant d'aller plus loin."
+    }
   }
 })
 const loading = ref(true)
 const errorMessage = ref('')
 
-const highlightIcons = [ShieldCheck, BookOpenCheck, Building2]
-const journeyIcons = [BookOpenCheck, GraduationCap, Waypoints]
+const highlightIcons = [ShieldCheck, Waypoints, BookOpenCheck]
 
 onMounted(async () => {
   try {
@@ -56,7 +64,12 @@ const heroEyebrow = computed(() => site.value.positioning?.eyebrow ?? 'Titre pro
 const heroSubtitle = computed(
   () =>
     site.value.positioning?.subtitle ??
-    "Découvrez le titre professionnel Responsable petite et moyenne structure (RPMS), son niveau, son format à distance et les compétences qu'il permet de développer."
+    "Découvrez le titre professionnel Responsable petite et moyenne structure (RPMS), un diplôme de niveau Bac+2 référencé au RNCP, son format à distance et l'accompagnement pédagogique prévu pour avancer avec méthode."
+)
+const heroFitLine = computed(
+  () =>
+    site.value.positioning?.fitLine ??
+    "Vous cherchez une formation à distance pour viser un diplôme de niveau Bac+2 tout en développant des compétences concrètes de pilotage, de management et d'organisation."
 )
 
 const proofItems = computed(() => {
@@ -69,32 +82,20 @@ const proofItems = computed(() => {
     {
       value: program.value?.rncpCode ?? 'RNCP38575',
       label: 'Code RNCP',
-      note: 'Titre professionnel'
+      note: 'Titre professionnel reconnu'
     },
     {
       value: program.value?.levelLabel ?? 'Niveau 5 (Bac+2)',
       label: 'Niveau',
-      note: 'Positionnement de la certification'
+      note: 'Diplôme Bac+2'
     },
     {
       value: program.value?.formatLabel ?? '100 % distanciel',
       label: 'Modalité',
-      note: program.value?.rhythmLabel ?? 'E-learning'
+      note: 'E-learning et accompagnement pédagogique'
     }
   ]
 })
-
-const summaryCards = computed(() =>
-  [
-    { label: 'Niveau', value: program.value?.levelLabel ?? 'Niveau 5 (Bac+2)' },
-    { label: 'Modalité', value: program.value?.formatLabel ?? '100 % distanciel' },
-    { label: 'Format', value: program.value?.rhythmLabel ?? 'E-learning' },
-    {
-      label: 'Accompagnement',
-      value: program.value?.supportLabel ?? 'Accompagnement pédagogique'
-    }
-  ].filter((item) => item.value)
-)
 
 const highlights = computed(() => {
   const items = site.value.home?.highlights
@@ -104,38 +105,16 @@ const highlights = computed(() => {
 
   return [
     {
-      title: 'Un programme clair',
-      text: "Vous retrouvez d'emblée le titre, le code RNCP, le niveau et le format du parcours."
+      title: 'Un diplôme de niveau Bac+2',
+      text: "Le RPMS s'appuie sur le code RNCP38575 et un niveau 5 / Bac+2 reconnu."
     },
     {
-      title: 'Un parcours à distance',
-      text: "La formation est proposée en 100 % distanciel, avec une organisation en e-learning et un accompagnement pédagogique."
+      title: 'Un cadre de travail à distance',
+      text: 'La formation se déroule en 100 % distanciel, en e-learning, avec accompagnement pédagogique.'
     },
     {
-      title: 'Un projet à qualifier',
-      text: 'Le rappel permet de vérifier si le RPMS correspond à votre situation et à vos objectifs.'
-    }
-  ]
-})
-
-const journey = computed(() => {
-  const items = site.value.home?.journey
-  if (Array.isArray(items) && items.length > 0) {
-    return items
-  }
-
-  return [
-    {
-      title: 'Comprendre le programme',
-      text: 'Consultez les informations clés avant de rentrer dans le détail des blocs de compétences.'
-    },
-    {
-      title: 'Vérifier le format',
-      text: "Regardez comment le parcours s'organise à distance et quel accompagnement pédagogique est annoncé."
-    },
-    {
-      title: 'Demander un rappel',
-      text: 'Expliquez votre projet pour obtenir un échange adapté à vos questions.'
+      title: 'Des compétences utiles au quotidien',
+      text: 'Pilotage, management, organisation, communication et reporting forment le socle du programme.'
     }
   ]
 })
@@ -154,20 +133,65 @@ const competencyClusters = computed(() => {
   ]
 })
 
+const valueSection = computed(() => {
+  const section = site.value.home?.valueSection
+  if (section && typeof section === 'object') {
+    return {
+      eyebrow: section.eyebrow ?? 'Avant le contact',
+      title: section.title ?? 'Un parcours pour viser un niveau Bac+2 utile à votre projet',
+      description:
+        section.description ??
+        "Le RPMS rassemble les repères utiles pour comprendre le niveau Bac+2 visé, le format de travail et les compétences mobilisées avant de demander un rappel.",
+      items: Array.isArray(section.items) ? section.items : []
+    }
+  }
+
+  return {
+    eyebrow: 'Avant le contact',
+    title: 'Un parcours pour viser un niveau Bac+2 utile à votre projet',
+    description:
+      "Le RPMS rassemble les repères utiles pour comprendre le niveau Bac+2 visé, le format de travail et les compétences mobilisées avant de demander un rappel.",
+    items: [
+      'Identifier le niveau Bac+2 visé et le code RNCP du titre.',
+      "Comprendre le format 100 % distanciel et la place de l'e-learning.",
+      'Situer les compétences de pilotage, de management et d’organisation qui soutiennent cette progression.'
+    ]
+  }
+})
+
+const contactBand = computed(() => {
+  const band = site.value.home?.contactBand
+  if (band && typeof band === 'object') {
+    return {
+      eyebrow: band.eyebrow ?? 'Échange',
+      title: band.title ?? 'Faire le point sur votre projet avec CITYZ’France',
+      description:
+        band.description ??
+        'Si vous souhaitez vérifier si le RPMS correspond à votre situation, vous pouvez demander un rappel depuis le site.',
+      supportLine:
+        band.supportLine ??
+        "Le rappel permet de préciser votre projet et les questions à clarifier avant d'aller plus loin."
+    }
+  }
+
+  return {
+    eyebrow: 'Échange',
+    title: 'Faire le point sur votre projet avec CITYZ’France',
+    description:
+      'Si vous souhaitez vérifier si le RPMS correspond à votre situation, vous pouvez demander un rappel depuis le site.',
+    supportLine:
+      "Le rappel permet de préciser votre projet et les questions à clarifier avant d'aller plus loin."
+  }
+})
+
 const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
-const factChips = [
-  'RNCP38575',
-  'Niveau 5 / Bac+2',
-  '100 % distanciel',
-  'E-learning',
-  'Accompagnement pédagogique'
-]
+const factChips = ['RNCP38575', 'Niveau 5 / Bac+2', '100 % distanciel', 'E-learning', 'Qualiopi']
 </script>
 
 <template>
   <div class="space-y-12 sm:space-y-14 lg:space-y-16">
     <section
-      class="grid gap-6 lg:grid-cols-[1.05fr,0.95fr] lg:items-start"
+      class="grid gap-6 lg:grid-cols-[1.04fr,0.96fr] lg:items-start"
       v-motion
       :initial="motionVariants.block.initial"
       :enter="motionVariants.block.enter"
@@ -182,19 +206,27 @@ const factChips = [
           <p class="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             {{ heroSubtitle }}
           </p>
+          <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground sm:text-lg">
+            {{ heroFitLine }}
+          </p>
         </div>
 
-        <div class="flex flex-wrap gap-3">
-          <RouterLink to="/contact">
-            <Button size="lg">
+        <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <RouterLink to="/contact" class="sm:flex-none">
+            <Button size="lg" class="w-full sm:w-auto">
               Être rappelé
               <ArrowRight class="ml-2 h-4 w-4" />
             </Button>
           </RouterLink>
-          <RouterLink to="/programme">
-            <Button size="lg" variant="outline">Voir le programme</Button>
+          <RouterLink to="/programme" class="sm:flex-none">
+            <Button size="lg" variant="outline" class="w-full sm:w-auto">Voir le programme</Button>
           </RouterLink>
         </div>
+
+        <p class="text-sm leading-relaxed text-muted-foreground">
+          Pour vérifier si le RPMS correspond à votre projet et clarifier les points utiles avant
+          d'aller plus loin.
+        </p>
 
         <div class="flex flex-wrap gap-2">
           <span
@@ -217,7 +249,7 @@ const factChips = [
       <div class="space-y-4">
         <div class="page-cut rounded-[1.4rem] p-5 sm:p-6">
           <div class="flex items-center justify-between gap-3">
-            <p class="kicker">Informations clés</p>
+            <p class="kicker">Points clés</p>
             <span
               class="rounded-full border border-border bg-white px-3 py-1 text-xs font-semibold text-muted-foreground"
             >
@@ -239,93 +271,71 @@ const factChips = [
         </div>
 
         <div class="page-cut rounded-[1.4rem] p-5 sm:p-6">
-          <p class="kicker">Compétences centrales</p>
-          <div class="mt-4 grid gap-3">
+          <p class="kicker">{{ valueSection.eyebrow }}</p>
+          <h2 class="mt-3 text-2xl font-semibold text-foreground sm:text-[2rem]">
+            {{ valueSection.title }}
+          </h2>
+          <p class="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            {{ valueSection.description }}
+          </p>
+
+          <div class="mt-5 grid gap-3">
             <div
-              v-for="cluster in competencyClusters"
-              :key="cluster"
+              v-for="item in valueSection.items"
+              :key="item"
               class="flex items-start gap-3 rounded-xl border border-border bg-white px-4 py-3 text-sm font-medium text-foreground"
             >
               <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-secondary"></span>
-              <span>{{ cluster }}</span>
+              <span>{{ item }}</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="space-y-6">
+    <section class="space-y-8">
       <SectionTitle
-        eyebrow="Programme"
-        title="Les informations essentielles avant d'aller plus loin"
-        description="Le site met en avant les points utiles pour comprendre le RPMS avant une demande de rappel."
+        eyebrow="Pourquoi le RPMS"
+        title="Des repères concrets pour situer votre projet"
+        description="Le niveau, le format et les compétences travaillées prennent ici le rôle d'aide à la décision, pas de simple fiche descriptive."
       />
 
-      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <Card
-          v-for="(item, index) in summaryCards"
-          :key="item.label"
-          class="page-cut"
-          v-motion
-          :initial="motionVariants.block.initial"
-          :enter="staggerEnter(index, 75, 70)"
-        >
-          <CardHeader class="space-y-2">
-            <CardTitle class="text-base">{{ item.label }}</CardTitle>
+      <div class="grid gap-6 lg:grid-cols-[0.96fr,1.04fr]">
+        <Card class="page-cut h-fit">
+          <CardHeader class="space-y-3">
+            <CardTitle>Compétences au coeur du parcours</CardTitle>
           </CardHeader>
-          <CardContent class="text-sm leading-relaxed text-muted-foreground">
-            {{ item.value }}
+          <CardContent class="space-y-4">
+            <p class="text-sm leading-relaxed text-muted-foreground">
+              Le RPMS s'appuie sur des compétences de pilotage, de management et d'organisation
+              qui servent à lire plus clairement votre projet avant un échange.
+            </p>
+            <ul class="grid gap-3 text-sm leading-relaxed text-muted-foreground sm:grid-cols-2">
+              <li
+                v-for="cluster in competencyClusters"
+                :key="cluster"
+                class="rounded-xl border border-border bg-white px-4 py-3 font-medium text-foreground"
+              >
+                {{ cluster }}
+              </li>
+            </ul>
           </CardContent>
         </Card>
-      </div>
-    </section>
 
-    <section class="grid gap-6 lg:grid-cols-[0.92fr,1.08fr]">
-      <div class="space-y-6">
-        <SectionTitle
-          eyebrow="Pourquoi consulter ces pages"
-          title="Une lecture simple pour avancer dans votre réflexion"
-          description="Chaque page répond à une question concrète avant une demande de rappel."
-        />
-
-        <div class="grid gap-4">
+        <div class="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
           <Card
             v-for="(item, index) in highlights"
             :key="item.title"
             class="page-cut"
             v-motion
             :initial="motionVariants.block.initial"
-            :enter="staggerEnter(index, 80, 70)"
+            :enter="staggerEnter(index, 75, 70)"
           >
             <CardHeader class="space-y-3">
-              <component :is="highlightIcons[index % highlightIcons.length]" class="h-6 w-6 text-primary" />
-              <CardTitle>{{ item.title }}</CardTitle>
-            </CardHeader>
-            <CardContent class="text-sm leading-relaxed text-muted-foreground">
-              {{ item.text }}
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-      <div class="space-y-6">
-        <SectionTitle
-          eyebrow="Parcours de visite"
-          title="Du programme à l'échange"
-          description="Commencez par les informations clés, approfondissez le contenu, puis demandez un rappel si vous souhaitez en parler."
-        />
-
-        <div class="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
-          <Card
-            v-for="(item, index) in journey"
-            :key="item.title"
-            class="page-cut"
-            v-motion
-            :initial="motionVariants.block.initial"
-            :enter="staggerEnter(index, 80, 90)"
-          >
-            <CardHeader class="space-y-3">
-              <component :is="journeyIcons[index % journeyIcons.length]" class="h-6 w-6 text-primary" />
+              <component
+                :is="highlightIcons[index % highlightIcons.length]"
+                class="h-6 w-6 text-primary"
+              />
               <CardTitle>{{ item.title }}</CardTitle>
             </CardHeader>
             <CardContent class="text-sm leading-relaxed text-muted-foreground">
@@ -339,15 +349,15 @@ const factChips = [
     <section class="grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
       <div class="space-y-6">
         <SectionTitle
-          eyebrow="Blocs de compétences"
-          title="Un aperçu du contenu travaillé"
-          description="Le programme couvre le pilotage, le management, l'organisation et le développement de l'activité."
+          eyebrow="Programme"
+          title="Une progression claire sur les compétences clés"
+          description="Le programme se structure en blocs qui vont du pilotage et du management à l'organisation, au développement et au reporting."
         />
 
         <div class="space-y-3">
           <p class="text-sm leading-relaxed text-muted-foreground">
-            Vous pouvez consulter l'ensemble du programme pour retrouver tous les blocs de
-            compétences et leurs thèmes de travail.
+            Vous pouvez consulter le détail du programme pour retrouver l'ensemble des blocs de
+            compétences et la logique de progression du titre.
           </p>
           <RouterLink
             to="/programme"
@@ -382,25 +392,27 @@ const factChips = [
     <section class="page-cut rounded-[1.6rem] p-6 sm:p-8 lg:p-10">
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div class="space-y-3">
-          <p class="kicker">Contact</p>
+          <p class="kicker">{{ contactBand.eyebrow }}</p>
           <h2 class="editorial-title text-[clamp(2rem,3.4vw,3.35rem)] text-foreground">
-            Demander un rappel pour parler de votre projet
+            {{ contactBand.title }}
           </h2>
           <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Si vous souhaitez vérifier l'adéquation du RPMS à votre situation, laissez vos
-            coordonnées et votre question.
+            {{ contactBand.description }}
+          </p>
+          <p class="max-w-2xl text-sm leading-relaxed text-foreground/78">
+            {{ contactBand.supportLine }}
           </p>
         </div>
 
-        <div class="flex flex-wrap gap-3">
-          <RouterLink to="/contact">
-            <Button size="lg">
+        <div class="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
+          <RouterLink to="/contact" class="sm:flex-none">
+            <Button size="lg" class="w-full sm:w-auto">
               Être rappelé
               <ArrowRight class="ml-2 h-4 w-4" />
             </Button>
           </RouterLink>
-          <RouterLink to="/programme">
-            <Button size="lg" variant="outline">Voir le programme</Button>
+          <RouterLink to="/programme" class="sm:flex-none">
+            <Button size="lg" variant="outline" class="w-full sm:w-auto">Voir le programme</Button>
           </RouterLink>
         </div>
       </div>

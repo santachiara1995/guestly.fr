@@ -8,9 +8,9 @@ export const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          'border-primary/30 bg-gradient-to-r from-primary/10 to-secondary/8 text-foreground',
-        secondary: 'border-secondary/40 bg-secondary text-secondary-foreground',
-        outline: 'border-primary/25 bg-white/80 text-primary'
+          'border-primary/35 bg-gradient-to-r from-primary/10 via-white to-primary/4 text-foreground',
+        secondary: 'border-secondary/45 bg-secondary/10 text-secondary',
+        outline: 'border-primary/35 bg-white/88 text-primary'
       }
     },
     defaultVariants: {

@@ -7,35 +7,105 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { api } from '@/lib/api'
 
+const site = ref({
+  positioning: {},
+  faq: {}
+})
 const items = ref([])
 const loading = ref(true)
 
 onMounted(async () => {
   try {
-    items.value = await api.getFaq()
+    const [sitePayload, faqPayload] = await Promise.all([api.getSite(), api.getFaq()])
+    site.value = sitePayload
+    items.value = faqPayload
   } finally {
     loading.value = false
   }
 })
 
-const visibleItems = computed(() => items.value)
+const faqCopy = computed(() => site.value.faq ?? {})
+const heroLead = computed(
+  () =>
+    site.value.positioning?.fitLine ??
+    'La FAQ répond aux points qui freinent souvent une décision avant un rappel.'
+)
+const closingNote = computed(
+  () => {
+    const note = faqCopy.value.closingNote
+    if (note && typeof note === 'object') {
+      return {
+        eyebrow: note.eyebrow ?? 'Si la réponse manque',
+        title: note.title ?? 'Les réponses les plus utiles avant un échange',
+        description:
+          note.description ??
+          "Les réponses ci-dessus résument les points utiles pour vous situer avant un échange plus personnalisé.",
+        supportLine:
+          note.supportLine ??
+          "Si une réponse manque, un rappel permet de préciser votre situation et de vérifier si le RPMS correspond à votre projet."
+      }
+    }
+
+    return {
+      eyebrow: 'Si la réponse manque',
+      title: 'Les réponses les plus utiles avant un échange',
+      description:
+        typeof note === 'string' && note
+          ? note
+          : "Les réponses ci-dessus résument les points utiles pour vous situer avant un échange plus personnalisé.",
+      supportLine:
+        'Si une réponse manque, un rappel permet de préciser votre situation et de vérifier si le RPMS correspond à votre projet.'
+    }
+  }
+)
 </script>
 
 <template>
   <div class="space-y-8 sm:space-y-10">
-    <SectionTitle
-      eyebrow="FAQ"
-      title="Questions fréquentes sur le RPMS"
-      description="Retrouvez ici les réponses aux questions les plus courantes avant une demande de rappel."
-    />
+    <section class="page-cut rounded-[1.6rem] p-6 sm:p-8 lg:p-10">
+      <div class="grid gap-6 lg:grid-cols-[1.04fr,0.96fr] lg:items-start">
+        <div class="space-y-4">
+          <p class="kicker">FAQ</p>
+          <h1 class="editorial-title max-w-3xl text-[clamp(2.45rem,5vw,4.5rem)] text-foreground">
+            Les réponses qui lèvent les derniers doutes
+          </h1>
+          <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {{ heroLead }}
+          </p>
+        </div>
+
+        <Card class="page-cut">
+          <CardContent class="space-y-4 p-6 text-sm leading-relaxed text-muted-foreground">
+            <p class="kicker">{{ closingNote.eyebrow }}</p>
+            <h2 class="text-2xl font-semibold text-foreground">{{ closingNote.title }}</h2>
+            <p>{{ closingNote.description }}</p>
+            <p>{{ closingNote.supportLine }}</p>
+            <div class="flex flex-wrap gap-3 pt-1">
+              <RouterLink to="/contact">
+                <Button size="lg">Être rappelé</Button>
+              </RouterLink>
+              <RouterLink to="/programme">
+                <Button size="lg" variant="outline">Voir le programme</Button>
+              </RouterLink>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
 
     <p v-if="loading" class="text-sm text-muted-foreground">Chargement de la FAQ...</p>
 
-    <div v-else class="grid gap-5 lg:grid-cols-[1.08fr,0.92fr]">
+    <template v-else>
+      <SectionTitle
+        eyebrow="Objections fréquentes"
+        title="Les réponses utiles avant un rappel"
+        description="Chaque réponse doit aider à trancher, pas seulement répéter la fiche du programme."
+      />
+
       <div class="space-y-4">
-        <Card v-for="item in visibleItems" :key="item.question" class="page-cut">
+        <Card v-for="item in items" :key="item.question" class="page-cut">
           <CardContent class="p-0">
-            <details class="group px-5 py-5">
+            <details class="group px-5 py-5 sm:px-6">
               <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left">
                 <span class="text-lg font-semibold leading-snug text-foreground">
                   {{ item.question }}
@@ -54,38 +124,29 @@ const visibleItems = computed(() => items.value)
         </Card>
       </div>
 
-      <aside class="space-y-4">
-        <Card class="page-cut">
-          <CardContent class="space-y-4 p-6 text-sm leading-relaxed text-muted-foreground">
+      <section class="page-cut rounded-[1.5rem] p-6 sm:p-8 lg:p-10">
+        <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div class="space-y-3">
             <p class="kicker">Besoin d'un échange</p>
-            <p>
-              Si vous souhaitez parler de votre situation ou clarifier un point du programme, vous
-              pouvez demander un rappel.
+            <h2 class="editorial-title text-[clamp(2rem,3.3vw,3.2rem)] text-foreground">
+              Faire le point avant d'aller plus loin
+            </h2>
+            <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
+              Si vous voulez une réponse adaptée à votre projet, le rappel permet de cadrer la
+              suite sans vous engager trop tôt.
             </p>
-            <div class="flex flex-wrap gap-3 pt-1">
-              <RouterLink to="/contact">
-                <Button size="lg">Être rappelé</Button>
-              </RouterLink>
-              <RouterLink to="/programme">
-                <Button size="lg" variant="outline">Voir le programme</Button>
-              </RouterLink>
-            </div>
-          </CardContent>
-        </Card>
+          </div>
 
-        <Card class="page-cut">
-          <CardContent class="space-y-3 p-6 text-sm leading-relaxed text-muted-foreground">
-            <p>
-              Cette page se concentre sur le contenu du programme, son niveau, son format à
-              distance et l'accompagnement pédagogique annoncé.
-            </p>
-            <p>
-              Si vous avez besoin d'une réponse adaptée à votre situation, la demande de rappel
-              permet de poursuivre l'échange.
-            </p>
-          </CardContent>
-        </Card>
-      </aside>
-    </div>
+          <div class="flex flex-wrap gap-3">
+            <RouterLink to="/contact">
+              <Button size="lg">Être rappelé</Button>
+            </RouterLink>
+            <RouterLink to="/programme">
+              <Button size="lg" variant="outline">Voir le programme</Button>
+            </RouterLink>
+          </div>
+        </div>
+      </section>
+    </template>
   </div>
 </template>

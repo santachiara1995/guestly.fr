@@ -31,9 +31,43 @@ onMounted(async () => {
   }
 })
 
-const expectations = computed(() => site.value.access?.expectations ?? [])
-const supportPoints = computed(() => site.value.access?.supportPoints ?? [])
-const processSteps = computed(() => site.value.access?.processSteps ?? [])
+const accessCopy = computed(() => site.value.access ?? {})
+const positioningCopy = computed(() => site.value.positioning ?? {})
+const heroFitLine = computed(
+  () =>
+    positioningCopy.value.fitLine ??
+    'Le RPMS peut vous convenir si vous cherchez un cadre à distance pour renforcer vos compétences de pilotage, d’organisation et de management.'
+)
+const accessIntro = computed(
+  () =>
+    accessCopy.value.fitLine ??
+    accessCopy.value.intro ??
+    "Le format à distance, l'accompagnement pédagogique et les compétences visées sont pensés pour vous aider à vérifier si le RPMS correspond à votre projet."
+)
+const accessReassurance = computed(
+  () =>
+    accessCopy.value.reassuranceLine ??
+    'Le but est de vous aider à décider avec des points concrets, pas de vous noyer dans une liste de champs.'
+)
+const accessContactBand = computed(
+  () => {
+    const band = site.value.home?.contactBand ?? accessCopy.value.contactBand
+    if (band && typeof band === 'object') {
+      return (
+        band.description ??
+        "Si vous avez un doute, un rappel permet de vérifier rapidement si le parcours correspond à votre situation."
+      )
+    }
+
+    return (
+      band ??
+      "Si vous avez un doute, un rappel permet de vérifier rapidement si le parcours correspond à votre situation."
+    )
+  }
+)
+const expectations = computed(() => accessCopy.value.expectations ?? [])
+const supportPoints = computed(() => accessCopy.value.supportPoints ?? [])
+const processSteps = computed(() => accessCopy.value.processSteps ?? [])
 const quickFacts = computed(() =>
   [
     { label: 'Titre', value: program.value?.title },
@@ -47,19 +81,21 @@ const quickFacts = computed(() =>
 
 <template>
   <div class="space-y-10 sm:space-y-12">
-    <section class="page-cut rounded-[1.5rem] p-6 sm:p-8 lg:p-10">
-      <div class="grid gap-6 lg:grid-cols-[1.02fr,0.98fr]">
-        <div class="space-y-4">
+    <section class="page-cut rounded-[1.6rem] p-6 sm:p-8 lg:p-10">
+      <div class="grid gap-6 lg:grid-cols-[1.05fr,0.95fr] lg:items-start">
+        <div class="space-y-5">
           <p class="kicker">Accès et accompagnement</p>
-          <h1 class="editorial-title max-w-3xl text-[clamp(2.4rem,5vw,4.5rem)] text-foreground">
-            Un cadre clair avant votre demande de rappel
+          <h1 class="editorial-title max-w-3xl text-[clamp(2.45rem,5vw,4.6rem)] text-foreground">
+            Vérifier si le RPMS correspond à votre projet
           </h1>
           <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {{ site.access?.intro }}
+            {{ heroFitLine }}
           </p>
           <p class="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Vous retrouvez ici les informations utiles pour vérifier le format du parcours et la
-            nature de l'accompagnement annoncé.
+            {{ accessIntro }}
+          </p>
+          <p class="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            {{ accessReassurance }}
           </p>
         </div>
 
@@ -68,7 +104,7 @@ const quickFacts = computed(() =>
             <CardHeader>
               <div class="flex items-center gap-2">
                 <CheckCircle2 class="h-5 w-5 text-primary" />
-                <CardTitle>Informations du parcours</CardTitle>
+                <CardTitle>Points du parcours</CardTitle>
               </div>
             </CardHeader>
             <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
@@ -82,7 +118,7 @@ const quickFacts = computed(() =>
             <CardHeader>
               <div class="flex items-center gap-2">
                 <ShieldCheck class="h-5 w-5 text-primary" />
-                <CardTitle>Format annoncé</CardTitle>
+                <CardTitle>Ce qui rassure</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
@@ -100,9 +136,9 @@ const quickFacts = computed(() =>
 
     <section class="space-y-8">
       <SectionTitle
-        eyebrow="Avant le contact"
-        title="Ce que vous pouvez vérifier rapidement"
-        description="Cette page vous aide à qualifier votre besoin avant de demander un rappel."
+        eyebrow="Avant de demander un rappel"
+        title="Les points qui comptent vraiment"
+        description="L'objectif est de vérifier l'adéquation du parcours avec votre situation, sans détour inutile."
       />
 
       <div class="grid gap-4 md:grid-cols-3">
@@ -123,9 +159,9 @@ const quickFacts = computed(() =>
 
     <section class="space-y-8">
       <SectionTitle
-        eyebrow="Démarche"
-        title="Comment se passe la prise de contact"
-        description="Le parcours de visite reste volontairement court pour aller de l'information utile à l'échange."
+        eyebrow="Prise de contact"
+        title="Du repère utile au premier échange"
+        description="Le parcours reste court pour que la demande de rappel ne devienne pas une étape supplémentaire."
       />
 
       <div class="grid gap-4 md:grid-cols-3">
@@ -162,8 +198,7 @@ const quickFacts = computed(() =>
             Demander un rappel pour faire le point
           </h2>
           <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Si vous souhaitez vérifier l'adéquation du RPMS à votre projet, vous pouvez demander
-            un rappel directement depuis le site.
+            {{ accessContactBand }}
           </p>
         </div>
 

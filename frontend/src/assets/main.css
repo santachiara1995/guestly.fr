@@ -2,24 +2,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4f2ec;
-  --foreground: #182033;
-  --card: #fffdf8;
-  --card-foreground: #182033;
-  --popover: #fffdf8;
-  --popover-foreground: #182033;
-  --primary: #15255e;
-  --primary-foreground: #fffdf8;
-  --secondary: #cb5c34;
-  --secondary-foreground: #fffaf5;
-  --muted: #ece8de;
-  --muted-foreground: #5d6575;
-  --accent: #efe9df;
-  --accent-foreground: #182033;
-  --border: #d5cec1;
-  --input: #d5cec1;
-  --ring: #15255e;
-  --destructive: #b42318;
+  --background: #f4f8fd;
+  --foreground: #102038;
+  --card: #fcfeff;
+  --card-foreground: #102038;
+  --popover: #fcfeff;
+  --popover-foreground: #102038;
+  --primary: #143f8f;
+  --primary-foreground: #fbfdff;
+  --secondary: #bb1f3a;
+  --secondary-foreground: #fff8fa;
+  --muted: #e7eef7;
+  --muted-foreground: #50627e;
+  --accent: #eef4fb;
+  --accent-foreground: #102038;
+  --border: #bfd0e3;
+  --input: #bfd0e3;
+  --ring: #143f8f;
+  --destructive: #bb1f3a;
 }
 
 @theme inline {
@@ -60,9 +60,9 @@
   body {
     min-height: 100vh;
     background:
-      radial-gradient(circle at top left, rgb(21 37 94 / 0.07), transparent 28rem),
-      radial-gradient(circle at top right, rgb(203 92 52 / 0.05), transparent 22rem),
-      linear-gradient(180deg, #fcfaf5 0%, #f4f2ec 100%);
+      radial-gradient(circle at top left, rgb(20 63 143 / 0.09), transparent 28rem),
+      radial-gradient(circle at top right, rgb(187 31 58 / 0.05), transparent 22rem),
+      linear-gradient(180deg, #ffffff 0%, #f4f8fd 100%);
     color: var(--foreground);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -87,25 +87,25 @@
 
 @layer components {
   .shell-rail {
-    border-top: 1px solid color-mix(in oklab, var(--primary) 18%, white);
+    border-top: 1px solid color-mix(in oklab, var(--primary) 22%, white);
     background:
       linear-gradient(90deg, var(--primary) 0 34%, rgb(255 255 255 / 0.96) 34% 67%, var(--secondary) 67% 100%);
   }
 
   .brand-symbol {
     overflow: hidden;
-    border: 1px solid color-mix(in oklab, var(--primary) 22%, var(--border));
+    border: 1px solid color-mix(in oklab, var(--primary) 28%, var(--border));
     background:
-      linear-gradient(180deg, color-mix(in oklab, white 94%, var(--card)), color-mix(in oklab, white 82%, var(--accent)));
+      linear-gradient(180deg, color-mix(in oklab, white 96%, var(--card)), color-mix(in oklab, white 86%, var(--accent)));
     color: var(--primary);
     box-shadow:
       0 1px 0 rgb(255 255 255 / 0.9),
-      0 16px 32px rgb(24 32 51 / 0.09);
+      0 16px 32px rgb(16 32 56 / 0.09);
   }
 
   .kicker {
     @apply text-[0.7rem] font-extrabold uppercase tracking-[0.22em];
-    color: color-mix(in oklab, var(--secondary) 48%, var(--primary));
+    color: color-mix(in oklab, var(--primary) 82%, var(--secondary));
   }
 
   .editorial-title {
@@ -120,12 +120,12 @@
   .monument-panel,
   .surface-cut,
   .arch-cta {
-    border: 1px solid color-mix(in oklab, var(--primary) 12%, var(--border));
+    border: 1px solid color-mix(in oklab, var(--primary) 18%, var(--border));
     background:
-      linear-gradient(180deg, color-mix(in oklab, white 95%, var(--card)) 0%, color-mix(in oklab, white 86%, var(--accent)) 100%);
+      linear-gradient(180deg, color-mix(in oklab, white 97%, var(--card)) 0%, color-mix(in oklab, white 90%, var(--accent)) 100%);
     box-shadow:
       0 1px 0 rgb(255 255 255 / 0.9),
-      0 18px 38px rgb(24 32 51 / 0.08);
+      0 18px 38px rgb(16 32 56 / 0.08);
   }
 
   .panel-shell,
@@ -178,13 +178,13 @@
 
   .impact-stat {
     border-radius: 1.2rem;
-    border: 1px solid color-mix(in oklab, var(--primary) 14%, var(--border));
+    border: 1px solid color-mix(in oklab, var(--primary) 20%, var(--border));
     background:
-      linear-gradient(180deg, color-mix(in oklab, white 98%, var(--card)), color-mix(in oklab, white 88%, var(--accent)));
+      linear-gradient(180deg, color-mix(in oklab, white 98%, var(--card)), color-mix(in oklab, white 92%, var(--accent)));
     padding: 1rem 1.1rem;
     box-shadow:
       0 1px 0 rgb(255 255 255 / 0.9),
-      0 14px 28px rgb(24 32 51 / 0.07);
+      0 14px 28px rgb(16 32 56 / 0.07);
   }
 
   .impact-stat-value {
@@ -202,7 +202,7 @@
     font-weight: 800;
     letter-spacing: 0.19em;
     text-transform: uppercase;
-    color: color-mix(in oklab, var(--foreground) 76%, var(--primary));
+    color: color-mix(in oklab, var(--primary) 76%, var(--foreground));
   }
 
   .impact-stat-note {
@@ -214,34 +214,34 @@
 
   .nav-link {
     @apply inline-flex items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/70;
-    border-color: color-mix(in oklab, var(--primary) 14%, var(--border));
-    background: rgb(255 255 255 / 0.92);
+    border-color: color-mix(in oklab, var(--primary) 24%, var(--border));
+    background: rgb(255 255 255 / 0.94);
     color: var(--foreground);
   }
 
   .nav-link:hover {
     transform: translateY(-1px);
-    border-color: color-mix(in oklab, var(--primary) 34%, var(--secondary));
-    background: color-mix(in oklab, white 94%, var(--accent));
+    border-color: color-mix(in oklab, var(--primary) 44%, var(--secondary));
+    background: color-mix(in oklab, white 92%, var(--accent));
   }
 
   .nav-link[aria-current="page"] {
     border-color: var(--primary);
     background: var(--primary);
     color: var(--primary-foreground);
-    box-shadow: 0 10px 22px rgb(21 37 94 / 0.18);
+    box-shadow: 0 10px 22px rgb(20 63 143 / 0.18);
   }
 
   .trust-chip {
     @apply inline-flex items-center rounded-full border px-3 py-1 text-[0.7rem] font-extrabold uppercase tracking-[0.18em];
-    border-color: color-mix(in oklab, var(--primary) 14%, var(--border));
-    background: rgb(255 255 255 / 0.9);
-    color: color-mix(in oklab, var(--foreground) 84%, var(--primary));
+    border-color: color-mix(in oklab, var(--primary) 26%, var(--border));
+    background: rgb(255 255 255 / 0.92);
+    color: color-mix(in oklab, var(--primary) 70%, var(--foreground));
   }
 
   .footer-heading {
     @apply text-[0.72rem] font-bold uppercase tracking-[0.2em];
-    color: color-mix(in oklab, var(--secondary) 24%, var(--primary));
+    color: color-mix(in oklab, var(--primary) 82%, var(--secondary));
   }
 
   .dense-list,
@@ -251,8 +251,8 @@
   }
 
   .metric-strip > div {
-    border: 1px solid color-mix(in oklab, var(--primary) 12%, var(--border));
-    background: rgb(255 255 255 / 0.9);
+    border: 1px solid color-mix(in oklab, var(--primary) 18%, var(--border));
+    background: rgb(255 255 255 / 0.92);
     padding: 0.85rem 0.95rem;
   }
 }

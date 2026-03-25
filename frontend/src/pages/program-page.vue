@@ -63,8 +63,8 @@ const quickFacts = computed(() =>
               {{ program.intro }}
             </p>
             <p class="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              Cette page vous donne une vue d'ensemble du programme, des compétences visées et des
-              blocs qui structurent le parcours.
+              Retrouvez ici les compétences visées, les grands blocs du parcours et les repères
+              utiles pour situer votre projet.
             </p>
 
             <div class="flex flex-wrap gap-3">

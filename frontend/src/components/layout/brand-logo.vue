@@ -26,7 +26,7 @@ defineProps({
         v-if="!compact"
         class="mt-1 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-muted-foreground"
       >
-        RNCP38575 · Niveau 5
+        RNCP38575 · Bac+2
       </p>
     </div>
   </div>

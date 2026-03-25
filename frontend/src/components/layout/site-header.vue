@@ -18,7 +18,7 @@ const isActive = computed(() => (target) => {
 </script>
 
 <template>
-  <header class="sticky top-0 z-50 border-b border-border/75 bg-white/92 backdrop-blur-xl">
+  <header class="sticky top-0 z-50 border-b border-primary/14 bg-white/92 backdrop-blur-xl">
     <div class="shell-rail h-1 w-full"></div>
 
     <div class="mx-auto w-full max-w-[1180px] px-4 py-4 sm:px-6 lg:px-8">
@@ -30,14 +30,14 @@ const isActive = computed(() => (target) => {
 
           <div class="flex flex-wrap items-center gap-2 sm:justify-end">
             <span class="trust-chip">RNCP38575</span>
-            <span class="trust-chip hidden sm:inline-flex">Niveau 5</span>
+            <span class="trust-chip hidden sm:inline-flex">Bac+2</span>
             <RouterLink to="/contact">
               <Button size="sm">Être rappelé</Button>
             </RouterLink>
           </div>
         </div>
 
-        <div class="flex flex-col gap-3 border-t border-border/70 pt-3 lg:flex-row lg:items-center lg:justify-between">
+        <div class="flex flex-col gap-3 border-t border-primary/12 pt-3 lg:flex-row lg:items-center lg:justify-between">
           <div class="flex flex-wrap gap-2 lg:hidden">
             <span class="trust-chip">100 % distanciel</span>
             <span class="trust-chip">E-learning</span>

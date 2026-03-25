@@ -6,7 +6,7 @@ import { footerNavigation } from '@/data/navigation'
 </script>
 
 <template>
-  <footer class="border-t border-border/80 bg-white/94">
+  <footer class="border-t border-primary/14 bg-white/94">
     <div class="mx-auto grid w-full max-w-[1180px] gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1.1fr,0.9fr] lg:px-8">
       <div class="space-y-4">
         <brand-logo compact />
@@ -16,7 +16,7 @@ import { footerNavigation } from '@/data/navigation'
         </p>
         <div class="flex flex-wrap gap-2">
           <span class="trust-chip">RNCP38575</span>
-          <span class="trust-chip">Niveau 5</span>
+          <span class="trust-chip">Bac+2</span>
           <span class="trust-chip">100 % distanciel</span>
           <span class="trust-chip">E-learning</span>
         </div>

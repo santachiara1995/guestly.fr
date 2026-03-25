@@ -8,12 +8,12 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'btn-soft-glow border border-primary/70 bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:-translate-y-0.5 hover:bg-primary/95',
+          'btn-soft-glow border border-primary/80 bg-primary text-primary-foreground shadow-lg shadow-primary/22 hover:-translate-y-0.5 hover:bg-primary/95',
         secondary:
-          'border border-secondary/55 bg-secondary text-secondary-foreground shadow-lg shadow-secondary/20 hover:-translate-y-0.5 hover:bg-secondary/95',
+          'border border-secondary/65 bg-secondary text-secondary-foreground shadow-lg shadow-secondary/18 hover:-translate-y-0.5 hover:bg-secondary/95',
         outline:
-          'border border-primary/35 bg-white/92 text-primary backdrop-blur-sm hover:-translate-y-0.5 hover:border-primary/55 hover:bg-white',
-        ghost: 'text-foreground hover:bg-secondary/12',
+          'border border-primary/60 bg-white/94 text-primary backdrop-blur-sm hover:-translate-y-0.5 hover:border-primary/80 hover:bg-primary/5',
+        ghost: 'text-primary hover:bg-primary/6',
         link: 'text-primary underline-offset-4 hover:underline'
       },
       size: {

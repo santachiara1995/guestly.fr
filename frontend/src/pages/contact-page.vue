@@ -53,63 +53,86 @@ const displayAddress = computed(
       description="Un seul formulaire pour centraliser la prise de contact autour du programme RPMS."
     />
 
-    <div class="grid gap-5 lg:grid-cols-[1.08fr,0.92fr]">
-      <Card class="diamond-panel surface-cut">
-        <CardHeader class="space-y-3">
+    <section class="architectural-band grid gap-8 p-8 lg:grid-cols-[1.06fr,0.94fr] lg:p-12">
+      <Card class="p-0">
+        <CardHeader class="border-b border-border/70 px-6 py-5">
           <CardTitle>Présenter votre projet</CardTitle>
           <p class="text-sm leading-relaxed text-muted-foreground">
-            Décrivez votre contexte et ce que vous souhaitez clarifier. La demande est rattachée
+            Décrivez votre contexte et ce que vous souhaitez clarifier. La demande reste rattachée
             au programme RPMS pour particuliers.
           </p>
         </CardHeader>
-        <CardContent>
+        <CardContent class="px-6 py-6">
           <LeadForm source-page="/contact" />
         </CardContent>
       </Card>
 
       <div class="space-y-4">
-        <Card class="diamond-panel surface-cut">
-          <CardHeader>
-            <CardTitle>Repères rapides</CardTitle>
-          </CardHeader>
-          <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
+        <article class="monument-panel surface-cut p-6">
+          <div class="flex items-center justify-between gap-3">
+            <h2 class="text-2xl font-semibold text-foreground">Repères rapides</h2>
             <Badge variant="outline">{{ program?.rncpCode }}</Badge>
-            <p><strong class="text-foreground">Titre :</strong> {{ program?.title }}</p>
-            <p><strong class="text-foreground">Niveau :</strong> {{ program?.levelLabel }}</p>
-            <p><strong class="text-foreground">Modalité :</strong> {{ program?.formatLabel }}</p>
-            <p><strong class="text-foreground">Format :</strong> {{ program?.rhythmLabel }}</p>
-          </CardContent>
-        </Card>
+          </div>
 
-        <Card class="diamond-panel surface-cut">
-          <CardHeader>
-            <CardTitle>Coordonnées utiles</CardTitle>
-          </CardHeader>
-          <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
-            <p v-if="displayPhone">
-              <strong class="text-foreground">Téléphone :</strong> {{ displayPhone }}
-            </p>
-            <p v-if="displayAddress">
-              <strong class="text-foreground">Adresse :</strong> {{ displayAddress }}
-            </p>
-            <p v-if="site.contact?.website">
-              <strong class="text-foreground">Site :</strong> {{ site.contact.website }}
-            </p>
-            <p v-if="loading">Chargement des coordonnées...</p>
-          </CardContent>
-        </Card>
+          <div class="detail-grid mt-4">
+            <div class="detail-row">
+              <p class="detail-key">Titre</p>
+              <p class="detail-value">{{ program?.title }}</p>
+            </div>
+            <div class="detail-row">
+              <p class="detail-key">Niveau</p>
+              <p class="detail-value">{{ program?.levelLabel }}</p>
+            </div>
+            <div class="detail-row">
+              <p class="detail-key">Modalité</p>
+              <p class="detail-value">{{ program?.formatLabel }}</p>
+            </div>
+            <div class="detail-row">
+              <p class="detail-key">Format</p>
+              <p class="detail-value">{{ program?.rhythmLabel }}</p>
+            </div>
+          </div>
+        </article>
 
-        <Card class="diamond-panel surface-cut">
-          <CardHeader>
-            <CardTitle>Après l’envoi</CardTitle>
-          </CardHeader>
-          <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
-            <p>La demande est enregistrée sur le site et transmise dans un seul flux.</p>
-            <p>Le rappel sert à préciser le besoin, le niveau d’information recherché et la suite de l’échange.</p>
-            <p>Les éléments non revalidés publiquement ne sont pas exposés en amont sur le site.</p>
-          </CardContent>
-        </Card>
+        <article class="monument-panel surface-cut p-6">
+          <h2 class="text-2xl font-semibold text-foreground">Coordonnées utiles</h2>
+
+          <div class="detail-grid mt-4">
+            <div v-if="displayPhone" class="detail-row">
+              <p class="detail-key">Téléphone</p>
+              <p class="detail-value">{{ displayPhone }}</p>
+            </div>
+            <div v-if="displayAddress" class="detail-row">
+              <p class="detail-key">Adresse</p>
+              <p class="detail-value">{{ displayAddress }}</p>
+            </div>
+            <div v-if="site.contact?.website" class="detail-row">
+              <p class="detail-key">Site</p>
+              <p class="detail-value">{{ site.contact.website }}</p>
+            </div>
+          </div>
+
+          <p v-if="loading" class="mt-4 text-sm text-muted-foreground">Chargement des coordonnées...</p>
+        </article>
+
+        <article class="monument-panel surface-cut p-6">
+          <h2 class="text-2xl font-semibold text-foreground">Après l’envoi</h2>
+          <div class="detail-grid mt-4">
+            <div class="detail-row">
+              <p class="detail-key">Étape 1</p>
+              <p class="detail-value">La demande est enregistrée sur le site.</p>
+            </div>
+            <div class="detail-row">
+              <p class="detail-key">Étape 2</p>
+              <p class="detail-value">Le rappel sert à préciser le besoin et le contexte de la demande.</p>
+            </div>
+            <div class="detail-row">
+              <p class="detail-key">Étape 3</p>
+              <p class="detail-value">Les informations publiées restent concentrées sur le cadre RPMS.</p>
+            </div>
+          </div>
+        </article>
       </div>
-    </div>
+    </section>
   </div>
 </template>

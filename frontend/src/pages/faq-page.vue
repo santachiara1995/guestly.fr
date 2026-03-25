@@ -4,7 +4,6 @@ import { RouterLink } from 'vue-router'
 
 import SectionTitle from '@/components/section-title.vue'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { api } from '@/lib/api'
 
 const items = ref([])
@@ -29,25 +28,31 @@ onMounted(async () => {
 
     <p v-if="loading" class="text-sm text-muted-foreground">Chargement de la FAQ...</p>
 
-    <div v-else class="space-y-4">
-      <Card v-for="item in items" :key="item.question" class="diamond-panel surface-cut">
-        <CardHeader>
-          <CardTitle class="text-lg">{{ item.question }}</CardTitle>
-        </CardHeader>
-        <CardContent class="text-sm leading-relaxed text-muted-foreground">
+    <article v-else class="monument-panel surface-cut p-0">
+      <details
+        v-for="item in items"
+        :key="item.question"
+        class="group border-t border-border/70 px-6 py-5 first:border-t-0"
+      >
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left">
+          <span class="text-lg font-semibold text-foreground">{{ item.question }}</span>
+          <span class="flex h-8 w-8 items-center justify-center rounded-full border border-primary/20 bg-white/90 text-primary transition-transform group-open:rotate-45">
+            +
+          </span>
+        </summary>
+        <p class="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
           {{ item.answer }}
-        </CardContent>
-      </Card>
-    </div>
+        </p>
+      </details>
+    </article>
 
-    <section class="diamond-panel surface-cut rounded-[2rem] p-8 text-center">
+    <section class="arch-cta p-8 text-center">
       <p class="kicker">Besoin d’un échange</p>
-      <h2 class="mt-3 text-3xl font-semibold text-foreground">
+      <h2 class="mt-3 text-3xl font-semibold">
         Le rappel reste le point d’entrée unique
       </h2>
       <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-        Si votre question dépasse ce qui est volontairement publié sur le site, utilisez le
-        formulaire de contact pour être rappelé.
+        Si votre question dépasse ce qui est publié sur le site, utilisez le formulaire de contact pour être rappelé.
       </p>
       <div class="mt-6 flex flex-wrap justify-center gap-3">
         <RouterLink to="/contact">

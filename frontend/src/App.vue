@@ -2,9 +2,7 @@
   <div class="relative min-h-screen">
     <div class="pointer-events-none fixed inset-0 -z-10 bg-brand-haze"></div>
     <div class="pointer-events-none fixed inset-0 -z-10 grain-overlay opacity-60"></div>
-    <div class="orb orb-a"></div>
-    <div class="orb orb-b"></div>
-    <div class="orb orb-c"></div>
+    <div class="pointer-events-none fixed inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent"></div>
 
     <site-header />
 

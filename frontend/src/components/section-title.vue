@@ -28,11 +28,11 @@ defineProps({
       <p v-if="eyebrow" class="kicker">
         {{ eyebrow }}
       </p>
-      <div class="h-px w-16 bg-gradient-to-r from-secondary/65 to-transparent"></div>
+      <div class="h-px w-20 bg-gradient-to-r from-primary via-primary/60 to-transparent"></div>
     </div>
 
     <div class="space-y-3">
-      <h2 class="editorial-title max-w-4xl text-3xl text-foreground sm:text-4xl">
+      <h2 class="editorial-title max-w-4xl text-3xl text-foreground sm:text-4xl lg:text-[2.8rem]">
         {{ title }}
       </h2>
       <p v-if="description" class="max-w-3xl text-base leading-relaxed text-muted-foreground">

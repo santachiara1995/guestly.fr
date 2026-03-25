@@ -4,7 +4,6 @@ import { RouterLink } from 'vue-router'
 import {
   ArrowRight,
   BookOpenCheck,
-  Building2,
   GraduationCap,
   ShieldCheck,
   Waypoints
@@ -14,7 +13,6 @@ import SectionTitle from '@/components/section-title.vue'
 import ImpactStat from '@/components/visual/impact-stat.vue'
 import RibbonMarquee from '@/components/visual/ribbon-marquee.vue'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { api } from '@/lib/api'
 import { motionVariants, staggerEnter } from '@/lib/motion'
 
@@ -23,7 +21,7 @@ const site = ref({
   positioning: {
     eyebrow: 'Titre professionnel à distance',
     subtitle:
-      "CITYZ'France présente le titre professionnel Responsable petite et moyenne structure (RPMS) pour des particuliers recherchant un cadre sérieux, lisible et entièrement orienté vers l'information utile."
+      "CITYZ'France présente le titre professionnel Responsable petite et moyenne structure (RPMS) pour des particuliers qui recherchent un cadre clair, sérieux et centré sur les repères essentiels."
   },
   home: {
     proofItems: [
@@ -49,12 +47,12 @@ const site = ref({
         text: 'Identifier le niveau, le référentiel, la modalité pédagogique et la logique des blocs de compétences.'
       },
       {
-        title: 'Évaluer le cadre d’accompagnement',
-        text: 'Lire le fonctionnement distanciel, le suivi pédagogique et les repères pratiques donnés avant la prise de contact.'
+        title: 'Lire le cadre d’accompagnement',
+        text: 'Consulter les repères distanciels, le suivi pédagogique et les indications données avant la prise de contact.'
       },
       {
         title: 'Être rappelé',
-        text: "Déposer une demande de rappel pour être recontacté avec une réponse adaptée au projet et au niveau d'information recherché."
+        text: "Déposer une demande de rappel pour être recontacté avec une réponse adaptée au projet et au niveau d’information recherché."
       }
     ],
     competencyClusters: [
@@ -67,6 +65,16 @@ const site = ref({
 })
 const loading = ref(true)
 const errorMessage = ref('')
+
+const fallbackProgram = {
+  levelLabel: 'Niveau 5 (Bac+2)',
+  formatLabel: '100 % distanciel',
+  rhythmLabel: 'E-learning',
+  supportLabel: 'Accompagnement pédagogique',
+  blocks: []
+}
+
+program.value = fallbackProgram
 
 onMounted(async () => {
   try {
@@ -83,33 +91,31 @@ onMounted(async () => {
   }
 })
 
-program.value = {
-  levelLabel: 'Niveau 5 (Bac+2)',
-  formatLabel: '100 % distanciel',
-  rhythmLabel: 'E-learning',
-  supportLabel: 'Accompagnement pédagogique',
-  blocks: []
-}
-
 const proofItems = computed(() => site.value.home?.proofItems ?? [])
+const heroFacts = computed(() => [
+  { label: 'Niveau', value: program.value?.levelLabel },
+  { label: 'Modalité', value: program.value?.formatLabel },
+  { label: 'Format', value: program.value?.rhythmLabel },
+  { label: 'Accompagnement', value: program.value?.supportLabel }
+].filter((item) => item.value))
 const highlights = computed(() => [
   {
     icon: ShieldCheck,
-    title: 'Une lecture réglementaire stable',
+    title: 'Repère officiel',
     description:
-      'Le site public s’en tient aux informations pédagogiques, juridiques et institutionnelles confirmées dans les sources disponibles.'
+      'Le contenu public se limite aux informations stabilisées qui cadrent le RPMS pour particuliers.'
   },
   {
     icon: BookOpenCheck,
-    title: 'Un parcours présenté sans dispersion',
+    title: 'Lecture structurée',
     description:
-      'Un seul programme, une seule audience, une seule trajectoire de prise de contact pour éviter l’effet catalogue.'
+      'Les éléments essentiels restent regroupés pour montrer le périmètre du programme d’un seul regard.'
   },
   {
-    icon: Building2,
-    title: 'Un cadre pensé pour le pilotage',
+    icon: Waypoints,
+    title: 'Organisation du parcours',
     description:
-      'Le contenu met en avant les logiques de management, d’organisation, de coordination et de reporting attendues dans le RPMS.'
+      'Le site donne un chemin simple: comprendre le programme, lire le cadre, puis demander un rappel.'
   }
 ])
 const journey = computed(() => site.value.home?.journey ?? [])
@@ -123,25 +129,19 @@ const marqueeItems = computed(() => [
   'E-learning',
   'Accompagnement pédagogique'
 ])
-const summaryCards = computed(() => [
-  { label: 'Niveau', value: program.value?.levelLabel },
-  { label: 'Modalité', value: program.value?.formatLabel },
-  { label: 'Format', value: program.value?.rhythmLabel },
-  { label: 'Accompagnement', value: program.value?.supportLabel }
-].filter((item) => item.value))
 </script>
 
 <template>
-  <div class="space-y-16">
+  <div class="space-y-14">
     <section
-      class="diamond-panel surface-cut relative grid gap-8 overflow-hidden rounded-[2rem] p-8 lg:grid-cols-[1.18fr,0.82fr] lg:p-12"
+      class="architectural-band grid gap-8 p-8 lg:grid-cols-[1.05fr,0.95fr] lg:p-12"
       v-motion
       :initial="motionVariants.block.initial"
       :enter="motionVariants.block.enter"
     >
       <div class="space-y-6">
         <p class="kicker">{{ site.positioning?.eyebrow ?? 'Titre professionnel à distance' }}</p>
-        <h1 class="editorial-title text-4xl text-foreground sm:text-5xl lg:text-6xl">
+        <h1 class="editorial-title max-w-2xl text-4xl text-foreground sm:text-5xl lg:text-6xl">
           Titre professionnel Responsable petite et moyenne structure (RPMS)
         </h1>
         <p class="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
@@ -160,9 +160,7 @@ const summaryCards = computed(() => [
           </RouterLink>
         </div>
 
-        <p class="text-sm text-muted-foreground">
-          RNCP38575 · Niveau 5 / Bac+2 · 100 % distanciel
-        </p>
+        <p class="text-sm text-muted-foreground">RNCP38575 · Niveau 5 / Bac+2 · 100 % distanciel</p>
 
         <p
           v-if="errorMessage"
@@ -172,21 +170,33 @@ const summaryCards = computed(() => [
         </p>
       </div>
 
-      <div
-        class="grid gap-3"
-        v-motion
-        :initial="motionVariants.block.initial"
-        :enter="{ ...motionVariants.block.enter, transition: { ...motionVariants.block.enter.transition, delay: 130 } }"
-      >
-        <div
-          v-for="(item, index) in proofItems"
-          :key="item.label"
-          v-motion
-          :initial="motionVariants.pop.initial"
-          :enter="staggerEnter(index, 95, 140)"
-        >
-          <ImpactStat :value="item.value" :label="item.label" :note="item.note" />
-        </div>
+      <div class="space-y-4">
+        <article class="monument-panel surface-cut p-5">
+          <p class="kicker">Dossier public</p>
+          <div class="mt-3 flex items-center justify-between gap-4">
+            <h2 class="text-2xl font-semibold text-foreground">Repères essentiels</h2>
+            <span class="rounded-full border border-primary/20 bg-white/85 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+              RPMS
+            </span>
+          </div>
+
+          <div class="fact-grid mt-5">
+            <div v-for="item in proofItems" :key="item.label" class="fact-item">
+              <p class="fact-label">{{ item.label }}</p>
+              <p class="fact-value">{{ item.value }}</p>
+              <p class="fact-note">{{ item.note }}</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="monument-panel surface-cut p-5">
+          <div class="detail-grid">
+            <div v-for="item in heroFacts" :key="item.label" class="detail-row">
+              <p class="detail-key">{{ item.label }}</p>
+              <p class="detail-value">{{ item.value }}</p>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -197,133 +207,158 @@ const summaryCards = computed(() => [
       :enter="motionVariants.revealLeft.enter"
     />
 
-    <section class="space-y-8">
-      <SectionTitle
-        eyebrow="Le programme"
-        title="Un seul parcours public, présenté sans effet catalogue"
-        description="La page d’accueil pose les repères indispensables avant toute prise de contact : nature du titre, niveau, modalité, logique de compétences et cadre d’accompagnement."
-      />
-
-      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <Card
-          v-for="(item, index) in summaryCards"
-          :key="item.label"
-          class="diamond-panel surface-cut"
-          v-motion
-          :initial="{ opacity: 0, y: 16 }"
-          :enter="staggerEnter(index, 90, 80)"
-        >
-          <CardHeader>
-            <CardTitle class="text-base">{{ item.label }}</CardTitle>
-          </CardHeader>
-          <CardContent class="text-sm leading-relaxed text-muted-foreground">
-            {{ item.value }}
-          </CardContent>
-        </Card>
-      </div>
-    </section>
-
-    <section class="space-y-8">
+    <section class="section-shell space-y-8">
       <SectionTitle
         eyebrow="Repères"
-        title="Un site construit pour informer, pas pour surpromettre"
-        description="Le contenu public reste volontairement resserré sur des faits sourcés et sur ce qu’un particulier doit comprendre avant d’aller plus loin."
+        title="Une lecture directe du RPMS, sans surcharge visuelle"
+        description="Le site reste concentré sur les informations utiles pour comprendre le cadre du programme avant d’entrer en relation."
       />
 
-      <div class="grid gap-4 md:grid-cols-3">
-        <Card
-          v-for="(item, index) in highlights"
-          :key="item.title"
-          class="diamond-panel surface-cut"
-          v-motion
-          :initial="{ opacity: 0, y: 16 }"
-          :enter="staggerEnter(index)"
-        >
-          <CardHeader>
-            <component :is="item.icon" class="mb-2 h-6 w-6 text-primary" />
-            <CardTitle>{{ item.title }}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p class="text-sm leading-relaxed text-muted-foreground">
-              {{ item.description }}
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-    </section>
+      <div class="grid gap-4 lg:grid-cols-[1.02fr,0.98fr]">
+        <article class="monument-panel surface-cut p-6">
+          <div class="flex items-center justify-between gap-4">
+            <p class="kicker">Ce qui ressort</p>
+            <span class="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+              Lecture publique
+            </span>
+          </div>
 
-    <section class="grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
-      <div class="space-y-6">
-        <SectionTitle
-          eyebrow="Compétences"
-          title="Le cœur du RPMS : pilotage, organisation, management"
-          description="Les blocs du programme sont orientés vers la conduite d’une activité, l’animation d’équipe et la structuration d’une petite ou moyenne organisation."
-        />
+          <div class="mt-5 grid gap-0">
+            <div
+              v-for="(item, index) in highlights"
+              :key="item.title"
+              class="grid gap-4 border-t border-border/70 py-4 first:border-t-0 first:pt-0 sm:grid-cols-[auto,1fr]"
+              v-motion
+              :initial="{ opacity: 0, y: 12 }"
+              :enter="staggerEnter(index, 90, 70)"
+            >
+              <component :is="item.icon" class="h-6 w-6 text-primary" />
+              <div class="space-y-1">
+                <h3 class="text-lg font-semibold text-foreground">{{ item.title }}</h3>
+                <p class="text-sm leading-relaxed text-muted-foreground">
+                  {{ item.description }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
 
-        <div class="grid gap-3">
-          <article
-            v-for="cluster in competencyClusters"
-            :key="cluster"
-            class="surface-cut rounded-[1.35rem] px-5 py-4 text-sm font-medium text-foreground"
-          >
-            {{ cluster }}
-          </article>
-        </div>
-      </div>
+        <article class="monument-panel surface-cut p-6">
+          <div class="flex items-center justify-between gap-4">
+            <p class="kicker">Compétences</p>
+            <span class="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+              4 axes
+            </span>
+          </div>
 
-      <div class="space-y-4">
-        <article
-          v-for="block in program?.blocks ?? []"
-          :key="block.code"
-          class="diamond-panel surface-cut rounded-[1.6rem] p-5"
-        >
-          <p class="kicker">{{ block.code }}</p>
-          <h3 class="mt-3 text-xl font-semibold text-foreground">{{ block.title }}</h3>
-          <p class="mt-3 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-            {{ block.details }}
-          </p>
+          <div class="mt-5 grid gap-0">
+            <div
+              v-for="(cluster, index) in competencyClusters"
+              :key="cluster"
+              class="timeline-row px-0"
+              v-motion
+              :initial="{ opacity: 0, y: 12 }"
+              :enter="staggerEnter(index, 80, 90)"
+            >
+              <span class="timeline-index">{{ String(index + 1).padStart(2, '0') }}</span>
+              <div>
+                <p class="timeline-title">{{ cluster }}</p>
+                <p class="timeline-text">
+                  Une lecture resserrée du pilotage, de l’organisation et du management dans une petite ou moyenne structure.
+                </p>
+              </div>
+            </div>
+          </div>
         </article>
       </div>
     </section>
 
-    <section class="space-y-8">
+    <section class="section-shell space-y-8">
       <SectionTitle
-        eyebrow="Parcours"
-        title="Trois temps pour comprendre le cadre avant d’entrer en relation"
-        description="Le site public n’essaie pas de tout résoudre dès l’accueil : il pose le programme, le cadre pédagogique et le point d’entrée unique."
+        eyebrow="Programme"
+        title="Le contenu du RPMS reste lisible d’un seul bloc"
+        description="Les blocs de compétences sont présentés dans un format continu pour éviter l’empilement de vignettes sur mobile."
       />
 
-      <div class="grid gap-4 md:grid-cols-3">
-        <Card
-          v-for="(step, index) in journey"
-          :key="step.title"
-          class="diamond-panel surface-cut"
-          v-motion
-          :initial="{ opacity: 0, y: 16 }"
-          :enter="staggerEnter(index, 105, 100)"
-        >
-          <CardHeader>
-            <component
-              :is="[GraduationCap, Waypoints, BookOpenCheck][index] ?? GraduationCap"
-              class="mb-2 h-6 w-6 text-primary"
-            />
-            <CardTitle>{{ step.title }}</CardTitle>
-          </CardHeader>
-          <CardContent class="text-sm leading-relaxed text-muted-foreground">
-            {{ step.text }}
-          </CardContent>
-        </Card>
+      <div class="grid gap-6 lg:grid-cols-[0.92fr,1.08fr]">
+        <article class="monument-panel surface-cut p-6">
+          <p class="kicker">Structure</p>
+          <div class="detail-grid mt-4">
+            <div class="detail-row">
+              <p class="detail-key">Niveau</p>
+              <p class="detail-value">{{ program?.levelLabel }}</p>
+            </div>
+            <div class="detail-row">
+              <p class="detail-key">Modalité</p>
+              <p class="detail-value">{{ program?.formatLabel }}</p>
+            </div>
+            <div class="detail-row">
+              <p class="detail-key">Format</p>
+              <p class="detail-value">{{ program?.rhythmLabel }}</p>
+            </div>
+            <div class="detail-row">
+              <p class="detail-key">Accompagnement</p>
+              <p class="detail-value">{{ program?.supportLabel }}</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="monument-panel surface-cut p-0">
+          <div class="border-b border-border/70 px-6 py-5">
+            <p class="kicker">Blocs de compétences</p>
+            <h2 class="mt-3 text-2xl font-semibold text-foreground">Structure du programme</h2>
+          </div>
+
+          <div class="divide-y divide-border/70">
+            <div
+              v-for="block in program?.blocks ?? []"
+              :key="block.code"
+              class="space-y-3 px-6 py-5"
+            >
+              <p class="kicker">{{ block.code }}</p>
+              <h3 class="text-xl font-semibold text-foreground">{{ block.title }}</h3>
+              <p class="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
+                {{ block.details }}
+              </p>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section class="diamond-panel surface-cut rounded-[2rem] p-8 text-center lg:p-12">
+    <section class="section-shell space-y-8">
+      <SectionTitle
+        eyebrow="Parcours"
+        title="Trois temps pour comprendre le cadre avant de demander un rappel"
+        description="La progression reste simple: lire, situer le programme, puis entrer en relation si le cadre vous convient."
+      />
+
+      <div class="timeline-shell">
+        <div
+          v-for="(step, index) in journey"
+          :key="step.title"
+          class="timeline-row"
+          v-motion
+          :initial="motionVariants.block.initial"
+          :enter="staggerEnter(index, 90, 80)"
+        >
+          <span class="timeline-index">{{ String(index + 1).padStart(2, '0') }}</span>
+          <div>
+            <h3 class="timeline-title">{{ step.title }}</h3>
+            <p class="timeline-text">{{ step.text }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="arch-cta p-8 text-center lg:p-12">
       <p class="kicker">Prise de contact</p>
-      <h2 class="mt-3 text-3xl font-semibold text-foreground sm:text-4xl">
-        Un seul point d’entrée pour obtenir les bonnes informations
+      <h2 class="mt-3 text-3xl font-semibold sm:text-4xl">
+        Un point d’entrée unique pour demander un rappel
       </h2>
       <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-        Si vous souhaitez clarifier le contenu du programme, son cadre pédagogique ou sa logique
-        d’accompagnement, la demande de rappel est le point d’accès unique du site.
+        Si vous souhaitez avancer, le formulaire de contact concentre la demande et permet de
+        poursuivre l’échange à partir du cadre RPMS présenté sur le site.
       </p>
       <div class="mt-6 flex flex-wrap justify-center gap-3">
         <RouterLink to="/contact">

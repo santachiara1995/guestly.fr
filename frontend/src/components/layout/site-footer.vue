@@ -6,9 +6,9 @@ import { footerNavigation } from '@/data/navigation'
 </script>
 
 <template>
-  <footer class="relative overflow-hidden border-t border-border/75 bg-card/78">
-    <div class="pointer-events-none absolute -bottom-24 -right-24 h-56 w-56 rounded-full bg-secondary/20 blur-3xl"></div>
-    <div class="mx-auto grid w-full max-w-[1180px] gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[0.8fr,1.2fr] lg:px-8">
+  <footer class="relative overflow-hidden border-t border-border/75 bg-white/84">
+    <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+    <div class="mx-auto grid w-full max-w-[1180px] gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[0.9fr,1.1fr] lg:px-8">
       <div class="space-y-3">
         <brand-logo compact />
         <p class="max-w-md text-sm leading-relaxed text-muted-foreground">
@@ -40,9 +40,9 @@ import { footerNavigation } from '@/data/navigation'
 .footer-link {
   border-radius: 999px;
   border: 1px solid color-mix(in oklab, var(--primary) 18%, var(--border));
-  background: color-mix(in oklab, var(--card) 86%, white);
+  background: color-mix(in oklab, var(--white) 90%, var(--blue-france));
   padding: 0.38rem 0.82rem;
-  color: var(--foreground);
+  color: var(--primary);
   font-size: 0.9rem;
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }

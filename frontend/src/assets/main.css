@@ -3,22 +3,25 @@
 @import 'tw-animate-css';
 
 :root {
-  --background: #efe8de;
-  --foreground: #142635;
-  --card: #fbfaf7;
-  --card-foreground: #142635;
-  --primary: #1e4b73;
-  --primary-foreground: #f8fbfd;
-  --secondary: #b47f43;
-  --secondary-foreground: #142635;
-  --muted: #d8dde1;
-  --muted-foreground: #60707e;
-  --destructive: #b94841;
-  --destructive-foreground: #fff6f4;
-  --border: #c8d0d5;
-  --input: #dce2e6;
-  --ring: #4a7aa6;
-  --highlight: #8fa8ba;
+  --blue-france: #000091;
+  --white: #ffffff;
+  --red-marianne: #e1000f;
+  --background: color-mix(in srgb, var(--white) 96%, var(--blue-france) 4%);
+  --foreground: color-mix(in srgb, var(--blue-france) 86%, #000 14%);
+  --card: color-mix(in srgb, var(--white) 98%, var(--blue-france) 2%);
+  --card-foreground: var(--foreground);
+  --primary: var(--blue-france);
+  --primary-foreground: var(--white);
+  --secondary: var(--red-marianne);
+  --secondary-foreground: var(--white);
+  --muted: color-mix(in srgb, var(--white) 88%, var(--blue-france) 12%);
+  --muted-foreground: color-mix(in srgb, var(--blue-france) 54%, #667089 46%);
+  --destructive: var(--red-marianne);
+  --destructive-foreground: var(--white);
+  --border: color-mix(in srgb, var(--blue-france) 16%, var(--white));
+  --input: color-mix(in srgb, var(--blue-france) 10%, var(--white));
+  --ring: color-mix(in srgb, var(--blue-france) 58%, var(--white));
+  --highlight: color-mix(in srgb, var(--red-marianne) 20%, var(--white));
   --radius: 1rem;
 }
 
@@ -53,13 +56,9 @@
     min-height: 100vh;
     background-color: var(--background);
     background-image:
-      radial-gradient(circle at 8% 10%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 34%),
-      radial-gradient(circle at 92% 18%, color-mix(in srgb, var(--secondary) 20%, transparent), transparent 28%),
-      linear-gradient(132deg, color-mix(in srgb, var(--highlight) 16%, transparent) 0%, transparent 42%),
-      linear-gradient(90deg, color-mix(in srgb, var(--foreground) 3%, transparent) 1px, transparent 1px),
-      linear-gradient(color-mix(in srgb, var(--foreground) 3%, transparent) 1px, transparent 1px),
-      linear-gradient(180deg, #f4eee4 0%, #ebe3d7 100%);
-    background-size: auto, auto, auto, 26px 26px, 26px 26px, auto;
+      radial-gradient(circle at 12% 10%, color-mix(in srgb, var(--blue-france) 10%, transparent), transparent 30%),
+      radial-gradient(circle at 88% 14%, color-mix(in srgb, var(--red-marianne) 9%, transparent), transparent 25%),
+      linear-gradient(180deg, color-mix(in srgb, var(--white) 98%, var(--blue-france) 2%) 0%, color-mix(in srgb, var(--white) 94%, var(--blue-france) 6%) 100%);
   }
 
   h1,
@@ -76,83 +75,95 @@
 
 .bg-brand-haze {
   background:
-    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 32%),
-    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--secondary) 18%, transparent), transparent 28%),
-    linear-gradient(180deg, color-mix(in srgb, white 75%, var(--background)) 0%, transparent 58%);
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--blue-france) 16%, transparent), transparent 34%),
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--red-marianne) 12%, transparent), transparent 28%),
+    linear-gradient(180deg, color-mix(in srgb, var(--white) 94%, var(--blue-france) 6%) 0%, transparent 72%);
 }
 
+.grain-overlay {
+  background-image:
+    linear-gradient(90deg, color-mix(in srgb, var(--blue-france) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--blue-france) 5%, transparent) 1px, transparent 1px),
+    radial-gradient(circle at 24% 22%, color-mix(in srgb, var(--blue-france) 7%, transparent), transparent 42%),
+    radial-gradient(circle at 74% 66%, color-mix(in srgb, var(--red-marianne) 5%, transparent), transparent 34%);
+  background-size: 34px 34px, 34px 34px, auto, auto;
+}
+
+.monument-panel,
 .diamond-panel {
   position: relative;
   overflow: clip;
-  border: 1px solid color-mix(in srgb, var(--primary) 18%, var(--border));
-  border-radius: 1.6rem;
+  border: 1px solid color-mix(in srgb, var(--blue-france) 18%, var(--border));
+  border-radius: 1.5rem;
   background:
-    linear-gradient(150deg, color-mix(in srgb, white 88%, var(--card)) 0%, var(--card) 48%, color-mix(in srgb, var(--highlight) 10%, var(--card)) 100%);
+    linear-gradient(180deg, color-mix(in srgb, var(--white) 98%, var(--blue-france) 2%) 0%, color-mix(in srgb, var(--card) 94%, var(--blue-france) 6%) 100%);
   box-shadow:
-    0 24px 55px rgba(20, 38, 53, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.82);
-  transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
+    0 20px 42px rgba(0, 0, 145, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
+.monument-panel::before,
 .diamond-panel::before {
   content: '';
   position: absolute;
   inset: 0 auto auto 0;
   height: 4px;
   width: 7rem;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  background: linear-gradient(90deg, var(--primary), color-mix(in srgb, var(--primary) 44%, var(--white)), var(--secondary));
 }
 
+.monument-panel::after,
 .diamond-panel::after {
   content: '';
   position: absolute;
-  inset: auto -2rem -2rem auto;
-  height: 8rem;
-  width: 8rem;
-  border-radius: 1.5rem;
+  inset: auto 1.1rem 1rem auto;
+  width: 4.75rem;
+  height: 4.75rem;
+  border-radius: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--blue-france) 20%, var(--white));
   background:
-    linear-gradient(145deg, color-mix(in srgb, var(--secondary) 18%, transparent), transparent 65%);
-  transform: rotate(18deg);
+    radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--secondary) 12%, transparent), transparent 55%);
+  transform: rotate(45deg);
   pointer-events: none;
+  opacity: 0.34;
 }
 
+.monument-panel:hover,
 .diamond-panel:hover {
-  transform: translateY(-3px);
-  border-color: color-mix(in srgb, var(--primary) 34%, var(--secondary));
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--blue-france) 28%, var(--red-marianne));
   box-shadow:
-    0 28px 70px rgba(20, 38, 53, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    0 26px 58px rgba(0, 0, 145, 0.11),
+    inset 0 1px 0 rgba(255, 255, 255, 0.94);
+}
+
+.surface-cut {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--white) 96%, var(--blue-france) 4%) 0%, color-mix(in srgb, var(--card) 90%, var(--blue-france) 10%) 100%);
 }
 
 .brand-symbol {
-  border: 1px solid color-mix(in srgb, var(--primary) 38%, var(--border));
+  border: 1px solid color-mix(in srgb, var(--blue-france) 28%, var(--border));
   background:
-    linear-gradient(155deg, color-mix(in srgb, var(--primary) 88%, white), color-mix(in srgb, var(--secondary) 64%, white));
-  color: #f9fbfd;
+    linear-gradient(155deg, color-mix(in srgb, var(--blue-france) 96%, var(--white) 4%), color-mix(in srgb, var(--blue-france) 78%, var(--red-marianne) 22%));
+  color: var(--white);
   box-shadow:
-    0 16px 36px color-mix(in srgb, var(--primary) 22%, transparent),
-    inset 0 1px 0 rgba(255, 255, 255, 0.56);
-}
-
-.grid-surface {
-  background-image:
-    linear-gradient(color-mix(in srgb, var(--primary) 8%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--primary) 8%, transparent) 1px, transparent 1px);
-  background-size: 24px 24px;
-  background-position: center;
+    0 16px 34px color-mix(in srgb, var(--blue-france) 20%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .kicker {
-  letter-spacing: 0.24em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   font-size: 0.72rem;
   font-weight: 800;
-  color: color-mix(in srgb, var(--primary) 66%, var(--foreground));
+  color: color-mix(in srgb, var(--blue-france) 72%, var(--foreground));
 }
 
 .editorial-title {
-  letter-spacing: -0.045em;
-  line-height: 0.98;
+  letter-spacing: -0.05em;
+  line-height: 0.96;
 }
 
 .btn-soft-glow {
@@ -161,27 +172,218 @@
 
 .btn-soft-glow:hover {
   box-shadow:
-    0 0 0 2px color-mix(in srgb, var(--primary) 14%, transparent),
-    0 0 28px color-mix(in srgb, var(--primary) 18%, transparent),
-    0 18px 34px color-mix(in srgb, var(--primary) 16%, transparent);
+    0 0 0 2px color-mix(in srgb, var(--blue-france) 14%, transparent),
+    0 0 28px color-mix(in srgb, var(--blue-france) 18%, transparent),
+    0 18px 34px color-mix(in srgb, var(--blue-france) 16%, transparent);
 }
 
-.surface-cut {
-  border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
+.section-shell {
+  padding-top: 0.25rem;
+}
+
+.section-shell + .section-shell {
+  border-top: 1px solid color-mix(in srgb, var(--blue-france) 12%, transparent);
+  padding-top: 2rem;
+}
+
+.architectural-band {
+  position: relative;
+  overflow: clip;
+  border-radius: 2rem;
+  border: 1px solid color-mix(in srgb, var(--blue-france) 18%, var(--border));
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--card) 92%, white), color-mix(in srgb, var(--card) 82%, var(--background)));
-  box-shadow: 0 10px 24px rgba(20, 38, 53, 0.06);
+    linear-gradient(180deg, color-mix(in srgb, var(--white) 98%, var(--blue-france) 2%) 0%, color-mix(in srgb, var(--white) 92%, var(--blue-france) 8%) 100%);
+  box-shadow:
+    0 28px 68px rgba(0, 0, 145, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88);
+}
+
+.architectural-band::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 50%;
+  height: 100%;
+  width: 1px;
+  transform: translateX(-0.5px);
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--blue-france) 18%, transparent), transparent);
+  pointer-events: none;
+}
+
+.architectural-band::after {
+  content: '';
+  position: absolute;
+  inset: auto auto 0 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--blue-france), color-mix(in srgb, var(--white) 88%, var(--blue-france) 12%), var(--red-marianne));
+  pointer-events: none;
+}
+
+.fact-grid {
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.fact-item {
+  border-top: 1px solid color-mix(in srgb, var(--blue-france) 12%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--blue-france) 12%, transparent);
+  padding: 1rem 1.1rem;
+}
+
+.fact-item:nth-child(-n + 2) {
+  border-top: 0;
+}
+
+.fact-item:nth-child(2n) {
+  border-right: 0;
+}
+
+.fact-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--blue-france) 66%, var(--foreground));
+}
+
+.fact-value {
+  margin-top: 0.4rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--foreground);
+}
+
+.fact-note {
+  margin-top: 0.35rem;
+  font-size: 0.83rem;
+  line-height: 1.4;
+  color: var(--muted-foreground);
+}
+
+.detail-grid {
+  display: grid;
+  gap: 0;
+}
+
+.detail-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  border-top: 1px solid color-mix(in srgb, var(--blue-france) 12%, transparent);
+  padding: 0.95rem 0;
+}
+
+.detail-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.detail-key {
+  min-width: 9rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--blue-france) 66%, var(--foreground));
+}
+
+.detail-value {
+  flex: 1;
+  text-align: right;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--foreground);
+}
+
+.timeline-shell {
+  border-radius: 1.75rem;
+  border: 1px solid color-mix(in srgb, var(--blue-france) 18%, var(--border));
+  background: color-mix(in srgb, var(--white) 96%, var(--blue-france) 4%);
+  box-shadow:
+    0 24px 56px rgba(0, 0, 145, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+.timeline-row {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  border-top: 1px solid color-mix(in srgb, var(--blue-france) 12%, transparent);
+  padding: 1rem 1.1rem;
+}
+
+.timeline-row:first-child {
+  border-top: 0;
+}
+
+.timeline-index {
+  display: inline-flex;
+  height: 2.15rem;
+  width: 2.15rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--blue-france) 28%, var(--border));
+  background: linear-gradient(180deg, var(--blue-france), color-mix(in srgb, var(--blue-france) 82%, var(--red-marianne)));
+  color: var(--white);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.timeline-title {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.timeline-text {
+  margin-top: 0.35rem;
+  font-size: 0.93rem;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+}
+
+.arch-cta {
+  border-radius: 2rem;
+  border: 1px solid color-mix(in srgb, var(--blue-france) 22%, var(--border));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--blue-france) 96%, var(--white) 4%) 0%, color-mix(in srgb, var(--blue-france) 82%, var(--red-marianne) 18%) 100%);
+  color: var(--white);
+  box-shadow:
+    0 30px 72px rgba(0, 0, 145, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.arch-cta .kicker {
+  color: color-mix(in srgb, var(--white) 84%, var(--red-marianne));
+}
+
+.arch-cta .text-muted-foreground {
+  color: color-mix(in srgb, var(--white) 76%, var(--blue-france)) !important;
+}
+
+.arch-cta .text-foreground,
+.arch-cta h1,
+.arch-cta h2,
+.arch-cta h3 {
+  color: var(--white);
 }
 
 .impact-stat {
   border-radius: 1.2rem;
-  border: 1px solid color-mix(in srgb, var(--primary) 22%, var(--border));
+  border: 1px solid color-mix(in srgb, var(--blue-france) 18%, var(--border));
   background:
-    linear-gradient(135deg, color-mix(in srgb, white 90%, var(--card)), color-mix(in srgb, var(--highlight) 12%, white));
+    linear-gradient(135deg, color-mix(in srgb, var(--white) 96%, var(--blue-france) 4%), color-mix(in srgb, var(--white) 90%, var(--red-marianne) 10%));
   padding: 1rem;
   box-shadow:
-    0 18px 32px rgba(20, 38, 53, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.76);
+    0 16px 30px rgba(0, 0, 145, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
 }
 
 .impact-stat-value {
@@ -210,16 +412,16 @@
 .ribbon-shell {
   overflow: hidden;
   border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--primary) 22%, var(--border));
+  border: 1px solid color-mix(in srgb, var(--blue-france) 18%, var(--border));
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--primary) 8%, white), color-mix(in srgb, var(--secondary) 10%, white));
-  box-shadow: 0 10px 18px rgba(20, 38, 53, 0.06);
+    linear-gradient(90deg, color-mix(in srgb, var(--white) 94%, var(--blue-france) 6%), color-mix(in srgb, var(--white) 92%, var(--red-marianne) 8%));
+  box-shadow: 0 10px 18px rgba(0, 0, 145, 0.06);
 }
 
 .ribbon-track {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.85rem 1.2rem;
+  gap: 0.7rem 1.1rem;
   padding: 0.55rem 1.15rem;
 }
 
@@ -228,7 +430,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--foreground) 86%, var(--primary));
+  color: color-mix(in srgb, var(--foreground) 84%, var(--primary));
   white-space: nowrap;
 }
 
@@ -239,53 +441,48 @@
   color: var(--foreground);
 }
 
-.orb {
-  position: fixed;
-  z-index: -10;
-  border-radius: 28%;
-  filter: blur(0.2px);
-  pointer-events: none;
+.form-field > span {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--blue-france) 66%, var(--foreground));
 }
 
-.orb-a {
-  left: -6rem;
-  top: 10rem;
-  height: 16rem;
-  width: 16rem;
-  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 24%, transparent), transparent 70%);
-}
-
-.orb-b {
-  right: -7rem;
-  top: 20rem;
-  height: 18rem;
-  width: 18rem;
-  background: radial-gradient(circle, color-mix(in srgb, var(--secondary) 18%, transparent), transparent 72%);
-  animation-delay: -2.4s;
-}
-
-.orb-c {
-  left: 48%;
-  bottom: -7rem;
-  height: 14rem;
-  width: 14rem;
-  background: radial-gradient(circle, color-mix(in srgb, var(--highlight) 18%, transparent), transparent 72%);
-  animation-delay: -4.8s;
-}
-
-.grain-overlay {
-  background-image:
-    radial-gradient(circle at 18% 24%, rgba(20, 38, 53, 0.05) 0, transparent 2px),
-    radial-gradient(circle at 72% 60%, rgba(20, 38, 53, 0.04) 0, transparent 1.5px),
-    radial-gradient(circle at 42% 80%, rgba(20, 38, 53, 0.04) 0, transparent 1.8px);
-  background-size: 220px 220px, 260px 260px, 320px 320px;
+.page-rule {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--blue-france) 22%, transparent), color-mix(in srgb, var(--red-marianne) 18%, transparent), transparent);
 }
 
 @media (max-width: 768px) {
-  .orb-a,
-  .orb-b,
-  .orb-c {
-    opacity: 0.4;
+  .monument-panel::after,
+  .diamond-panel::after {
+    opacity: 0.2;
+  }
+
+  .fact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fact-item,
+  .fact-item:nth-child(-n + 2),
+  .fact-item:nth-child(2n) {
+    border-right: 0;
+    border-top: 1px solid color-mix(in srgb, var(--blue-france) 12%, transparent);
+  }
+
+  .fact-item:first-child {
+    border-top: 0;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .detail-value {
+    text-align: left;
   }
 }
 

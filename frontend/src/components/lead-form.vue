@@ -84,7 +84,7 @@ async function submitForm() {
       </label>
 
       <label class="form-field">
-        <span>Email</span>
+        <span>Adresse de contact</span>
         <Input
           v-model="form.email"
           autocomplete="email"

@@ -15,11 +15,11 @@ const brandName = "CITYZ'France"
 const notFoundPage = {
   name: 'NotFoundPage',
   render() {
-    return h('section', { class: 'diamond-panel surface-cut rounded-[2rem] p-8 sm:p-10 lg:p-12' }, [
+    return h('section', { class: 'arch-cta p-8 sm:p-10 lg:p-12' }, [
       h('p', { class: 'kicker' }, 'Page introuvable'),
       h(
         'h1',
-        { class: 'editorial-title mt-3 text-4xl text-foreground sm:text-5xl' },
+        { class: 'editorial-title mt-3 text-4xl sm:text-5xl' },
         'Cette adresse ne fait pas partie du site public.'
       ),
       h(
@@ -33,7 +33,7 @@ const notFoundPage = {
           {
             to: '/',
             class:
-              'inline-flex items-center rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90'
+              'inline-flex items-center rounded-xl border border-white/20 bg-white px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-white/92'
           },
           () => "Retour à l'accueil"
         ),
@@ -42,7 +42,7 @@ const notFoundPage = {
           {
             to: '/contact',
             class:
-              'inline-flex items-center rounded-xl border border-border/70 bg-background/80 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-background'
+              'inline-flex items-center rounded-xl border border-white/18 bg-transparent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10'
           },
           () => 'Être rappelé'
         )

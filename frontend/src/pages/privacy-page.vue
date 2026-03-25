@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 
+import SectionTitle from '@/components/section-title.vue'
 import { api } from '@/lib/api'
 
 const site = ref({})
@@ -12,40 +13,51 @@ onMounted(async () => {
 
 <template>
   <div class="space-y-8">
-    <section class="space-y-3">
-      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-        Politique de confidentialité
-      </p>
-      <h1 class="text-3xl font-semibold text-foreground">Protection des données personnelles</h1>
-      <p class="max-w-3xl text-base leading-relaxed text-muted-foreground">
-        Les informations transmises via le formulaire sont utilisées exclusivement pour traiter
-        une demande de rappel liée au programme présenté sur ce site.
-      </p>
-    </section>
+    <SectionTitle
+      eyebrow="Politique de confidentialité"
+      title="Protection des données personnelles"
+      description="Les informations transmises via le formulaire sont utilisées exclusivement pour traiter une demande de rappel liée au programme présenté sur ce site."
+    />
 
-    <section class="diamond-panel surface-cut space-y-4 rounded-[2rem] p-8 text-sm leading-relaxed text-muted-foreground">
-      <p v-if="site.organizationProfile?.legalName">
-        Responsable du traitement : {{ site.organizationProfile.legalName }}
-      </p>
-      <p>
-        Ce site collecte les informations saisies dans le formulaire de rappel : identité,
-        coordonnées de contact et message libre.
-      </p>
-      <p>
-        Ces données sont utilisées pour traiter la demande, organiser le rappel et assurer le suivi
-        de la prise de contact liée au programme présenté sur le site.
-      </p>
-      <p>
-        Le formulaire public du site n’a pas d’autre finalité que la gestion de cette relation de
-        contact.
-      </p>
-      <p>
-        Pour toute demande relative aux informations transmises via le site, le point de référence
-        affiché publiquement reste le siège de l’organisme.
-      </p>
-      <p v-if="site.organizationProfile?.headquartersAddress">
-        Adresse de référence : {{ site.organizationProfile.headquartersAddress }}
-      </p>
-    </section>
+    <article class="monument-panel surface-cut p-6 text-sm leading-relaxed text-muted-foreground">
+      <div class="detail-grid">
+        <div v-if="site.organizationProfile?.legalName" class="detail-row">
+          <p class="detail-key">Responsable du traitement</p>
+          <p class="detail-value">{{ site.organizationProfile.legalName }}</p>
+        </div>
+        <div class="detail-row">
+          <p class="detail-key">Collecte</p>
+          <p class="detail-value">
+            Ce site collecte les informations saisies dans le formulaire de rappel: identité,
+            coordonnées de contact et message libre.
+          </p>
+        </div>
+        <div class="detail-row">
+          <p class="detail-key">Finalité</p>
+          <p class="detail-value">
+            Ces données servent à traiter la demande, organiser le rappel et assurer le suivi de
+            la prise de contact liée au programme présenté sur le site.
+          </p>
+        </div>
+        <div class="detail-row">
+          <p class="detail-key">Cadre</p>
+          <p class="detail-value">
+            Le formulaire public du site n’a pas d’autre finalité que la gestion de cette relation
+            de contact.
+          </p>
+        </div>
+        <div class="detail-row">
+          <p class="detail-key">Référence</p>
+          <p class="detail-value">
+            Pour toute demande relative aux informations transmises via le site, le point de
+            référence affiché publiquement reste le siège de l’organisme.
+          </p>
+        </div>
+        <div v-if="site.organizationProfile?.headquartersAddress" class="detail-row">
+          <p class="detail-key">Adresse de référence</p>
+          <p class="detail-value">{{ site.organizationProfile.headquartersAddress }}</p>
+        </div>
+      </div>
+    </article>
   </div>
 </template>

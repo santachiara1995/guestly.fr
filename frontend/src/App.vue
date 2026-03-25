@@ -1,14 +1,11 @@
 <template>
   <div class="relative min-h-screen">
+    <div class="shell-rail fixed inset-x-0 top-0 z-40 h-[0.25rem]"></div>
     <div class="pointer-events-none fixed inset-0 -z-10 bg-brand-haze"></div>
-    <div class="pointer-events-none fixed inset-0 -z-10 grain-overlay opacity-60"></div>
-    <div class="orb orb-a"></div>
-    <div class="orb orb-b"></div>
-    <div class="orb orb-c"></div>
 
     <site-header />
 
-    <main class="mx-auto w-full max-w-[1180px] px-4 pb-24 pt-8 sm:px-6 lg:px-8">
+    <main class="mx-auto w-full max-w-[1180px] px-4 pb-20 pt-6 sm:px-6 lg:px-8 lg:pt-8">
       <router-view v-slot="{ Component }">
         <component
           :is="Component"

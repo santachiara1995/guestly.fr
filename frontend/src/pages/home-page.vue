@@ -12,61 +12,33 @@ import {
 
 import SectionTitle from '@/components/section-title.vue'
 import ImpactStat from '@/components/visual/impact-stat.vue'
-import RibbonMarquee from '@/components/visual/ribbon-marquee.vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { api } from '@/lib/api'
 import { motionVariants, staggerEnter } from '@/lib/motion'
 
-const program = ref(null)
+const program = ref({
+  levelLabel: 'Niveau 5 (Bac+2)',
+  formatLabel: '100 % distanciel',
+  rhythmLabel: 'E-learning',
+  supportLabel: 'Accompagnement pédagogique',
+  blocks: []
+})
 const site = ref({
   positioning: {
-    eyebrow: 'Titre professionnel à distance',
-    subtitle:
-      "CITYZ'France présente le titre professionnel Responsable petite et moyenne structure (RPMS) pour des particuliers recherchant un cadre sérieux, lisible et entièrement orienté vers l'information utile."
+    eyebrow: 'Titre professionnel RPMS'
   },
   home: {
-    proofItems: [
-      {
-        value: 'RNCP38575',
-        label: 'Référentiel visible',
-        note: "Titre professionnel reconnu par l'État"
-      },
-      {
-        value: 'Niveau 5',
-        label: 'Positionnement',
-        note: 'Équivalent Bac+2'
-      },
-      {
-        value: '100 % distanciel',
-        label: 'Modalité',
-        note: 'E-learning'
-      }
-    ],
-    journey: [
-      {
-        title: 'Comprendre le programme',
-        text: 'Identifier le niveau, le référentiel, la modalité pédagogique et la logique des blocs de compétences.'
-      },
-      {
-        title: 'Évaluer le cadre d’accompagnement',
-        text: 'Lire le fonctionnement distanciel, le suivi pédagogique et les repères pratiques donnés avant la prise de contact.'
-      },
-      {
-        title: 'Être rappelé',
-        text: "Déposer une demande de rappel pour être recontacté avec une réponse adaptée au projet et au niveau d'information recherché."
-      }
-    ],
-    competencyClusters: [
-      'Piloter une activité et sa performance',
-      'Manager et animer une équipe',
-      'Organiser les opérations et la qualité',
-      'Développer l’offre, la communication et le reporting'
-    ]
+    proofItems: [],
+    journey: [],
+    competencyClusters: []
   }
 })
 const loading = ref(true)
 const errorMessage = ref('')
+
+const heroSubtitle =
+  "CITYZ'France présente le titre professionnel Responsable petite et moyenne structure (RPMS) avec les repères utiles pour lire le niveau, la modalité, le format pédagogique et les compétences centrales."
 
 onMounted(async () => {
   try {
@@ -83,70 +55,77 @@ onMounted(async () => {
   }
 })
 
-program.value = {
-  levelLabel: 'Niveau 5 (Bac+2)',
-  formatLabel: '100 % distanciel',
-  rhythmLabel: 'E-learning',
-  supportLabel: 'Accompagnement pédagogique',
-  blocks: []
-}
-
 const proofItems = computed(() => site.value.home?.proofItems ?? [])
+const journey = computed(() => site.value.home?.journey ?? [])
+const competencyClusters = computed(() => site.value.home?.competencyClusters ?? [])
+const summaryCards = computed(() =>
+  [
+    { label: 'Niveau', value: program.value?.levelLabel },
+    { label: 'Modalité', value: program.value?.formatLabel },
+    { label: 'Format', value: program.value?.rhythmLabel },
+    { label: 'Accompagnement', value: program.value?.supportLabel }
+  ].filter((item) => item.value)
+)
 const highlights = computed(() => [
   {
     icon: ShieldCheck,
-    title: 'Une lecture réglementaire stable',
+    title: 'Repères stables',
     description:
-      'Le site public s’en tient aux informations pédagogiques, juridiques et institutionnelles confirmées dans les sources disponibles.'
+      "Le titre, le code RNCP, le niveau et la modalité restent visibles dès l'entrée du site."
   },
   {
     icon: BookOpenCheck,
-    title: 'Un parcours présenté sans dispersion',
+    title: 'Lecture directe',
     description:
-      'Un seul programme, une seule audience, une seule trajectoire de prise de contact pour éviter l’effet catalogue.'
+      'La hiérarchie des pages va du repère essentiel vers le détail, sans multiplier les blocs équivalents.'
   },
   {
     icon: Building2,
-    title: 'Un cadre pensé pour le pilotage',
+    title: 'Cœur métier',
     description:
-      'Le contenu met en avant les logiques de management, d’organisation, de coordination et de reporting attendues dans le RPMS.'
+      "Pilotage, management, organisation, communication et reporting structurent l'ensemble du parcours public."
   }
 ])
-const journey = computed(() => site.value.home?.journey ?? [])
-const competencyClusters = computed(() => site.value.home?.competencyClusters ?? [])
-const marqueeItems = computed(() => [
-  'Titre professionnel RPMS',
-  'RNCP38575',
-  'Niveau 5',
-  'Bac+2',
-  '100 % distanciel',
-  'E-learning',
-  'Accompagnement pédagogique'
+const heroFacts = computed(() => [
+  {
+    label: 'Code RNCP',
+    value: 'RNCP38575',
+    note: "Titre professionnel visible dans les repères publics."
+  },
+  {
+    label: 'Niveau',
+    value: 'Niveau 5',
+    note: 'Positionnement Bac+2.'
+  },
+  {
+    label: 'Modalité',
+    value: '100 % distanciel',
+    note: 'Lecture à distance.'
+  },
+  {
+    label: 'Format',
+    value: 'E-learning',
+    note: 'Support pédagogique numérique.'
+  }
 ])
-const summaryCards = computed(() => [
-  { label: 'Niveau', value: program.value?.levelLabel },
-  { label: 'Modalité', value: program.value?.formatLabel },
-  { label: 'Format', value: program.value?.rhythmLabel },
-  { label: 'Accompagnement', value: program.value?.supportLabel }
-].filter((item) => item.value))
+const compactBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
+const journeyIcons = [GraduationCap, Waypoints, BookOpenCheck]
 </script>
 
 <template>
-  <div class="space-y-16">
-    <section
-      class="diamond-panel surface-cut relative grid gap-8 overflow-hidden rounded-[2rem] p-8 lg:grid-cols-[1.18fr,0.82fr] lg:p-12"
-      v-motion
-      :initial="motionVariants.block.initial"
-      :enter="motionVariants.block.enter"
-    >
-      <div class="space-y-6">
-        <p class="kicker">{{ site.positioning?.eyebrow ?? 'Titre professionnel à distance' }}</p>
-        <h1 class="editorial-title text-4xl text-foreground sm:text-5xl lg:text-6xl">
-          Titre professionnel Responsable petite et moyenne structure (RPMS)
-        </h1>
-        <p class="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-          {{ site.positioning?.subtitle }}
-        </p>
+  <div class="space-y-12 sm:space-y-14">
+    <section class="grid gap-6 lg:grid-cols-[1.08fr,0.92fr]">
+      <div class="space-y-5">
+        <p class="kicker">{{ site.positioning?.eyebrow ?? 'Titre professionnel RPMS' }}</p>
+
+        <div class="space-y-4">
+          <h1 class="editorial-title max-w-3xl text-[clamp(2.75rem,6.4vw,5rem)] text-foreground">
+            Titre professionnel Responsable petite et moyenne structure (RPMS)
+          </h1>
+          <p class="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {{ heroSubtitle }}
+          </p>
+        </div>
 
         <div class="flex flex-wrap gap-3">
           <RouterLink to="/contact">
@@ -160,58 +139,82 @@ const summaryCards = computed(() => [
           </RouterLink>
         </div>
 
-        <p class="text-sm text-muted-foreground">
-          RNCP38575 · Niveau 5 / Bac+2 · 100 % distanciel
-        </p>
+        <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div
+            v-for="fact in heroFacts"
+            :key="fact.label"
+            class="page-cut rounded-xl px-4 py-4"
+          >
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              {{ fact.label }}
+            </p>
+            <p class="mt-2 text-lg font-semibold text-foreground">{{ fact.value }}</p>
+            <p class="mt-1 text-sm leading-relaxed text-muted-foreground">{{ fact.note }}</p>
+          </div>
+        </div>
 
         <p
           v-if="errorMessage"
-          class="rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive"
+          class="rounded-xl border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive"
         >
           {{ errorMessage }}
         </p>
       </div>
 
-      <div
-        class="grid gap-3"
-        v-motion
-        :initial="motionVariants.block.initial"
-        :enter="{ ...motionVariants.block.enter, transition: { ...motionVariants.block.enter.transition, delay: 130 } }"
-      >
-        <div
-          v-for="(item, index) in proofItems"
-          :key="item.label"
-          v-motion
-          :initial="motionVariants.pop.initial"
-          :enter="staggerEnter(index, 95, 140)"
-        >
-          <ImpactStat :value="item.value" :label="item.label" :note="item.note" />
+      <div class="space-y-4">
+        <div class="page-cut rounded-[1.25rem] p-5 sm:p-6">
+          <div class="flex items-center justify-between gap-3">
+            <p class="kicker">Repères clés</p>
+            <span class="rounded-full border border-border bg-white px-3 py-1 text-xs font-semibold text-muted-foreground">
+              Synthèse
+            </span>
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-2 mt-4">
+            <div v-for="(item, index) in proofItems" :key="item.label">
+              <ImpactStat
+                v-motion
+                :initial="motionVariants.pop.initial"
+                :enter="staggerEnter(index, 70, 90)"
+                :value="item.value"
+                :label="item.label"
+                :note="item.note"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="page-cut rounded-[1.25rem] p-5 sm:p-6">
+          <p class="kicker">Compétences centrales</p>
+          <div class="dense-list mt-4">
+            <div
+              v-for="cluster in competencyClusters"
+              :key="cluster"
+              class="flex items-start gap-3 rounded-xl border border-border bg-white px-4 py-3 text-sm font-medium text-foreground"
+            >
+              <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-secondary"></span>
+              <span>{{ cluster }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <RibbonMarquee
-      :items="marqueeItems"
-      v-motion
-      :initial="motionVariants.revealLeft.initial"
-      :enter="motionVariants.revealLeft.enter"
-    />
-
-    <section class="space-y-8">
+    <section class="space-y-6">
       <SectionTitle
-        eyebrow="Le programme"
-        title="Un seul parcours public, présenté sans effet catalogue"
-        description="La page d’accueil pose les repères indispensables avant toute prise de contact : nature du titre, niveau, modalité, logique de compétences et cadre d’accompagnement."
+        eyebrow="Programme"
+        title="Les quatre repères qui structurent la lecture publique"
+        description="Le résumé met en avant les faits stables avant d'aller vers le détail des blocs."
       />
 
       <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <Card
           v-for="(item, index) in summaryCards"
           :key="item.label"
-          class="diamond-panel surface-cut"
+          class="page-cut"
           v-motion
-          :initial="{ opacity: 0, y: 16 }"
-          :enter="staggerEnter(index, 90, 80)"
+          :initial="{ opacity: 0, y: 12 }"
+          :enter="staggerEnter(index, 80, 70)"
         >
           <CardHeader>
             <CardTitle class="text-base">{{ item.label }}</CardTitle>
@@ -223,118 +226,118 @@ const summaryCards = computed(() => [
       </div>
     </section>
 
-    <section class="space-y-8">
-      <SectionTitle
-        eyebrow="Repères"
-        title="Un site construit pour informer, pas pour surpromettre"
-        description="Le contenu public reste volontairement resserré sur des faits sourcés et sur ce qu’un particulier doit comprendre avant d’aller plus loin."
-      />
+    <section class="grid gap-6 lg:grid-cols-[0.95fr,1.05fr]">
+      <div class="space-y-6">
+        <SectionTitle
+          eyebrow="Points d'appui"
+          title="Une hiérarchie courte pour aller vite à l'essentiel"
+          description="Le site commence par les repères clés, puis détaille le programme, puis propose le contact."
+        />
 
-      <div class="grid gap-4 md:grid-cols-3">
-        <Card
-          v-for="(item, index) in highlights"
-          :key="item.title"
-          class="diamond-panel surface-cut"
-          v-motion
-          :initial="{ opacity: 0, y: 16 }"
-          :enter="staggerEnter(index)"
-        >
-          <CardHeader>
-            <component :is="item.icon" class="mb-2 h-6 w-6 text-primary" />
-            <CardTitle>{{ item.title }}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p class="text-sm leading-relaxed text-muted-foreground">
-              {{ item.description }}
-            </p>
-          </CardContent>
-        </Card>
+        <div class="grid gap-4 md:grid-cols-3">
+          <Card
+            v-for="(item, index) in highlights"
+            :key="item.title"
+            class="page-cut"
+            v-motion
+            :initial="{ opacity: 0, y: 12 }"
+            :enter="staggerEnter(index, 85, 70)"
+          >
+            <CardHeader>
+              <component :is="item.icon" class="mb-1.5 h-6 w-6 text-primary" />
+              <CardTitle>{{ item.title }}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p class="text-sm leading-relaxed text-muted-foreground">
+                {{ item.description }}
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <SectionTitle
+          eyebrow="Blocs"
+          title="Aperçu de la structure"
+          description="Trois blocs suffisent ici pour donner le ton sans dupliquer toute la fiche."
+        />
+
+        <div class="grid gap-4">
+          <Card
+            v-for="block in compactBlocks"
+            :key="block.code"
+            class="page-cut"
+          >
+            <CardHeader class="space-y-3">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="rounded-full border border-border bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                  {{ block.code }}
+                </span>
+              </div>
+              <CardTitle class="text-xl">{{ block.title }}</CardTitle>
+            </CardHeader>
+            <CardContent class="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
+              {{ block.details }}
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </section>
 
-    <section class="grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
+    <section class="grid gap-6 lg:grid-cols-[0.95fr,1.05fr]">
       <div class="space-y-6">
         <SectionTitle
-          eyebrow="Compétences"
-          title="Le cœur du RPMS : pilotage, organisation, management"
-          description="Les blocs du programme sont orientés vers la conduite d’une activité, l’animation d’équipe et la structuration d’une petite ou moyenne organisation."
+          eyebrow="Parcours"
+          title="Trois étapes simples"
+          description="La lecture va du repère au détail puis au point de contact."
         />
 
         <div class="grid gap-3">
           <article
-            v-for="cluster in competencyClusters"
-            :key="cluster"
-            class="surface-cut rounded-[1.35rem] px-5 py-4 text-sm font-medium text-foreground"
+            v-for="(step, index) in journey"
+            :key="step.title"
+            class="flex gap-4 rounded-xl border border-border bg-white px-4 py-4"
+            v-motion
+            :initial="{ opacity: 0, y: 12 }"
+            :enter="staggerEnter(index, 85, 70)"
           >
-            {{ cluster }}
+            <span
+              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground"
+            >
+              {{ index + 1 }}
+            </span>
+            <div class="space-y-1">
+              <h3 class="text-base font-semibold text-foreground">{{ step.title }}</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">
+                {{ step.text }}
+              </p>
+            </div>
           </article>
         </div>
       </div>
 
-      <div class="space-y-4">
-        <article
-          v-for="block in program?.blocks ?? []"
-          :key="block.code"
-          class="diamond-panel surface-cut rounded-[1.6rem] p-5"
-        >
-          <p class="kicker">{{ block.code }}</p>
-          <h3 class="mt-3 text-xl font-semibold text-foreground">{{ block.title }}</h3>
-          <p class="mt-3 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-            {{ block.details }}
-          </p>
-        </article>
-      </div>
+      <section class="page-cut rounded-[1.25rem] p-6 sm:p-8">
+        <p class="kicker">Contact</p>
+        <h2 class="editorial-title mt-3 text-[clamp(2rem,3vw,3.1rem)] text-foreground">
+          Demander un rappel pour avancer
+        </h2>
+        <p class="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+          Le formulaire centralise la demande sur un seul point de contact.
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <RouterLink to="/contact">
+            <Button size="lg">
+              Être rappelé
+              <ArrowRight class="ml-2 h-4 w-4" />
+            </Button>
+          </RouterLink>
+          <RouterLink to="/programme">
+            <Button size="lg" variant="outline">Voir le programme</Button>
+          </RouterLink>
+        </div>
+      </section>
     </section>
-
-    <section class="space-y-8">
-      <SectionTitle
-        eyebrow="Parcours"
-        title="Trois temps pour comprendre le cadre avant d’entrer en relation"
-        description="Le site public n’essaie pas de tout résoudre dès l’accueil : il pose le programme, le cadre pédagogique et le point d’entrée unique."
-      />
-
-      <div class="grid gap-4 md:grid-cols-3">
-        <Card
-          v-for="(step, index) in journey"
-          :key="step.title"
-          class="diamond-panel surface-cut"
-          v-motion
-          :initial="{ opacity: 0, y: 16 }"
-          :enter="staggerEnter(index, 105, 100)"
-        >
-          <CardHeader>
-            <component
-              :is="[GraduationCap, Waypoints, BookOpenCheck][index] ?? GraduationCap"
-              class="mb-2 h-6 w-6 text-primary"
-            />
-            <CardTitle>{{ step.title }}</CardTitle>
-          </CardHeader>
-          <CardContent class="text-sm leading-relaxed text-muted-foreground">
-            {{ step.text }}
-          </CardContent>
-        </Card>
-      </div>
-    </section>
-
-    <section class="diamond-panel surface-cut rounded-[2rem] p-8 text-center lg:p-12">
-      <p class="kicker">Prise de contact</p>
-      <h2 class="mt-3 text-3xl font-semibold text-foreground sm:text-4xl">
-        Un seul point d’entrée pour obtenir les bonnes informations
-      </h2>
-      <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-        Si vous souhaitez clarifier le contenu du programme, son cadre pédagogique ou sa logique
-        d’accompagnement, la demande de rappel est le point d’accès unique du site.
-      </p>
-      <div class="mt-6 flex flex-wrap justify-center gap-3">
-        <RouterLink to="/contact">
-          <Button size="lg">Être rappelé</Button>
-        </RouterLink>
-        <RouterLink to="/programme">
-          <Button size="lg" variant="outline">Voir le programme</Button>
-        </RouterLink>
-      </div>
-    </section>
-
-    <p v-if="loading" class="text-sm text-muted-foreground">Actualisation du contenu…</p>
   </div>
 </template>

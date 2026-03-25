@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { ArrowRight } from 'lucide-vue-next'
 
+import SectionTitle from '@/components/section-title.vue'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -24,76 +25,87 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="space-y-8">
+  <div class="space-y-8 sm:space-y-10">
     <p v-if="loading" class="text-sm text-muted-foreground">Chargement du programme...</p>
 
-    <p
+    <section
       v-else-if="errorMessage"
-      class="rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive"
+      class="page-cut rounded-[1.25rem] p-6 text-sm text-destructive"
     >
       {{ errorMessage }}
-    </p>
+    </section>
 
     <template v-else-if="program">
-      <section class="diamond-panel surface-cut space-y-5 rounded-[2rem] p-8 lg:p-12">
-        <div class="flex flex-wrap items-center gap-2">
+      <section class="page-cut space-y-6 rounded-[1.25rem] p-6 sm:p-8 lg:p-10">
+        <div class="flex flex-wrap gap-2">
           <Badge>RPMS</Badge>
           <Badge variant="outline">{{ program.rncpCode }}</Badge>
           <Badge variant="outline">{{ program.levelLabel }}</Badge>
+          <Badge variant="outline">{{ program.formatLabel }}</Badge>
+          <Badge variant="outline">{{ program.rhythmLabel }}</Badge>
         </div>
 
-        <h1 class="editorial-title text-4xl text-foreground sm:text-5xl">
-          {{ program.title }}
-        </h1>
+        <div class="grid gap-6 lg:grid-cols-[1.06fr,0.94fr] lg:items-start">
+          <div class="space-y-4">
+            <h1 class="editorial-title max-w-4xl text-[clamp(2.4rem,5vw,4.6rem)] text-foreground">
+              {{ program.title }}
+            </h1>
+            <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {{ program.intro }}
+            </p>
 
-        <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-          {{ program.intro }}
-        </p>
+            <div class="flex flex-wrap gap-3">
+              <RouterLink to="/contact">
+                <Button size="lg">
+                  Être rappelé
+                  <ArrowRight class="ml-2 h-4 w-4" />
+                </Button>
+              </RouterLink>
+              <RouterLink to="/acces-et-accompagnement">
+                <Button size="lg" variant="outline">Voir le programme</Button>
+              </RouterLink>
+            </div>
+          </div>
 
-        <div class="grid gap-4 md:grid-cols-3">
-          <Card class="surface-cut">
-            <CardHeader>
-              <CardTitle class="text-base">Modalité</CardTitle>
-            </CardHeader>
-            <CardContent class="text-sm text-muted-foreground">
-              {{ program.formatLabel }}
-            </CardContent>
-          </Card>
-          <Card class="surface-cut">
-            <CardHeader>
-              <CardTitle class="text-base">Format pédagogique</CardTitle>
-            </CardHeader>
-            <CardContent class="text-sm text-muted-foreground">
-              {{ program.rhythmLabel }}
-            </CardContent>
-          </Card>
-          <Card class="surface-cut">
-            <CardHeader>
-              <CardTitle class="text-base">Accompagnement</CardTitle>
-            </CardHeader>
-            <CardContent class="text-sm text-muted-foreground">
-              {{ program.supportLabel }}
-            </CardContent>
-          </Card>
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            <div class="page-cut rounded-xl p-4">
+              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                Modalité
+              </p>
+              <p class="mt-2 text-lg font-semibold text-foreground">{{ program.formatLabel }}</p>
+            </div>
+            <div class="page-cut rounded-xl p-4">
+              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                Format pédagogique
+              </p>
+              <p class="mt-2 text-lg font-semibold text-foreground">{{ program.rhythmLabel }}</p>
+            </div>
+            <div class="page-cut rounded-xl p-4 sm:col-span-2 lg:col-span-1">
+              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                Accompagnement
+              </p>
+              <p class="mt-2 text-lg font-semibold text-foreground">{{ program.supportLabel }}</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
-        <Card class="diamond-panel surface-cut h-fit">
+      <section class="grid gap-6 lg:grid-cols-[0.95fr,1.05fr]">
+        <Card class="page-cut h-fit">
           <CardHeader>
             <CardTitle>Objectifs pédagogiques</CardTitle>
           </CardHeader>
           <CardContent>
             <ul class="space-y-3 text-sm leading-relaxed text-muted-foreground">
               <li v-for="item in program.objectiveSummary" :key="item" class="flex gap-3">
-                <span class="mt-1 h-2 w-2 rounded-full bg-primary"></span>
+                <span class="mt-1 h-2.5 w-2.5 rounded-full bg-primary"></span>
                 <span>{{ item }}</span>
               </li>
             </ul>
           </CardContent>
         </Card>
 
-        <Card class="diamond-panel surface-cut h-fit">
+        <Card class="page-cut h-fit">
           <CardHeader>
             <CardTitle>Champs de compétences</CardTitle>
           </CardHeader>
@@ -102,7 +114,7 @@ onMounted(async () => {
               <li
                 v-for="scope in program.professionalScope"
                 :key="scope"
-                class="rounded-2xl border border-border/70 bg-background/70 px-4 py-3"
+                class="rounded-xl border border-border bg-white px-4 py-3"
               >
                 {{ scope }}
               </li>
@@ -111,23 +123,20 @@ onMounted(async () => {
         </Card>
       </section>
 
-      <section class="space-y-5">
-        <div class="space-y-3">
-          <p class="kicker">Blocs de compétences</p>
-          <h2 class="text-3xl font-semibold text-foreground">Structure du programme</h2>
-          <p class="max-w-3xl text-base leading-relaxed text-muted-foreground">
-            La présentation publique reprend les grands blocs visibles dans les documents de référence
-            afin de donner une vision concrète du périmètre de formation.
-          </p>
-        </div>
+      <section class="space-y-6">
+        <SectionTitle
+          eyebrow="Blocs de compétences"
+          title="Structure du programme"
+          description="La lecture reprend les blocs visibles dans la fiche officielle."
+        />
 
-        <div class="grid gap-4">
+        <div class="grid gap-4 xl:grid-cols-2">
           <Card
             v-for="block in program.blocks"
             :key="block.code"
-            class="diamond-panel surface-cut"
+            class="page-cut"
           >
-            <CardHeader>
+            <CardHeader class="space-y-3">
               <div class="flex flex-wrap items-center gap-2">
                 <Badge variant="outline">{{ block.code }}</Badge>
               </div>
@@ -140,16 +149,15 @@ onMounted(async () => {
         </div>
       </section>
 
-      <section class="diamond-panel surface-cut rounded-[2rem] p-8 lg:p-10">
+      <section class="page-cut rounded-[1.25rem] p-6 sm:p-8 lg:p-10">
         <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
-            <p class="kicker">Prise de contact</p>
-            <h2 class="text-3xl font-semibold text-foreground">
-              Recevoir un rappel pour clarifier votre projet
+            <p class="kicker">Contact</p>
+            <h2 class="editorial-title text-[clamp(2rem,3.3vw,3.2rem)] text-foreground">
+              Recevoir un rappel pour clarifier votre demande
             </h2>
             <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
-              Le site public s’arrête volontairement aux informations validées. Le formulaire de
-              rappel permet d’aller plus loin sans multiplier les parcours.
+              Le formulaire de contact prolonge la lecture du programme.
             </p>
           </div>
 
@@ -161,7 +169,7 @@ onMounted(async () => {
               </Button>
             </RouterLink>
             <RouterLink to="/acces-et-accompagnement">
-              <Button size="lg" variant="outline">Accès et accompagnement</Button>
+              <Button size="lg" variant="outline">Voir le programme</Button>
             </RouterLink>
           </div>
         </div>

@@ -21,7 +21,7 @@ onMounted(async () => {
       description="Données publiques présentées pour l’information des visiteurs du site."
     />
 
-    <Card v-if="organization" class="diamond-panel surface-cut">
+    <Card v-if="organization" class="page-cut">
       <CardHeader>
         <CardTitle>{{ organization.legalName }}</CardTitle>
       </CardHeader>
@@ -54,7 +54,9 @@ onMounted(async () => {
         <p v-if="organization.certification">
           <strong class="text-foreground">Certification :</strong> {{ organization.certification }}
         </p>
-        <p v-if="organization.activities?.length"><strong class="text-foreground">Activités :</strong></p>
+        <p v-if="organization.activities?.length">
+          <strong class="text-foreground">Activités :</strong>
+        </p>
         <ul v-if="organization.activities?.length" class="space-y-1">
           <li v-for="item in organization.activities" :key="item">- {{ item }}</li>
         </ul>

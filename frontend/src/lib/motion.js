@@ -36,21 +36,21 @@ function toEnterState(target) {
 
 export const motionVariants = {
   page: {
-    initial: { opacity: 0, y: 30, scale: 0.992 },
+    initial: { opacity: 0, y: 22, scale: 0.996 },
     enter: toEnterState({
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: safeTransition({ duration: 470, ease: springEase })
+      transition: safeTransition({ duration: 360, ease: springEase })
     })
   },
   block: {
-    initial: { opacity: 0, y: 20, scale: 0.976 },
+    initial: { opacity: 0, y: 14, scale: 0.986 },
     enter: toEnterState({
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: safeTransition({ duration: 440, ease: springEase })
+      transition: safeTransition({ duration: 320, ease: springEase })
     })
   },
   revealLeft: {
@@ -78,12 +78,12 @@ export const motionVariants = {
     })
   },
   pop: {
-    initial: { opacity: 0, y: 12, scale: 0.9 },
+    initial: { opacity: 0, y: 10, scale: 0.96 },
     enter: toEnterState({
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: safeTransition({ duration: 380, ease: springEase })
+      transition: safeTransition({ duration: 300, ease: springEase })
     })
   }
 }
@@ -94,7 +94,7 @@ export function staggerEnter(index, step = 90, baseDelay = 80) {
     y: 0,
     scale: 1,
     transition: safeTransition({
-      duration: 440,
+      duration: 320,
       ease: springEase,
       delay: baseDelay + index * step
     })

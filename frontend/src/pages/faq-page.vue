@@ -4,7 +4,6 @@ import { RouterLink } from 'vue-router'
 
 import SectionTitle from '@/components/section-title.vue'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { api } from '@/lib/api'
 
 const items = ref([])
@@ -24,30 +23,33 @@ onMounted(async () => {
     <SectionTitle
       eyebrow="FAQ"
       title="Questions fréquemment posées"
-      description="Cette page reprend les informations publiques stabilisées autour du programme RPMS et du cadre de contact présenté sur le site."
+      description="Cette page rassemble les questions publiques stabilisées autour du programme RPMS et du contact."
     />
 
     <p v-if="loading" class="text-sm text-muted-foreground">Chargement de la FAQ...</p>
 
-    <div v-else class="space-y-4">
-      <Card v-for="item in items" :key="item.question" class="diamond-panel surface-cut">
-        <CardHeader>
-          <CardTitle class="text-lg">{{ item.question }}</CardTitle>
-        </CardHeader>
-        <CardContent class="text-sm leading-relaxed text-muted-foreground">
+    <div v-else class="page-cut divide-y divide-border rounded-[1.25rem]">
+      <article
+        v-for="item in items"
+        :key="item.question"
+        class="grid gap-3 px-5 py-5 md:grid-cols-[18rem,minmax(0,1fr)] md:gap-6"
+      >
+        <h3 class="text-lg font-semibold leading-snug text-foreground">
+          {{ item.question }}
+        </h3>
+        <p class="text-sm leading-relaxed text-muted-foreground">
           {{ item.answer }}
-        </CardContent>
-      </Card>
+        </p>
+      </article>
     </div>
 
-    <section class="diamond-panel surface-cut rounded-[2rem] p-8 text-center">
+    <section class="page-cut rounded-[1.25rem] p-6 text-center sm:p-8">
       <p class="kicker">Besoin d’un échange</p>
-      <h2 class="mt-3 text-3xl font-semibold text-foreground">
-        Le rappel reste le point d’entrée unique
+      <h2 class="editorial-title mt-3 text-[clamp(2rem,3vw,3rem)] text-foreground">
+        Le rappel reste le point de contact
       </h2>
       <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-        Si votre question dépasse ce qui est volontairement publié sur le site, utilisez le
-        formulaire de contact pour être rappelé.
+        Si une question ne trouve pas sa réponse ici, utilisez le formulaire de contact.
       </p>
       <div class="mt-6 flex flex-wrap justify-center gap-3">
         <RouterLink to="/contact">

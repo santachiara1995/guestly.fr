@@ -21,7 +21,7 @@ const forwardedAttrs = computed(() => {
     v-bind="forwardedAttrs"
     :class="
       cn(
-        'rounded-[1.35rem] border border-border/75 bg-card/88 p-6 shadow-sm backdrop-blur-sm transition-all',
+        'rounded-[1rem] border border-border/80 bg-card p-5 shadow-none transition-all sm:p-6',
         attrs.class
       )
     "

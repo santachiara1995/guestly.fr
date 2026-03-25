@@ -33,70 +33,69 @@ const processSteps = computed(() => site.value.access?.processSteps ?? [])
 
 <template>
   <div class="space-y-10">
-    <section class="diamond-panel surface-cut rounded-[2rem] p-8 lg:p-12">
-      <p class="kicker">Accès et accompagnement</p>
-      <h1 class="editorial-title mt-3 text-4xl text-foreground sm:text-5xl">
-        Un cadre pédagogique présenté avant toute promesse opérationnelle
-      </h1>
-      <p class="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-        {{ site.access?.intro }}
-      </p>
-      <p class="mt-4 text-sm text-muted-foreground">
-        Le site public présente le cadre du parcours, la logique d’accompagnement et le point
-        d’entrée de contact. Les éléments opérationnels non revalidés n’y sont pas publiés.
-      </p>
+    <section class="page-cut rounded-[1.25rem] p-6 sm:p-8 lg:p-10">
+      <div class="grid gap-6 lg:grid-cols-[1.02fr,0.98fr]">
+        <div class="space-y-4">
+          <p class="kicker">Accès et accompagnement</p>
+          <h1 class="editorial-title max-w-3xl text-[clamp(2.4rem,5vw,4.5rem)] text-foreground">
+            Un cadre pédagogique posé avant le reste
+          </h1>
+          <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {{ site.access?.intro }}
+          </p>
+          <p class="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Le site expose le cadre du parcours, l'accompagnement pédagogique et le point de
+            contact associé au programme RPMS.
+          </p>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+          <Card class="page-cut">
+            <CardHeader>
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="h-5 w-5 text-primary" />
+                <CardTitle>Repères de travail</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
+              <p><strong class="text-foreground">Titre :</strong> {{ program?.title }}</p>
+              <p><strong class="text-foreground">Niveau :</strong> {{ program?.levelLabel }}</p>
+              <p><strong class="text-foreground">Modalité :</strong> {{ program?.formatLabel }}</p>
+              <p><strong class="text-foreground">Format :</strong> {{ program?.rhythmLabel }}</p>
+              <p><strong class="text-foreground">Accompagnement :</strong> {{ program?.supportLabel }}</p>
+            </CardContent>
+          </Card>
+
+          <Card class="page-cut">
+            <CardHeader>
+              <div class="flex items-center gap-2">
+                <ShieldCheck class="h-5 w-5 text-primary" />
+                <CardTitle>Repères pratiques</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
+              <p v-for="item in supportPoints" :key="item">{{ item }}</p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </section>
-
-    <div class="grid gap-5 lg:grid-cols-[1.05fr,0.95fr]">
-      <Card class="diamond-panel surface-cut">
-        <CardHeader>
-          <div class="flex items-center gap-2">
-            <CheckCircle2 class="h-5 w-5 text-primary" />
-            <CardTitle>Repères de travail</CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
-          <p><strong class="text-foreground">Titre :</strong> {{ program?.title }}</p>
-          <p><strong class="text-foreground">Niveau :</strong> {{ program?.levelLabel }}</p>
-          <p><strong class="text-foreground">Modalité :</strong> {{ program?.formatLabel }}</p>
-          <p><strong class="text-foreground">Format :</strong> {{ program?.rhythmLabel }}</p>
-          <p><strong class="text-foreground">Accompagnement :</strong> {{ program?.supportLabel }}</p>
-        </CardContent>
-      </Card>
-
-      <Card class="diamond-panel surface-cut">
-        <CardHeader>
-          <div class="flex items-center gap-2">
-            <ShieldCheck class="h-5 w-5 text-primary" />
-            <CardTitle>Ce que cette page pose clairement</CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <ul class="space-y-3 text-sm leading-relaxed text-muted-foreground">
-            <li v-for="item in supportPoints" :key="item" class="flex gap-3">
-              <span class="mt-1 h-2 w-2 rounded-full bg-secondary"></span>
-              <span>{{ item }}</span>
-            </li>
-          </ul>
-        </CardContent>
-      </Card>
-    </div>
 
     <section class="space-y-8">
       <SectionTitle
-        eyebrow="Pour qui"
-        title="Des repères conçus pour des particuliers en recherche d’un cadre lisible"
-        description="Le site public ne construit pas un tunnel d’admission détaillé. Il aide d’abord à comprendre le périmètre du programme et la logique de contact."
+        eyebrow="Repères"
+        title="Ce que le visiteur doit comprendre rapidement"
+        description="Les attentes restent volontairement limitées à des repères de lecture."
       />
 
       <div class="grid gap-4 md:grid-cols-3">
         <Card
           v-for="(item, index) in expectations"
           :key="item"
-          class="diamond-panel surface-cut"
+          class="page-cut"
           v-motion
           :initial="motionVariants.block.initial"
-          :enter="staggerEnter(index, 105, 90)"
+          :enter="staggerEnter(index, 95, 80)"
         >
           <CardContent class="pt-1 text-sm leading-relaxed text-muted-foreground">
             {{ item }}
@@ -108,22 +107,24 @@ const processSteps = computed(() => site.value.access?.processSteps ?? [])
     <section class="space-y-8">
       <SectionTitle
         eyebrow="Séquence"
-        title="Un parcours volontairement simple"
-        description="Le site garde un seul chemin d’action : lire, comprendre, puis demander un rappel."
+        title="Le chemin de lecture reste court"
+        description="Trois étapes suffisent pour passer de la découverte à la prise de contact."
       />
 
       <div class="grid gap-4 md:grid-cols-3">
         <Card
           v-for="(step, index) in processSteps"
           :key="step"
-          class="diamond-panel surface-cut"
+          class="page-cut"
           v-motion
           :initial="motionVariants.block.initial"
-          :enter="staggerEnter(index, 110, 100)"
+          :enter="staggerEnter(index, 100, 90)"
         >
           <CardHeader>
             <div class="flex items-center gap-2">
-              <span class="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
+              <span
+                class="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground"
+              >
                 {{ index + 1 }}
               </span>
               <CardTitle class="text-lg">Étape {{ index + 1 }}</CardTitle>
@@ -136,16 +137,15 @@ const processSteps = computed(() => site.value.access?.processSteps ?? [])
       </div>
     </section>
 
-    <section class="diamond-panel surface-cut rounded-[2rem] p-8 lg:p-10">
+    <section class="page-cut rounded-[1.25rem] p-6 sm:p-8 lg:p-10">
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div class="space-y-3">
           <p class="kicker">Contact</p>
-          <h2 class="text-3xl font-semibold text-foreground">
-            La suite du parcours passe par un rappel unique
+          <h2 class="editorial-title text-[clamp(2rem,3.3vw,3.2rem)] text-foreground">
+            La suite passe par un rappel
           </h2>
           <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Le formulaire de contact permet de centraliser la demande, sans page concurrente ni
-            renvoi externe.
+            Le formulaire centralise la demande autour du programme RPMS.
           </p>
         </div>
 

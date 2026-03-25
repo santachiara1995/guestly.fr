@@ -15,11 +15,11 @@ const brandName = "CITYZ'France"
 const notFoundPage = {
   name: 'NotFoundPage',
   render() {
-    return h('section', { class: 'diamond-panel surface-cut rounded-[2rem] p-8 sm:p-10 lg:p-12' }, [
+    return h('section', { class: 'page-cut rounded-[1.25rem] p-6 sm:p-8 lg:p-10' }, [
       h('p', { class: 'kicker' }, 'Page introuvable'),
       h(
         'h1',
-        { class: 'editorial-title mt-3 text-4xl text-foreground sm:text-5xl' },
+        { class: 'editorial-title mt-3 text-[clamp(2rem,3vw,3rem)] text-foreground' },
         'Cette adresse ne fait pas partie du site public.'
       ),
       h(

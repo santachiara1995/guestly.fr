@@ -16,7 +16,7 @@ onMounted(async () => {
     <SectionTitle
       eyebrow="Politique de confidentialité"
       title="Protection des données personnelles"
-      description="Les informations transmises via le formulaire sont utilisées exclusivement pour traiter une demande de rappel liée au programme présenté sur ce site."
+      description="Les données transmises via la demande de rappel sont utilisées pour vous recontacter au sujet du programme RPMS."
     />
 
     <article class="monument-panel surface-cut p-6 text-sm leading-relaxed text-muted-foreground">
@@ -28,29 +28,29 @@ onMounted(async () => {
         <div class="detail-row">
           <p class="detail-key">Collecte</p>
           <p class="detail-value">
-            Ce site collecte les informations saisies dans le formulaire de rappel: identité,
-            coordonnées de contact et message libre.
+            Les informations saisies dans la demande de rappel portent sur votre identité, vos
+            coordonnées et votre message.
           </p>
         </div>
         <div class="detail-row">
           <p class="detail-key">Finalité</p>
           <p class="detail-value">
-            Ces données servent à traiter la demande, organiser le rappel et assurer le suivi de
-            la prise de contact liée au programme présenté sur le site.
+            Ces données servent uniquement à traiter votre demande de rappel et à vous répondre au
+            sujet du programme.
           </p>
         </div>
         <div class="detail-row">
           <p class="detail-key">Cadre</p>
           <p class="detail-value">
-            Le formulaire public du site n’a pas d’autre finalité que la gestion de cette relation
-            de contact.
+            Les informations transmises ne sont utilisées que dans le cadre de cette prise de
+            contact.
           </p>
         </div>
         <div class="detail-row">
           <p class="detail-key">Référence</p>
           <p class="detail-value">
-            Pour toute demande relative aux informations transmises via le site, le point de
-            référence affiché publiquement reste le siège de l’organisme.
+            Pour toute question relative à vos données, le point de référence indiqué sur le site
+            reste le siège de l'organisme.
           </p>
         </div>
         <div v-if="site.organizationProfile?.headquartersAddress" class="detail-row">

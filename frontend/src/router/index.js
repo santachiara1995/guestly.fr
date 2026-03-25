@@ -15,17 +15,17 @@ const brandName = "CITYZ'France"
 const notFoundPage = {
   name: 'NotFoundPage',
   render() {
-    return h('section', { class: 'arch-cta p-8 sm:p-10 lg:p-12' }, [
+    return h('section', { class: 'page-cut rounded-[1.6rem] p-8 sm:p-10 lg:p-12' }, [
       h('p', { class: 'kicker' }, 'Page introuvable'),
       h(
         'h1',
-        { class: 'editorial-title mt-3 text-4xl sm:text-5xl' },
-        'Cette adresse ne fait pas partie du site public.'
+        { class: 'editorial-title mt-3 text-4xl text-foreground sm:text-5xl' },
+        "Cette page n'est pas disponible."
       ),
       h(
         'p',
         { class: 'mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg' },
-        "Le lien demandé est ancien ou incorrect. Revenez à l'accueil ou utilisez le formulaire de contact."
+        "Le lien demandé est ancien ou incorrect. Revenez à l'accueil ou utilisez la page contact."
       ),
       h('div', { class: 'mt-6 flex flex-wrap gap-3' }, [
         h(
@@ -33,7 +33,7 @@ const notFoundPage = {
           {
             to: '/',
             class:
-              'inline-flex items-center rounded-xl border border-white/20 bg-white px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-white/92'
+              'inline-flex items-center rounded-full border border-primary bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/92'
           },
           () => "Retour à l'accueil"
         ),
@@ -42,7 +42,7 @@ const notFoundPage = {
           {
             to: '/contact',
             class:
-              'inline-flex items-center rounded-xl border border-white/18 bg-transparent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10'
+              'inline-flex items-center rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-accent'
           },
           () => 'Être rappelé'
         )

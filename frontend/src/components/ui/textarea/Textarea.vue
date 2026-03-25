@@ -3,6 +3,14 @@ import { computed, useAttrs } from 'vue'
 
 import { cn } from '@/lib/utils'
 
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: ''
+  }
+})
+
+const emit = defineEmits(['update:modelValue'])
 const attrs = useAttrs()
 
 const forwardedAttrs = computed(() => {
@@ -14,16 +22,22 @@ const forwardedAttrs = computed(() => {
   }
   return nextAttrs
 })
+
+function onInput(event) {
+  emit('update:modelValue', event.target.value)
+}
 </script>
 
 <template>
   <textarea
     v-bind="forwardedAttrs"
+    :value="props.modelValue"
     :class="
       cn(
         'min-h-28 w-full rounded-2xl border border-input bg-white px-3.5 py-2.5 text-sm text-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/70 disabled:cursor-not-allowed disabled:opacity-50',
         attrs.class
       )
     "
+    @input="onInput"
   />
 </template>

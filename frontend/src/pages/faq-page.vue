@@ -18,31 +18,31 @@ onMounted(async () => {
   }
 })
 
-const visibleItems = computed(() =>
-  items.value.filter(
-    (item) => !/tarif|financement|cpf|opco/i.test(`${item.question} ${item.answer}`)
-  )
-)
+const visibleItems = computed(() => items.value)
 </script>
 
 <template>
-  <div class="space-y-8 lg:space-y-10">
+  <div class="space-y-8 sm:space-y-10">
     <SectionTitle
       eyebrow="FAQ"
-      title="Questions publiques"
-      description="Cette page reprend les informations stabilisées autour du programme RPMS et du cadre de contact présenté sur le site."
+      title="Questions fréquentes sur le RPMS"
+      description="Retrouvez ici les réponses aux questions les plus courantes avant une demande de rappel."
     />
 
     <p v-if="loading" class="text-sm text-muted-foreground">Chargement de la FAQ...</p>
 
-    <div v-else class="grid gap-4 lg:grid-cols-[1.1fr,0.9fr]">
+    <div v-else class="grid gap-5 lg:grid-cols-[1.08fr,0.92fr]">
       <div class="space-y-4">
-        <Card v-for="item in visibleItems" :key="item.question" class="panel-shell">
+        <Card v-for="item in visibleItems" :key="item.question" class="page-cut">
           <CardContent class="p-0">
-            <details class="group px-6 py-5">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left">
-                <span class="text-lg font-semibold text-foreground">{{ item.question }}</span>
-                <span class="flex h-8 w-8 items-center justify-center rounded-full border border-primary/20 bg-white/90 text-primary transition-transform group-open:rotate-45">
+            <details class="group px-5 py-5">
+              <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left">
+                <span class="text-lg font-semibold leading-snug text-foreground">
+                  {{ item.question }}
+                </span>
+                <span
+                  class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-white text-primary transition-transform group-open:rotate-45"
+                >
                   +
                 </span>
               </summary>
@@ -55,10 +55,14 @@ const visibleItems = computed(() =>
       </div>
 
       <aside class="space-y-4">
-        <Card class="panel-shell">
-          <CardContent class="space-y-3 p-6 text-sm leading-relaxed text-muted-foreground">
-            <p>Le rappel permet de prolonger l’échange lorsque la FAQ ne suffit pas.</p>
-            <div class="flex flex-wrap gap-3 pt-2">
+        <Card class="page-cut">
+          <CardContent class="space-y-4 p-6 text-sm leading-relaxed text-muted-foreground">
+            <p class="kicker">Besoin d'un échange</p>
+            <p>
+              Si vous souhaitez parler de votre situation ou clarifier un point du programme, vous
+              pouvez demander un rappel.
+            </p>
+            <div class="flex flex-wrap gap-3 pt-1">
               <RouterLink to="/contact">
                 <Button size="lg">Être rappelé</Button>
               </RouterLink>
@@ -69,10 +73,16 @@ const visibleItems = computed(() =>
           </CardContent>
         </Card>
 
-        <Card class="panel-shell">
+        <Card class="page-cut">
           <CardContent class="space-y-3 p-6 text-sm leading-relaxed text-muted-foreground">
-            <p>La FAQ reste centrée sur le RPMS, le niveau, la modalité et l’accompagnement pédagogique.</p>
-            <p>La page reste limitée aux informations publiées.</p>
+            <p>
+              Cette page se concentre sur le contenu du programme, son niveau, son format à
+              distance et l'accompagnement pédagogique annoncé.
+            </p>
+            <p>
+              Si vous avez besoin d'une réponse adaptée à votre situation, la demande de rappel
+              permet de poursuivre l'échange.
+            </p>
           </CardContent>
         </Card>
       </aside>

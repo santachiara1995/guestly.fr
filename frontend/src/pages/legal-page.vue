@@ -16,15 +16,15 @@ onMounted(async () => {
   <div class="space-y-8">
     <SectionTitle
       eyebrow="Mentions légales"
-      title="Informations éditeur"
-      description="Données publiques présentées pour l’information des visiteurs du site."
+      title="Informations légales"
+      description="Informations relatives à l'édition du site de CITYZ'France."
     />
 
     <article v-if="organization" class="monument-panel surface-cut p-6">
       <div class="space-y-2">
         <h2 class="text-3xl font-semibold text-foreground">{{ organization.legalName }}</h2>
         <p class="text-sm leading-relaxed text-muted-foreground">
-          Informations d’édition et de référencement publiées pour le site public.
+          Ces informations permettent d'identifier l'éditeur du site et le cadre de publication.
         </p>
       </div>
 

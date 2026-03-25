@@ -10,11 +10,11 @@ import { api } from '@/lib/api'
 const site = ref({
   contact: {
     phone: '09 77 21 51 61',
-    address: '110 Esplanade du General de Gaulle, 92400 Courbevoie',
-    website: 'www.cityzfrance.fr'
+    address: '110 Esplanade du General de Gaulle, 92400 Courbevoie'
   },
   organizationProfile: {
-    headquartersAddress: '110 Esplanade du General de Gaulle, 92400 Courbevoie'
+    headquartersAddress: '110 Esplanade du General de Gaulle, 92400 Courbevoie',
+    certification: 'Organisme de formation certifié Qualiopi'
   }
 })
 const program = ref({
@@ -22,7 +22,8 @@ const program = ref({
   rncpCode: 'RNCP38575',
   levelLabel: 'Niveau 5 (Bac+2)',
   formatLabel: '100 % distanciel',
-  rhythmLabel: 'E-learning'
+  rhythmLabel: 'E-learning',
+  supportLabel: 'Accompagnement pédagogique'
 })
 const loading = ref(true)
 
@@ -49,19 +50,20 @@ const displayAddress = computed(
 </script>
 
 <template>
-  <div class="space-y-10 lg:space-y-12">
+  <div class="space-y-10 sm:space-y-12">
     <SectionTitle
       eyebrow="Contact"
       title="Demande de rappel"
-      description="Le formulaire centralise la prise de contact autour du programme RPMS pour particuliers."
+      description="Expliquez votre projet et les points que vous souhaitez clarifier à propos du RPMS."
     />
 
     <div class="grid gap-5 lg:grid-cols-[1.08fr,0.92fr]">
-      <Card class="panel-shell">
+      <Card class="page-cut">
         <CardHeader class="space-y-3">
-          <CardTitle>Présenter votre projet</CardTitle>
+          <CardTitle>Présentez votre demande</CardTitle>
           <p class="text-sm leading-relaxed text-muted-foreground">
-            Décrivez votre contexte et ce que vous souhaitez clarifier. La demande reste liée au programme RPMS.
+            Indiquez votre contexte, vos questions et ce que vous souhaitez vérifier avant d'aller
+            plus loin.
           </p>
         </CardHeader>
         <CardContent>
@@ -70,9 +72,9 @@ const displayAddress = computed(
       </Card>
 
       <div class="space-y-4">
-        <Card class="panel-shell">
+        <Card class="page-cut">
           <CardHeader>
-            <CardTitle>Repères publics</CardTitle>
+            <CardTitle>Programme concerné</CardTitle>
           </CardHeader>
           <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
             <Badge variant="outline">{{ program?.rncpCode }}</Badge>
@@ -80,10 +82,11 @@ const displayAddress = computed(
             <p><strong class="text-foreground">Niveau :</strong> {{ program?.levelLabel }}</p>
             <p><strong class="text-foreground">Modalité :</strong> {{ program?.formatLabel }}</p>
             <p><strong class="text-foreground">Format :</strong> {{ program?.rhythmLabel }}</p>
+            <p><strong class="text-foreground">Accompagnement :</strong> {{ program?.supportLabel }}</p>
           </CardContent>
         </Card>
 
-        <Card class="panel-shell">
+        <Card class="page-cut">
           <CardHeader>
             <CardTitle>Coordonnées utiles</CardTitle>
           </CardHeader>
@@ -94,18 +97,25 @@ const displayAddress = computed(
             <p v-if="displayAddress">
               <strong class="text-foreground">Adresse :</strong> {{ displayAddress }}
             </p>
+            <p v-if="site.organizationProfile?.certification">
+              <strong class="text-foreground">Certification :</strong>
+              {{ site.organizationProfile.certification }}
+            </p>
             <p v-if="loading">Chargement des coordonnées...</p>
           </CardContent>
         </Card>
 
-        <Card class="panel-shell">
+        <Card class="page-cut">
           <CardHeader>
-            <CardTitle>Après l’envoi</CardTitle>
+            <CardTitle>Après l'envoi</CardTitle>
           </CardHeader>
           <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
-            <p>La demande est enregistrée sur le site.</p>
-            <p>Le rappel sert à préciser le besoin et le contexte de la demande.</p>
-            <p>Les informations publiées restent concentrées sur le cadre RPMS.</p>
+            <p>Votre demande est transmise à CITYZ'France pour organiser le rappel.</p>
+            <p>L'échange permet de clarifier votre projet et vos questions sur le programme.</p>
+            <p>
+              Les informations demandées restent limitées à ce qui est utile pour vous
+              recontacter.
+            </p>
           </CardContent>
         </Card>
       </div>

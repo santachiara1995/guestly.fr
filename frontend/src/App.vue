@@ -1,13 +1,8 @@
 <template>
   <div class="relative min-h-screen">
-    <div
-      class="pointer-events-none fixed inset-x-0 top-0 z-50 h-1 bg-gradient-to-r from-primary via-white to-destructive"
-      aria-hidden="true"
-    ></div>
-
     <site-header />
 
-    <main class="mx-auto w-full max-w-[1240px] flex-1 px-4 pb-24 pt-8 sm:px-6 lg:px-8">
+    <main class="mx-auto w-full max-w-[1180px] px-4 pb-20 pt-6 sm:px-6 lg:px-8 lg:pt-8">
       <router-view v-slot="{ Component }">
         <component
           :is="Component"

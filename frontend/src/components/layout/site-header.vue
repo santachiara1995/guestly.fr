@@ -18,48 +18,59 @@ const isActive = computed(() => (target) => {
 </script>
 
 <template>
-  <header class="sticky top-0 z-50 border-b border-border/70 bg-white/90 backdrop-blur-xl">
-    <div class="mx-auto w-full max-w-[1240px] px-4 py-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col gap-4">
-        <div class="flex items-start justify-between gap-4">
+  <header class="sticky top-0 z-50 border-b border-border/75 bg-white/92 backdrop-blur-xl">
+    <div class="shell-rail h-1 w-full"></div>
+
+    <div class="mx-auto w-full max-w-[1180px] px-4 py-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <RouterLink class="transition-transform hover:-translate-y-0.5" to="/">
             <brand-logo />
           </RouterLink>
 
-          <div class="hidden items-end gap-3 md:flex md:flex-col">
-            <div class="flex flex-wrap justify-end gap-2">
-              <span class="trust-chip">RPMS</span>
-              <span class="trust-chip">RNCP38575</span>
-              <span class="trust-chip">Niveau 5 / Bac+2</span>
-            </div>
+          <div class="flex flex-wrap items-center gap-2 sm:justify-end">
+            <span class="trust-chip">RNCP38575</span>
+            <span class="trust-chip hidden sm:inline-flex">Niveau 5</span>
             <RouterLink to="/contact">
               <Button size="sm">Être rappelé</Button>
             </RouterLink>
           </div>
         </div>
 
-        <div class="flex flex-col gap-3 border-t border-border/60 pt-3 md:flex-row md:items-center md:justify-between">
-          <div class="flex flex-wrap gap-2 md:hidden">
-            <span class="trust-chip">RPMS</span>
-            <span class="trust-chip">RNCP38575</span>
-            <span class="trust-chip">Niveau 5 / Bac+2</span>
+        <div class="flex flex-col gap-3 border-t border-border/70 pt-3 lg:flex-row lg:items-center lg:justify-between">
+          <div class="flex flex-wrap gap-2 lg:hidden">
+            <span class="trust-chip">100 % distanciel</span>
+            <span class="trust-chip">E-learning</span>
           </div>
 
-          <nav aria-label="Navigation principale" class="flex flex-wrap items-center gap-1 md:gap-2">
-            <RouterLink
-              v-for="item in primaryNavigation"
-              :key="item.to"
-              :to="item.to"
-              :aria-current="isActive(item.to) ? 'page' : undefined"
-              class="nav-link"
-            >
-              {{ item.label }}
-            </RouterLink>
+          <nav
+            aria-label="Navigation principale"
+            class="-mx-4 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0"
+          >
+            <ul class="inline-flex min-w-max items-center gap-2 sm:min-w-0 sm:flex-wrap">
+              <li v-for="item in primaryNavigation" :key="item.to">
+                <RouterLink
+                  :to="item.to"
+                  :aria-current="isActive(item.to) ? 'page' : undefined"
+                  :class="
+                    cn(
+                      'nav-link h-10',
+                      isActive(item.to)
+                        ? 'border-primary bg-primary text-primary-foreground shadow-lg shadow-primary/15'
+                        : ''
+                    )
+                  "
+                >
+                  {{ item.label }}
+                </RouterLink>
+              </li>
+            </ul>
           </nav>
 
-          <RouterLink class="md:hidden" to="/contact">
-            <Button size="sm">Être rappelé</Button>
-          </RouterLink>
+          <div class="hidden flex-wrap justify-end gap-2 lg:flex">
+            <span class="trust-chip">100 % distanciel</span>
+            <span class="trust-chip">E-learning</span>
+          </div>
         </div>
       </div>
     </div>

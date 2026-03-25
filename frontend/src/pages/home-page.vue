@@ -20,13 +20,22 @@ import { motionVariants, staggerEnter } from '@/lib/motion'
 const program = ref(null)
 const site = ref({
   positioning: {
-    eyebrow: 'Titre professionnel à distance',
+    eyebrow: 'Titre professionnel RPMS',
     subtitle:
-      "CITYZ'France présente le titre professionnel Responsable petite et moyenne structure (RPMS) pour des particuliers. La page publique rassemble les repères essentiels avant une demande de rappel."
+      "Découvrez le titre professionnel Responsable petite et moyenne structure (RPMS), son niveau, son format à distance et les compétences qu'il permet de développer."
+  },
+  home: {
+    proofItems: [],
+    highlights: [],
+    journey: [],
+    competencyClusters: []
   }
 })
 const loading = ref(true)
 const errorMessage = ref('')
+
+const highlightIcons = [ShieldCheck, BookOpenCheck, Building2]
+const journeyIcons = [BookOpenCheck, GraduationCap, Waypoints]
 
 onMounted(async () => {
   try {
@@ -43,104 +52,134 @@ onMounted(async () => {
   }
 })
 
-const heroEyebrow = computed(() => site.value.positioning?.eyebrow ?? 'Titre professionnel à distance')
+const heroEyebrow = computed(() => site.value.positioning?.eyebrow ?? 'Titre professionnel RPMS')
 const heroSubtitle = computed(
   () =>
     site.value.positioning?.subtitle ??
-    "CITYZ'France présente le titre professionnel Responsable petite et moyenne structure (RPMS) pour des particuliers."
+    "Découvrez le titre professionnel Responsable petite et moyenne structure (RPMS), son niveau, son format à distance et les compétences qu'il permet de développer."
 )
 
-const proofItems = computed(() => [
-  {
-    value: program.value?.rncpCode ?? 'RNCP38575',
-    label: 'Référentiel',
-    note: 'Titre professionnel'
-  },
-  {
-    value: program.value?.levelLabel ?? 'Niveau 5',
-    label: 'Positionnement',
-    note: 'Bac+2'
-  },
-  {
-    value: program.value?.formatLabel ?? '100 % distanciel',
-    label: 'Modalité',
-    note: program.value?.supportLabel ?? 'E-learning'
+const proofItems = computed(() => {
+  const items = site.value.home?.proofItems
+  if (Array.isArray(items) && items.length > 0) {
+    return items
   }
-])
 
-const routeCards = computed(() => [
-  {
-    icon: BookOpenCheck,
-    title: 'Programme',
-    text: 'Lire la structure du RPMS, le niveau attendu et les blocs de compétences.',
-    to: '/programme'
-  },
-  {
-    icon: Building2,
-    title: 'Accès et accompagnement',
-    text: 'Comprendre le cadre pédagogique et l’accompagnement présenté sur le site.',
-    to: '/acces-et-accompagnement'
-  },
-  {
-    icon: ShieldCheck,
-    title: 'FAQ',
-    text: 'Consulter les réponses publiques déjà stabilisées sur le RPMS.',
-    to: '/faq'
-  },
-  {
-    icon: Waypoints,
-    title: 'Contact',
-    text: 'Demander un rappel via le formulaire du site public.',
-    to: '/contact'
+  return [
+    {
+      value: program.value?.rncpCode ?? 'RNCP38575',
+      label: 'Code RNCP',
+      note: 'Titre professionnel'
+    },
+    {
+      value: program.value?.levelLabel ?? 'Niveau 5 (Bac+2)',
+      label: 'Niveau',
+      note: 'Positionnement de la certification'
+    },
+    {
+      value: program.value?.formatLabel ?? '100 % distanciel',
+      label: 'Modalité',
+      note: program.value?.rhythmLabel ?? 'E-learning'
+    }
+  ]
+})
+
+const summaryCards = computed(() =>
+  [
+    { label: 'Niveau', value: program.value?.levelLabel ?? 'Niveau 5 (Bac+2)' },
+    { label: 'Modalité', value: program.value?.formatLabel ?? '100 % distanciel' },
+    { label: 'Format', value: program.value?.rhythmLabel ?? 'E-learning' },
+    {
+      label: 'Accompagnement',
+      value: program.value?.supportLabel ?? 'Accompagnement pédagogique'
+    }
+  ].filter((item) => item.value)
+)
+
+const highlights = computed(() => {
+  const items = site.value.home?.highlights
+  if (Array.isArray(items) && items.length > 0) {
+    return items
   }
-])
 
-const competencyCards = computed(() => [
-  {
-    icon: GraduationCap,
-    title: 'Piloter une activité',
-    text: 'Structurer le suivi, la performance et l’organisation courante.'
-  },
-  {
-    icon: BookOpenCheck,
-    title: 'Manager une équipe',
-    text: 'Animer le travail collectif et soutenir les dynamiques de coordination.'
-  },
-  {
-    icon: Building2,
-    title: 'Organiser les opérations',
-    text: 'Sécuriser les processus, la qualité et le suivi de l’activité.'
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Développer et reporting',
-    text: 'Relier l’offre, la communication utile et la lecture des résultats.'
+  return [
+    {
+      title: 'Un programme clair',
+      text: "Vous retrouvez d'emblée le titre, le code RNCP, le niveau et le format du parcours."
+    },
+    {
+      title: 'Un parcours à distance',
+      text: "La formation est proposée en 100 % distanciel, avec une organisation en e-learning et un accompagnement pédagogique."
+    },
+    {
+      title: 'Un projet à qualifier',
+      text: 'Le rappel permet de vérifier si le RPMS correspond à votre situation et à vos objectifs.'
+    }
+  ]
+})
+
+const journey = computed(() => {
+  const items = site.value.home?.journey
+  if (Array.isArray(items) && items.length > 0) {
+    return items
   }
-])
 
-const summaryCards = computed(() => [
-  { label: 'Niveau', value: program.value?.levelLabel },
-  { label: 'Modalité', value: program.value?.formatLabel },
-  { label: 'Format', value: program.value?.rhythmLabel },
-  { label: 'Accompagnement', value: program.value?.supportLabel }
-].filter((item) => item.value))
+  return [
+    {
+      title: 'Comprendre le programme',
+      text: 'Consultez les informations clés avant de rentrer dans le détail des blocs de compétences.'
+    },
+    {
+      title: 'Vérifier le format',
+      text: "Regardez comment le parcours s'organise à distance et quel accompagnement pédagogique est annoncé."
+    },
+    {
+      title: 'Demander un rappel',
+      text: 'Expliquez votre projet pour obtenir un échange adapté à vos questions.'
+    }
+  ]
+})
+
+const competencyClusters = computed(() => {
+  const items = site.value.home?.competencyClusters
+  if (Array.isArray(items) && items.length > 0) {
+    return items
+  }
+
+  return [
+    'Piloter une activité et sa performance',
+    'Manager et animer une équipe',
+    "Organiser les opérations et la qualité",
+    "Développer l'offre, la communication et le reporting"
+  ]
+})
+
+const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
+const factChips = [
+  'RNCP38575',
+  'Niveau 5 / Bac+2',
+  '100 % distanciel',
+  'E-learning',
+  'Accompagnement pédagogique'
+]
 </script>
 
 <template>
-  <div class="space-y-14 lg:space-y-16">
+  <div class="space-y-12 sm:space-y-14 lg:space-y-16">
     <section
-      class="grid gap-8 lg:grid-cols-[1.04fr,0.96fr] lg:items-start"
+      class="grid gap-6 lg:grid-cols-[1.05fr,0.95fr] lg:items-start"
       v-motion
       :initial="motionVariants.block.initial"
       :enter="motionVariants.block.enter"
     >
       <div class="space-y-6">
         <p class="kicker">{{ heroEyebrow }}</p>
+
         <div class="space-y-4">
-          <h1 class="editorial-title max-w-4xl text-4xl text-foreground sm:text-5xl lg:text-6xl">
+          <h1 class="editorial-title max-w-4xl text-[clamp(2.85rem,6vw,5.25rem)] text-foreground">
             Titre professionnel Responsable petite et moyenne structure (RPMS)
           </h1>
-          <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p class="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             {{ heroSubtitle }}
           </p>
         </div>
@@ -159,9 +198,9 @@ const summaryCards = computed(() => [
 
         <div class="flex flex-wrap gap-2">
           <span
-            v-for="item in ['RPMS', 'RNCP38575', 'Niveau 5', '100 % distanciel', 'E-learning', 'accompagnement pédagogique']"
+            v-for="item in factChips"
             :key="item"
-            class="rounded-full border border-border bg-white px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-muted-foreground"
+            class="rounded-full border border-border bg-white px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground"
           >
             {{ item }}
           </span>
@@ -169,150 +208,165 @@ const summaryCards = computed(() => [
 
         <p
           v-if="errorMessage"
-          class="rounded-2xl border border-destructive/20 bg-destructive/6 px-4 py-3 text-sm text-destructive"
+          class="rounded-xl border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive"
         >
           {{ errorMessage }}
         </p>
       </div>
 
-      <div class="grid gap-3">
-        <div
-          v-for="(item, index) in proofItems"
-          :key="item.label"
-          v-motion
-          :initial="motionVariants.pop.initial"
-          :enter="staggerEnter(index, 70, 90)"
-        >
-          <ImpactStat :value="item.value" :label="item.label" :note="item.note" />
+      <div class="space-y-4">
+        <div class="page-cut rounded-[1.4rem] p-5 sm:p-6">
+          <div class="flex items-center justify-between gap-3">
+            <p class="kicker">Informations clés</p>
+            <span
+              class="rounded-full border border-border bg-white px-3 py-1 text-xs font-semibold text-muted-foreground"
+            >
+              RPMS
+            </span>
+          </div>
+
+          <div class="mt-4 grid gap-3 sm:grid-cols-2">
+            <div
+              v-for="(item, index) in proofItems"
+              :key="item.label"
+              v-motion
+              :initial="motionVariants.pop.initial"
+              :enter="staggerEnter(index, 70, 80)"
+            >
+              <ImpactStat :value="item.value" :label="item.label" :note="item.note" />
+            </div>
+          </div>
         </div>
 
-        <Card class="panel-shell">
-          <CardHeader class="space-y-3">
-            <p class="kicker">Lecture rapide</p>
-            <CardTitle class="text-xl">Un seul programme, quatre repères essentiels</CardTitle>
-          </CardHeader>
-          <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
-            <p>Le programme est présenté autour du niveau, de la modalité, du format et de l’accompagnement pédagogique.</p>
-            <div class="grid gap-2 sm:grid-cols-2">
-              <div
-                v-for="item in summaryCards"
-                :key="item.label"
-                class="rounded-2xl border border-border bg-background/50 px-4 py-3"
-              >
-                <p class="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                  {{ item.label }}
-                </p>
-                <p class="mt-1 text-sm font-semibold text-foreground">
-                  {{ item.value }}
-                </p>
-              </div>
+        <div class="page-cut rounded-[1.4rem] p-5 sm:p-6">
+          <p class="kicker">Compétences centrales</p>
+          <div class="mt-4 grid gap-3">
+            <div
+              v-for="cluster in competencyClusters"
+              :key="cluster"
+              class="flex items-start gap-3 rounded-xl border border-border bg-white px-4 py-3 text-sm font-medium text-foreground"
+            >
+              <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-secondary"></span>
+              <span>{{ cluster }}</span>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="space-y-8">
+    <section class="space-y-6">
       <SectionTitle
-        eyebrow="Navigation"
-        title="Les pages publiques sont séparées par rôle"
-        description="L’accueil oriente vers les pages de programme, d’accès, de FAQ et de contact sans répéter le même bloc d’information partout."
-      />
-
-      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <RouterLink
-          v-for="(item, index) in routeCards"
-          :key="item.to"
-          :to="item.to"
-          class="group block h-full"
-          v-motion
-          :initial="motionVariants.block.initial"
-          :enter="staggerEnter(index, 70, 70)"
-        >
-          <Card class="h-full panel-shell">
-            <CardHeader class="space-y-3">
-              <component :is="item.icon" class="h-6 w-6 text-primary" />
-              <CardTitle class="text-lg">{{ item.title }}</CardTitle>
-            </CardHeader>
-            <CardContent class="space-y-4 text-sm leading-relaxed text-muted-foreground">
-              <p>{{ item.text }}</p>
-              <span class="inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                Voir la page
-                <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </span>
-            </CardContent>
-          </Card>
-        </RouterLink>
-      </div>
-    </section>
-
-    <section class="space-y-8">
-      <SectionTitle
-        eyebrow="Compétences"
-        title="Le RPMS se lit à travers un noyau de pilotage, d’équipe et d’organisation"
-        description="La page publique reste sobre et centrée sur la structure de compétences attendue pour le RPMS."
+        eyebrow="Programme"
+        title="Les informations essentielles avant d'aller plus loin"
+        description="Le site met en avant les points utiles pour comprendre le RPMS avant une demande de rappel."
       />
 
       <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <Card
-          v-for="(item, index) in competencyCards"
-          :key="item.title"
-          class="panel-shell"
+          v-for="(item, index) in summaryCards"
+          :key="item.label"
+          class="page-cut"
           v-motion
           :initial="motionVariants.block.initial"
-          :enter="staggerEnter(index, 70, 70)"
+          :enter="staggerEnter(index, 75, 70)"
         >
-          <CardHeader>
-            <component :is="item.icon" class="mb-2 h-6 w-6 text-primary" />
-            <CardTitle class="text-lg">{{ item.title }}</CardTitle>
+          <CardHeader class="space-y-2">
+            <CardTitle class="text-base">{{ item.label }}</CardTitle>
           </CardHeader>
           <CardContent class="text-sm leading-relaxed text-muted-foreground">
-            {{ item.text }}
+            {{ item.value }}
           </CardContent>
         </Card>
       </div>
     </section>
 
-    <section class="grid gap-6 lg:grid-cols-[0.88fr,1.12fr]">
+    <section class="grid gap-6 lg:grid-cols-[0.92fr,1.08fr]">
       <div class="space-y-6">
         <SectionTitle
-          eyebrow="Repères"
-          title="Les informations essentielles restent visibles sans surcharge"
-          description="RNCP38575, niveau 5, distanciel, e-learning et accompagnement pédagogique sont les points d’ancrage du site public."
+          eyebrow="Pourquoi consulter ces pages"
+          title="Une lecture simple pour avancer dans votre réflexion"
+          description="Chaque page répond à une question concrète avant une demande de rappel."
         />
 
-        <Card class="panel-shell">
-          <CardHeader>
-            <CardTitle class="text-lg">Ce que le site met en avant</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div class="grid gap-3">
-              <div
-                v-for="item in [
-                  'RNCP38575',
-                  'Niveau 5 / Bac+2',
-                  '100 % distanciel',
-                  'E-learning',
-                  'Accompagnement pédagogique'
-                ]"
-                :key="item"
-                class="rounded-2xl border border-border bg-background/50 px-4 py-3 text-sm font-semibold text-foreground"
-              >
-                {{ item }}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <div class="grid gap-4">
+          <Card
+            v-for="(item, index) in highlights"
+            :key="item.title"
+            class="page-cut"
+            v-motion
+            :initial="motionVariants.block.initial"
+            :enter="staggerEnter(index, 80, 70)"
+          >
+            <CardHeader class="space-y-3">
+              <component :is="highlightIcons[index % highlightIcons.length]" class="h-6 w-6 text-primary" />
+              <CardTitle>{{ item.title }}</CardTitle>
+            </CardHeader>
+            <CardContent class="text-sm leading-relaxed text-muted-foreground">
+              {{ item.text }}
+            </CardContent>
+          </Card>
+        </div>
       </div>
 
-      <div class="space-y-4">
+      <div class="space-y-6">
+        <SectionTitle
+          eyebrow="Parcours de visite"
+          title="Du programme à l'échange"
+          description="Commencez par les informations clés, approfondissez le contenu, puis demandez un rappel si vous souhaitez en parler."
+        />
+
+        <div class="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
+          <Card
+            v-for="(item, index) in journey"
+            :key="item.title"
+            class="page-cut"
+            v-motion
+            :initial="motionVariants.block.initial"
+            :enter="staggerEnter(index, 80, 90)"
+          >
+            <CardHeader class="space-y-3">
+              <component :is="journeyIcons[index % journeyIcons.length]" class="h-6 w-6 text-primary" />
+              <CardTitle>{{ item.title }}</CardTitle>
+            </CardHeader>
+            <CardContent class="text-sm leading-relaxed text-muted-foreground">
+              {{ item.text }}
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
+      <div class="space-y-6">
+        <SectionTitle
+          eyebrow="Blocs de compétences"
+          title="Un aperçu du contenu travaillé"
+          description="Le programme couvre le pilotage, le management, l'organisation et le développement de l'activité."
+        />
+
+        <div class="space-y-3">
+          <p class="text-sm leading-relaxed text-muted-foreground">
+            Vous pouvez consulter l'ensemble du programme pour retrouver tous les blocs de
+            compétences et leurs thèmes de travail.
+          </p>
+          <RouterLink
+            to="/programme"
+            class="inline-flex items-center gap-2 text-sm font-semibold text-primary"
+          >
+            Voir le programme
+            <ArrowRight class="h-4 w-4" />
+          </RouterLink>
+        </div>
+      </div>
+
+      <div class="grid gap-4">
         <article
-          v-for="(block, index) in program?.blocks ?? []"
+          v-for="(block, index) in featuredBlocks"
           :key="block.code"
-          class="panel-shell rounded-[1.5rem] p-5 sm:p-6"
+          class="page-cut rounded-[1.35rem] px-5 py-5 sm:px-6"
           v-motion
           :initial="motionVariants.block.initial"
-          :enter="staggerEnter(index, 55, 80)"
+          :enter="staggerEnter(index, 60, 80)"
         >
           <div class="flex flex-wrap items-center gap-2">
             <span class="kicker">{{ block.code }}</span>
@@ -325,15 +379,16 @@ const summaryCards = computed(() => [
       </div>
     </section>
 
-    <section class="panel-shell rounded-[2rem] p-8 lg:p-10">
+    <section class="page-cut rounded-[1.6rem] p-6 sm:p-8 lg:p-10">
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div class="space-y-3">
           <p class="kicker">Contact</p>
-          <h2 class="text-3xl font-semibold text-foreground sm:text-4xl">
-            Demander un rappel pour aller plus loin
+          <h2 class="editorial-title text-[clamp(2rem,3.4vw,3.35rem)] text-foreground">
+            Demander un rappel pour parler de votre projet
           </h2>
           <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Le formulaire de contact permet de poser une question ou de demander un rappel à partir des repères publiés sur le site.
+            Si vous souhaitez vérifier l'adéquation du RPMS à votre situation, laissez vos
+            coordonnées et votre question.
           </p>
         </div>
 
@@ -351,6 +406,6 @@ const summaryCards = computed(() => [
       </div>
     </section>
 
-    <p v-if="loading" class="text-sm text-muted-foreground">Actualisation du contenu…</p>
+    <p v-if="loading" class="text-sm text-muted-foreground">Actualisation du contenu...</p>
   </div>
 </template>

@@ -9,12 +9,12 @@ export const programsSeed = [
     rhythmLabel: 'E-learning',
     supportLabel: 'Accompagnement pédagogique',
     intro:
-      "Un parcours professionnalisant pour structurer des compétences de pilotage, d'organisation et de management dans une petite ou moyenne structure.",
+      "Une formation à distance pour développer des compétences de pilotage, d'organisation et de management au sein d'une petite ou moyenne structure.",
     objectiveSummary: [
-      "Piloter l'activité et la performance d'une structure.",
-      'Encadrer et animer une équipe dans un cadre opérationnel clair.',
-      "Organiser les processus, la qualité et le suivi de l'activité.",
-      'Développer l’offre, les partenariats et la communication utile au pilotage.'
+      "Piloter l'activité et suivre la performance d'une structure.",
+      "Manager une équipe et coordonner le travail au quotidien.",
+      "Organiser les opérations, la qualité et le suivi de l'activité.",
+      'Soutenir le développement, la communication et le reporting.'
     ],
     professionalScope: [
       'Pilotage opérationnel',
@@ -74,42 +74,42 @@ export const faqSeed = [
   {
     question: 'À qui s’adresse le programme RPMS ?',
     answer:
-      "Le site public présente le parcours RPMS pour des particuliers souhaitant structurer une évolution ou une reconversion vers des fonctions de pilotage, de coordination ou de management.",
+      "Le titre professionnel RPMS s'adresse aux personnes qui souhaitent consolider des compétences de pilotage, de coordination et de management dans une petite ou moyenne structure.",
     audience: 'particulier',
     sortOrder: 1
   },
   {
     question: 'Quel est le niveau de la certification ?',
     answer:
-      "Le programme présenté correspond au titre professionnel Responsable petite et moyenne structure (RPMS), code RNCP38575, de niveau 5, soit un niveau Bac+2.",
+      "Le titre professionnel Responsable petite et moyenne structure (RPMS), code RNCP38575, est un titre de niveau 5, soit un niveau Bac+2.",
     audience: 'particulier',
     sortOrder: 2
   },
   {
     question: 'Comment se déroule la formation ?',
     answer:
-      "La formation est présentée en 100 % distanciel, avec un dispositif associant e-learning et accompagnement pédagogique.",
+      'La formation se déroule en 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
     audience: 'particulier',
     sortOrder: 3
   },
   {
     question: 'Quelles compétences sont travaillées ?',
     answer:
-      "Le parcours couvre le pilotage d'une activité, le management d'équipe, l'organisation des opérations, le développement de l'offre et le reporting.",
+      "Le parcours couvre le pilotage d'une activité, le management d'équipe, l'organisation des opérations, le développement, la communication et le reporting.",
     audience: 'particulier',
     sortOrder: 4
   },
   {
     question: "Que se passe-t-il après une demande de rappel ?",
     answer:
-      "La prise de contact permet de préciser le projet, de présenter le contenu du programme et d'orienter la personne vers les informations utiles à la poursuite de son dossier.",
+      'Un échange permet de préciser votre projet, de répondre à vos questions et de vous orienter vers les informations utiles pour la suite.',
     audience: 'particulier',
     sortOrder: 5
   },
   {
     question: 'Les informations tarifaires et de financement sont-elles publiées ici ?',
     answer:
-      "Non. Le site public ne publie pas d'information tarifaire ou de financement tant qu'elle n'est pas revalidée dans les sources opérationnelles et documentaires.",
+      'Non. Les informations tarifaires et de financement ne sont pas publiées sur cette page.',
     audience: 'particulier',
     sortOrder: 6
   }
@@ -119,60 +119,60 @@ export const siteContent = {
   brand: {
     name: "CITYZ'France",
     shortName: "CITYZ'France",
-    descriptor: 'Centre de formation certifié Qualiopi',
+    descriptor: 'Organisme de formation certifié Qualiopi',
     primaryCta: 'Être rappelé',
     secondaryCta: 'Voir le programme'
   },
   positioning: {
-    eyebrow: 'Titre professionnel à distance',
-    title: 'Un site centré sur un programme, une lecture claire, un parcours de prise de contact unique.',
+    eyebrow: 'Titre professionnel RPMS',
+    title: "Le RPMS pour renforcer vos compétences de pilotage, de management et d'organisation.",
     subtitle:
-      "CITYZ'France présente le titre professionnel Responsable petite et moyenne structure (RPMS) pour des particuliers recherchant un cadre sérieux, lisible et entièrement orienté vers l'information utile."
+      "Découvrez le titre professionnel Responsable petite et moyenne structure de CITYZ'France, son niveau, son format à distance et l'accompagnement pédagogique prévu pour avancer avec méthode."
   },
   home: {
     proofItems: [
       {
         value: 'RNCP38575',
-        label: 'Référentiel visible',
-        note: "Titre professionnel reconnu par l'État"
+        label: 'Code RNCP',
+        note: 'Titre professionnel reconnu'
       },
       {
         value: 'Niveau 5',
-        label: 'Positionnement',
-        note: 'Équivalent Bac+2'
+        label: 'Niveau',
+        note: 'Bac+2'
       },
       {
         value: '100 % distanciel',
         label: 'Modalité',
-        note: 'E-learning'
+        note: 'E-learning et accompagnement pédagogique'
       }
     ],
     highlights: [
       {
-        title: 'Un cadrage institutionnel',
-        text: 'Le site ne présente qu’un seul parcours, avec des repères pédagogiques, réglementaires et légaux identifiés.'
+        title: 'Un titre professionnel reconnu',
+        text: "Le RPMS s'appuie sur le code RNCP38575 et un niveau 5 / Bac+2."
       },
       {
-        title: 'Une lecture utile avant contact',
-        text: 'Programme, compétences, accompagnement et pages légales sont organisés pour donner une vision stable du parcours.'
+        title: 'Un format pensé pour la distance',
+        text: 'La formation se déroule en 100 % distanciel, en e-learning, avec accompagnement pédagogique.'
       },
       {
-        title: 'Un point d’entrée unique',
-        text: 'La prise de contact se fait via un seul formulaire de rappel, sans tunnel externe ni promesse commerciale ajoutée.'
+        title: 'Des compétences utiles en structure',
+        text: 'Pilotage, management, organisation, communication et reporting forment le socle du programme.'
       }
     ],
     journey: [
       {
-        title: 'Comprendre le programme',
-        text: 'Identifier le niveau, le référentiel, la modalité pédagogique et la logique des blocs de compétences.'
+        title: 'Découvrir le programme',
+        text: 'Consultez les compétences travaillées, le niveau visé et les grands blocs du titre.'
       },
       {
-        title: 'Évaluer le cadre d’accompagnement',
-        text: 'Lire le fonctionnement distanciel, le suivi pédagogique et les repères pratiques donnés avant la prise de contact.'
+        title: "Comprendre l'accompagnement",
+        text: "Vérifiez le format à distance et la place de l'accompagnement pédagogique dans le parcours."
       },
       {
         title: 'Être rappelé',
-        text: "Déposer une demande de rappel pour être recontacté avec une réponse adaptée au projet et au niveau d'information recherché."
+        text: 'Demandez un rappel pour obtenir des réponses adaptées à votre projet.'
       }
     ],
     competencyClusters: [
@@ -184,27 +184,27 @@ export const siteContent = {
   },
   access: {
     intro:
-      "La page d'accès et d'accompagnement présente le cadre de travail du parcours, les attendus de base et la manière dont le suivi pédagogique est posé sur le site public.",
+      'Le parcours se suit à distance avec un accompagnement pédagogique pour avancer dans un cadre clair et progressif.',
     expectations: [
-      'Un projet professionnel nécessitant une lecture claire du programme et de ses débouchés fonctionnels.',
-      'Une capacité à suivre un parcours distanciel combinant travail personnel et temps synchrones.',
-      'Une démarche de prise d’information préalable avant toute orientation plus détaillée.'
+      "Un projet d'évolution ou de reconversion vers des fonctions de pilotage, de coordination ou de management.",
+      'La disponibilité pour avancer avec régularité dans une formation à distance.',
+      "Le besoin d'évaluer l'adéquation du programme avec votre projet avant d'aller plus loin."
     ],
     supportPoints: [
+      '100 % distanciel',
+      'E-learning',
       'Accompagnement pédagogique',
-      'E-learning'
     ],
     processSteps: [
-      'Consulter les pages publiques du programme et du cadre d’accompagnement.',
-      'Déposer une demande de rappel via le formulaire dédié.',
-      'Être recontacté pour préciser le projet et recevoir les informations utiles.'
+      'Découvrir le programme et les compétences visées.',
+      "Vérifier le format à distance et l'accompagnement pédagogique.",
+      'Demander un rappel pour échanger sur votre projet.'
     ]
   },
   contact: {
     phone: '09 77 21 51 61',
     address: '110 Esplanade du General de Gaulle, 92400 Courbevoie',
     city: 'Courbevoie',
-    officeHours: 'Du lundi au vendredi',
     website: 'www.cityzfrance.fr'
   },
   organizationProfile: {
@@ -217,8 +217,8 @@ export const siteContent = {
     headquartersAddress: '110 Esplanade du General de Gaulle, 92400 Courbevoie',
     website: 'www.cityzfrance.fr',
     phone: '09 77 21 51 61',
-    certification: 'Centre de formation certifié Qualiopi',
+    certification: 'Organisme de formation certifié Qualiopi',
     source:
-      'Projet RMPS.pdf, plaquette RPMS et dossier legal CITYZ France'
+      "Projet RPMS, plaquette RPMS et dossier legal CITYZ'France"
   }
 }

@@ -17,8 +17,8 @@ defineProps({
 
 <template>
   <article class="impact-stat">
-    <p class="impact-stat-value">{{ value }}</p>
     <p class="impact-stat-label">{{ label }}</p>
+    <p class="impact-stat-value">{{ value }}</p>
     <p v-if="note" class="impact-stat-note">{{ note }}</p>
   </article>
 </template>

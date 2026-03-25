@@ -24,62 +24,79 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="space-y-8">
+  <div class="space-y-8 lg:space-y-10">
     <p v-if="loading" class="text-sm text-muted-foreground">Chargement du programme...</p>
 
     <p
       v-else-if="errorMessage"
-      class="rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive"
+      class="rounded-2xl border border-destructive/20 bg-destructive/6 px-4 py-3 text-sm text-destructive"
     >
       {{ errorMessage }}
     </p>
 
     <template v-else-if="program">
-      <section class="diamond-panel surface-cut space-y-5 rounded-[2rem] p-8 lg:p-12">
-        <div class="flex flex-wrap items-center gap-2">
-          <Badge>RPMS</Badge>
-          <Badge variant="outline">{{ program.rncpCode }}</Badge>
-          <Badge variant="outline">{{ program.levelLabel }}</Badge>
+      <section class="grid gap-8 lg:grid-cols-[1.08fr,0.92fr] lg:items-start">
+        <div class="space-y-5">
+          <div class="flex flex-wrap items-center gap-2">
+            <Badge>RPMS</Badge>
+            <Badge variant="outline">{{ program.rncpCode }}</Badge>
+            <Badge variant="outline">{{ program.levelLabel }}</Badge>
+          </div>
+
+          <div class="space-y-4">
+            <h1 class="editorial-title max-w-4xl text-4xl text-foreground sm:text-5xl lg:text-6xl">
+              {{ program.title }}
+            </h1>
+
+            <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {{ program.intro }}
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <RouterLink to="/contact">
+              <Button size="lg">
+                Être rappelé
+                <ArrowRight class="ml-2 h-4 w-4" />
+              </Button>
+            </RouterLink>
+            <RouterLink to="/acces-et-accompagnement">
+              <Button size="lg" variant="outline">Accès et accompagnement</Button>
+            </RouterLink>
+          </div>
         </div>
 
-        <h1 class="editorial-title text-4xl text-foreground sm:text-5xl">
-          {{ program.title }}
-        </h1>
-
-        <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-          {{ program.intro }}
-        </p>
-
-        <div class="grid gap-4 md:grid-cols-3">
-          <Card class="surface-cut">
+        <div class="grid gap-3">
+          <Card class="panel-shell">
             <CardHeader>
-              <CardTitle class="text-base">Modalité</CardTitle>
+              <CardTitle class="text-lg">Lecture rapide</CardTitle>
             </CardHeader>
-            <CardContent class="text-sm text-muted-foreground">
-              {{ program.formatLabel }}
-            </CardContent>
-          </Card>
-          <Card class="surface-cut">
-            <CardHeader>
-              <CardTitle class="text-base">Format pédagogique</CardTitle>
-            </CardHeader>
-            <CardContent class="text-sm text-muted-foreground">
-              {{ program.rhythmLabel }}
-            </CardContent>
-          </Card>
-          <Card class="surface-cut">
-            <CardHeader>
-              <CardTitle class="text-base">Accompagnement</CardTitle>
-            </CardHeader>
-            <CardContent class="text-sm text-muted-foreground">
-              {{ program.supportLabel }}
+            <CardContent class="grid gap-3">
+              <div class="rounded-2xl border border-border bg-background/50 px-4 py-3">
+                <p class="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                  Modalité
+                </p>
+                <p class="mt-1 text-sm font-semibold text-foreground">{{ program.formatLabel }}</p>
+              </div>
+              <div class="rounded-2xl border border-border bg-background/50 px-4 py-3">
+                <p class="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                  Format pédagogique
+                </p>
+                <p class="mt-1 text-sm font-semibold text-foreground">{{ program.rhythmLabel }}</p>
+              </div>
+              <div class="rounded-2xl border border-border bg-background/50 px-4 py-3">
+                <p class="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                  Accompagnement
+                </p>
+                <p class="mt-1 text-sm font-semibold text-foreground">{{ program.supportLabel }}</p>
+              </div>
             </CardContent>
           </Card>
         </div>
       </section>
 
-      <section class="grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
-        <Card class="diamond-panel surface-cut h-fit">
+      <section class="grid gap-5 lg:grid-cols-[0.94fr,1.06fr]">
+        <Card class="panel-shell h-fit">
           <CardHeader>
             <CardTitle>Objectifs pédagogiques</CardTitle>
           </CardHeader>
@@ -93,16 +110,16 @@ onMounted(async () => {
           </CardContent>
         </Card>
 
-        <Card class="diamond-panel surface-cut h-fit">
+        <Card class="panel-shell h-fit">
           <CardHeader>
-            <CardTitle>Champs de compétences</CardTitle>
+            <CardTitle>Champ de compétences</CardTitle>
           </CardHeader>
           <CardContent>
             <ul class="grid gap-3 text-sm leading-relaxed text-muted-foreground sm:grid-cols-2">
               <li
                 v-for="scope in program.professionalScope"
                 :key="scope"
-                class="rounded-2xl border border-border/70 bg-background/70 px-4 py-3"
+                class="rounded-2xl border border-border bg-background/50 px-4 py-3"
               >
                 {{ scope }}
               </li>
@@ -111,13 +128,12 @@ onMounted(async () => {
         </Card>
       </section>
 
-      <section class="space-y-5">
+      <section class="space-y-6">
         <div class="space-y-3">
           <p class="kicker">Blocs de compétences</p>
           <h2 class="text-3xl font-semibold text-foreground">Structure du programme</h2>
           <p class="max-w-3xl text-base leading-relaxed text-muted-foreground">
-            La présentation publique reprend les grands blocs visibles dans les documents de référence
-            afin de donner une vision concrète du périmètre de formation.
+            La présentation publique reprend les grands blocs visibles dans les documents de référence pour donner une vue concrète du périmètre de la formation.
           </p>
         </div>
 
@@ -125,12 +141,10 @@ onMounted(async () => {
           <Card
             v-for="block in program.blocks"
             :key="block.code"
-            class="diamond-panel surface-cut"
+            class="panel-shell"
           >
-            <CardHeader>
-              <div class="flex flex-wrap items-center gap-2">
-                <Badge variant="outline">{{ block.code }}</Badge>
-              </div>
+            <CardHeader class="space-y-3">
+              <Badge variant="outline">{{ block.code }}</Badge>
               <CardTitle class="text-xl">{{ block.title }}</CardTitle>
             </CardHeader>
             <CardContent class="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
@@ -140,16 +154,15 @@ onMounted(async () => {
         </div>
       </section>
 
-      <section class="diamond-panel surface-cut rounded-[2rem] p-8 lg:p-10">
+      <section class="panel-shell rounded-[2rem] p-8 lg:p-10">
         <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
-            <p class="kicker">Prise de contact</p>
-            <h2 class="text-3xl font-semibold text-foreground">
-              Recevoir un rappel pour clarifier votre projet
+            <p class="kicker">Contact</p>
+            <h2 class="text-3xl font-semibold text-foreground sm:text-4xl">
+              Demander un rappel pour préciser votre projet
             </h2>
             <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
-              Le site public s’arrête volontairement aux informations validées. Le formulaire de
-              rappel permet d’aller plus loin sans multiplier les parcours.
+              Le site public reste centré sur les repères stabilisés. Le formulaire de rappel permet d’aller vers un échange direct à partir de ces informations.
             </p>
           </div>
 

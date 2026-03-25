@@ -41,25 +41,27 @@ onMounted(async () => {
 
 const displayPhone = computed(() => site.value.contact?.phone?.trim() ?? null)
 const displayAddress = computed(
-  () => site.value.contact?.address?.trim() ?? site.value.organizationProfile?.headquartersAddress?.trim() ?? null
+  () =>
+    site.value.contact?.address?.trim() ??
+    site.value.organizationProfile?.headquartersAddress?.trim() ??
+    null
 )
 </script>
 
 <template>
-  <div class="space-y-10">
+  <div class="space-y-10 lg:space-y-12">
     <SectionTitle
       eyebrow="Contact"
       title="Demande de rappel"
-      description="Un seul formulaire pour centraliser la prise de contact autour du programme RPMS."
+      description="Le formulaire centralise la prise de contact autour du programme RPMS pour particuliers."
     />
 
     <div class="grid gap-5 lg:grid-cols-[1.08fr,0.92fr]">
-      <Card class="diamond-panel surface-cut">
+      <Card class="panel-shell">
         <CardHeader class="space-y-3">
           <CardTitle>Présenter votre projet</CardTitle>
           <p class="text-sm leading-relaxed text-muted-foreground">
-            Décrivez votre contexte et ce que vous souhaitez clarifier. La demande est rattachée
-            au programme RPMS pour particuliers.
+            Décrivez votre contexte et ce que vous souhaitez clarifier. La demande reste liée au programme RPMS.
           </p>
         </CardHeader>
         <CardContent>
@@ -68,9 +70,9 @@ const displayAddress = computed(
       </Card>
 
       <div class="space-y-4">
-        <Card class="diamond-panel surface-cut">
+        <Card class="panel-shell">
           <CardHeader>
-            <CardTitle>Repères rapides</CardTitle>
+            <CardTitle>Repères publics</CardTitle>
           </CardHeader>
           <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
             <Badge variant="outline">{{ program?.rncpCode }}</Badge>
@@ -81,7 +83,7 @@ const displayAddress = computed(
           </CardContent>
         </Card>
 
-        <Card class="diamond-panel surface-cut">
+        <Card class="panel-shell">
           <CardHeader>
             <CardTitle>Coordonnées utiles</CardTitle>
           </CardHeader>
@@ -92,21 +94,18 @@ const displayAddress = computed(
             <p v-if="displayAddress">
               <strong class="text-foreground">Adresse :</strong> {{ displayAddress }}
             </p>
-            <p v-if="site.contact?.website">
-              <strong class="text-foreground">Site :</strong> {{ site.contact.website }}
-            </p>
             <p v-if="loading">Chargement des coordonnées...</p>
           </CardContent>
         </Card>
 
-        <Card class="diamond-panel surface-cut">
+        <Card class="panel-shell">
           <CardHeader>
             <CardTitle>Après l’envoi</CardTitle>
           </CardHeader>
           <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
-            <p>La demande est enregistrée sur le site et transmise dans un seul flux.</p>
-            <p>Le rappel sert à préciser le besoin, le niveau d’information recherché et la suite de l’échange.</p>
-            <p>Les éléments non revalidés publiquement ne sont pas exposés en amont sur le site.</p>
+            <p>La demande est enregistrée sur le site.</p>
+            <p>Le rappel sert à préciser le besoin et le contexte de la demande.</p>
+            <p>Les informations publiées restent concentrées sur le cadre RPMS.</p>
           </CardContent>
         </Card>
       </div>

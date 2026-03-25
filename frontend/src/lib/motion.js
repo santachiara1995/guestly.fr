@@ -36,21 +36,19 @@ function toEnterState(target) {
 
 export const motionVariants = {
   page: {
-    initial: { opacity: 0, y: 30, scale: 0.992 },
+    initial: { opacity: 0, y: 16 },
     enter: toEnterState({
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: safeTransition({ duration: 470, ease: springEase })
+      transition: safeTransition({ duration: 320, ease: springEase })
     })
   },
   block: {
-    initial: { opacity: 0, y: 20, scale: 0.976 },
+    initial: { opacity: 0, y: 12 },
     enter: toEnterState({
       opacity: 1,
       y: 0,
-      scale: 1,
-      transition: safeTransition({ duration: 440, ease: springEase })
+      transition: safeTransition({ duration: 280, ease: springEase })
     })
   },
   revealLeft: {
@@ -70,20 +68,20 @@ export const motionVariants = {
     })
   },
   scaleIn: {
-    initial: { opacity: 0, scale: 0.94 },
+    initial: { opacity: 0, scale: 0.98 },
     enter: toEnterState({
       opacity: 1,
       scale: 1,
-      transition: safeTransition({ duration: 360, ease: springEase })
+      transition: safeTransition({ duration: 260, ease: springEase })
     })
   },
   pop: {
-    initial: { opacity: 0, y: 12, scale: 0.9 },
+    initial: { opacity: 0, y: 10, scale: 0.98 },
     enter: toEnterState({
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: safeTransition({ duration: 380, ease: springEase })
+      transition: safeTransition({ duration: 280, ease: springEase })
     })
   }
 }
@@ -92,9 +90,8 @@ export function staggerEnter(index, step = 90, baseDelay = 80) {
   return toEnterState({
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: safeTransition({
-      duration: 440,
+      duration: 300,
       ease: springEase,
       delay: baseDelay + index * step
     })

@@ -32,23 +32,22 @@ const processSteps = computed(() => site.value.access?.processSteps ?? [])
 </script>
 
 <template>
-  <div class="space-y-10">
-    <section class="diamond-panel surface-cut rounded-[2rem] p-8 lg:p-12">
+  <div class="space-y-10 lg:space-y-12">
+    <section class="panel-shell rounded-[2rem] p-8 lg:p-12">
       <p class="kicker">Accès et accompagnement</p>
-      <h1 class="editorial-title mt-3 text-4xl text-foreground sm:text-5xl">
-        Un cadre pédagogique présenté avant toute promesse opérationnelle
+      <h1 class="editorial-title mt-3 max-w-4xl text-4xl text-foreground sm:text-5xl lg:text-6xl">
+        Un cadre pédagogique lisible avant le contact
       </h1>
       <p class="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
         {{ site.access?.intro }}
       </p>
-      <p class="mt-4 text-sm text-muted-foreground">
-        Le site public présente le cadre du parcours, la logique d’accompagnement et le point
-        d’entrée de contact. Les éléments opérationnels non revalidés n’y sont pas publiés.
+      <p class="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+        La page présente les repères utiles sur le programme RPMS, l’accompagnement pédagogique et la manière d’entrer en relation avec CITYZ'France.
       </p>
     </section>
 
     <div class="grid gap-5 lg:grid-cols-[1.05fr,0.95fr]">
-      <Card class="diamond-panel surface-cut">
+      <Card class="panel-shell">
         <CardHeader>
           <div class="flex items-center gap-2">
             <CheckCircle2 class="h-5 w-5 text-primary" />
@@ -64,11 +63,11 @@ const processSteps = computed(() => site.value.access?.processSteps ?? [])
         </CardContent>
       </Card>
 
-      <Card class="diamond-panel surface-cut">
+      <Card class="panel-shell">
         <CardHeader>
           <div class="flex items-center gap-2">
             <ShieldCheck class="h-5 w-5 text-primary" />
-            <CardTitle>Ce que cette page pose clairement</CardTitle>
+            <CardTitle>Ce que la page souligne</CardTitle>
           </div>
         </CardHeader>
         <CardContent>
@@ -85,18 +84,18 @@ const processSteps = computed(() => site.value.access?.processSteps ?? [])
     <section class="space-y-8">
       <SectionTitle
         eyebrow="Pour qui"
-        title="Des repères conçus pour des particuliers en recherche d’un cadre lisible"
-        description="Le site public ne construit pas un tunnel d’admission détaillé. Il aide d’abord à comprendre le périmètre du programme et la logique de contact."
+        title="Des repères conçus pour des particuliers qui veulent lire le programme avant d’aller plus loin"
+        description="Le site garde une présentation courte et stable des informations utiles, puis renvoie vers le formulaire de rappel."
       />
 
       <div class="grid gap-4 md:grid-cols-3">
         <Card
           v-for="(item, index) in expectations"
           :key="item"
-          class="diamond-panel surface-cut"
+          class="panel-shell"
           v-motion
           :initial="motionVariants.block.initial"
-          :enter="staggerEnter(index, 105, 90)"
+          :enter="staggerEnter(index, 80, 70)"
         >
           <CardContent class="pt-1 text-sm leading-relaxed text-muted-foreground">
             {{ item }}
@@ -107,19 +106,19 @@ const processSteps = computed(() => site.value.access?.processSteps ?? [])
 
     <section class="space-y-8">
       <SectionTitle
-        eyebrow="Séquence"
-        title="Un parcours volontairement simple"
-        description="Le site garde un seul chemin d’action : lire, comprendre, puis demander un rappel."
+        eyebrow="Parcours"
+        title="Trois repères pour comprendre le cadre de lecture"
+        description="Le site présente d’abord le programme, puis l’accompagnement et enfin le contact."
       />
 
       <div class="grid gap-4 md:grid-cols-3">
         <Card
           v-for="(step, index) in processSteps"
           :key="step"
-          class="diamond-panel surface-cut"
+          class="panel-shell"
           v-motion
           :initial="motionVariants.block.initial"
-          :enter="staggerEnter(index, 110, 100)"
+          :enter="staggerEnter(index, 80, 80)"
         >
           <CardHeader>
             <div class="flex items-center gap-2">
@@ -136,16 +135,15 @@ const processSteps = computed(() => site.value.access?.processSteps ?? [])
       </div>
     </section>
 
-    <section class="diamond-panel surface-cut rounded-[2rem] p-8 lg:p-10">
+    <section class="panel-shell rounded-[2rem] p-8 lg:p-10">
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div class="space-y-3">
           <p class="kicker">Contact</p>
-          <h2 class="text-3xl font-semibold text-foreground">
-            La suite du parcours passe par un rappel unique
+          <h2 class="text-3xl font-semibold text-foreground sm:text-4xl">
+            Demander un rappel à partir des repères publiés
           </h2>
           <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Le formulaire de contact permet de centraliser la demande, sans page concurrente ni
-            renvoi externe.
+            Le formulaire de contact centralise la demande autour du programme RPMS.
           </p>
         </div>
 

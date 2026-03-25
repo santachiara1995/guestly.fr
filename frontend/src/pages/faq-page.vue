@@ -4,7 +4,6 @@ import { RouterLink } from 'vue-router'
 
 import SectionTitle from '@/components/section-title.vue'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
 import { api } from '@/lib/api'
 
 const site = ref({
@@ -58,83 +57,89 @@ const closingNote = computed(() => {
 </script>
 
 <template>
-  <div class="space-y-8 sm:space-y-10">
-    <section class="page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.04fr,0.96fr] lg:items-start lg:p-10">
+  <div class="space-y-12 sm:space-y-14 lg:space-y-16">
+    <section class="page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.04fr,0.96fr] lg:p-10">
       <div class="space-y-5">
         <div class="space-y-4">
           <p class="kicker">FAQ RPMS</p>
-          <h1 class="editorial-title max-w-4xl text-[clamp(1.95rem,3.8vw,3.15rem)] text-foreground">
+          <h1 class="editorial-title max-w-4xl text-[clamp(2.2rem,4.5vw,3.8rem)] text-foreground">
             Les questions utiles avant de vous engager dans le RPMS
           </h1>
-          <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-[1.02rem]">
+          <p class="max-w-3xl text-base leading-8 text-muted-foreground sm:text-[1.05rem]">
             {{ heroLead }}
           </p>
         </div>
       </div>
 
-      <Card class="page-cut">
-        <CardContent class="space-y-4 p-6 text-sm leading-relaxed text-muted-foreground">
-          <p class="kicker">{{ closingNote.eyebrow }}</p>
-          <h2 class="text-2xl font-semibold text-foreground">{{ closingNote.title }}</h2>
-          <p>{{ closingNote.description }}</p>
-          <p>{{ closingNote.supportLine }}</p>
-          <div class="flex flex-wrap gap-3 pt-1">
-            <RouterLink to="/contact">
-              <Button size="lg">Être rappelé</Button>
-            </RouterLink>
-            <RouterLink to="/programme">
-              <Button size="lg" variant="outline">Voir le programme</Button>
-            </RouterLink>
-          </div>
-        </CardContent>
-      </Card>
+      <aside class="page-cut p-6 sm:p-7">
+        <p class="kicker">{{ closingNote.eyebrow }}</p>
+        <h2 class="mt-4 text-[clamp(1.6rem,2.8vw,2.25rem)] font-semibold leading-tight tracking-[-0.04em] text-foreground">
+          {{ closingNote.title }}
+        </h2>
+        <p class="mt-4 text-sm leading-7 text-muted-foreground">
+          {{ closingNote.description }}
+        </p>
+        <p class="mt-3 text-sm leading-7 text-muted-foreground">
+          {{ closingNote.supportLine }}
+        </p>
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+          <RouterLink to="/contact">
+            <Button size="lg">Être rappelé</Button>
+          </RouterLink>
+          <RouterLink to="/programme">
+            <Button size="lg" variant="outline">Voir le programme</Button>
+          </RouterLink>
+        </div>
+      </aside>
     </section>
 
     <p v-if="loading" class="text-sm text-muted-foreground">Chargement de la FAQ...</p>
 
     <template v-else>
-      <SectionTitle
-        eyebrow="Objections fréquentes"
-        title="Commencez par les points qui comptent le plus pour trancher"
-        description="Chaque réponse doit éclairer le titre, le format, les repères officiels et la portée concrète du programme."
-      />
+      <section class="space-y-6">
+        <SectionTitle
+          eyebrow="Objections fréquentes"
+          title="Commencez par les points qui comptent le plus pour trancher"
+          description="Chaque réponse doit éclairer le titre, le format, les repères officiels et la portée concrète du programme."
+        />
 
-      <div class="space-y-4">
-        <Card v-for="item in items" :key="item.question" class="page-cut">
-          <CardContent class="p-0">
-            <details class="group px-5 py-5 sm:px-6">
-              <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left">
-                <span class="text-lg font-semibold leading-snug text-foreground">
-                  {{ item.question }}
-                </span>
-                <span
-                  class="elevated-item flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-primary transition-transform group-open:rotate-45"
-                >
-                  +
-                </span>
-              </summary>
-              <p class="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-                {{ item.answer }}
-              </p>
-            </details>
-          </CardContent>
-        </Card>
-      </div>
+        <div class="grid gap-3">
+          <details
+            v-for="item in items"
+            :key="item.question"
+            class="page-cut group px-5 py-5 sm:px-6"
+          >
+            <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left">
+              <span class="text-[1.02rem] font-semibold leading-snug text-foreground">
+                {{ item.question }}
+              </span>
+              <span
+                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-muted text-primary transition-colors group-open:bg-primary group-open:text-primary-foreground"
+              >
+                +
+              </span>
+            </summary>
+            <p class="mt-4 max-w-3xl text-sm leading-7 text-muted-foreground">
+              {{ item.answer }}
+            </p>
+          </details>
+        </div>
+      </section>
 
-      <section class="arch-cta rounded-[1.5rem] p-6 sm:p-8 lg:p-10">
+      <section class="arch-cta p-6 sm:p-8 lg:p-10">
         <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
             <p class="kicker">Besoin d'un échange</p>
-            <h2 class="editorial-title text-[clamp(1.8rem,3vw,2.65rem)] text-foreground">
+            <h2 class="editorial-title max-w-3xl text-[clamp(1.95rem,3vw,2.8rem)] text-foreground">
               Faire le point sur votre projet et le cadre du titre
             </h2>
-            <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
+            <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
               Si vous voulez une réponse adaptée à votre projet, le rappel permet de cadrer la
               suite sans vous engager trop tôt.
             </p>
           </div>
 
-          <div class="flex flex-wrap gap-3">
+          <div class="flex flex-col gap-3 sm:flex-row">
             <RouterLink to="/contact">
               <Button size="lg">Être rappelé</Button>
             </RouterLink>

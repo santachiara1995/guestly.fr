@@ -4,10 +4,9 @@ import { RouterLink } from 'vue-router'
 import { ArrowRight, BookOpenCheck, ShieldCheck, Waypoints } from 'lucide-vue-next'
 
 import SectionTitle from '@/components/section-title.vue'
+import { Button } from '@/components/ui/button'
 import ImpactStat from '@/components/visual/impact-stat.vue'
 import TrustStrip from '@/components/visual/trust-strip.vue'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { api } from '@/lib/api'
 import { motionVariants, staggerEnter } from '@/lib/motion'
 
@@ -19,11 +18,11 @@ const site = ref({
   positioning: {
     eyebrow: 'Titre professionnel RPMS',
     title:
-      'Vous cherchez à prendre plus de responsabilités dans une petite ou moyenne structure ?',
+      'Titre professionnel Responsable petite et moyenne structure (RPMS), niveau 5 (Bac+2).',
     subtitle:
-      "Ce parcours vous aide à renforcer votre pilotage, votre management et votre organisation avec des repères concrets en activité, équipe, offre, territoire et reporting.",
+      'Le parcours structure les compétences de pilotage, management, organisation, territoire, partenariats, production, performance et reporting.',
     fitLine:
-      "Avant de laisser vos coordonnées, voyez rapidement si ce parcours correspond à ce que vous cherchez à structurer dans votre projet."
+      "Avant de laisser vos coordonnées, vérifiez si ce titre professionnel correspond à ce que vous cherchez à structurer dans votre projet."
   },
   home: {
     proofItems: [],
@@ -31,19 +30,19 @@ const site = ref({
     competencyClusters: [],
     journey: [],
     valueSection: {
-      eyebrow: 'Ce que ce parcours peut vous aider à structurer',
-      title: 'Un cadre plus clair pour tenir un rôle plus complet au quotidien.',
+      eyebrow: 'Ce que le RPMS structure',
+      title: 'Piloter une petite ou moyenne structure avec des repères concrets.',
       description:
-        "L'enjeu n'est pas seulement d'identifier un titre, mais de voir si le parcours répond à ce que vous voulez vraiment mieux piloter, coordonner et organiser.",
+        "Le RPMS relie le cadre officiel du titre à ce que vous voulez réellement mieux organiser, coordonner et suivre dans une structure.",
       items: []
     },
     contactBand: {
       eyebrow: 'Parler de votre projet',
-      title: 'Demandez un rappel pour savoir rapidement si ce parcours correspond à votre projet',
+      title: 'Demandez un rappel pour vérifier l’adéquation du RPMS à votre projet',
       description:
-        "En quelques minutes, vous pouvez clarifier le contenu, le niveau visé, le format à distance et les compétences travaillées.",
+        'En quelques minutes, vous pouvez clarifier le titre, le niveau visé, le format à distance et les compétences travaillées.',
       supportLine:
-        "Vous repartez avec une vision plus nette du programme et de la place qu'il peut prendre dans votre projet."
+        "Vous repartez avec une vision plus nette du programme et de son cadre officiel."
     }
   }
 })
@@ -70,7 +69,7 @@ const heroFitLine = computed(
 )
 const trustStripItems = computed(() => [
   program.value?.rncpCode ?? 'RNCP38575',
-  program.value?.levelLabel ?? 'Niveau 5 (Bac+2)',
+  program.value?.levelLabel ?? 'Niveau 5 / Bac+2',
   program.value?.formatLabel ?? '100 % distanciel',
   program.value?.supportLabel ?? 'Accompagnement pédagogique'
 ])
@@ -95,9 +94,9 @@ const proofItems = computed(() => {
 
   return [
     {
-      value: 'Titre reconnu',
+      value: 'Responsable petite et moyenne structure (RPMS)',
       label: 'Titre',
-      note: 'Titre professionnel RPMS'
+      note: 'Intitulé officiel'
     },
     {
       value: program.value?.rncpCode ?? 'RNCP38575',
@@ -107,7 +106,7 @@ const proofItems = computed(() => {
     {
       value: program.value?.levelLabel ?? 'Niveau 5 / Bac+2',
       label: 'Niveau',
-      note: 'Titre de niveau 5'
+      note: 'Titre professionnel de niveau 5'
     },
     {
       value: program.value?.formatLabel ?? '100 % distanciel',
@@ -125,16 +124,16 @@ const highlights = computed(() => {
 
   return [
     {
-      title: "Prendre plus de recul sur l'activité",
-      text: "Le parcours vous aide à suivre la performance, structurer les priorités et garder une lecture plus claire de l'activité."
+      title: "Piloter l'activité avec méthode",
+      text: "Le parcours relie performance, priorités et pilotage opérationnel."
     },
     {
-      title: 'Mieux coordonner une équipe',
-      text: "Vous travaillez l'animation d'équipe, l'organisation du travail et la coordination quotidienne dans une logique concrète."
+      title: 'Coordonner une équipe',
+      text: "Vous travaillez l'animation d'équipe, l'organisation du travail et les arbitrages du quotidien."
     },
     {
-      title: 'Structurer les opérations avec méthode',
-      text: "Organisation, qualité, communication et reporting s'articulent pour vous donner un cadre d'action plus solide."
+      title: 'Structurer les opérations',
+      text: 'Organisation, qualité, communication et reporting soutiennent une action plus solide.'
     }
   ]
 })
@@ -157,24 +156,26 @@ const valueSection = computed(() => {
   const section = site.value.home?.valueSection
   if (section && typeof section === 'object') {
     return {
-      eyebrow: section.eyebrow ?? 'Ce que ce parcours peut vous aider à structurer',
-      title: section.title ?? 'Un cadre plus clair pour tenir un rôle plus complet au quotidien.',
+      eyebrow: section.eyebrow ?? 'Ce que le RPMS structure',
+      title:
+        section.title ??
+        'Piloter une petite ou moyenne structure avec des repères concrets.',
       description:
         section.description ??
-        "L'enjeu n'est pas seulement d'identifier un titre, mais de voir si le parcours répond à ce que vous voulez vraiment mieux piloter, coordonner et organiser.",
+        "Le RPMS relie le cadre officiel du titre à ce que vous voulez réellement mieux organiser, coordonner et suivre dans une structure.",
       items: Array.isArray(section.items) ? section.items : []
     }
   }
 
   return {
-    eyebrow: 'Ce que ce parcours peut vous aider à structurer',
-    title: 'Un cadre plus clair pour tenir un rôle plus complet au quotidien.',
+    eyebrow: 'Ce que le RPMS structure',
+    title: 'Piloter une petite ou moyenne structure avec des repères concrets.',
     description:
-      "L'enjeu n'est pas seulement d'identifier un titre, mais de voir si le parcours répond à ce que vous voulez vraiment mieux piloter, coordonner et organiser.",
+      "Le RPMS relie le cadre officiel du titre à ce que vous voulez réellement mieux organiser, coordonner et suivre dans une structure.",
     items: [
-      "Prendre plus de recul sur l'activité et les priorités.",
-      "Mieux coordonner une équipe et organiser le travail.",
-      "Structurer l'offre, le territoire, les partenariats et le reporting avec plus de méthode."
+      "Diriger une structure dans ses dimensions stratégiques, administratives, humaines et territoriales.",
+      "Animer une équipe et organiser le travail au quotidien.",
+      "Développer l'offre, les partenariats, la production et le reporting."
     ]
   }
 })
@@ -221,8 +222,7 @@ const contactBand = computed(() => {
     title: 'Demandez un rappel pour vérifier l’adéquation du RPMS à votre projet',
     description:
       'En quelques minutes, vous pouvez clarifier le titre, le niveau visé, le format 100 % distanciel et les compétences travaillées.',
-    supportLine:
-      "Vous repartez avec une vision plus nette du programme et de son cadre officiel."
+    supportLine: "Vous repartez avec une vision plus nette du programme et de son cadre officiel."
   }
 })
 
@@ -230,229 +230,256 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
 </script>
 
 <template>
-  <div class="space-y-14 sm:space-y-16 lg:space-y-20">
-    <section
-      class="page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.08fr,0.92fr] lg:items-start lg:p-10"
-      v-motion
-      :initial="motionVariants.block.initial"
-      :enter="motionVariants.block.enter"
+  <div class="space-y-12 sm:space-y-14 lg:space-y-16">
+    <p v-if="loading" class="text-sm text-muted-foreground">Actualisation du contenu...</p>
+    <p
+      v-else-if="errorMessage"
+      class="rounded-[1rem] border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive"
     >
-      <div class="space-y-5">
-        <div class="space-y-4">
-          <p class="kicker">{{ heroEyebrow }}</p>
-          <h1 class="editorial-title max-w-4xl text-[clamp(2.2rem,4.4vw,3.8rem)] text-foreground">
-            {{ heroTitle }}
-          </h1>
-          <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-[1.05rem]">
-            {{ heroSubtitle }}
+      {{ errorMessage }}
+    </p>
+
+    <template v-else>
+      <section
+        class="page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.08fr,0.92fr] lg:p-10"
+        v-motion
+        :initial="motionVariants.block.initial"
+        :enter="motionVariants.block.enter"
+      >
+        <div class="space-y-6">
+          <div class="space-y-4">
+            <p class="kicker">{{ heroEyebrow }}</p>
+            <h1 class="editorial-title max-w-4xl text-[clamp(2.45rem,5vw,4.3rem)] text-foreground">
+              {{ heroTitle }}
+            </h1>
+            <p class="max-w-3xl text-base leading-8 text-muted-foreground sm:text-[1.05rem]">
+              {{ heroSubtitle }}
+            </p>
+          </div>
+
+          <p class="max-w-2xl text-base font-medium leading-7 text-foreground sm:text-[1.02rem]">
+            {{ heroFitLine }}
           </p>
+
+          <div class="flex flex-col gap-3 sm:flex-row">
+            <RouterLink to="/contact">
+              <Button size="lg">
+                Être rappelé
+                <ArrowRight class="ml-2 h-4 w-4" />
+              </Button>
+            </RouterLink>
+            <RouterLink to="/programme">
+              <Button size="lg" variant="outline">Voir le programme</Button>
+            </RouterLink>
+          </div>
+
+          <TrustStrip :items="trustStripItems" />
         </div>
 
-        <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground sm:text-[1.02rem]">
-          {{ heroFitLine }}
-        </p>
+        <aside class="page-cut p-6 sm:p-7">
+          <div class="space-y-4">
+            <p class="kicker">Lecture rapide</p>
+            <h2 class="text-[clamp(1.7rem,3vw,2.4rem)] font-semibold leading-tight tracking-[-0.04em] text-foreground">
+              Le RPMS articule activité, équipe, structure et résultats.
+            </h2>
+            <p class="text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
+              Le site ne cherche pas à dramatiser le titre. Il donne un cadre lisible pour voir ce
+              que le RPMS prépare réellement à piloter.
+            </p>
+          </div>
 
-        <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <RouterLink to="/contact" class="sm:flex-none">
-            <Button size="lg" class="w-full sm:w-auto">
-              Être rappelé
+          <div class="mt-6 grid gap-3">
+            <article
+              v-for="(item, index) in highlights"
+              :key="item.title"
+              class="elevated-item rounded-[1rem] p-4"
+              v-motion
+              :initial="motionVariants.pop.initial"
+              :enter="staggerEnter(index, 60, 50)"
+            >
+              <component :is="highlightIcons[index % highlightIcons.length]" class="h-5 w-5 text-primary" />
+              <h3 class="mt-3 text-base font-semibold leading-tight text-foreground">
+                {{ item.title }}
+              </h3>
+              <p class="mt-2 text-sm leading-6 text-muted-foreground">
+                {{ item.text }}
+              </p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div
+          v-for="(item, index) in proofItems"
+          :key="item.label"
+          v-motion
+          :initial="motionVariants.pop.initial"
+          :enter="staggerEnter(index, 60, 40)"
+        >
+          <ImpactStat :value="item.value" :label="item.label" :note="item.note" />
+        </div>
+      </section>
+
+      <section class="grid gap-6 lg:grid-cols-[0.94fr,1.06fr]">
+        <div class="space-y-6">
+          <SectionTitle
+            eyebrow="Ce que le RPMS prépare"
+            title="Le titre met en cohérence management, organisation et performance."
+            description="La lecture du programme devient plus simple quand on regarde d'abord ce qu'il structure dans le rôle."
+          />
+
+          <article class="page-cut p-6 sm:p-7">
+            <p class="kicker">{{ valueSection.eyebrow }}</p>
+            <h2 class="mt-4 text-[clamp(1.75rem,3vw,2.45rem)] font-semibold leading-tight tracking-[-0.04em] text-foreground">
+              {{ valueSection.title }}
+            </h2>
+            <p class="mt-4 text-sm leading-7 text-muted-foreground sm:text-[1rem]">
+              {{ valueSection.description }}
+            </p>
+
+            <div class="mt-6 space-y-3">
+              <div
+                v-for="item in valueSection.items"
+                :key="item"
+                class="elevated-item flex items-start gap-3 rounded-[1rem] p-4"
+              >
+                <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-primary"></span>
+                <span class="text-sm leading-6 text-foreground">{{ item }}</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="space-y-6">
+          <SectionTitle
+            eyebrow="Compétences"
+            title="Quatre familles suffisent pour lire la portée du RPMS."
+            description="Ces repères donnent une vue plus nette du rôle visé avant d'entrer dans le détail des blocs."
+          />
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <article
+              v-for="(cluster, index) in competencyClusters"
+              :key="cluster"
+              class="page-cut p-5"
+              v-motion
+              :initial="motionVariants.block.initial"
+              :enter="staggerEnter(index, 60, 40)"
+            >
+              <div class="flex items-center gap-3">
+                <span class="flex h-9 w-9 items-center justify-center rounded-full bg-muted text-sm font-semibold text-secondary">
+                  {{ index + 1 }}
+                </span>
+                <h3 class="text-base font-semibold leading-tight text-foreground">
+                  {{ cluster }}
+                </h3>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
+        <div class="space-y-5">
+          <SectionTitle
+            eyebrow="Blocs de compétences"
+            title="Trois blocs suffisent pour comprendre la logique du programme."
+            description="Le détail complet du programme précise ensuite l'écosystème, le territoire, l'équipe, l'offre, la production et le reporting."
+          />
+
+          <p class="text-sm leading-7 text-muted-foreground sm:text-[1rem]">
+            Le programme complet conserve tous les blocs et leurs contenus. Cette première lecture
+            sert surtout à comprendre comment le titre organise les responsabilités.
+          </p>
+
+          <RouterLink to="/programme" class="inline-flex">
+            <Button variant="outline">
+              Voir le programme
               <ArrowRight class="ml-2 h-4 w-4" />
             </Button>
           </RouterLink>
-          <RouterLink to="/programme" class="sm:flex-none">
-            <Button size="lg" variant="outline" class="w-full sm:w-auto">Voir le programme</Button>
-          </RouterLink>
         </div>
 
-        <trust-strip :items="trustStripItems" />
-      </div>
-
-      <div class="space-y-4 lg:pt-2">
-        <div class="page-cut rounded-[1.45rem] p-5 sm:p-6">
-          <p class="kicker">{{ valueSection.eyebrow }}</p>
-          <h2 class="mt-3 text-2xl font-semibold text-foreground sm:text-[2rem]">
-            {{ valueSection.title }}
-          </h2>
-          <p class="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-            {{ valueSection.description }}
-          </p>
-
-          <div class="mt-5 grid gap-3">
-            <div
-              v-for="item in valueSection.items"
-              :key="item"
-              class="elevated-item flex items-start gap-3 rounded-xl px-4 py-3 text-sm font-medium text-foreground"
-            >
-              <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-secondary"></span>
-              <span>{{ item }}</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid gap-3 sm:grid-cols-2">
-          <div
-            v-for="(item, index) in proofItems"
-            :key="item.label"
-            v-motion
-            :initial="motionVariants.pop.initial"
-            :enter="staggerEnter(index, 70, 80)"
-          >
-            <ImpactStat :value="item.value" :label="item.label" :note="item.note" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="space-y-8">
-      <SectionTitle
-        eyebrow="Ce que le RPMS prépare"
-        title="Le titre travaille des responsabilités concrètes de pilotage, d'équipe et d'organisation."
-        description="Le RPMS relie le cadre officiel du titre à des situations de management, de territoire, de production, de performance et de reporting."
-      />
-
-      <div class="grid gap-6 lg:grid-cols-[0.96fr,1.04fr]">
-        <Card class="page-cut h-fit">
-          <CardHeader class="space-y-3">
-            <CardTitle>Compétences au coeur du parcours</CardTitle>
-          </CardHeader>
-          <CardContent class="space-y-4">
-            <p class="text-sm leading-relaxed text-muted-foreground">
-              Ces dimensions donnent une lecture concrète de ce que le RPMS vous prépare à piloter
-              dans une petite ou moyenne structure.
-            </p>
-            <ul class="grid gap-3 text-sm leading-relaxed text-muted-foreground sm:grid-cols-2">
-              <li
-                v-for="cluster in competencyClusters"
-                :key="cluster"
-                class="elevated-item rounded-xl px-4 py-3 font-medium text-foreground"
-              >
-                {{ cluster }}
-              </li>
-            </ul>
-          </CardContent>
-        </Card>
-
-        <div class="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
-          <Card
-            v-for="(item, index) in highlights"
-            :key="item.title"
-            class="page-cut"
+        <div class="grid gap-4">
+          <article
+            v-for="(block, index) in featuredBlocks"
+            :key="block.code"
+            class="page-cut p-5 sm:p-6"
             v-motion
             :initial="motionVariants.block.initial"
-            :enter="staggerEnter(index, 75, 70)"
+            :enter="staggerEnter(index, 60, 60)"
           >
-            <CardHeader class="space-y-3">
-              <component
-                :is="highlightIcons[index % highlightIcons.length]"
-                class="h-6 w-6 text-primary"
-              />
-              <CardTitle>{{ item.title }}</CardTitle>
-            </CardHeader>
-            <CardContent class="text-sm leading-relaxed text-muted-foreground">
+            <p class="kicker">{{ block.code }}</p>
+            <h3 class="mt-3 text-[1.12rem] font-semibold leading-tight tracking-[-0.03em] text-foreground">
+              {{ block.title }}
+            </h3>
+            <p class="mt-3 whitespace-pre-line text-sm leading-7 text-muted-foreground">
+              {{ block.details }}
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="grid gap-6 lg:grid-cols-[0.92fr,1.08fr]">
+        <div class="space-y-5">
+          <SectionTitle
+            eyebrow="Avant de vous décider"
+            title="Un échange utile sert surtout à cadrer votre situation."
+            description="Le rappel ne remplace pas la lecture du programme. Il aide à vérifier si le titre, le format et les responsabilités travaillées correspondent vraiment à votre projet."
+          />
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
+          <article
+            v-for="(item, index) in journey"
+            :key="item.title"
+            class="page-cut p-5"
+            v-motion
+            :initial="motionVariants.block.initial"
+            :enter="staggerEnter(index, 60, 50)"
+          >
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-sm font-semibold text-secondary">
+              {{ index + 1 }}
+            </div>
+            <h3 class="mt-4 text-[1.06rem] font-semibold leading-tight text-foreground">
+              {{ item.title }}
+            </h3>
+            <p class="mt-3 text-sm leading-7 text-muted-foreground">
               {{ item.text }}
-            </CardContent>
-          </Card>
+            </p>
+          </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
-      <div class="space-y-6">
-        <SectionTitle
-          eyebrow="Progression"
-          title="Trois blocs suffisent pour lire la logique du titre professionnel."
-          description="Le détail complet du programme précise ensuite l'écosystème, le territoire, l'équipe, l'offre, la production et le reporting."
-        />
-
-        <div class="space-y-3">
-          <p class="text-sm leading-relaxed text-muted-foreground">
-            Le programme détaille l'ensemble des blocs de compétences et leur articulation dans le
-            RPMS.
-          </p>
-          <RouterLink to="/programme" class="inline-flex">
-            <Button variant="ghost" class="gap-2 px-3.5">
-              Voir le programme
-              <ArrowRight class="h-4 w-4" />
-            </Button>
-          </RouterLink>
-        </div>
-      </div>
-
-      <div class="grid gap-4">
-        <article
-          v-for="(block, index) in featuredBlocks"
-          :key="block.code"
-          class="page-cut rounded-[1.35rem] px-5 py-5 sm:px-6"
-          v-motion
-          :initial="motionVariants.block.initial"
-          :enter="staggerEnter(index, 60, 80)"
-        >
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="kicker">{{ block.code }}</span>
+      <section class="arch-cta p-6 sm:p-8 lg:p-10">
+        <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div class="space-y-3">
+            <p class="kicker">{{ contactBand.eyebrow }}</p>
+            <h2 class="editorial-title max-w-3xl text-[clamp(1.95rem,3vw,2.85rem)] text-foreground">
+              {{ contactBand.title }}
+            </h2>
+            <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
+              {{ contactBand.description }}
+            </p>
+            <p class="max-w-2xl text-sm leading-7 text-muted-foreground">
+              {{ contactBand.supportLine }}
+            </p>
           </div>
-          <h3 class="mt-3 text-xl font-semibold text-foreground">{{ block.title }}</h3>
-          <p class="mt-3 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-            {{ block.details }}
-          </p>
-        </article>
-      </div>
-    </section>
 
-    <section class="space-y-8">
-        <SectionTitle
-          eyebrow="Vérifier avant de vous engager"
-          title="Un échange utile pour cadrer votre projet avant d'aller plus loin."
-          description="Le rappel sert à vérifier l'adéquation du titre, du format à distance et des responsabilités travaillées."
-        />
-
-      <div class="grid gap-4 md:grid-cols-3">
-        <Card
-          v-for="(item, index) in journey"
-          :key="item.title"
-          class="page-cut"
-          v-motion
-          :initial="motionVariants.block.initial"
-          :enter="staggerEnter(index, 75, 70)"
-        >
-          <CardHeader class="space-y-3">
-            <CardTitle>{{ item.title }}</CardTitle>
-          </CardHeader>
-          <CardContent class="text-sm leading-relaxed text-muted-foreground">
-            {{ item.text }}
-          </CardContent>
-        </Card>
-      </div>
-    </section>
-
-    <section class="arch-cta rounded-[1.6rem] p-6 sm:p-8 lg:p-10">
-      <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-        <div class="space-y-3">
-          <p class="kicker">{{ contactBand.eyebrow }}</p>
-          <h2 class="editorial-title max-w-3xl text-[clamp(1.85rem,3vw,2.8rem)] text-foreground">
-            {{ contactBand.title }}
-          </h2>
-          <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
-            {{ contactBand.description }}
-          </p>
-          <p class="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            {{ contactBand.supportLine }}
-          </p>
+          <div class="flex flex-col gap-3 sm:flex-row">
+            <RouterLink to="/contact">
+              <Button size="lg">
+                Être rappelé
+                <ArrowRight class="ml-2 h-4 w-4" />
+              </Button>
+            </RouterLink>
+            <RouterLink to="/programme">
+              <Button size="lg" variant="outline">Voir le programme</Button>
+            </RouterLink>
+          </div>
         </div>
-
-        <div class="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
-          <RouterLink to="/contact" class="sm:flex-none">
-            <Button size="lg" class="w-full sm:w-auto">
-              Être rappelé
-              <ArrowRight class="ml-2 h-4 w-4" />
-            </Button>
-          </RouterLink>
-          <RouterLink to="/programme" class="sm:flex-none">
-            <Button size="lg" variant="outline" class="w-full sm:w-auto">Voir le programme</Button>
-          </RouterLink>
-        </div>
-      </div>
-    </section>
-
-    <p v-if="loading" class="text-sm text-muted-foreground">Actualisation du contenu...</p>
+      </section>
+    </template>
   </div>
 </template>

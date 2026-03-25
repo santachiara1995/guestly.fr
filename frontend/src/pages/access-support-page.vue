@@ -1,12 +1,11 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { PhoneCall, ShieldCheck } from 'lucide-vue-next'
+import { ArrowRight } from 'lucide-vue-next'
 
 import SectionTitle from '@/components/section-title.vue'
 import TrustStrip from '@/components/visual/trust-strip.vue'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { api } from '@/lib/api'
 import { motionVariants, staggerEnter } from '@/lib/motion'
 
@@ -58,12 +57,41 @@ const accessContactBand = computed(() => {
     "Si vous avez un doute, un rappel permet de vérifier rapidement si le parcours correspond à votre situation."
   )
 })
-const expectations = computed(() => accessCopy.value.expectations ?? [])
-const supportPoints = computed(() => accessCopy.value.supportPoints ?? [])
-const processSteps = computed(() => accessCopy.value.processSteps ?? [])
+const expectations = computed(() => {
+  const items = accessCopy.value.expectations
+  if (Array.isArray(items) && items.length > 0) {
+    return items
+  }
+
+  return [
+    'Vouloir évoluer vers plus de pilotage, de coordination ou de management.',
+    'Pouvoir avancer régulièrement dans un parcours à distance.',
+    "Chercher un cadre clair avant d'aller plus loin."
+  ]
+})
+const supportPoints = computed(() => {
+  const items = accessCopy.value.supportPoints
+  if (Array.isArray(items) && items.length > 0) {
+    return items
+  }
+
+  return ['100 % distanciel', 'E-learning', 'Accompagnement pédagogique']
+})
+const processSteps = computed(() => {
+  const items = accessCopy.value.processSteps
+  if (Array.isArray(items) && items.length > 0) {
+    return items
+  }
+
+  return [
+    'Lisez les blocs de compétences et les repères officiels.',
+    "Vérifiez si le format 100 % distanciel et l'accompagnement pédagogique vous conviennent.",
+    "Demandez un rappel si vous voulez faire le point sur votre projet."
+  ]
+})
 const trustStripItems = computed(() => [
   program.value?.rncpCode ?? 'RNCP38575',
-  program.value?.levelLabel ?? 'Niveau 5 (Bac+2)',
+  program.value?.levelLabel ?? 'Niveau 5 / Bac+2',
   program.value?.formatLabel ?? '100 % distanciel',
   program.value?.supportLabel ?? 'Accompagnement pédagogique'
 ])
@@ -79,139 +107,145 @@ const quickFacts = computed(() =>
 </script>
 
 <template>
-  <div class="space-y-10 sm:space-y-12">
-    <section class="page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.05fr,0.95fr] lg:items-start lg:p-10">
-      <div class="space-y-5">
-        <SectionTitle
-          eyebrow="Accès et accompagnement"
-          title="Vérifier le cadre du RPMS avant d'aller plus loin"
-          description="Cette page sert à vérifier le titre, la modalité à distance et l'accompagnement pédagogique avant de poursuivre."
-        />
-        <p class="max-w-3xl text-base font-semibold leading-relaxed text-foreground sm:text-lg">
-          {{ accessIntro }}
-        </p>
-        <p class="max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-          {{ reassuranceLine }}
-        </p>
-        <trust-strip :items="trustStripItems" />
-      </div>
-
-      <div class="space-y-4">
-        <div class="page-cut rounded-[1.45rem] p-5 sm:p-6">
-          <CardHeader class="p-0">
-            <CardTitle>Repères du parcours</CardTitle>
-          </CardHeader>
-          <CardContent class="p-0 pt-4">
-            <div class="grid gap-3 sm:grid-cols-2">
-              <div
-                v-for="(item, index) in quickFacts"
-                :key="item.label"
-                class="elevated-item rounded-xl px-4 py-4"
-                v-motion
-                :initial="motionVariants.pop.initial"
-                :enter="staggerEnter(index, 60, 70)"
-              >
-                <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  {{ item.label }}
-                </p>
-                <p class="mt-2 text-lg font-semibold text-foreground">{{ item.value }}</p>
-              </div>
-            </div>
-          </CardContent>
+  <div class="space-y-12 sm:space-y-14 lg:space-y-16">
+    <section
+      class="page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.04fr,0.96fr] lg:p-10"
+      v-motion
+      :initial="motionVariants.block.initial"
+      :enter="motionVariants.block.enter"
+    >
+      <div class="space-y-6">
+        <div class="space-y-4">
+          <p class="kicker">Accès et accompagnement</p>
+          <h1 class="editorial-title max-w-4xl text-[clamp(2.3rem,4.8vw,4rem)] text-foreground">
+            Vérifier le cadre du RPMS avant d'aller plus loin
+          </h1>
+          <p class="max-w-3xl text-base leading-8 text-muted-foreground sm:text-[1.05rem]">
+            Cette page sert à vérifier le titre, la modalité à distance et l'accompagnement
+            pédagogique avant de poursuivre.
+          </p>
         </div>
 
-        <Card class="page-cut">
-          <CardHeader>
-            <div class="flex items-center gap-2">
-              <ShieldCheck class="h-5 w-5 text-primary" />
-              <CardTitle>Appui pédagogique</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <ul class="space-y-3 text-sm leading-relaxed text-muted-foreground">
-              <li v-for="item in supportPoints" :key="item" class="flex gap-3">
-                <span class="mt-1 h-2.5 w-2.5 rounded-full bg-secondary"></span>
-                <span>{{ item }}</span>
-              </li>
-            </ul>
-          </CardContent>
-        </Card>
+        <p class="max-w-2xl text-base font-medium leading-7 text-foreground sm:text-[1.02rem]">
+          {{ accessIntro }}
+        </p>
+        <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
+          {{ reassuranceLine }}
+        </p>
+
+        <TrustStrip :items="trustStripItems" />
       </div>
+
+      <aside class="page-cut p-6 sm:p-7">
+        <p class="kicker">Repères du parcours</p>
+        <div class="mt-5 grid gap-3 sm:grid-cols-2">
+          <div
+            v-for="(item, index) in quickFacts"
+            :key="item.label"
+            class="elevated-item rounded-[1rem] p-4"
+            v-motion
+            :initial="motionVariants.pop.initial"
+            :enter="staggerEnter(index, 55, 40)"
+          >
+            <p class="detail-key">{{ item.label }}</p>
+            <p class="mt-2 text-sm font-semibold leading-6 text-foreground">
+              {{ item.value }}
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-6 border-t border-border/80 pt-5">
+          <p class="kicker">Appui pédagogique</p>
+          <ul class="mt-4 space-y-3">
+            <li
+              v-for="item in supportPoints"
+              :key="item"
+              class="flex items-start gap-3 text-sm leading-6 text-muted-foreground"
+            >
+              <span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-primary"></span>
+              <span>{{ item }}</span>
+            </li>
+          </ul>
+        </div>
+      </aside>
     </section>
 
-    <section class="space-y-8">
-      <SectionTitle
-        eyebrow="Avant de demander un rappel"
-        title="Les points à vérifier avant de vous engager"
-        description="L'objectif est de vérifier l'adéquation du cadre avec votre situation, sans détour inutile."
-      />
+    <section class="grid gap-6 lg:grid-cols-[0.92fr,1.08fr]">
+      <div class="space-y-5">
+        <SectionTitle
+          eyebrow="Avant de demander un rappel"
+          title="Les points à vérifier avant de vous engager"
+          description="L'objectif est de vérifier l'adéquation du cadre avec votre situation, sans détour inutile."
+        />
+      </div>
 
-      <div class="grid gap-4 md:grid-cols-3">
-        <Card
+      <div class="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
+        <article
           v-for="(item, index) in expectations"
           :key="item"
-          class="page-cut"
+          class="page-cut p-5"
           v-motion
           :initial="motionVariants.block.initial"
-          :enter="staggerEnter(index, 80, 70)"
+          :enter="staggerEnter(index, 55, 40)"
         >
-          <CardContent class="pt-1 text-sm leading-relaxed text-muted-foreground">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-sm font-semibold text-secondary">
+            {{ index + 1 }}
+          </div>
+          <p class="mt-4 text-sm leading-7 text-foreground">
             {{ item }}
-          </CardContent>
-        </Card>
+          </p>
+        </article>
       </div>
     </section>
 
-    <section class="space-y-8">
-      <SectionTitle
-        eyebrow="Prise de contact"
-        title="Des repères utiles avant le premier échange"
-        description="Le rappel sert à clarifier le cadre du titre sans transformer votre décision en étape supplémentaire."
-      />
+    <section class="grid gap-6 lg:grid-cols-[0.92fr,1.08fr]">
+      <div class="space-y-5">
+        <SectionTitle
+          eyebrow="Prise de contact"
+          title="Des repères utiles avant le premier échange"
+          description="Le rappel sert à clarifier le cadre du titre sans transformer votre décision en étape supplémentaire."
+        />
+      </div>
 
-      <div class="grid gap-4 md:grid-cols-3">
-        <Card
+      <div class="grid gap-4">
+        <article
           v-for="(step, index) in processSteps"
           :key="step"
-          class="page-cut"
+          class="page-cut p-5 sm:p-6"
           v-motion
           :initial="motionVariants.block.initial"
-          :enter="staggerEnter(index, 80, 80)"
+          :enter="staggerEnter(index, 55, 50)"
         >
-          <CardHeader>
-            <div class="flex items-center gap-2">
-              <span
-                class="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground"
-              >
-                {{ index + 1 }}
-              </span>
-              <CardTitle class="text-lg">Étape {{ index + 1 }}</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent class="text-sm leading-relaxed text-muted-foreground">
+          <div class="flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-sm font-semibold text-secondary">
+              {{ index + 1 }}
+            </span>
+            <h3 class="text-base font-semibold text-foreground">Étape {{ index + 1 }}</h3>
+          </div>
+          <p class="mt-4 text-sm leading-7 text-muted-foreground">
             {{ step }}
-          </CardContent>
-        </Card>
+          </p>
+        </article>
       </div>
     </section>
 
-    <section class="arch-cta rounded-[1.5rem] p-6 sm:p-8 lg:p-10">
+    <section class="arch-cta p-6 sm:p-8 lg:p-10">
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div class="space-y-3">
           <p class="kicker">Contact</p>
-          <h2 class="editorial-title text-[clamp(1.8rem,3vw,2.65rem)] text-foreground">
+          <h2 class="editorial-title max-w-3xl text-[clamp(1.95rem,3vw,2.8rem)] text-foreground">
             Demander un rappel pour vérifier si le RPMS vous convient
           </h2>
-          <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
+          <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
             {{ accessContactBand }}
           </p>
         </div>
 
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-col gap-3 sm:flex-row">
           <RouterLink to="/contact">
             <Button size="lg">
-              <PhoneCall class="mr-2 h-4 w-4" />
               Être rappelé
+              <ArrowRight class="ml-2 h-4 w-4" />
             </Button>
           </RouterLink>
           <RouterLink to="/programme">

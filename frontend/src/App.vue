@@ -2,7 +2,7 @@
   <div class="relative min-h-screen">
     <site-header />
 
-    <main class="mx-auto w-full max-w-[1140px] px-4 pb-16 pt-6 sm:px-6 sm:pt-7 lg:px-8 lg:pt-8">
+    <main class="mx-auto w-full max-w-[1180px] px-4 pb-16 pt-6 sm:px-6 sm:pt-7 lg:px-8 lg:pt-8">
       <router-view v-slot="{ Component }">
         <component
           :is="Component"

@@ -2,23 +2,22 @@
 import { RouterLink } from 'vue-router'
 
 import BrandLogo from '@/components/layout/brand-logo.vue'
-import TrustStrip from '@/components/visual/trust-strip.vue'
 import { footerNavigation } from '@/data/navigation'
-
-const footerTrustItems = ['RNCP38575', 'Bac+2 / Niveau 5', '100 % distanciel', 'E-learning']
 </script>
 
 <template>
-  <footer class="border-t border-border/60 bg-transparent">
+  <footer class="border-t border-border/70 bg-background/60">
     <div class="mx-auto px-4 py-10 sm:px-6 lg:px-8">
-      <div class="footer-shell grid w-full max-w-[1180px] gap-8 px-5 py-6 sm:px-6 sm:py-7 lg:grid-cols-[1.05fr,0.95fr] lg:px-8">
+      <div class="footer-shell grid w-full max-w-[1200px] gap-8 px-5 py-6 sm:px-6 sm:py-7 lg:grid-cols-[1.05fr,0.95fr] lg:px-8">
         <div class="space-y-4">
           <brand-logo />
           <p class="max-w-md text-sm leading-relaxed text-muted-foreground">
-            Pour vous aider à mieux piloter une activité, coordonner une équipe et organiser une
-            structure avec un cadre à distance et un accompagnement pédagogique.
+            Titre professionnel RPMS, niveau 5 / Bac+2, en 100 % distanciel avec accompagnement
+            pédagogique.
           </p>
-          <trust-strip :items="footerTrustItems" />
+          <p class="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
+            RNCP38575 · E-learning · Accompagnement pédagogique
+          </p>
         </div>
 
         <div class="grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] lg:justify-end">
@@ -60,18 +59,20 @@ const footerTrustItems = ['RNCP38575', 'Bac+2 / Niveau 5', '100 % distanciel', '
   align-items: center;
   justify-content: center;
   padding: 0 0.375rem;
-  color: var(--foreground);
+  color: var(--ink);
   font-size: 0.92rem;
   font-weight: 500;
   line-height: 1.2;
   text-decoration: none;
-  transition: color 0.15s ease, border-color 0.15s ease, text-decoration-color 0.15s ease;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
   border-bottom: 1px solid transparent;
 }
 
 .footer-link:hover {
   color: var(--primary);
-  border-bottom-color: color-mix(in oklab, var(--primary) 28%, var(--border));
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--primary) 32%, white);
+  text-underline-offset: 0.24em;
 }
 
 .footer-link:focus-visible {

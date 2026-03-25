@@ -119,10 +119,10 @@ async function submitForm() {
       />
     </label>
 
-    <label class="elevated-item flex items-start gap-3 rounded-xl p-4">
+    <label class="elevated-item flex items-start gap-3 rounded-[1rem] p-4">
       <input
         v-model="form.consentRgpd"
-        class="mt-1 h-4 w-4 rounded border-input bg-background accent-primary"
+        class="mt-1 h-4 w-4 rounded border-input bg-white accent-primary"
         name="consent-rgpd"
         required
         type="checkbox"
@@ -136,7 +136,7 @@ async function submitForm() {
     <p
       v-if="errorMessage"
       aria-live="polite"
-      class="rounded-xl bg-destructive/10 px-3 py-2 text-sm text-destructive"
+      class="rounded-[0.9rem] border border-destructive/15 bg-destructive/10 px-3 py-2 text-sm text-destructive"
       role="status"
     >
       {{ errorMessage }}

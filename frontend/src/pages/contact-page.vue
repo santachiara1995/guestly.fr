@@ -148,7 +148,7 @@ const supportFacts = computed(() =>
 
 <template>
   <div class="space-y-12 sm:space-y-14">
-    <section class="space-y-5">
+    <section class="page-hero space-y-5 p-6 sm:p-8 lg:p-10">
       <div class="space-y-4">
         <p class="kicker">{{ heroEyebrow }}</p>
         <h1 class="editorial-title max-w-4xl text-[clamp(2.05rem,4vw,3.35rem)] text-foreground">
@@ -159,7 +159,7 @@ const supportFacts = computed(() =>
         </p>
       </div>
 
-      <p class="max-w-3xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-[1.02rem]">
+      <p class="max-w-3xl text-base font-semibold leading-relaxed text-foreground sm:text-[1.02rem]">
         {{ formIntro }}
       </p>
 
@@ -221,7 +221,7 @@ const supportFacts = computed(() =>
       </div>
     </div>
 
-    <section class="page-cut rounded-[1.5rem] p-6 sm:p-8 lg:p-10">
+    <section class="arch-cta rounded-[1.5rem] p-6 sm:p-8 lg:p-10">
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div class="space-y-3">
           <p class="kicker">{{ footerBand.eyebrow }}</p>

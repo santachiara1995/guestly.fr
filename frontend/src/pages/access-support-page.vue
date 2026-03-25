@@ -80,14 +80,14 @@ const quickFacts = computed(() =>
 
 <template>
   <div class="space-y-10 sm:space-y-12">
-    <section class="grid gap-8 lg:grid-cols-[1.05fr,0.95fr] lg:items-start">
+    <section class="page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.05fr,0.95fr] lg:items-start lg:p-10">
       <div class="space-y-5">
         <SectionTitle
           eyebrow="Accès et accompagnement"
           title="Vérifier le cadre du RPMS avant d'aller plus loin"
           description="Cette page sert à vérifier le titre, la modalité à distance et l'accompagnement pédagogique avant de poursuivre."
         />
-        <p class="max-w-3xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-lg">
+        <p class="max-w-3xl text-base font-semibold leading-relaxed text-foreground sm:text-lg">
           {{ accessIntro }}
         </p>
         <p class="max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -106,7 +106,7 @@ const quickFacts = computed(() =>
               <div
                 v-for="(item, index) in quickFacts"
                 :key="item.label"
-                class="rounded-xl border border-border bg-white px-4 py-4"
+                class="elevated-item rounded-xl px-4 py-4"
                 v-motion
                 :initial="motionVariants.pop.initial"
                 :enter="staggerEnter(index, 60, 70)"
@@ -195,7 +195,7 @@ const quickFacts = computed(() =>
       </div>
     </section>
 
-    <section class="page-cut rounded-[1.5rem] p-6 sm:p-8 lg:p-10">
+    <section class="arch-cta rounded-[1.5rem] p-6 sm:p-8 lg:p-10">
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div class="space-y-3">
           <p class="kicker">Contact</p>

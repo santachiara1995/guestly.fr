@@ -19,7 +19,7 @@ defineProps({
 
 <template>
   <div
-    class="grid gap-2 border-t border-border/60 pt-3 sm:gap-3 sm:pt-4 lg:grid-cols-[minmax(0,10rem)_minmax(0,1fr)] lg:items-start lg:gap-4"
+    class="grid gap-2 border-t border-border/80 pt-3 sm:gap-3 sm:pt-4 lg:grid-cols-[minmax(0,10rem)_minmax(0,1fr)] lg:items-start lg:gap-4"
     v-motion
     :initial="motionVariants.block.initial"
     :enter="motionVariants.block.enter"
@@ -28,7 +28,7 @@ defineProps({
       <p v-if="eyebrow" class="kicker">
         {{ eyebrow }}
       </p>
-      <div class="h-px w-12 bg-border/80"></div>
+      <div class="shell-rail w-16"></div>
     </div>
 
     <div class="space-y-2">

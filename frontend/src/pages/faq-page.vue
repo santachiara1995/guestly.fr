@@ -59,7 +59,7 @@ const closingNote = computed(() => {
 
 <template>
   <div class="space-y-8 sm:space-y-10">
-    <section class="grid gap-8 lg:grid-cols-[1.04fr,0.96fr] lg:items-start">
+    <section class="page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.04fr,0.96fr] lg:items-start lg:p-10">
       <div class="space-y-5">
         <div class="space-y-4">
           <p class="kicker">FAQ RPMS</p>
@@ -108,7 +108,7 @@ const closingNote = computed(() => {
                   {{ item.question }}
                 </span>
                 <span
-                  class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-white text-primary transition-transform group-open:rotate-45"
+                  class="elevated-item flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-primary transition-transform group-open:rotate-45"
                 >
                   +
                 </span>
@@ -121,7 +121,7 @@ const closingNote = computed(() => {
         </Card>
       </div>
 
-      <section class="page-cut rounded-[1.5rem] p-6 sm:p-8 lg:p-10">
+      <section class="arch-cta rounded-[1.5rem] p-6 sm:p-8 lg:p-10">
         <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
             <p class="kicker">Besoin d'un échange</p>

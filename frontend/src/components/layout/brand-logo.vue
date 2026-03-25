@@ -16,7 +16,7 @@ defineProps({
 <template>
   <RouterLink
     :to="to"
-    class="inline-flex min-h-11 items-center gap-2 rounded-lg py-1 text-left transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+    class="inline-flex min-h-11 items-center gap-2.5 rounded-lg py-1 text-left transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     aria-label="Retour à l'accueil CITYZ'France"
   >
     <span class="brand-symbol relative inline-flex h-9 w-9 items-center justify-center rounded-xl sm:h-10 sm:w-10">
@@ -29,12 +29,12 @@ defineProps({
     </span>
 
     <div class="leading-[1.02]">
-      <p class="font-heading text-[0.92rem] font-semibold tracking-[0.01em] text-foreground sm:text-[0.98rem]">
+      <p class="font-heading text-[0.92rem] font-semibold tracking-[0.015em] text-foreground sm:text-[0.98rem]">
         CITYZ'France
       </p>
       <p
         v-if="!compact"
-        class="mt-0.5 text-[0.62rem] font-medium uppercase tracking-[0.12em] text-muted-foreground sm:text-[0.64rem]"
+        class="mt-0.5 text-[0.62rem] font-medium uppercase tracking-[0.16em] text-muted-foreground sm:text-[0.64rem]"
       >
         RPMS · Bac+2 / Niveau 5
       </p>

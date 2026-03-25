@@ -9,40 +9,42 @@ const footerTrustItems = ['RNCP38575', 'Bac+2 / Niveau 5', '100 % distanciel', '
 </script>
 
 <template>
-  <footer class="border-t border-border/60 bg-background/95">
-    <div class="mx-auto grid w-full max-w-[1180px] gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1.05fr,0.95fr] lg:px-8">
-      <div class="space-y-4">
-        <brand-logo />
-        <p class="max-w-md text-sm leading-relaxed text-muted-foreground">
-          Pour vous aider à mieux piloter une activité, coordonner une équipe et organiser une
-          structure avec un cadre à distance et un accompagnement pédagogique.
-        </p>
-        <trust-strip :items="footerTrustItems" />
-      </div>
-
-      <div class="grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] lg:justify-end">
-        <div class="space-y-3">
-          <p class="footer-heading">Navigation</p>
-          <div class="flex flex-wrap gap-x-4 gap-y-2">
-            <RouterLink
-              v-for="item in footerNavigation"
-              :key="item.to"
-              class="footer-link"
-              :to="item.to"
-            >
-              {{ item.label }}
-            </RouterLink>
-          </div>
+  <footer class="border-t border-border/60 bg-transparent">
+    <div class="mx-auto px-4 py-10 sm:px-6 lg:px-8">
+      <div class="footer-shell grid w-full max-w-[1180px] gap-8 px-5 py-6 sm:px-6 sm:py-7 lg:grid-cols-[1.05fr,0.95fr] lg:px-8">
+        <div class="space-y-4">
+          <brand-logo />
+          <p class="max-w-md text-sm leading-relaxed text-muted-foreground">
+            Pour vous aider à mieux piloter une activité, coordonner une équipe et organiser une
+            structure avec un cadre à distance et un accompagnement pédagogique.
+          </p>
+          <trust-strip :items="footerTrustItems" />
         </div>
 
-        <div class="space-y-3">
-          <p class="footer-heading">Coordonnées</p>
-          <div class="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
-            <p>09 77 21 51 61</p>
-            <p>www.cityzfrance.fr</p>
-            <p class="max-w-xs">
-              110 Esplanade du General de Gaulle, 92400 Courbevoie
-            </p>
+        <div class="grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] lg:justify-end">
+          <div class="space-y-3">
+            <p class="footer-heading">Navigation</p>
+            <div class="flex flex-wrap gap-x-4 gap-y-2">
+              <RouterLink
+                v-for="item in footerNavigation"
+                :key="item.to"
+                class="footer-link"
+                :to="item.to"
+              >
+                {{ item.label }}
+              </RouterLink>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <p class="footer-heading">Coordonnées</p>
+            <div class="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
+              <p>09 77 21 51 61</p>
+              <p>www.cityzfrance.fr</p>
+              <p class="max-w-xs">
+                110 Esplanade du General de Gaulle, 92400 Courbevoie
+              </p>
+            </div>
           </div>
         </div>
       </div>

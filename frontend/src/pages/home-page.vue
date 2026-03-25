@@ -232,7 +232,7 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
 <template>
   <div class="space-y-14 sm:space-y-16 lg:space-y-20">
     <section
-      class="grid gap-8 lg:grid-cols-[1.08fr,0.92fr] lg:items-start"
+      class="page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.08fr,0.92fr] lg:items-start lg:p-10"
       v-motion
       :initial="motionVariants.block.initial"
       :enter="motionVariants.block.enter"
@@ -248,7 +248,7 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
           </p>
         </div>
 
-        <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-[1.02rem]">
+        <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground sm:text-[1.02rem]">
           {{ heroFitLine }}
         </p>
 
@@ -281,7 +281,7 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
             <div
               v-for="item in valueSection.items"
               :key="item"
-              class="flex items-start gap-3 rounded-xl border border-border bg-white px-4 py-3 text-sm font-medium text-foreground"
+              class="elevated-item flex items-start gap-3 rounded-xl px-4 py-3 text-sm font-medium text-foreground"
             >
               <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-secondary"></span>
               <span>{{ item }}</span>
@@ -324,7 +324,7 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
               <li
                 v-for="cluster in competencyClusters"
                 :key="cluster"
-                class="rounded-xl border border-border bg-white px-4 py-3 font-medium text-foreground"
+                class="elevated-item rounded-xl px-4 py-3 font-medium text-foreground"
               >
                 {{ cluster }}
               </li>
@@ -369,12 +369,11 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
             Le programme détaille l'ensemble des blocs de compétences et leur articulation dans le
             RPMS.
           </p>
-          <RouterLink
-            to="/programme"
-            class="inline-flex items-center gap-2 text-sm font-semibold text-primary"
-          >
-            Voir le programme
-            <ArrowRight class="h-4 w-4" />
+          <RouterLink to="/programme" class="inline-flex">
+            <Button variant="ghost" class="gap-2 px-3.5">
+              Voir le programme
+              <ArrowRight class="h-4 w-4" />
+            </Button>
           </RouterLink>
         </div>
       </div>
@@ -425,7 +424,7 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
       </div>
     </section>
 
-    <section class="page-cut rounded-[1.6rem] p-6 sm:p-8 lg:p-10">
+    <section class="arch-cta rounded-[1.6rem] p-6 sm:p-8 lg:p-10">
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div class="space-y-3">
           <p class="kicker">{{ contactBand.eyebrow }}</p>
@@ -435,7 +434,7 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
           <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
             {{ contactBand.description }}
           </p>
-          <p class="max-w-2xl text-sm leading-relaxed text-foreground/78">
+          <p class="max-w-2xl text-sm leading-relaxed text-muted-foreground">
             {{ contactBand.supportLine }}
           </p>
         </div>

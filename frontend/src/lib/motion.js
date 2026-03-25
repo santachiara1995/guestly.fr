@@ -43,7 +43,7 @@ export const motionVariants = {
     enter: toEnterState({
       opacity: 1,
       y: 0,
-      transition: structuralTransition(200)
+      transition: structuralTransition(180)
     })
   },
   block: {
@@ -71,19 +71,18 @@ export const motionVariants = {
     })
   },
   scaleIn: {
-    initial: { opacity: 0, scale: 0.992 },
+    initial: { opacity: 0, y: 4 },
     enter: toEnterState({
       opacity: 1,
-      scale: 1,
+      y: 0,
       transition: structuralTransition(160)
     })
   },
   pop: {
-    initial: { opacity: 0, y: 4, scale: 0.992 },
+    initial: { opacity: 0, y: 4 },
     enter: toEnterState({
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: structuralTransition(160)
     })
   }

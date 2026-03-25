@@ -8,15 +8,15 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'border-primary bg-primary text-primary-foreground hover:bg-primary/95 active:bg-primary/90',
+          'border-primary bg-primary text-primary-foreground shadow-[inset_0_1px_0_rgb(255_255_255_/_0.14)] hover:border-primary hover:bg-[#2f66ef] active:bg-primary/90',
         secondary:
-          'border-secondary bg-secondary text-secondary-foreground hover:bg-secondary/95 active:bg-secondary/90',
+          'border-secondary bg-secondary text-secondary-foreground shadow-[inset_0_1px_0_rgb(255_255_255_/_0.12)] hover:border-secondary hover:bg-[#dc3557] active:bg-secondary/90',
         outline:
-          'border-border bg-card text-foreground hover:border-primary/35 hover:bg-accent/70 active:bg-accent',
+          'border-border bg-card/82 text-foreground hover:border-primary/40 hover:bg-accent/88 active:bg-accent',
         ghost:
-          'border-transparent bg-transparent text-primary hover:bg-accent/80 active:bg-accent',
+          'border-transparent bg-transparent text-foreground hover:border-border/80 hover:bg-accent/68 active:bg-accent/82',
         link:
-          'border-transparent bg-transparent text-primary underline-offset-4 hover:underline active:text-primary/80'
+          'border-transparent bg-transparent text-foreground underline-offset-4 hover:text-primary-foreground hover:underline active:text-primary/80'
       },
       size: {
         default: 'min-h-11 px-4',

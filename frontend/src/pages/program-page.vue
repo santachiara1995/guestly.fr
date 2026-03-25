@@ -57,7 +57,7 @@ const trustStripItems = computed(() => [
     </p>
 
     <template v-else-if="program">
-      <section class="grid gap-8 lg:grid-cols-[1.04fr,0.96fr] lg:items-start">
+      <section class="page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.04fr,0.96fr] lg:items-start lg:p-10">
         <div class="space-y-5">
           <div class="space-y-4">
             <p class="kicker">Programme RPMS - RNCP38575</p>
@@ -68,7 +68,7 @@ const trustStripItems = computed(() => [
               {{ heroSubtitle }}
             </p>
           </div>
-          <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-[1.02rem]">
+          <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground sm:text-[1.02rem]">
             {{ heroNote }}
           </p>
 
@@ -119,7 +119,7 @@ const trustStripItems = computed(() => [
                 <li
                   v-for="scope in program.professionalScope"
                   :key="scope"
-                  class="rounded-xl border border-border bg-white px-4 py-3"
+                  class="elevated-item rounded-xl px-4 py-3"
                 >
                   {{ scope }}
                 </li>
@@ -169,7 +169,7 @@ const trustStripItems = computed(() => [
         </div>
       </section>
 
-      <section class="page-cut rounded-[1.5rem] p-6 sm:p-8 lg:p-10">
+      <section class="arch-cta rounded-[1.5rem] p-6 sm:p-8 lg:p-10">
         <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
             <p class="kicker">Contact</p>

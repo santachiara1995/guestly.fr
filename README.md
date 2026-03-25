@@ -1,6 +1,18 @@
-# template-vps
+# CITYZ'France RPMS
 
-Minimal Vue + Vite frontend with a Bun + Elysia backend. Deploys automatically on push to `master` using GitHub Actions + Tailscale SSH.
+CITYZ'France RPMS is a public education site focused on one program for particuliers. The stack is:
+
+- `frontend/`: Vue 3 + Vite
+- `backend/`: Bun + Elysia + SQLite
+- Docker orchestration for local runs and VPS deployment
+
+The product surface includes:
+
+- a multi-page public site for the RPMS program
+- a program page and learner-path page
+- a single admissions/contact flow with thank-you state
+- FAQ, legal, and privacy pages
+- a Bun + Elysia backend serving content and lead intake
 
 ## Local development
 
@@ -20,41 +32,57 @@ bun install
 bun run dev
 ```
 
-## Docker (local or VPS)
+Default local URLs:
 
-Build and run both services:
+- Frontend: `http://localhost:5173`
+- API: `http://localhost:3000/api/health`
+
+If port `3000` is already in use on your machine, start the API on another port and point Vite to it explicitly:
+
+```bash
+cd backend
+PORT=3100 bun run dev
+
+cd ../frontend
+VITE_API_URL=http://127.0.0.1:3100 bun run dev
+```
+
+## Docker
+
+Start the full stack:
 
 ```bash
 docker compose up --build
 ```
 
-- Web: `http://localhost:8080`
-- API: `http://localhost:3000/api/health`
-- Adminer: `http://localhost:8081`
-- SQLite file: `data/app.db`
+Current compose defaults:
 
-## Auto-deploy (current flow)
+- Web: `http://localhost:8086`
+- API: `http://localhost:3006/api/health`
+- Adminer: `http://localhost:9086`
 
-Deploy happens on every push to `master` via GitHub Actions. The workflow:
+SQLite persistence normally targets `data/app.db` at the repo root, regardless of the current working directory. If that path is not writable, the backend falls back to `app.local.db` at the repo root. `DB_PATH` still overrides both.
 
-- connects to Tailscale
-- SSHes to the VPS
-- pulls the repo
-- rebuilds containers with `docker compose up -d --build`
+## API overview
 
-File: `.github/workflows/deploy.yml`
+Public endpoints:
 
-## Required GitHub secrets
+- `GET /api/health`
+- `GET /api/site`
+- `GET /api/programs`
+- `GET /api/programs/:slug`
+- `GET /api/faq`
+- `POST /api/leads`
 
-- `TAILSCALE_AUTH_KEY`
-- `SSH_PRIVATE_KEY` (full private key block, no passphrase)
+## Deployment
 
-## Systemd (auto-start on reboot)
+The repo keeps a GitHub Actions based deploy flow for `master`, plus helper scripts under `scripts/`.
 
-```bash
-chmod +x scripts/install-systemd.sh
-sudo ./scripts/install-systemd.sh
-```
+Relevant files:
+
+- `.github/workflows/deploy.yml`
+- `docker-compose.yml`
+- `docker-compose.prod.yml`
 
 ## Environment
 

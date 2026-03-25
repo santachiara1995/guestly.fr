@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SERVICE_NAME=${SERVICE_NAME:-template-vps}
-APP_DIR=${APP_DIR:-/home/didi/Desktop/template-vps}
+SERVICE_NAME=${SERVICE_NAME:-guestly-fr}
+APP_DIR=${APP_DIR:-/home/didi/Desktop/guestly.fr}
 UNIT_PATH=/etc/systemd/system/${SERVICE_NAME}.service
 
 if [[ ! -d "$APP_DIR" ]]; then
@@ -23,7 +23,7 @@ fi
 echo "Writing systemd unit: $UNIT_PATH"
 sudo tee "$UNIT_PATH" >/dev/null <<EOF
 [Unit]
-Description=Template VPS Docker Compose Stack
+Description=CITYZ France Docker Compose Stack
 Requires=docker.service
 After=docker.service
 

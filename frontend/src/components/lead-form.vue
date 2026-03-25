@@ -1,0 +1,149 @@
+<script setup>
+import { reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { api } from '@/lib/api'
+
+const props = defineProps({
+  sourcePage: {
+    type: String,
+    default: '/contact'
+  }
+})
+
+const emit = defineEmits(['submitted'])
+const router = useRouter()
+const submitting = ref(false)
+const errorMessage = ref('')
+
+const form = reactive({
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  message: '',
+  consentRgpd: false
+})
+
+async function submitForm() {
+  errorMessage.value = ''
+
+  if (!form.consentRgpd) {
+    errorMessage.value = 'Le consentement RGPD est obligatoire.'
+    return
+  }
+
+  submitting.value = true
+  try {
+    await api.submitLead({
+      ...form,
+      sourcePage: props.sourcePage,
+      honeypot: ''
+    })
+    emit('submitted')
+    router.push('/merci')
+  } catch (error) {
+    errorMessage.value = error instanceof Error ? error.message : 'Envoi impossible'
+  } finally {
+    submitting.value = false
+  }
+}
+</script>
+
+<template>
+  <form class="space-y-5" @submit.prevent="submitForm">
+    <div class="hidden" aria-hidden="true">
+      <label for="lead-website">Site web</label>
+      <input id="lead-website" autocomplete="off" name="website" tabindex="-1" type="text">
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      <label class="form-field">
+        <span>Prénom</span>
+        <Input
+          v-model="form.firstName"
+          autocomplete="given-name"
+          name="first-name"
+          placeholder="Votre prénom"
+          required
+        />
+      </label>
+
+      <label class="form-field">
+        <span>Nom</span>
+        <Input
+          v-model="form.lastName"
+          autocomplete="family-name"
+          name="last-name"
+          placeholder="Votre nom"
+          required
+        />
+      </label>
+
+      <label class="form-field">
+        <span>Email</span>
+        <Input
+          v-model="form.email"
+          autocomplete="email"
+          name="email"
+          placeholder="nom@domaine.fr"
+          required
+          type="email"
+        />
+      </label>
+
+      <label class="form-field">
+        <span>Téléphone</span>
+        <Input
+          v-model="form.phone"
+          autocomplete="tel"
+          name="phone"
+          placeholder="06 00 00 00 00"
+          type="tel"
+        />
+      </label>
+    </div>
+
+    <label class="form-field">
+      <span>Votre projet</span>
+      <Textarea
+        v-model="form.message"
+        autocomplete="off"
+        name="message"
+        placeholder="Indiquez votre contexte, votre objectif et ce que vous souhaitez clarifier lors du rappel."
+        required
+        rows="7"
+      />
+    </label>
+
+    <label class="flex items-start gap-3 rounded-[1.25rem] border border-border/70 bg-background/55 p-4">
+      <input
+        v-model="form.consentRgpd"
+        class="mt-1 h-4 w-4 rounded border-border text-primary focus:ring-primary"
+        name="consent-rgpd"
+        required
+        type="checkbox"
+      >
+      <span class="text-sm leading-relaxed text-muted-foreground">
+        J’accepte d’être recontacté par CITYZ'France dans le cadre de cette demande et du traitement
+        de mes données personnelles.
+      </span>
+    </label>
+
+    <p
+      v-if="errorMessage"
+      aria-live="polite"
+      class="rounded-xl bg-destructive/10 px-3 py-2 text-sm text-destructive"
+      role="status"
+    >
+      {{ errorMessage }}
+    </p>
+
+    <Button :disabled="submitting" size="lg" type="submit">
+      {{ submitting ? 'Envoi en cours...' : 'Être rappelé' }}
+    </Button>
+  </form>
+</template>

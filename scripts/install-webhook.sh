@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SERVICE_NAME=${SERVICE_NAME:-template-vps-webhook}
-APP_DIR=${APP_DIR:-/home/didi/Desktop/template-vps}
+SERVICE_NAME=${SERVICE_NAME:-guestly-fr-webhook}
+APP_DIR=${APP_DIR:-/home/didi/Desktop/guestly.fr}
 UNIT_PATH=/etc/systemd/system/${SERVICE_NAME}.service
-SNIPPET_PATH=/etc/nginx/snippets/template-vps-webhook.conf
-ENV_PATH=/etc/template-vps/webhook.env
+SNIPPET_PATH=/etc/nginx/snippets/guestly-fr-webhook.conf
+ENV_PATH=/etc/guestly-fr/webhook.env
 
 WEBHOOK_SECRET=${WEBHOOK_SECRET:-}
 HOST=${HOST:-127.0.0.1}
@@ -28,7 +28,7 @@ if ! command -v bun >/dev/null 2>&1; then
 fi
 
 echo "Writing webhook env: $ENV_PATH"
-sudo mkdir -p /etc/template-vps
+sudo mkdir -p /etc/guestly-fr
 sudo tee "$ENV_PATH" >/dev/null <<EOF
 WEBHOOK_SECRET=$WEBHOOK_SECRET
 HOST=$HOST
@@ -39,7 +39,7 @@ EOF
 echo "Writing webhook systemd unit: $UNIT_PATH"
 sudo tee "$UNIT_PATH" >/dev/null <<EOF
 [Unit]
-Description=Template VPS GitHub Webhook Listener
+Description=CITYZ France GitHub Webhook Listener
 Wants=network-online.target
 After=network-online.target
 
@@ -69,7 +69,7 @@ location /_deploy {
 EOF
 
 echo "Add this line inside your nginx server block if it is not already there:"
-echo "  include /etc/nginx/snippets/template-vps-webhook.conf;"
+echo "  include /etc/nginx/snippets/guestly-fr-webhook.conf;"
 
 sudo systemctl daemon-reload
 sudo systemctl enable --now "$SERVICE_NAME"

@@ -1,15 +1,25 @@
-# Elysia with Bun runtime
+# Backend CITYZ'France RPMS
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
-```bash
-bun create elysia ./elysia-example
-```
+API Bun + Elysia pour le site public CITYZ'France RPMS.
 
-## Development
-To start the development server run:
+## Développement
+
 ```bash
+bun install
 bun run dev
 ```
 
-Open http://localhost:3000/ with your browser to see the result.
+## Démarrage simple
+
+```bash
+bun run start
+```
+
+Le backend expose les endpoints publics suivants :
+
+- `GET /api/health`
+- `GET /api/site`
+- `GET /api/programs`
+- `GET /api/programs/:slug`
+- `GET /api/faq`
+- `POST /api/leads`

@@ -12,31 +12,37 @@ import { motionVariants, staggerEnter } from '@/lib/motion'
 
 const program = ref(null)
 const site = ref({
+  brand: {
+    descriptor: 'Organisme de formation certifié Qualiopi'
+  },
   positioning: {
-    eyebrow: 'Titre professionnel RPMS',
+    eyebrow: "CITYZ'France",
+    title:
+      "Avec CITYZ'France, avancez vers des fonctions de pilotage, de management et d'organisation.",
     subtitle:
-      "Découvrez le titre professionnel Responsable petite et moyenne structure (RPMS), un diplôme de niveau Bac+2 référencé au RNCP, son format à distance et l'accompagnement pédagogique prévu pour avancer avec méthode.",
+      "Le RPMS est une formation de niveau 5 (Bac+2) conçue pour développer des bases concrètes en pilotage, management et organisation, dans un cadre 100 % distanciel avec accompagnement pédagogique.",
     fitLine:
-      "Vous cherchez une formation à distance pour viser un diplôme de niveau Bac+2 tout en développant des compétences concrètes de pilotage, de management et d'organisation."
+      "Si vous cherchez un parcours lisible pour clarifier votre projet et renforcer des responsabilités concrètes, CITYZ'France vous aide à comprendre ce que cette progression peut réellement vous apporter."
   },
   home: {
     proofItems: [],
     highlights: [],
     competencyClusters: [],
+    journey: [],
     valueSection: {
-      eyebrow: 'Avant le contact',
-      title: 'Un parcours pour viser un niveau Bac+2 utile à votre projet',
+      eyebrow: "Pourquoi CITYZ'France",
+      title: 'Un cadre clair pour relier votre projet, le niveau visé et la réalité du parcours',
       description:
-        "Le RPMS rassemble les repères utiles pour comprendre le niveau Bac+2 visé, le format de travail et les compétences mobilisées avant de demander un rappel.",
+        "Avant de vous engager, l'enjeu est d'identifier ce que le RPMS peut structurer dans votre projet et la manière dont CITYZ'France vous accompagne.",
       items: []
     },
     contactBand: {
-      eyebrow: 'Échange',
-      title: 'Faire le point sur votre projet avec CITYZ’France',
+      eyebrow: 'Prochaine étape',
+      title: 'Demandez un rappel pour vérifier si le RPMS correspond à votre projet',
       description:
-        'Si vous souhaitez vérifier si le RPMS correspond à votre situation, vous pouvez demander un rappel depuis le site.',
+        "L'échange avec CITYZ'France permet de faire le point sur votre situation, de clarifier les questions utiles et de voir comment avancer.",
       supportLine:
-        "Le rappel permet de préciser votre projet et les questions à clarifier avant d'aller plus loin."
+        'Vous repartez avec une vision plus claire du parcours, du niveau visé et des prochaines étapes possibles.'
     }
   }
 })
@@ -47,10 +53,7 @@ const highlightIcons = [ShieldCheck, Waypoints, BookOpenCheck]
 
 onMounted(async () => {
   try {
-    const [programPayload, sitePayload] = await Promise.all([
-      api.getProgram('rpms'),
-      api.getSite()
-    ])
+    const [programPayload, sitePayload] = await Promise.all([api.getProgram('rpms'), api.getSite()])
     program.value = programPayload
     site.value = sitePayload
   } catch (error) {
@@ -60,16 +63,24 @@ onMounted(async () => {
   }
 })
 
-const heroEyebrow = computed(() => site.value.positioning?.eyebrow ?? 'Titre professionnel RPMS')
+const brandDescriptor = computed(
+  () => site.value.brand?.descriptor ?? 'Organisme de formation certifié Qualiopi'
+)
+const heroEyebrow = computed(() => site.value.positioning?.eyebrow ?? "CITYZ'France")
+const heroTitle = computed(
+  () =>
+    site.value.positioning?.title ??
+    "Avec CITYZ'France, avancez vers des fonctions de pilotage, de management et d'organisation."
+)
 const heroSubtitle = computed(
   () =>
     site.value.positioning?.subtitle ??
-    "Découvrez le titre professionnel Responsable petite et moyenne structure (RPMS), un diplôme de niveau Bac+2 référencé au RNCP, son format à distance et l'accompagnement pédagogique prévu pour avancer avec méthode."
+    "Le RPMS est une formation de niveau 5 (Bac+2) conçue pour développer des bases concrètes en pilotage, management et organisation, dans un cadre 100 % distanciel avec accompagnement pédagogique."
 )
 const heroFitLine = computed(
   () =>
     site.value.positioning?.fitLine ??
-    "Vous cherchez une formation à distance pour viser un diplôme de niveau Bac+2 tout en développant des compétences concrètes de pilotage, de management et d'organisation."
+    "Si vous cherchez un parcours lisible pour clarifier votre projet et renforcer des responsabilités concrètes, CITYZ'France vous aide à comprendre ce que cette progression peut réellement vous apporter."
 )
 
 const proofItems = computed(() => {
@@ -82,17 +93,17 @@ const proofItems = computed(() => {
     {
       value: program.value?.rncpCode ?? 'RNCP38575',
       label: 'Code RNCP',
-      note: 'Titre professionnel reconnu'
+      note: 'Titre professionnel RPMS'
     },
     {
       value: program.value?.levelLabel ?? 'Niveau 5 (Bac+2)',
-      label: 'Niveau',
-      note: 'Diplôme Bac+2'
+      label: 'Niveau visé',
+      note: 'Bac+2'
     },
     {
       value: program.value?.formatLabel ?? '100 % distanciel',
       label: 'Modalité',
-      note: 'E-learning et accompagnement pédagogique'
+      note: 'E-learning avec accompagnement pédagogique'
     }
   ]
 })
@@ -105,16 +116,16 @@ const highlights = computed(() => {
 
   return [
     {
-      title: 'Un diplôme de niveau Bac+2',
-      text: "Le RPMS s'appuie sur le code RNCP38575 et un niveau 5 / Bac+2 reconnu."
+      title: 'Piloter une activité avec davantage de recul',
+      text: 'Le parcours aide à mieux suivre la performance, structurer les priorités et poser un cadre de décision plus lisible.'
     },
     {
-      title: 'Un cadre de travail à distance',
-      text: 'La formation se déroule en 100 % distanciel, en e-learning, avec accompagnement pédagogique.'
+      title: 'Manager et coordonner plus sereinement',
+      text: "Le RPMS aborde l'animation d'équipe, l'organisation du travail et la coordination quotidienne avec une logique concrète."
     },
     {
-      title: 'Des compétences utiles au quotidien',
-      text: 'Pilotage, management, organisation, communication et reporting forment le socle du programme.'
+      title: 'Organiser les opérations avec méthode',
+      text: "Organisation, qualité, communication et reporting s'articulent pour donner une lecture plus complète des responsabilités visées."
     }
   ]
 })
@@ -137,76 +148,100 @@ const valueSection = computed(() => {
   const section = site.value.home?.valueSection
   if (section && typeof section === 'object') {
     return {
-      eyebrow: section.eyebrow ?? 'Avant le contact',
-      title: section.title ?? 'Un parcours pour viser un niveau Bac+2 utile à votre projet',
+      eyebrow: section.eyebrow ?? "Pourquoi CITYZ'France",
+      title: section.title ?? 'Un cadre clair pour relier votre projet, le niveau visé et la réalité du parcours',
       description:
         section.description ??
-        "Le RPMS rassemble les repères utiles pour comprendre le niveau Bac+2 visé, le format de travail et les compétences mobilisées avant de demander un rappel.",
+        "Avant de vous engager, l'enjeu est d'identifier ce que le RPMS peut structurer dans votre projet et la manière dont CITYZ'France vous accompagne.",
       items: Array.isArray(section.items) ? section.items : []
     }
   }
 
   return {
-    eyebrow: 'Avant le contact',
-    title: 'Un parcours pour viser un niveau Bac+2 utile à votre projet',
+    eyebrow: "Pourquoi CITYZ'France",
+    title: 'Un cadre clair pour relier votre projet, le niveau visé et la réalité du parcours',
     description:
-      "Le RPMS rassemble les repères utiles pour comprendre le niveau Bac+2 visé, le format de travail et les compétences mobilisées avant de demander un rappel.",
+      "Avant de vous engager, l'enjeu est d'identifier ce que le RPMS peut structurer dans votre projet et la manière dont CITYZ'France vous accompagne.",
     items: [
-      'Identifier le niveau Bac+2 visé et le code RNCP du titre.',
-      "Comprendre le format 100 % distanciel et la place de l'e-learning.",
-      'Situer les compétences de pilotage, de management et d’organisation qui soutiennent cette progression.'
+      'Situer le niveau 5 (Bac+2) dans une progression vers des fonctions de pilotage et de management.',
+      "Comprendre le format 100 % distanciel, l'e-learning et la place de l'accompagnement pédagogique.",
+      'Vérifier si les compétences travaillées correspondent à votre contexte, vos questions et votre rythme.'
     ]
   }
+})
+
+const journey = computed(() => {
+  const items = site.value.home?.journey
+  if (Array.isArray(items) && items.length > 0) {
+    return items
+  }
+
+  return [
+    {
+      title: 'Faire le point sur votre projet',
+      text: 'Le rappel part de votre contexte, de vos questions et de ce que vous cherchez à structurer avant toute décision.'
+    },
+    {
+      title: 'Comprendre le cadre du parcours',
+      text: "Vous pouvez clarifier le format 100 % distanciel, l'e-learning et l'accompagnement pédagogique avant d'aller plus loin."
+    },
+    {
+      title: 'Décider avec plus de visibilité',
+      text: "L'objectif est de vous donner des éléments utiles sur le RPMS, le niveau visé et la suite possible, sans vous brusquer."
+    }
+  ]
 })
 
 const contactBand = computed(() => {
   const band = site.value.home?.contactBand
   if (band && typeof band === 'object') {
     return {
-      eyebrow: band.eyebrow ?? 'Échange',
-      title: band.title ?? 'Faire le point sur votre projet avec CITYZ’France',
+      eyebrow: band.eyebrow ?? 'Prochaine étape',
+      title: band.title ?? 'Demandez un rappel pour vérifier si le RPMS correspond à votre projet',
       description:
         band.description ??
-        'Si vous souhaitez vérifier si le RPMS correspond à votre situation, vous pouvez demander un rappel depuis le site.',
+        "L'échange avec CITYZ'France permet de faire le point sur votre situation, de clarifier les questions utiles et de voir comment avancer.",
       supportLine:
         band.supportLine ??
-        "Le rappel permet de préciser votre projet et les questions à clarifier avant d'aller plus loin."
+        'Vous repartez avec une vision plus claire du parcours, du niveau visé et des prochaines étapes possibles.'
     }
   }
 
   return {
-    eyebrow: 'Échange',
-    title: 'Faire le point sur votre projet avec CITYZ’France',
+    eyebrow: 'Prochaine étape',
+    title: 'Demandez un rappel pour vérifier si le RPMS correspond à votre projet',
     description:
-      'Si vous souhaitez vérifier si le RPMS correspond à votre situation, vous pouvez demander un rappel depuis le site.',
+      "L'échange avec CITYZ'France permet de faire le point sur votre situation, de clarifier les questions utiles et de voir comment avancer.",
     supportLine:
-      "Le rappel permet de préciser votre projet et les questions à clarifier avant d'aller plus loin."
+      'Vous repartez avec une vision plus claire du parcours, du niveau visé et des prochaines étapes possibles.'
   }
 })
 
 const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
-const factChips = ['RNCP38575', 'Niveau 5 / Bac+2', '100 % distanciel', 'E-learning', 'Qualiopi']
 </script>
 
 <template>
-  <div class="space-y-12 sm:space-y-14 lg:space-y-16">
+  <div class="space-y-14 sm:space-y-16 lg:space-y-20">
     <section
-      class="grid gap-6 lg:grid-cols-[1.04fr,0.96fr] lg:items-start"
+      class="grid gap-8 lg:grid-cols-[1.08fr,0.92fr] lg:items-start"
       v-motion
       :initial="motionVariants.block.initial"
       :enter="motionVariants.block.enter"
     >
       <div class="space-y-6">
-        <p class="kicker">{{ heroEyebrow }}</p>
+        <div class="flex flex-wrap items-center gap-3">
+          <p class="kicker">{{ heroEyebrow }}</p>
+          <span class="trust-chip">{{ brandDescriptor }}</span>
+        </div>
 
         <div class="space-y-4">
-          <h1 class="editorial-title max-w-4xl text-[clamp(2.85rem,6vw,5.25rem)] text-foreground">
-            Titre professionnel Responsable petite et moyenne structure (RPMS)
+          <h1 class="editorial-title max-w-4xl text-[clamp(2.8rem,5.8vw,5.15rem)] text-foreground">
+            {{ heroTitle }}
           </h1>
           <p class="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             {{ heroSubtitle }}
           </p>
-          <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground sm:text-lg">
+          <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-lg">
             {{ heroFitLine }}
           </p>
         </div>
@@ -223,21 +258,6 @@ const factChips = ['RNCP38575', 'Niveau 5 / Bac+2', '100 % distanciel', 'E-learn
           </RouterLink>
         </div>
 
-        <p class="text-sm leading-relaxed text-muted-foreground">
-          Pour vérifier si le RPMS correspond à votre projet et clarifier les points utiles avant
-          d'aller plus loin.
-        </p>
-
-        <div class="flex flex-wrap gap-2">
-          <span
-            v-for="item in factChips"
-            :key="item"
-            class="rounded-full border border-border bg-white px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground"
-          >
-            {{ item }}
-          </span>
-        </div>
-
         <p
           v-if="errorMessage"
           class="rounded-xl border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive"
@@ -246,31 +266,8 @@ const factChips = ['RNCP38575', 'Niveau 5 / Bac+2', '100 % distanciel', 'E-learn
         </p>
       </div>
 
-      <div class="space-y-4">
-        <div class="page-cut rounded-[1.4rem] p-5 sm:p-6">
-          <div class="flex items-center justify-between gap-3">
-            <p class="kicker">Points clés</p>
-            <span
-              class="rounded-full border border-border bg-white px-3 py-1 text-xs font-semibold text-muted-foreground"
-            >
-              RPMS
-            </span>
-          </div>
-
-          <div class="mt-4 grid gap-3 sm:grid-cols-2">
-            <div
-              v-for="(item, index) in proofItems"
-              :key="item.label"
-              v-motion
-              :initial="motionVariants.pop.initial"
-              :enter="staggerEnter(index, 70, 80)"
-            >
-              <ImpactStat :value="item.value" :label="item.label" :note="item.note" />
-            </div>
-          </div>
-        </div>
-
-        <div class="page-cut rounded-[1.4rem] p-5 sm:p-6">
+      <div class="space-y-4 lg:pt-4">
+        <div class="page-cut rounded-[1.45rem] p-5 sm:p-6">
           <p class="kicker">{{ valueSection.eyebrow }}</p>
           <h2 class="mt-3 text-2xl font-semibold text-foreground sm:text-[2rem]">
             {{ valueSection.title }}
@@ -290,14 +287,26 @@ const factChips = ['RNCP38575', 'Niveau 5 / Bac+2', '100 % distanciel', 'E-learn
             </div>
           </div>
         </div>
+
+        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-3">
+          <div
+            v-for="(item, index) in proofItems"
+            :key="item.label"
+            v-motion
+            :initial="motionVariants.pop.initial"
+            :enter="staggerEnter(index, 70, 80)"
+          >
+            <ImpactStat :value="item.value" :label="item.label" :note="item.note" />
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="space-y-8">
       <SectionTitle
-        eyebrow="Pourquoi le RPMS"
-        title="Des repères concrets pour situer votre projet"
-        description="Le niveau, le format et les compétences travaillées prennent ici le rôle d'aide à la décision, pas de simple fiche descriptive."
+        eyebrow="Ce que le parcours développe"
+        title="Des compétences qui renforcent votre capacité à piloter, organiser et manager."
+        description="Le niveau Bac+2 reste un repère utile, mais la valeur du RPMS se joue aussi dans la manière dont il structure des responsabilités très concrètes."
       />
 
       <div class="grid gap-6 lg:grid-cols-[0.96fr,1.04fr]">
@@ -307,8 +316,8 @@ const factChips = ['RNCP38575', 'Niveau 5 / Bac+2', '100 % distanciel', 'E-learn
           </CardHeader>
           <CardContent class="space-y-4">
             <p class="text-sm leading-relaxed text-muted-foreground">
-              Le RPMS s'appuie sur des compétences de pilotage, de management et d'organisation
-              qui servent à lire plus clairement votre projet avant un échange.
+              Le RPMS aide à relier des enjeux de pilotage, de management et d'organisation à des
+              situations de travail plus lisibles au quotidien.
             </p>
             <ul class="grid gap-3 text-sm leading-relaxed text-muted-foreground sm:grid-cols-2">
               <li
@@ -349,15 +358,15 @@ const factChips = ['RNCP38575', 'Niveau 5 / Bac+2', '100 % distanciel', 'E-learn
     <section class="grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
       <div class="space-y-6">
         <SectionTitle
-          eyebrow="Programme"
-          title="Une progression claire sur les compétences clés"
-          description="Le programme se structure en blocs qui vont du pilotage et du management à l'organisation, au développement et au reporting."
+          eyebrow="Progression"
+          title="Le programme donne une lecture concrète du chemin à parcourir."
+          description="Trois blocs suffisent pour saisir la logique du RPMS avant d'aller consulter le détail complet du programme."
         />
 
         <div class="space-y-3">
           <p class="text-sm leading-relaxed text-muted-foreground">
-            Vous pouvez consulter le détail du programme pour retrouver l'ensemble des blocs de
-            compétences et la logique de progression du titre.
+            Vous pouvez consulter le programme pour retrouver l'ensemble des blocs de compétences
+            et la progression complète du titre professionnel.
           </p>
           <RouterLink
             to="/programme"
@@ -389,11 +398,37 @@ const factChips = ['RNCP38575', 'Niveau 5 / Bac+2', '100 % distanciel', 'E-learn
       </div>
     </section>
 
+    <section class="space-y-8">
+      <SectionTitle
+        eyebrow="Avant de vous décider"
+        title="Un échange pour clarifier votre projet, pas pour vous précipiter."
+        description="Le rappel sert à vérifier l'adéquation du parcours, comprendre le cadre à distance et repartir avec des éléments utiles."
+      />
+
+      <div class="grid gap-4 md:grid-cols-3">
+        <Card
+          v-for="(item, index) in journey"
+          :key="item.title"
+          class="page-cut"
+          v-motion
+          :initial="motionVariants.block.initial"
+          :enter="staggerEnter(index, 75, 70)"
+        >
+          <CardHeader class="space-y-3">
+            <CardTitle>{{ item.title }}</CardTitle>
+          </CardHeader>
+          <CardContent class="text-sm leading-relaxed text-muted-foreground">
+            {{ item.text }}
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+
     <section class="page-cut rounded-[1.6rem] p-6 sm:p-8 lg:p-10">
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div class="space-y-3">
           <p class="kicker">{{ contactBand.eyebrow }}</p>
-          <h2 class="editorial-title text-[clamp(2rem,3.4vw,3.35rem)] text-foreground">
+          <h2 class="editorial-title max-w-3xl text-[clamp(2rem,3.4vw,3.35rem)] text-foreground">
             {{ contactBand.title }}
           </h2>
           <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">

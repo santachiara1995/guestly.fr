@@ -3,12 +3,14 @@ import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import LeadForm from '@/components/lead-form.vue'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { api } from '@/lib/api'
 
 const site = ref({
+  brand: {
+    descriptor: 'Organisme de formation certifié Qualiopi'
+  },
   positioning: {},
   contact: {
     phone: '09 77 21 51 61',
@@ -31,10 +33,7 @@ const loading = ref(true)
 
 onMounted(async () => {
   try {
-    const [sitePayload, programPayload] = await Promise.all([
-      api.getSite(),
-      api.getProgram('rpms')
-    ])
+    const [sitePayload, programPayload] = await Promise.all([api.getSite(), api.getProgram('rpms')])
     site.value = sitePayload
     program.value = programPayload
   } finally {
@@ -43,56 +42,84 @@ onMounted(async () => {
 })
 
 const contactCopy = computed(() => site.value.contact ?? {})
-const positioningCopy = computed(() => site.value.positioning ?? {})
+const brandDescriptor = computed(
+  () => site.value.brand?.descriptor ?? 'Organisme de formation certifié Qualiopi'
+)
+const heroEyebrow = computed(() => contactCopy.value.heroEyebrow ?? 'Être rappelé')
+const heroTitle = computed(
+  () => contactCopy.value.heroTitle ?? "Parlons de votre projet de formation avec CITYZ'France"
+)
+const heroSupport = computed(
+  () =>
+    contactCopy.value.heroSupport ??
+    "Le rappel sert à faire le lien entre votre projet, le cadre du RPMS et le niveau 5 (Bac+2) visé."
+)
+const formTitle = computed(() => contactCopy.value.formTitle ?? 'Présentez votre situation')
 const formIntro = computed(
   () =>
     contactCopy.value.formIntro ??
-    positioningCopy.value.fitLine ??
-    'Dites-nous où vous en êtes, ce que vous voulez vérifier et ce qui compte pour votre projet.'
+    'Décrivez brièvement votre situation, ce que vous cherchez à clarifier et les questions que vous souhaitez aborder pendant l’échange.'
 )
-const nextStepNote = computed(
-  () => {
-    const note = contactCopy.value.nextStepNote
-    if (note && typeof note === 'object') {
-      return {
-        title: note.title ?? "Ce qui se passe après l'envoi",
-        points: Array.isArray(note.points)
-          ? note.points
-          : ['Nous revenons vers vous pour préciser votre projet et répondre à vos questions.']
-      }
-    }
+const formSupport = computed(
+  () =>
+    contactCopy.value.formSupport ??
+    "Quelques informations suffisent pour permettre à CITYZ'France de revenir vers vous dans de bonnes conditions."
+)
+const guidanceTitle = computed(
+  () => contactCopy.value.guidanceTitle ?? "Ce que vous pouvez clarifier pendant l'échange"
+)
+const guidancePoints = computed(() => {
+  const points = contactCopy.value.guidancePoints
+  if (Array.isArray(points) && points.length > 0) {
+    return points
+  }
 
+  return [
+    "La place du RPMS dans votre projet d'évolution ou de reconversion.",
+    "Le cadre 100 % distanciel, l'e-learning et l'accompagnement pédagogique.",
+    'Les compétences travaillées en pilotage, management, organisation et reporting.'
+  ]
+})
+const nextStepNote = computed(() => {
+  const note = contactCopy.value.nextStepNote
+  if (note && typeof note === 'object') {
     return {
-      title: "Ce qui se passe après l'envoi",
-      points: [
-        typeof note === 'string' && note
-          ? note
-          : 'Nous revenons vers vous pour préciser votre projet et répondre à vos questions.'
-      ]
+      title: note.title ?? 'Ce qui se passe après votre demande',
+      points: Array.isArray(note.points)
+        ? note.points
+        : ['Nous revenons vers vous pour préciser votre projet et répondre à vos questions.']
     }
   }
-)
-const contactBand = computed(
-  () => {
-    const band = site.value.home?.contactBand
-    if (band && typeof band === 'object') {
-      return {
-        title: band.title ?? "Après l'envoi, la suite reste simple",
-        description:
-          band.supportLine ??
-          band.description ??
-          'Pour faire le point sur votre projet, vous pouvez garder le cap sur les points clés du programme si besoin.'
-      }
-    }
 
+  return {
+    title: 'Ce qui se passe après votre demande',
+    points: [
+      typeof note === 'string' && note
+        ? note
+        : 'Nous revenons vers vous pour préciser votre projet et répondre à vos questions.'
+    ]
+  }
+})
+const factsTitle = computed(() => contactCopy.value.factsTitle ?? 'Points utiles')
+const footerBand = computed(() => {
+  const band = contactCopy.value.footerBand
+  if (band && typeof band === 'object') {
     return {
-      title: "Après l'envoi, la suite reste simple",
+      eyebrow: band.eyebrow ?? 'Avant de valider',
+      title: band.title ?? 'Vous pouvez relire le programme ou la FAQ avant de demander un rappel',
       description:
-        band ??
-        'Pour faire le point sur votre projet, vous pouvez garder le cap sur les points clés du programme si besoin.'
+        band.description ??
+        'Si vous préférez prendre un peu de recul, ces pages restent accessibles avant de revenir vers le formulaire.'
     }
   }
-)
+
+  return {
+    eyebrow: 'Avant de valider',
+    title: 'Vous pouvez relire le programme ou la FAQ avant de demander un rappel',
+    description:
+      'Si vous préférez prendre un peu de recul, ces pages restent accessibles avant de revenir vers le formulaire.'
+  }
+})
 
 const displayPhone = computed(() => site.value.contact?.phone?.trim() ?? null)
 const displayAddress = computed(
@@ -102,11 +129,10 @@ const displayAddress = computed(
     null
 )
 
-const programFacts = computed(() =>
+const supportFacts = computed(() =>
   [
-    { label: 'Titre', value: program.value?.title },
-    { label: 'RNCP', value: program.value?.rncpCode },
-    { label: 'Niveau', value: program.value?.levelLabel },
+    { label: 'Niveau visé', value: program.value?.levelLabel },
+    { label: 'Code RNCP', value: program.value?.rncpCode },
     { label: 'Modalité', value: program.value?.formatLabel },
     { label: 'Format', value: program.value?.rhythmLabel },
     { label: 'Accompagnement', value: program.value?.supportLabel }
@@ -115,25 +141,31 @@ const programFacts = computed(() =>
 </script>
 
 <template>
-  <div class="space-y-10 sm:space-y-12">
+  <div class="space-y-12 sm:space-y-14">
     <section class="page-cut rounded-[1.6rem] p-6 sm:p-8 lg:p-10">
       <div class="space-y-5">
-        <p class="kicker">Contact</p>
-        <div class="grid gap-4 lg:grid-cols-[1.08fr,0.92fr] lg:items-end">
+        <div class="flex flex-wrap items-center gap-3">
+          <p class="kicker">{{ heroEyebrow }}</p>
+          <span class="trust-chip">{{ brandDescriptor }}</span>
+        </div>
+
+        <div class="grid gap-5 lg:grid-cols-[1.08fr,0.92fr] lg:items-end">
           <div class="space-y-4">
             <h1 class="editorial-title max-w-3xl text-[clamp(2.45rem,5vw,4.6rem)] text-foreground">
-              Faire le point avec un rappel
+              {{ heroTitle }}
             </h1>
             <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
               {{ formIntro }}
             </p>
+            <p class="max-w-3xl text-sm leading-relaxed text-foreground/80 sm:text-base">
+              {{ heroSupport }}
+            </p>
           </div>
 
           <div class="flex flex-wrap gap-2 lg:justify-end">
-            <Badge variant="outline">RNCP38575</Badge>
-            <Badge variant="outline">Niveau 5 / Bac+2</Badge>
-            <Badge variant="outline">100 % distanciel</Badge>
-            <Badge variant="outline">Accompagnement pédagogique</Badge>
+            <span class="trust-chip">{{ program.levelLabel }}</span>
+            <span class="trust-chip">{{ program.formatLabel }}</span>
+            <span class="trust-chip">{{ program.supportLabel }}</span>
           </div>
         </div>
       </div>
@@ -142,10 +174,9 @@ const programFacts = computed(() =>
     <div class="grid gap-5 lg:grid-cols-[1.08fr,0.92fr] lg:items-start">
       <Card class="page-cut">
         <CardHeader class="space-y-3">
-          <CardTitle class="text-2xl sm:text-[1.45rem]">Présentez votre situation</CardTitle>
+          <CardTitle class="text-2xl sm:text-[1.45rem]">{{ formTitle }}</CardTitle>
           <p class="text-sm leading-relaxed text-muted-foreground">
-            Indiquez votre contexte, vos questions et ce que vous souhaitez vérifier avant d'aller
-            plus loin.
+            {{ formSupport }}
           </p>
         </CardHeader>
         <CardContent class="space-y-5">
@@ -156,12 +187,10 @@ const programFacts = computed(() =>
       <div class="space-y-4 lg:pt-1">
         <Card class="page-cut">
           <CardHeader>
-            <CardTitle>Programme concerné</CardTitle>
+            <CardTitle>{{ guidanceTitle }}</CardTitle>
           </CardHeader>
           <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
-            <p v-for="item in programFacts" :key="item.label">
-              <strong class="text-foreground">{{ item.label }} :</strong> {{ item.value }}
-            </p>
+            <p v-for="point in guidancePoints" :key="point">{{ point }}</p>
           </CardContent>
         </Card>
 
@@ -176,20 +205,28 @@ const programFacts = computed(() =>
 
         <Card class="page-cut">
           <CardHeader>
-            <CardTitle>Coordonnées utiles</CardTitle>
+            <CardTitle>{{ factsTitle }}</CardTitle>
           </CardHeader>
-          <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
-            <p v-if="displayPhone">
-              <strong class="text-foreground">Téléphone :</strong> {{ displayPhone }}
-            </p>
-            <p v-if="displayAddress">
-              <strong class="text-foreground">Adresse :</strong> {{ displayAddress }}
-            </p>
-            <p v-if="site.organizationProfile?.certification">
-              <strong class="text-foreground">Certification :</strong>
-              {{ site.organizationProfile.certification }}
-            </p>
-            <p v-if="loading">Chargement des coordonnées...</p>
+          <CardContent class="space-y-4 text-sm leading-relaxed text-muted-foreground">
+            <div class="space-y-3">
+              <p v-for="item in supportFacts" :key="item.label">
+                <strong class="text-foreground">{{ item.label }} :</strong> {{ item.value }}
+              </p>
+            </div>
+
+            <div class="space-y-3 border-t border-border/70 pt-4">
+              <p v-if="displayPhone">
+                <strong class="text-foreground">Téléphone :</strong> {{ displayPhone }}
+              </p>
+              <p v-if="displayAddress">
+                <strong class="text-foreground">Adresse :</strong> {{ displayAddress }}
+              </p>
+              <p v-if="site.organizationProfile?.certification">
+                <strong class="text-foreground">Certification :</strong>
+                {{ site.organizationProfile.certification }}
+              </p>
+              <p v-if="loading">Chargement des coordonnées...</p>
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -198,12 +235,12 @@ const programFacts = computed(() =>
     <section class="page-cut rounded-[1.5rem] p-6 sm:p-8 lg:p-10">
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div class="space-y-3">
-          <p class="kicker">Suite</p>
-          <h2 class="editorial-title text-[clamp(2rem,3.3vw,3.2rem)] text-foreground">
-            {{ contactBand.title }}
+          <p class="kicker">{{ footerBand.eyebrow }}</p>
+          <h2 class="editorial-title max-w-3xl text-[clamp(2rem,3.3vw,3.2rem)] text-foreground">
+            {{ footerBand.title }}
           </h2>
           <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
-            {{ contactBand.description }}
+            {{ footerBand.description }}
           </p>
         </div>
 

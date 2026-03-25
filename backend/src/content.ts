@@ -124,76 +124,77 @@ export const siteContent = {
     secondaryCta: 'Voir le programme'
   },
   positioning: {
-    eyebrow: 'Titre professionnel RPMS',
-    title: "Le RPMS pour viser un diplôme de niveau Bac+2 en pilotage, management et organisation.",
+    eyebrow: "CITYZ'France",
+    title:
+      "Avec CITYZ'France, avancez vers des fonctions de pilotage, de management et d'organisation.",
     subtitle:
-      "Découvrez le titre professionnel Responsable petite et moyenne structure de CITYZ'France, un diplôme de niveau Bac+2 référencé au RNCP, son format à distance et l'accompagnement pédagogique prévu pour avancer avec méthode.",
+      "Le RPMS est une formation de niveau 5 (Bac+2) conçue pour développer des bases concrètes en pilotage, management et organisation, dans un cadre 100 % distanciel avec accompagnement pédagogique.",
     fitLine:
-      "Vous cherchez une formation à distance pour viser un diplôme de niveau Bac+2 tout en développant des compétences concrètes de pilotage, de management et d'organisation."
+      "Si vous cherchez un parcours lisible pour clarifier votre projet et renforcer des responsabilités concrètes, CITYZ'France vous aide à comprendre ce que cette progression peut réellement vous apporter."
   },
   home: {
     proofItems: [
       {
         value: 'RNCP38575',
         label: 'Code RNCP',
-        note: 'Titre professionnel reconnu'
+        note: 'Titre professionnel RPMS'
       },
       {
         value: 'Niveau 5',
-        label: 'Niveau',
-        note: 'Diplôme Bac+2'
+        label: 'Niveau visé',
+        note: 'Bac+2'
       },
       {
         value: '100 % distanciel',
         label: 'Modalité',
-        note: 'E-learning et accompagnement pédagogique'
+        note: 'E-learning avec accompagnement pédagogique'
       }
     ],
     valueSection: {
-      eyebrow: 'Avant le contact',
-      title: 'Un parcours pour viser un niveau Bac+2 utile à votre projet',
+      eyebrow: "Pourquoi CITYZ'France",
+      title: 'Un cadre clair pour relier votre projet, le niveau visé et la réalité du parcours',
       description:
-        "Le RPMS rassemble les repères utiles pour comprendre le niveau Bac+2 visé, le format de travail et les compétences mobilisées avant de demander un rappel.",
+        "Avant de vous engager, l'enjeu est d'identifier ce que le RPMS peut structurer dans votre projet et la manière dont CITYZ'France vous accompagne.",
       items: [
-        'Identifier le niveau Bac+2 visé et le code RNCP du titre.',
-        'Comprendre le format 100 % distanciel et la place de l’e-learning.',
-        'Situer les compétences de pilotage, de management et d’organisation qui soutiennent cette progression.'
+        'Situer le niveau 5 (Bac+2) dans une progression vers des fonctions de pilotage et de management.',
+        'Comprendre le format 100 % distanciel, l’e-learning et la place de l’accompagnement pédagogique.',
+        'Vérifier si les compétences travaillées correspondent à votre contexte, vos questions et votre rythme.'
       ]
     },
     contactBand: {
-      eyebrow: 'Échange',
-      title: "Faire le point sur votre projet avec CITYZ'France",
+      eyebrow: 'Prochaine étape',
+      title: 'Demandez un rappel pour vérifier si le RPMS correspond à votre projet',
       description:
-        'Si vous souhaitez vérifier si le RPMS correspond à votre situation, vous pouvez demander un rappel depuis le site.',
+        "L'échange avec CITYZ'France permet de faire le point sur votre situation, de clarifier les questions utiles et de voir comment avancer.",
       supportLine:
-        "Le rappel permet de préciser votre projet et les questions à clarifier avant d'aller plus loin."
+        'Vous repartez avec une vision plus claire du parcours, du niveau visé et des prochaines étapes possibles.'
     },
     highlights: [
       {
-        title: 'Un diplôme de niveau Bac+2',
-        text: 'Le RPMS s’appuie sur le code RNCP38575 et un niveau 5 / Bac+2 reconnu.'
+        title: 'Piloter une activité avec davantage de recul',
+        text: 'Le parcours aide à mieux suivre la performance, structurer les priorités et poser un cadre de décision plus lisible.'
       },
       {
-        title: 'Un format pensé pour avancer à distance',
-        text: 'La formation se déroule en 100 % distanciel, en e-learning, avec accompagnement pédagogique.'
+        title: 'Manager et coordonner plus sereinement',
+        text: "Le RPMS aborde l'animation d'équipe, l'organisation du travail et la coordination quotidienne avec une logique concrète."
       },
       {
-        title: 'Des compétences utiles au quotidien',
-        text: 'Pilotage, management, organisation, communication et reporting forment le socle du programme.'
+        title: 'Organiser les opérations avec méthode',
+        text: "Organisation, qualité, communication et reporting s'articulent pour donner une lecture plus complète des responsabilités visées."
       }
     ],
     journey: [
       {
-        title: 'Vérifier l’adéquation du parcours',
-        text: 'Commencez par le niveau, la modalité et les compétences travaillées pour situer votre projet.'
+        title: 'Faire le point sur votre projet',
+        text: 'Le rappel part de votre contexte, de vos questions et de ce que vous cherchez à structurer avant toute décision.'
       },
       {
-        title: 'Comprendre le cadre de travail',
-        text: "Le format à distance et l'accompagnement pédagogique donnent un cadre clair pour avancer."
+        title: 'Comprendre le cadre du parcours',
+        text: "Vous pouvez clarifier le format 100 % distanciel, l'e-learning et l'accompagnement pédagogique avant d'aller plus loin."
       },
       {
-        title: 'Demander un rappel',
-        text: 'Posez vos questions pour vérifier si le RPMS correspond à votre situation.'
+        title: 'Décider avec plus de visibilité',
+        text: "L'objectif est de vous donner des éléments utiles sur le RPMS, le niveau visé et la suite possible, sans vous brusquer."
       }
     ],
     competencyClusters: [
@@ -235,15 +236,35 @@ export const siteContent = {
     }
   },
   contact: {
+    heroEyebrow: 'Être rappelé',
+    heroTitle: "Parlons de votre projet de formation avec CITYZ'France",
+    heroSupport:
+      "Le rappel sert à faire le lien entre votre projet, le cadre du RPMS et le niveau 5 (Bac+2) visé.",
+    formTitle: 'Présentez votre situation',
     formIntro:
-      "Indiquez votre contexte et ce que vous souhaitez clarifier pour vérifier si ce diplôme de niveau Bac+2 correspond à votre projet.",
+      'Décrivez brièvement votre situation, ce que vous cherchez à clarifier et les questions que vous souhaitez aborder pendant l’échange.',
+    formSupport:
+      'Quelques informations suffisent pour permettre à CITYZ\'France de revenir vers vous dans de bonnes conditions.',
+    guidanceTitle: "Ce que vous pouvez clarifier pendant l'échange",
+    guidancePoints: [
+      "La place du RPMS dans votre projet d'évolution ou de reconversion.",
+      "Le cadre 100 % distanciel, l'e-learning et l'accompagnement pédagogique.",
+      'Les compétences travaillées en pilotage, management, organisation et reporting.'
+    ],
     nextStepNote: {
-      title: "Ce qui se passe après l'envoi",
+      title: 'Ce qui se passe après votre demande',
       points: [
         "Votre demande est prise en compte par CITYZ'France.",
-        "L'échange sert à préciser votre projet et vos questions.",
+        "L'échange permet de comprendre votre projet et de répondre à vos premières questions.",
         "Les informations demandées restent limitées à ce qui est utile pour vous recontacter."
       ]
+    },
+    factsTitle: 'Points utiles',
+    footerBand: {
+      eyebrow: 'Avant de valider',
+      title: 'Vous pouvez relire le programme ou la FAQ avant de demander un rappel',
+      description:
+        'Si vous préférez prendre un peu de recul, ces pages restent accessibles avant de revenir vers le formulaire.'
     },
     phone: '09 77 21 51 61',
     address: '110 Esplanade du General de Gaulle, 92400 Courbevoie',

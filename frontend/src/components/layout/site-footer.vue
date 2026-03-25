@@ -2,7 +2,10 @@
 import { RouterLink } from 'vue-router'
 
 import BrandLogo from '@/components/layout/brand-logo.vue'
+import TrustStrip from '@/components/visual/trust-strip.vue'
 import { footerNavigation } from '@/data/navigation'
+
+const footerTrustItems = ['RNCP38575', 'Bac+2', '100 % distanciel', 'E-learning']
 </script>
 
 <template>
@@ -11,15 +14,10 @@ import { footerNavigation } from '@/data/navigation'
       <div class="space-y-4">
         <brand-logo compact />
         <p class="max-w-md text-sm leading-relaxed text-muted-foreground">
-          Titre professionnel Responsable petite et moyenne structure (RPMS), en 100 %
-          distanciel avec accompagnement pédagogique.
+          Pour vous aider à mieux piloter une activité, coordonner une équipe et organiser une
+          structure avec un cadre à distance et un accompagnement pédagogique.
         </p>
-        <div class="flex flex-wrap gap-2">
-          <span class="trust-chip">RNCP38575</span>
-          <span class="trust-chip">Bac+2</span>
-          <span class="trust-chip">100 % distanciel</span>
-          <span class="trust-chip">E-learning</span>
-        </div>
+        <trust-strip :items="footerTrustItems" />
       </div>
 
       <div class="grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] lg:justify-end">

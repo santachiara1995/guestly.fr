@@ -16,11 +16,11 @@ defineProps({
 <template>
   <RouterLink
     :to="to"
-    class="inline-flex items-center gap-3 rounded-[1rem] text-left transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
+    class="inline-flex items-center gap-2.5 rounded-[0.9rem] text-left transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
     aria-label="Retour à l'accueil CITYZ'France"
   >
-    <span class="brand-symbol relative inline-flex h-10 w-10 items-center justify-center rounded-[0.95rem] sm:h-11 sm:w-11">
-      <svg viewBox="0 0 56 56" class="h-7 w-7" aria-hidden="true">
+    <span class="brand-symbol relative inline-flex h-9 w-9 items-center justify-center rounded-[0.82rem] sm:h-10 sm:w-10 sm:rounded-[0.9rem]">
+      <svg viewBox="0 0 56 56" class="h-6 w-6" aria-hidden="true">
         <path d="M20 38V18h16v20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
         <path d="M18 22h20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
         <path d="M24 14h8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3" />
@@ -28,15 +28,15 @@ defineProps({
       </svg>
     </span>
 
-    <div class="leading-tight">
-      <p class="font-heading text-[0.98rem] font-semibold tracking-[0.01em] text-foreground sm:text-[1.08rem]">
+    <div class="leading-[1.02]">
+      <p class="font-heading text-[0.92rem] font-semibold tracking-[0.01em] text-foreground sm:text-[1rem]">
         CITYZ'France
       </p>
       <p
         v-if="!compact"
-        class="mt-1 text-[0.64rem] font-medium uppercase tracking-[0.16em] text-muted-foreground sm:text-[0.66rem]"
+        class="mt-0.5 text-[0.6rem] font-medium uppercase tracking-[0.15em] text-muted-foreground sm:text-[0.62rem]"
       >
-        RNCP38575 · Bac+2 / Niveau 5
+        Pilotage · management · organisation
       </p>
     </div>
   </RouterLink>

@@ -9,18 +9,18 @@ export const programsSeed = [
     rhythmLabel: 'E-learning',
     supportLabel: 'Accompagnement pédagogique',
     intro:
-      "Une formation à distance pour développer des compétences de pilotage, de management et d'organisation au sein d'une petite ou moyenne structure.",
+      "Un parcours à distance pour renforcer votre pilotage, votre management et votre organisation dans une petite ou moyenne structure.",
     objectiveSummary: [
-      "Piloter l'activité et suivre la performance d'une structure.",
-      "Manager une équipe et coordonner le travail au quotidien.",
-      "Organiser les opérations, la qualité et la production de l'activité.",
-      "Développer l'ancrage territorial, les partenariats, la communication et le reporting."
+      "Piloter l'activité avec une lecture plus claire des priorités et des résultats.",
+      "Manager une équipe et mieux coordonner le travail au quotidien.",
+      "Structurer les opérations, les ressources, la qualité et la production.",
+      "Développer l'offre, les partenariats, le territoire et le reporting avec davantage de méthode."
     ],
     professionalScope: [
-      'Pilotage opérationnel',
-      "Management d'équipe",
-      'Organisation de la structure',
-      "Ancrage territorial et reporting"
+      "Piloter l'activité et la performance",
+      "Manager et coordonner une équipe",
+      'Organiser une structure au quotidien',
+      "Développer l'offre, le territoire et le reporting"
     ],
     blocks: [
       {
@@ -72,44 +72,44 @@ export const programsSeed = [
 
 export const faqSeed = [
   {
-    question: 'À qui s’adresse le programme RPMS ?',
+    question: 'Ce parcours peut-il correspondre à mon projet ?',
     answer:
-      "Le titre professionnel RPMS s'adresse aux personnes qui souhaitent consolider des compétences de pilotage, de coordination et de management dans une petite ou moyenne structure.",
+      "Oui si vous cherchez à renforcer votre capacité à piloter une activité, coordonner une équipe et organiser une structure avec plus de méthode.",
     audience: 'particulier',
     sortOrder: 1
   },
   {
-    question: 'Quel est le niveau de la certification ?',
+    question: "Qu'allez-vous travailler concrètement ?",
     answer:
-      "Le titre professionnel Responsable petite et moyenne structure (RPMS), code RNCP38575, correspond à un titre professionnel de niveau 5 (Bac+2) reconnu par l'État.",
+      "Le parcours couvre le pilotage d'une activité, le management d'équipe, l'organisation des opérations, la communication, le territoire, les partenariats et le reporting.",
     audience: 'particulier',
     sortOrder: 2
   },
   {
-    question: 'Comment se déroule la formation ?',
+    question: 'Comment la formation se suit-elle au quotidien ?',
     answer:
-      'La formation se déroule en 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
+      'Le parcours se suit en 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
     audience: 'particulier',
     sortOrder: 3
   },
   {
-    question: 'Quelles compétences sont travaillées ?',
+    question: "Sur quels repères officiels s'appuie le parcours ?",
     answer:
-      "Le parcours couvre le pilotage d'une activité, le management d'équipe, l'organisation des opérations, l'ancrage territorial, la communication et le reporting.",
+      "Vous préparez le titre professionnel Responsable petite et moyenne structure (RPMS), code RNCP38575, un titre professionnel reconnu par l'État de niveau 5 (Bac+2).",
     audience: 'particulier',
     sortOrder: 4
   },
   {
-    question: "Que se passe-t-il après une demande de rappel ?",
+    question: "À quoi sert la demande de rappel ?",
     answer:
-      'Un échange permet de préciser votre projet, de répondre à vos questions et de vous orienter vers les informations utiles pour la suite.',
+      'Elle permet de faire le point sur votre projet, de répondre à vos questions et de vérifier si le parcours correspond à ce que vous cherchez.',
     audience: 'particulier',
     sortOrder: 5
   },
   {
-    question: 'Le titre professionnel RPMS aborde-t-il aussi le territoire, les partenariats et le reporting ?',
+    question: 'Le programme reste-t-il connecté aux réalités du terrain ?',
     answer:
-      "Le titre professionnel RPMS relie le pilotage d'activité au territoire, aux partenariats, à la diffusion de l'offre, à la production et au reporting.",
+      "Oui. Il relie le pilotage d'activité au territoire, aux partenariats, à la diffusion de l'offre, à la production et au reporting.",
     audience: 'particulier',
     sortOrder: 6
   }
@@ -126,18 +126,18 @@ export const siteContent = {
   positioning: {
     eyebrow: 'Titre professionnel RPMS',
     title:
-      'Un repère Bac+2 reconnu pour piloter, manager et organiser une petite ou moyenne structure.',
+      'Vous cherchez à prendre plus de responsabilités dans une petite ou moyenne structure ?',
     subtitle:
-      "Le titre professionnel RPMS est un titre de niveau 5 (Bac+2) reconnu par l'État, conçu pour développer des bases concrètes en pilotage, management et organisation, dans un cadre 100 % distanciel avec accompagnement pédagogique.",
+      "Ce parcours vous aide à renforcer votre pilotage, votre management et votre organisation avec des repères concrets en activité, équipe, offre, territoire et reporting.",
     fitLine:
-      "Le site aide à situer le titre professionnel RPMS, son niveau, son format et les responsabilités qu'il prépare avant tout échange."
+      "Avant de laisser vos coordonnées, voyez rapidement si ce parcours correspond à ce que vous cherchez à structurer dans votre projet."
   },
   home: {
     proofItems: [
       {
-        value: 'Titre professionnel RPMS',
+        value: 'Titre reconnu',
         label: 'Titre',
-        note: 'Titre professionnel reconnu'
+        note: 'Titre professionnel RPMS'
       },
       {
         value: 'RNCP38575',
@@ -156,50 +156,50 @@ export const siteContent = {
       }
     ],
     valueSection: {
-      eyebrow: "Pourquoi CITYZ'France",
-      title: 'Un cadre clair pour relier le titre, le niveau visé et la réalité du parcours',
+      eyebrow: 'Ce que ce parcours peut vous aider à structurer',
+      title: 'Un cadre plus clair pour tenir un rôle plus complet au quotidien.',
       description:
-        "Avant de vous engager, l'enjeu est d'identifier ce que le titre professionnel RPMS structure concrètement dans votre projet: pilotage, management, organisation, territoire et reporting.",
+        "L'enjeu n'est pas seulement d'identifier un titre, mais de voir si le parcours répond à ce que vous voulez vraiment mieux piloter, coordonner et organiser.",
       items: [
-        "Situer le titre professionnel de niveau 5 (Bac+2) dans une progression vers des responsabilités concrètes.",
-        'Comprendre le format 100 % distanciel, l’e-learning et la place de l’accompagnement pédagogique.',
-        "Vérifier si les compétences travaillées correspondent à votre contexte: pilotage, équipe, offre, territoire et résultats."
+        "Prendre plus de recul sur l'activité et les priorités.",
+        "Mieux coordonner une équipe et organiser le travail.",
+        "Structurer l'offre, le territoire, les partenariats et le reporting avec plus de méthode."
       ]
     },
     contactBand: {
-      eyebrow: 'Prochaine étape',
-      title: 'Demandez un rappel pour situer le titre professionnel RPMS dans votre projet',
+      eyebrow: 'Parler de votre projet',
+      title: 'Demandez un rappel pour savoir rapidement si ce parcours correspond à votre projet',
       description:
-        "L'échange avec CITYZ'France permet de revenir sur le titre, le niveau 5 (Bac+2), le format à distance et les compétences visées.",
+        "En quelques minutes, vous pouvez clarifier le contenu, le niveau visé, le format à distance et les compétences travaillées.",
       supportLine:
-        'Vous repartez avec un cadre plus net sur le programme, les blocs de compétences et la suite possible.'
+        "Vous repartez avec une vision plus nette du programme et de la place qu'il peut prendre dans votre projet."
     },
     highlights: [
       {
-        title: 'Piloter une activité avec davantage de recul',
-        text: "Le parcours aide à suivre la performance, structurer les priorités et garder une lecture lisible de l'activité."
+        title: "Prendre plus de recul sur l'activité",
+        text: "Le parcours vous aide à suivre la performance, structurer les priorités et garder une lecture plus claire de l'activité."
       },
       {
-        title: 'Manager et coordonner plus sereinement',
-        text: "Le titre professionnel RPMS aborde l'animation d'équipe, l'organisation du travail et la coordination quotidienne avec une logique concrète."
+        title: 'Mieux coordonner une équipe',
+        text: "Vous travaillez l'animation d'équipe, l'organisation du travail et la coordination quotidienne dans une logique concrète."
       },
       {
-        title: 'Organiser les opérations avec méthode',
-        text: "Organisation, qualité, communication et reporting s'articulent pour donner une lecture plus complète des responsabilités visées."
+        title: 'Structurer les opérations avec méthode',
+        text: "Organisation, qualité, communication et reporting s'articulent pour vous donner un cadre d'action plus solide."
       }
     ],
     journey: [
       {
-        title: 'Situer le titre dans votre projet',
-        text: 'Le rappel part de votre contexte, de vos questions et de ce que vous cherchez à structurer avant toute décision.'
+        title: 'Partir de votre situation',
+        text: "Vous commencez par ce que vous cherchez à débloquer, clarifier ou mieux organiser dans votre quotidien."
       },
       {
-        title: 'Comprendre le cadre du parcours',
-        text: "Vous pouvez revenir sur le format 100 % distanciel, l'e-learning et l'accompagnement pédagogique avant d'aller plus loin."
+        title: "Vérifier l'adéquation du parcours",
+        text: "Vous revenez sur le contenu, le format à distance, l'accompagnement et les repères officiels du parcours."
       },
       {
-        title: 'Décider avec plus de visibilité',
-        text: "L'objectif est de vous donner des repères utiles sur le titre professionnel RPMS, le niveau visé et la suite possible."
+        title: 'Décider avec une vision claire',
+        text: "L'objectif est de vous aider à voir rapidement si ce parcours mérite d'aller plus loin dans votre projet."
       }
     ],
     competencyClusters: [
@@ -211,13 +211,13 @@ export const siteContent = {
   },
   access: {
     intro:
-      "Le parcours se suit à distance avec un accompagnement pédagogique pour préparer un titre professionnel de niveau 5 (Bac+2) reconnu par l'État dans un cadre clair et progressif.",
+      "Cette page vous aide à vérifier rapidement si le format à distance, l'accompagnement et les attentes du parcours correspondent à votre manière d'apprendre et à votre projet.",
     reassuranceLine:
-      "Vous pouvez vérifier ici si le format 100 % distanciel, le niveau 5 (Bac+2) et l'accompagnement correspondent à votre projet.",
+      "Vous n'avez pas besoin de tout décider tout de suite: l'essentiel est de voir si le cadre vous convient vraiment.",
     expectations: [
-      "Un projet d'évolution vers des fonctions de pilotage, de coordination ou de management.",
-      'La disponibilité pour avancer avec régularité dans une formation à distance.',
-      "Le besoin de vérifier l'adéquation du programme avec votre projet avant d'aller plus loin."
+      "L'envie d'évoluer vers plus de pilotage, de coordination ou de management.",
+      "La disponibilité pour avancer avec régularité dans un parcours à distance.",
+      "Le besoin d'un cadre clair avant de vous engager."
     ],
     supportPoints: [
       '100 % distanciel',
@@ -225,36 +225,36 @@ export const siteContent = {
       'Accompagnement pédagogique'
     ],
     processSteps: [
-      'Découvrir le programme et les compétences visées.',
-      "Vérifier le format à distance et l'accompagnement pédagogique.",
-      'Demander un rappel pour échanger sur votre projet.'
+      'Consultez les grands blocs et les compétences travaillées.',
+      "Vérifiez si le format à distance et l'accompagnement vous conviennent.",
+      "Demandez un rappel si vous voulez faire le point sur votre projet."
     ]
   },
   faq: {
     closingNote: {
-      eyebrow: 'Pour décider',
-      title: 'Les réponses les plus utiles avant un échange',
+      eyebrow: 'Encore un doute ?',
+      title: 'Commencez par les questions qui comptent le plus pour votre décision',
       description:
-        "Les réponses ci-dessus résument les points utiles pour vous situer avant un échange plus personnalisé.",
+        "La FAQ vous donne les repères essentiels. Le rappel sert ensuite à parler de votre situation concrète.",
       supportLine:
-        "Si une question reste ouverte, la demande de rappel permet d'aller plus loin sur votre projet et sur le cadre du titre professionnel."
+        "Si une question reste ouverte, l'échange permet de vérifier si le parcours correspond vraiment à votre projet."
     }
   },
   contact: {
     heroEyebrow: 'Être rappelé',
-    heroTitle: "Parlons de votre projet de formation avec CITYZ'France",
+    heroTitle: 'Vous voulez savoir si ce parcours correspond à votre projet ?',
     heroSupport:
-      "Le rappel sert à faire le lien entre votre projet, le cadre du titre professionnel RPMS, son niveau 5 (Bac+2) reconnu par l'État et son format 100 % distanciel.",
-    formTitle: 'Présentez votre situation',
+      "Expliquez en quelques lignes où vous en êtes et ce que vous cherchez à clarifier. Le rappel sert à vérifier l'adéquation du parcours avant toute décision.",
+    formTitle: 'Décrivez en quelques lignes où vous en êtes',
     formIntro:
-      'Décrivez brièvement votre situation, les points utiles pour l’échange et ce que vous souhaitez vérifier à propos du titre professionnel RPMS.',
+      "Vous pouvez simplement préciser votre situation, les responsabilités que vous visez et les points que vous voulez éclaircir.",
     formSupport:
-      'Quelques informations suffisent pour permettre à CITYZ\'France de revenir vers vous dans de bonnes conditions.',
-    guidanceTitle: "Points que vous pouvez aborder pendant l'échange",
+      "Vous n'avez pas besoin de tout formaliser: quelques informations suffisent pour permettre à CITYZ'France de revenir vers vous dans de bonnes conditions.",
+    guidanceTitle: "Ce que vous pouvez clarifier pendant l'échange",
     guidancePoints: [
-      "La place du titre professionnel RPMS dans votre projet et le niveau visé.",
-      "Le cadre 100 % distanciel, l'e-learning et l'accompagnement pédagogique.",
-      "Les compétences travaillées en pilotage, management, organisation, territoire et reporting."
+      "Le rôle ou les responsabilités vers lesquels vous voulez progresser.",
+      "L'adéquation du format 100 % distanciel avec votre rythme.",
+      "Les compétences que vous voulez renforcer: activité, équipe, organisation, offre, territoire et reporting."
     ],
     nextStepNote: {
       title: 'Ce qui se passe après votre demande',
@@ -264,12 +264,12 @@ export const siteContent = {
         "Les informations demandées restent limitées à ce qui est utile pour vous recontacter."
       ]
     },
-    factsTitle: 'Repères du titre',
+    factsTitle: 'Repères utiles',
     footerBand: {
-      eyebrow: 'Avant de valider',
-      title: 'Vous pouvez relire le programme ou la FAQ avant de demander un rappel',
+      eyebrow: 'Avant de laisser vos coordonnées',
+      title: 'Vous pouvez encore relire le programme ou la FAQ',
       description:
-        'Si vous préférez prendre un peu de recul, ces pages restent accessibles avant de revenir vers le formulaire.'
+        "Si vous préférez prendre un peu de recul, ces pages restent accessibles avant de revenir vers le formulaire."
     },
     phone: '09 77 21 51 61',
     address: '110 Esplanade du General de Gaulle, 92400 Courbevoie',

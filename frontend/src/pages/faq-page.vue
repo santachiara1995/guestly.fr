@@ -27,32 +27,32 @@ onMounted(async () => {
 const faqCopy = computed(() => site.value.faq ?? {})
 const heroLead = computed(
   () =>
-    'Questions courantes sur le titre professionnel RPMS, RNCP38575, niveau 5 / Bac+2, 100 % distanciel, e-learning et accompagnement pédagogique.'
+    "Commencez par les questions qui comptent vraiment pour votre projet avant de laisser vos coordonnées."
 )
 const closingNote = computed(() => {
   const note = faqCopy.value.closingNote
   if (note && typeof note === 'object') {
     return {
-      eyebrow: note.eyebrow ?? 'Si la réponse manque',
+      eyebrow: note.eyebrow ?? 'Encore une hésitation ?',
       title: note.title ?? 'Revenir au programme avant de demander un rappel',
       description:
         note.description ??
-        'Les réponses ci-dessus résument les points utiles pour vous situer avant un échange plus personnalisé.',
+        "Les réponses ci-dessus résument les points utiles avant un échange plus personnalisé.",
       supportLine:
         note.supportLine ??
-        "Si une question reste ouverte, la demande de rappel permet de préciser votre situation et de vérifier si le titre professionnel RPMS correspond à votre projet."
+        "Si une question reste ouverte, la demande de rappel permet de préciser votre situation et de vérifier si le parcours correspond à votre projet."
     }
   }
 
   return {
-    eyebrow: 'Si la réponse manque',
+    eyebrow: 'Encore une hésitation ?',
     title: 'Revenir au programme avant de demander un rappel',
     description:
       typeof note === 'string' && note
         ? note
-        : 'Les réponses ci-dessus résument les points utiles pour vous situer avant un échange plus personnalisé.',
+        : "Les réponses ci-dessus résument les points utiles avant un échange plus personnalisé.",
     supportLine:
-      "Si une question reste ouverte, la demande de rappel permet de préciser votre situation et de vérifier si le titre professionnel RPMS correspond à votre projet."
+      "Si une question reste ouverte, la demande de rappel permet de préciser votre situation et de vérifier si le parcours correspond à votre projet."
   }
 })
 </script>
@@ -61,11 +61,15 @@ const closingNote = computed(() => {
   <div class="space-y-8 sm:space-y-10">
     <section class="grid gap-8 lg:grid-cols-[1.04fr,0.96fr] lg:items-start">
       <div class="space-y-5">
-        <SectionTitle
-          eyebrow="FAQ RPMS"
-          title="Les réponses utiles avant un rappel"
-          :description="heroLead"
-        />
+        <div class="space-y-4">
+          <p class="kicker">FAQ RPMS</p>
+          <h1 class="editorial-title max-w-4xl text-[clamp(2.05rem,4.2vw,3.7rem)] text-foreground">
+            Les questions qui bloquent le plus souvent la décision
+          </h1>
+          <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {{ heroLead }}
+          </p>
+        </div>
       </div>
 
       <Card class="page-cut">
@@ -91,8 +95,8 @@ const closingNote = computed(() => {
     <template v-else>
       <SectionTitle
         eyebrow="Objections fréquentes"
-        title="Les réponses utiles avant un rappel"
-        description="Chaque réponse doit aider à trancher, pas seulement répéter la fiche du programme."
+        title="Commencez par les points qui comptent le plus pour trancher"
+        description="Chaque réponse doit réduire une hésitation précise, pas seulement répéter la fiche du programme."
       />
 
       <div class="space-y-4">

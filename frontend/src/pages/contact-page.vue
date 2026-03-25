@@ -3,7 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import LeadForm from '@/components/lead-form.vue'
-import SectionTitle from '@/components/section-title.vue'
+import TrustStrip from '@/components/visual/trust-strip.vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { api } from '@/lib/api'
@@ -43,25 +43,29 @@ onMounted(async () => {
 })
 
 const contactCopy = computed(() => site.value.contact ?? {})
-const heroEyebrow = computed(() => 'Titre professionnel RPMS')
-const heroTitle = computed(() => "Faire le point sur le titre professionnel RPMS et votre projet")
+const heroEyebrow = computed(() => contactCopy.value.heroEyebrow ?? 'Être rappelé')
+const heroTitle = computed(
+  () =>
+    contactCopy.value.heroTitle ?? 'Vous voulez savoir si ce parcours correspond à votre projet ?'
+)
 const heroSupport = computed(
   () =>
-    "Le rappel sert à relier votre situation, le niveau Bac+2 et le format 100 % distanciel."
+    contactCopy.value.heroSupport ??
+    "Expliquez en quelques lignes où vous en êtes et ce que vous cherchez à clarifier. Le rappel sert à vérifier l'adéquation du parcours avant toute décision."
 )
-const formTitle = computed(() => contactCopy.value.formTitle ?? 'Présentez votre situation')
+const formTitle = computed(() => contactCopy.value.formTitle ?? 'Décrivez en quelques lignes où vous en êtes')
 const formIntro = computed(
   () =>
     contactCopy.value.formIntro ??
-    'Décrivez brièvement votre situation, les points utiles pour l’échange et ce que vous souhaitez vérifier à propos du titre professionnel RPMS.'
+    "Vous pouvez simplement préciser votre situation, les responsabilités que vous visez et les points que vous voulez éclaircir."
 )
 const formSupport = computed(
   () =>
     contactCopy.value.formSupport ??
-    "Quelques informations suffisent pour permettre à CITYZ'France de revenir vers vous dans de bonnes conditions."
+    "Vous n'avez pas besoin de tout formaliser: quelques informations suffisent pour permettre à CITYZ'France de revenir vers vous dans de bonnes conditions."
 )
 const guidanceTitle = computed(
-  () => contactCopy.value.guidanceTitle ?? "Points que vous pouvez aborder pendant l'échange"
+  () => contactCopy.value.guidanceTitle ?? "Ce que vous pouvez clarifier pendant l'échange"
 )
 const guidancePoints = computed(() => {
   const points = contactCopy.value.guidancePoints
@@ -70,9 +74,9 @@ const guidancePoints = computed(() => {
   }
 
   return [
-    'La place du titre professionnel RPMS dans votre projet et le niveau visé.',
-    "Le cadre 100 % distanciel, l'e-learning et l'accompagnement pédagogique.",
-    'Les compétences travaillées en pilotage, management, organisation, territoire et reporting.'
+    'Le rôle ou les responsabilités vers lesquels vous voulez progresser.',
+    "L'adéquation du format 100 % distanciel avec votre rythme.",
+    "Les compétences que vous voulez renforcer: activité, équipe, organisation, offre, territoire et reporting."
   ]
 })
 const nextStepNote = computed(() => {
@@ -95,26 +99,32 @@ const nextStepNote = computed(() => {
     ]
   }
 })
-const factsTitle = computed(() => contactCopy.value.factsTitle ?? 'Repères du titre')
+const factsTitle = computed(() => contactCopy.value.factsTitle ?? 'Repères utiles')
 const footerBand = computed(() => {
   const band = contactCopy.value.footerBand
   if (band && typeof band === 'object') {
     return {
-      eyebrow: band.eyebrow ?? 'Avant de valider',
-      title: band.title ?? 'Vous pouvez relire le programme ou la FAQ avant de demander un rappel',
+      eyebrow: band.eyebrow ?? 'Avant de laisser vos coordonnées',
+      title: band.title ?? 'Vous pouvez encore relire le programme ou la FAQ',
       description:
         band.description ??
-        'Si vous préférez prendre un peu de recul, ces pages restent accessibles avant de revenir vers le formulaire.'
+        "Si vous préférez prendre un peu de recul, ces pages restent accessibles avant de revenir vers le formulaire."
     }
   }
 
   return {
-    eyebrow: 'Avant de valider',
-    title: 'Vous pouvez relire le programme ou la FAQ avant de demander un rappel',
+    eyebrow: 'Avant de laisser vos coordonnées',
+    title: 'Vous pouvez encore relire le programme ou la FAQ',
     description:
-      'Si vous préférez prendre un peu de recul, ces pages restent accessibles avant de revenir vers le formulaire.'
+      "Si vous préférez prendre un peu de recul, ces pages restent accessibles avant de revenir vers le formulaire."
   }
 })
+const trustStripItems = computed(() => [
+  program.value?.rncpCode ?? 'RNCP38575',
+  program.value?.levelLabel ?? 'Niveau 5 (Bac+2)',
+  program.value?.formatLabel ?? '100 % distanciel',
+  program.value?.supportLabel ?? 'Accompagnement pédagogique'
+])
 
 const displayPhone = computed(() => site.value.contact?.phone?.trim() ?? null)
 const displayAddress = computed(
@@ -126,7 +136,6 @@ const displayAddress = computed(
 
 const supportFacts = computed(() =>
   [
-    { label: 'Titre', value: program.value?.title },
     { label: 'Niveau visé', value: program.value?.levelLabel },
     { label: 'Code RNCP', value: program.value?.rncpCode },
     { label: 'Modalité', value: program.value?.formatLabel },
@@ -138,53 +147,22 @@ const supportFacts = computed(() =>
 
 <template>
   <div class="space-y-12 sm:space-y-14">
-    <section class="grid gap-8 lg:grid-cols-[1.08fr,0.92fr] lg:items-start">
-      <div class="space-y-5">
-        <SectionTitle
-          :eyebrow="heroEyebrow"
-          :title="heroTitle"
-          :description="formIntro"
-        />
+    <section class="space-y-5">
+      <div class="space-y-4">
+        <p class="kicker">{{ heroEyebrow }}</p>
+        <h1 class="editorial-title max-w-4xl text-[clamp(2.2rem,4.7vw,4.1rem)] text-foreground">
+          {{ heroTitle }}
+        </h1>
         <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
           {{ heroSupport }}
         </p>
       </div>
 
-      <div class="space-y-4">
-        <div class="flex flex-wrap gap-2">
-          <span class="trust-chip">{{ program.title }}</span>
-          <span class="trust-chip">{{ program.rncpCode }}</span>
-          <span class="trust-chip">{{ program.levelLabel }}</span>
-          <span class="trust-chip">{{ program.formatLabel }}</span>
-        </div>
+      <p class="max-w-3xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-lg">
+        {{ formIntro }}
+      </p>
 
-        <Card class="page-cut">
-          <CardHeader>
-            <CardTitle>{{ factsTitle }}</CardTitle>
-          </CardHeader>
-          <CardContent class="space-y-4 text-sm leading-relaxed text-muted-foreground">
-            <div class="space-y-3">
-              <p v-for="item in supportFacts" :key="item.label">
-                <strong class="text-foreground">{{ item.label }} :</strong> {{ item.value }}
-              </p>
-            </div>
-
-            <div class="space-y-3 border-t border-border/70 pt-4">
-              <p v-if="displayPhone">
-                <strong class="text-foreground">Téléphone :</strong> {{ displayPhone }}
-              </p>
-              <p v-if="displayAddress">
-                <strong class="text-foreground">Adresse :</strong> {{ displayAddress }}
-              </p>
-              <p v-if="site.organizationProfile?.certification">
-                <strong class="text-foreground">Certification :</strong>
-                {{ site.organizationProfile.certification }}
-              </p>
-              <p v-if="loading">Chargement des coordonnées...</p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      <trust-strip :items="trustStripItems" />
     </section>
 
     <div class="grid gap-5 lg:grid-cols-[1.08fr,0.92fr] lg:items-start">
@@ -207,6 +185,27 @@ const supportFacts = computed(() =>
           </CardHeader>
           <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
             <p v-for="point in guidancePoints" :key="point">{{ point }}</p>
+
+            <div class="space-y-3 border-t border-border/70 pt-4">
+              <p class="font-semibold text-foreground">{{ factsTitle }}</p>
+              <p v-for="item in supportFacts" :key="item.label">
+                <strong class="text-foreground">{{ item.label }} :</strong> {{ item.value }}
+              </p>
+            </div>
+
+            <div class="space-y-3 border-t border-border/70 pt-4">
+              <p v-if="displayPhone">
+                <strong class="text-foreground">Téléphone :</strong> {{ displayPhone }}
+              </p>
+              <p v-if="displayAddress">
+                <strong class="text-foreground">Adresse :</strong> {{ displayAddress }}
+              </p>
+              <p v-if="site.organizationProfile?.certification">
+                <strong class="text-foreground">Certification :</strong>
+                {{ site.organizationProfile.certification }}
+              </p>
+              <p v-if="loading">Chargement des coordonnées...</p>
+            </div>
           </CardContent>
         </Card>
 

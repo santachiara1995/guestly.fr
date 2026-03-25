@@ -4,6 +4,7 @@ import { RouterLink } from 'vue-router'
 import { PhoneCall, ShieldCheck } from 'lucide-vue-next'
 
 import SectionTitle from '@/components/section-title.vue'
+import TrustStrip from '@/components/visual/trust-strip.vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { api } from '@/lib/api'
@@ -36,7 +37,7 @@ const accessIntro = computed(
   () =>
     accessCopy.value.fitLine ??
     accessCopy.value.intro ??
-    "Le format à distance, l'accompagnement pédagogique et les compétences visées sont pensés pour vous aider à vérifier si le titre professionnel RPMS correspond à votre projet."
+    "Le format à distance, l'accompagnement pédagogique et les compétences visées sont pensés pour vous aider à vérifier si le parcours correspond à votre projet."
 )
 const accessContactBand = computed(() => {
   const band = site.value.home?.contactBand ?? accessCopy.value.contactBand
@@ -55,9 +56,14 @@ const accessContactBand = computed(() => {
 const expectations = computed(() => accessCopy.value.expectations ?? [])
 const supportPoints = computed(() => accessCopy.value.supportPoints ?? [])
 const processSteps = computed(() => accessCopy.value.processSteps ?? [])
+const trustStripItems = computed(() => [
+  program.value?.rncpCode ?? 'RNCP38575',
+  program.value?.levelLabel ?? 'Niveau 5 (Bac+2)',
+  program.value?.formatLabel ?? '100 % distanciel',
+  program.value?.supportLabel ?? 'Accompagnement pédagogique'
+])
 const quickFacts = computed(() =>
   [
-    { label: 'Titre', value: program.value?.title },
     { label: 'Référence', value: program.value?.rncpCode },
     { label: 'Niveau', value: program.value?.levelLabel },
     { label: 'Modalité', value: program.value?.formatLabel },
@@ -72,13 +78,14 @@ const quickFacts = computed(() =>
     <section class="grid gap-8 lg:grid-cols-[1.05fr,0.95fr] lg:items-start">
       <div class="space-y-5">
         <SectionTitle
-          eyebrow="Titre professionnel RPMS"
-          title="Accès et accompagnement pédagogique"
-          description="Vérifiez le cadre du titre professionnel RPMS: RNCP38575, niveau 5 / Bac+2, 100 % distanciel, e-learning et accompagnement pédagogique."
+          eyebrow="Accès et accompagnement"
+          title="Ce qu'il faut vérifier avant de vous engager"
+          description="Le rôle de cette page est simple: vous aider à vérifier si le cadre du parcours vous convient avant d'aller plus loin."
         />
         <p class="max-w-3xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-lg">
           {{ accessIntro }}
         </p>
+        <trust-strip :items="trustStripItems" />
       </div>
 
       <div class="space-y-4">
@@ -185,7 +192,7 @@ const quickFacts = computed(() =>
         <div class="space-y-3">
           <p class="kicker">Contact</p>
           <h2 class="editorial-title text-[clamp(2rem,3.3vw,3.2rem)] text-foreground">
-            Demander un rappel pour situer le titre professionnel RPMS dans votre projet
+            Demander un rappel pour vérifier si le parcours vous convient
           </h2>
           <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
             {{ accessContactBand }}

@@ -35,18 +35,18 @@ const isActive = computed(() => (target) => {
         </div>
       </div>
 
-      <nav aria-label="Navigation principale" class="surface-cut grid-surface rounded-[1.35rem] p-2">
-        <ul class="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center">
+      <nav aria-label="Navigation principale" class="flex justify-center">
+        <ul class="inline-flex max-w-full flex-wrap items-center justify-center gap-2">
           <li v-for="item in primaryNavigation" :key="item.to">
             <RouterLink
               :to="item.to"
               :aria-current="isActive(item.to) ? 'page' : undefined"
               :class="
                 cn(
-                  'inline-flex h-10 w-full items-center justify-center rounded-xl border px-4 text-center text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/70 sm:w-auto',
+                  'inline-flex h-10 items-center justify-center rounded-full border px-4 text-center text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/70',
                   isActive(item.to)
                     ? 'border-primary/55 bg-primary text-primary-foreground shadow-md shadow-primary/20'
-                    : 'border-transparent bg-transparent text-foreground hover:-translate-y-0.5 hover:border-secondary/20 hover:bg-background/75'
+                    : 'border-border/70 bg-card/85 text-foreground shadow-sm hover:-translate-y-0.5 hover:border-secondary/30 hover:bg-background/90'
                 )
               "
             >

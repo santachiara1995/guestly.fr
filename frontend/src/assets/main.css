@@ -68,6 +68,7 @@
     @apply font-sans text-foreground;
     background: var(--background);
     scroll-behavior: smooth;
+    scroll-padding-top: 8rem;
   }
 
   body {
@@ -90,6 +91,10 @@
 
   #app {
     min-height: 100vh;
+  }
+
+  main :where([id]) {
+    scroll-margin-top: 8rem;
   }
 
   ::selection {
@@ -341,13 +346,21 @@
     color: var(--blue-eclipse);
   }
 
+  .faq-summary {
+    @apply flex min-h-11 cursor-pointer list-none items-start justify-between gap-4 rounded-[0.9rem] text-left transition-colors;
+  }
+
+  .faq-summary:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 4px;
+  }
+
   .footer-link {
     display: inline-flex;
     min-height: 2.75rem;
-    min-width: 2.75rem;
     align-items: center;
-    justify-content: center;
-    padding: 0 0.2rem;
+    justify-content: flex-start;
+    padding: 0;
     color: var(--ink);
     font-size: 0.92rem;
     font-weight: 500;
@@ -381,6 +394,192 @@
     background: var(--paper-soft);
     padding: 0.85rem 0.95rem;
   }
+
+  .app-shell {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .app-shell::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.9;
+  }
+
+  .app-shell > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .experience-switchboard {
+    display: grid;
+    gap: 1rem;
+    border: 1px solid color-mix(in oklab, var(--line) 84%, var(--primary));
+    border-radius: 1rem;
+    background: rgb(255 255 255 / 0.7);
+    padding: 0.95rem 1rem;
+    backdrop-filter: blur(14px);
+    box-shadow: var(--surface-shadow-soft);
+  }
+
+  .experience-switchboard__copy {
+    display: grid;
+    gap: 0.18rem;
+  }
+
+  .experience-switchboard__title {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .experience-switchboard__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+
+  .experience-switchboard__link {
+    display: inline-flex;
+    min-height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid color-mix(in oklab, var(--line) 80%, var(--primary));
+    background: var(--paper);
+    padding: 0.55rem 0.95rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--muted-ink);
+    text-decoration: none;
+    transition:
+      color 0.16s ease,
+      background-color 0.16s ease,
+      border-color 0.16s ease,
+      transform 0.16s ease;
+  }
+
+  .experience-switchboard__link:hover {
+    color: var(--ink);
+    border-color: color-mix(in oklab, var(--primary) 46%, white);
+    transform: translateY(-1px);
+  }
+
+  .experience-switchboard__link--active,
+  .experience-switchboard__link[aria-current="page"] {
+    border-color: transparent;
+    background: linear-gradient(180deg, var(--primary) 0%, color-mix(in oklab, var(--primary) 84%, var(--secondary)) 100%);
+    color: var(--primary-foreground);
+    box-shadow: 0 12px 24px rgb(47 102 232 / 0.18);
+  }
+
+  .experience-orientation-hub::before {
+    background:
+      radial-gradient(circle at 12% 0%, rgb(47 102 232 / 0.08), transparent 24%),
+      radial-gradient(circle at 92% 6%, rgb(28 75 141 / 0.06), transparent 20%);
+  }
+
+  .experience-career-journey {
+    --paper: #fffdf9;
+    --paper-soft: #f6f2ea;
+    --accent: #edf4fb;
+    --surface-shadow: 0 22px 48px rgb(19 38 58 / 0.05);
+    --surface-shadow-soft: 0 12px 26px rgb(19 38 58 / 0.04);
+  }
+
+  .experience-career-journey::before {
+    background:
+      linear-gradient(110deg, rgb(255 255 255 / 0.64) 0%, transparent 28%),
+      repeating-linear-gradient(
+        90deg,
+        transparent 0,
+        transparent 106px,
+        rgb(47 102 232 / 0.04) 106px,
+        rgb(47 102 232 / 0.04) 108px
+      ),
+      linear-gradient(180deg, rgb(246 249 252 / 0.72) 0%, rgb(255 250 242 / 0.78) 42%, transparent 100%);
+  }
+
+  .experience-career-journey .header-shell {
+    border-radius: 1rem 1rem 1.45rem 1.45rem;
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.92) 0%, rgb(250 246 238 / 0.92) 100%);
+  }
+
+  .experience-career-journey .page-hero {
+    background: linear-gradient(135deg, rgb(255 255 255 / 0.98) 0%, rgb(248 243 234 / 0.95) 100%);
+  }
+
+  .experience-career-journey .page-cut,
+  .experience-career-journey .arch-cta,
+  .experience-career-journey .impact-stat {
+    border-left: 4px solid color-mix(in oklab, var(--primary) 22%, white);
+  }
+
+  .experience-career-journey .elevated-item {
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.92) 0%, rgb(247 242 234 / 0.98) 100%);
+  }
+
+  .experience-program-first-marketplace {
+    --paper: #fcfdff;
+    --paper-soft: #eef4fb;
+    --surface-shadow: 0 16px 34px rgb(19 38 58 / 0.045);
+    --surface-shadow-soft: 0 8px 18px rgb(19 38 58 / 0.03);
+  }
+
+  .experience-program-first-marketplace::before {
+    background:
+      linear-gradient(rgb(47 102 232 / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(47 102 232 / 0.04) 1px, transparent 1px),
+      linear-gradient(180deg, rgb(246 249 252 / 0.7) 0%, rgb(255 255 255 / 0.76) 100%);
+    background-size: 34px 34px, 34px 34px, auto;
+  }
+
+  .experience-program-first-marketplace .header-shell,
+  .experience-program-first-marketplace .page-cut,
+  .experience-program-first-marketplace .page-hero,
+  .experience-program-first-marketplace .arch-cta,
+  .experience-program-first-marketplace .footer-shell,
+  .experience-program-first-marketplace .elevated-item,
+  .experience-program-first-marketplace .impact-stat {
+    border-radius: 0.92rem;
+  }
+
+  .experience-program-first-marketplace .header-shell {
+    backdrop-filter: none;
+    background: rgb(255 255 255 / 0.94);
+    box-shadow: 0 8px 20px rgb(19 38 58 / 0.05);
+  }
+
+  .experience-program-first-marketplace .page-hero {
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.98) 0%, rgb(242 247 253 / 0.96) 100%);
+  }
+
+  .experience-program-first-marketplace .page-cut,
+  .experience-program-first-marketplace .elevated-item,
+  .experience-program-first-marketplace .impact-stat {
+    border-color: color-mix(in oklab, var(--line) 76%, var(--primary));
+  }
+
+  .experience-program-first-marketplace .elevated-item {
+    background: rgb(255 255 255 / 0.96);
+  }
+
+  .experience-program-first-marketplace .impact-stat::before {
+    inset: auto 0 0 0;
+    width: auto;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  }
+
+  .experience-program-first-marketplace .nav-link {
+    font-size: 0.84rem;
+    letter-spacing: 0.02em;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -391,6 +590,10 @@
   .nav-link,
   .brand-symbol,
   .footer-link {
+    transition: none;
+  }
+
+  .experience-switchboard__link {
     transition: none;
   }
 }

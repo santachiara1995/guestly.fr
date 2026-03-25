@@ -1,7 +1,8 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
+import { useExperienceVariant } from '@/composables/use-experience-variant'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -16,8 +17,10 @@ const props = defineProps({
 
 const emit = defineEmits(['submitted'])
 const router = useRouter()
+const { toWithExperience } = useExperienceVariant()
 const submitting = ref(false)
 const errorMessage = ref('')
+const sourcePageWithExperience = computed(() => toWithExperience(props.sourcePage))
 
 const form = reactive({
   firstName: '',
@@ -40,11 +43,11 @@ async function submitForm() {
   try {
     await api.submitLead({
       ...form,
-      sourcePage: props.sourcePage,
+      sourcePage: sourcePageWithExperience.value,
       honeypot: ''
     })
     emit('submitted')
-    router.push('/merci')
+    router.push(toWithExperience('/merci'))
   } catch (error) {
     errorMessage.value = error instanceof Error ? error.message : 'Envoi impossible'
   } finally {
@@ -54,7 +57,11 @@ async function submitForm() {
 </script>
 
 <template>
-  <form class="space-y-5" @submit.prevent="submitForm">
+  <form
+    :aria-busy="submitting ? 'true' : undefined"
+    class="space-y-5"
+    @submit.prevent="submitForm"
+  >
     <div class="hidden" aria-hidden="true">
       <label for="lead-website">Site web</label>
       <input id="lead-website" autocomplete="off" name="website" tabindex="-1" type="text">
@@ -142,7 +149,7 @@ async function submitForm() {
       {{ errorMessage }}
     </p>
 
-    <Button :disabled="submitting" size="lg" type="submit">
+    <Button :aria-busy="submitting ? 'true' : undefined" :disabled="submitting" size="lg" type="submit">
       {{ submitting ? 'Envoi en cours...' : 'Être rappelé' }}
     </Button>
   </form>

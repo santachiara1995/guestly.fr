@@ -1,4 +1,4 @@
-const fallbackApi = import.meta.env.DEV ? 'http://127.0.0.1:3000' : ''
+const fallbackApi = import.meta.env.DEV ? 'http://127.0.0.1:3100' : ''
 const apiRoot = (import.meta.env.VITE_API_URL ?? fallbackApi).replace(/\/$/, '')
 
 function buildUrl(path) {

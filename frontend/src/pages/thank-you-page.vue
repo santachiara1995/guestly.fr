@@ -2,12 +2,14 @@
 import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
+import { useExperienceVariant } from '@/composables/use-experience-variant'
 import { Button } from '@/components/ui/button'
 import { api } from '@/lib/api'
 
 const site = ref({
   thankYou: {}
 })
+const { toWithExperience } = useExperienceVariant()
 
 onMounted(async () => {
   try {
@@ -22,6 +24,8 @@ const nextStepLine = computed(
     site.value.thankYou?.nextStepLine ??
     'Nous revenons vers vous pour préciser votre projet et répondre à vos questions.'
 )
+const homeLink = computed(() => toWithExperience('/'))
+const programLink = computed(() => toWithExperience('/programme'))
 </script>
 
 <template>
@@ -36,12 +40,8 @@ const nextStepLine = computed(
       </p>
 
       <div class="mx-auto mt-6 flex flex-wrap justify-center gap-3">
-        <RouterLink to="/">
-          <Button variant="outline">Retour à l’accueil</Button>
-        </RouterLink>
-        <RouterLink to="/programme">
-          <Button>Voir le programme</Button>
-        </RouterLink>
+        <Button :as="RouterLink" :to="homeLink" variant="outline">Retour à l’accueil</Button>
+        <Button :as="RouterLink" :to="programLink">Voir le programme</Button>
       </div>
     </div>
   </section>

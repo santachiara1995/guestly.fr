@@ -6,7 +6,7 @@ import { buttonVariants } from './index'
 
 const props = defineProps({
   as: {
-    type: String,
+    type: [String, Object, Function],
     default: 'button'
   },
   variant: {

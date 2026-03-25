@@ -8,7 +8,16 @@ dist
 frontend/dist
 
 # runtime data
-data
+/data
+/backend/data
+/app.local.db
+/app.local.db-shm
+/app.local.db-wal
+/backend/app.local.db
+/app.db.pre-pass2.bak
+
+# local scratch
+/tmp
 
 # env files
 .env

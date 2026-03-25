@@ -24,12 +24,26 @@ onMounted(async () => {
   }
 })
 
+const heroTitle = computed(
+  () => program.value?.title ?? 'Titre professionnel Responsable petite et moyenne structure (RPMS)'
+)
+const heroSubtitle = computed(
+  () =>
+    program.value
+      ? `${program.value.rncpCode} - ${program.value.levelLabel} - ${program.value.formatLabel} - ${program.value.rhythmLabel} - ${program.value.supportLabel}`
+      : 'RNCP38575, niveau 5 / Bac+2, 100 % distanciel, e-learning et accompagnement pédagogique.'
+)
+const heroNote =
+  'Le programme relie pilotage, management, organisation, territoire, partenariats, production, diffusion et reporting dans une logique de titre professionnel reconnu.'
+
 const quickFacts = computed(() =>
   [
+    { label: 'Titre', value: program.value?.title ? 'Titre professionnel RPMS' : undefined },
+    { label: 'Référence', value: program.value?.rncpCode },
     { label: 'Niveau', value: program.value?.levelLabel },
     { label: 'Modalité', value: program.value?.formatLabel },
-    { label: 'Format', value: program.value?.rhythmLabel },
-    { label: 'Accompagnement', value: program.value?.supportLabel }
+    { label: 'Cadre', value: program.value?.rhythmLabel },
+    { label: 'Appui', value: program.value?.supportLabel }
   ].filter((item) => item.value)
 )
 </script>
@@ -46,38 +60,42 @@ const quickFacts = computed(() =>
     </p>
 
     <template v-else-if="program">
-      <section class="page-cut space-y-6 rounded-[1.5rem] p-6 sm:p-8 lg:p-10">
-        <div class="flex flex-wrap gap-2">
-          <Badge>RPMS</Badge>
-          <Badge variant="outline">{{ program.rncpCode }}</Badge>
-          <Badge variant="outline">{{ program.levelLabel }}</Badge>
-          <Badge variant="outline">{{ program.formatLabel }}</Badge>
+      <section class="grid gap-8 lg:grid-cols-[1.04fr,0.96fr] lg:items-start">
+        <div class="space-y-5">
+          <SectionTitle
+            eyebrow="Programme RPMS"
+            :title="heroTitle"
+            :description="heroSubtitle"
+          />
+          <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-lg">
+            {{ heroNote }}
+          </p>
+
+          <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <RouterLink to="/contact">
+              <Button size="lg">
+                Être rappelé
+                <ArrowRight class="ml-2 h-4 w-4" />
+              </Button>
+            </RouterLink>
+            <RouterLink to="/acces-et-accompagnement">
+              <Button size="lg" variant="outline">Accès et accompagnement</Button>
+            </RouterLink>
+          </div>
         </div>
 
-        <div class="grid gap-6 lg:grid-cols-[1.02fr,0.98fr] lg:items-start">
-          <div class="space-y-4">
-            <h1 class="editorial-title max-w-4xl text-[clamp(2.5rem,5.2vw,4.8rem)] text-foreground">
-              {{ program.title }}
-            </h1>
-            <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              {{ program.intro }}
-            </p>
-            <p class="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              Retrouvez ici les compétences visées, les grands blocs du parcours et les repères
-              utiles pour situer votre projet.
-            </p>
-
-            <div class="flex flex-wrap gap-3">
-              <RouterLink to="/contact">
-                <Button size="lg">
-                  Être rappelé
-                  <ArrowRight class="ml-2 h-4 w-4" />
-                </Button>
-              </RouterLink>
-              <RouterLink to="/acces-et-accompagnement">
-                <Button size="lg" variant="outline">Accès et accompagnement</Button>
-              </RouterLink>
+        <div class="space-y-4 lg:pt-1">
+          <div class="page-cut rounded-[1.45rem] p-5 sm:p-6">
+            <div class="flex flex-wrap gap-2">
+              <Badge>RPMS</Badge>
+              <Badge variant="outline">{{ program.rncpCode }}</Badge>
+              <Badge variant="outline">{{ program.levelLabel }}</Badge>
+              <Badge variant="outline">{{ program.formatLabel }}</Badge>
             </div>
+            <p class="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Un cadre de lecture simple pour situer le titre professionnel, sa référence RNCP et
+              le format 100 % distanciel.
+            </p>
           </div>
 
           <div class="grid gap-3 sm:grid-cols-2">
@@ -98,37 +116,45 @@ const quickFacts = computed(() =>
         </div>
       </section>
 
-      <section class="grid gap-6 lg:grid-cols-[0.95fr,1.05fr]">
-        <Card class="page-cut h-fit">
-          <CardHeader>
-            <CardTitle>Ce que vous allez travailler</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul class="space-y-3 text-sm leading-relaxed text-muted-foreground">
-              <li v-for="item in program.objectiveSummary" :key="item" class="flex gap-3">
-                <span class="mt-1 h-2.5 w-2.5 rounded-full bg-primary"></span>
-                <span>{{ item }}</span>
-              </li>
-            </ul>
-          </CardContent>
-        </Card>
+      <section class="space-y-8">
+        <SectionTitle
+          eyebrow="Ce que vous allez travailler"
+          title="Des repères concrets pour le pilotage, le management et l'organisation"
+          description="Le programme ne se limite pas à un intitulé: il relie le titre professionnel RPMS à des activités précises autour de la performance, de la structure et des responsabilités."
+        />
 
-        <Card class="page-cut h-fit">
-          <CardHeader>
-            <CardTitle>Compétences mobilisées</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul class="grid gap-3 text-sm leading-relaxed text-muted-foreground sm:grid-cols-2">
-              <li
-                v-for="scope in program.professionalScope"
-                :key="scope"
-                class="rounded-xl border border-border bg-white px-4 py-3"
-              >
-                {{ scope }}
-              </li>
-            </ul>
-          </CardContent>
-        </Card>
+        <div class="grid gap-6 lg:grid-cols-[0.95fr,1.05fr]">
+          <Card class="page-cut h-fit">
+            <CardHeader>
+              <CardTitle>Objectifs du parcours</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul class="space-y-3 text-sm leading-relaxed text-muted-foreground">
+                <li v-for="item in program.objectiveSummary" :key="item" class="flex gap-3">
+                  <span class="mt-1 h-2.5 w-2.5 rounded-full bg-primary"></span>
+                  <span>{{ item }}</span>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card class="page-cut h-fit">
+            <CardHeader>
+              <CardTitle>Compétences mobilisées</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul class="grid gap-3 text-sm leading-relaxed text-muted-foreground sm:grid-cols-2">
+                <li
+                  v-for="scope in program.professionalScope"
+                  :key="scope"
+                  class="rounded-xl border border-border bg-white px-4 py-3"
+                >
+                  {{ scope }}
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
       </section>
 
       <section class="space-y-6">
@@ -167,7 +193,7 @@ const quickFacts = computed(() =>
             </h2>
             <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
               Si vous souhaitez aller plus loin après cette lecture, vous pouvez demander un rappel
-              depuis la page contact.
+              depuis la page contact ou revenir sur le cadre du parcours.
             </p>
           </div>
 

@@ -27,70 +27,63 @@ onMounted(async () => {
 const faqCopy = computed(() => site.value.faq ?? {})
 const heroLead = computed(
   () =>
-    site.value.positioning?.fitLine ??
-    'La FAQ répond aux points qui freinent souvent une décision avant un rappel.'
+    'Questions courantes sur le titre professionnel RPMS, RNCP38575, niveau 5 / Bac+2, 100 % distanciel, e-learning et accompagnement pédagogique.'
 )
-const closingNote = computed(
-  () => {
-    const note = faqCopy.value.closingNote
-    if (note && typeof note === 'object') {
-      return {
-        eyebrow: note.eyebrow ?? 'Si la réponse manque',
-        title: note.title ?? 'Les réponses les plus utiles avant un échange',
-        description:
-          note.description ??
-          "Les réponses ci-dessus résument les points utiles pour vous situer avant un échange plus personnalisé.",
-        supportLine:
-          note.supportLine ??
-          "Si une réponse manque, un rappel permet de préciser votre situation et de vérifier si le RPMS correspond à votre projet."
-      }
-    }
-
+const closingNote = computed(() => {
+  const note = faqCopy.value.closingNote
+  if (note && typeof note === 'object') {
     return {
-      eyebrow: 'Si la réponse manque',
-      title: 'Les réponses les plus utiles avant un échange',
+      eyebrow: note.eyebrow ?? 'Si la réponse manque',
+      title: note.title ?? 'Revenir au programme avant de demander un rappel',
       description:
-        typeof note === 'string' && note
-          ? note
-          : "Les réponses ci-dessus résument les points utiles pour vous situer avant un échange plus personnalisé.",
+        note.description ??
+        'Les réponses ci-dessus résument les points utiles pour vous situer avant un échange plus personnalisé.',
       supportLine:
-        'Si une réponse manque, un rappel permet de préciser votre situation et de vérifier si le RPMS correspond à votre projet.'
+        note.supportLine ??
+        "Si une question reste ouverte, la demande de rappel permet de préciser votre situation et de vérifier si le titre professionnel RPMS correspond à votre projet."
     }
   }
-)
+
+  return {
+    eyebrow: 'Si la réponse manque',
+    title: 'Revenir au programme avant de demander un rappel',
+    description:
+      typeof note === 'string' && note
+        ? note
+        : 'Les réponses ci-dessus résument les points utiles pour vous situer avant un échange plus personnalisé.',
+    supportLine:
+      "Si une question reste ouverte, la demande de rappel permet de préciser votre situation et de vérifier si le titre professionnel RPMS correspond à votre projet."
+  }
+})
 </script>
 
 <template>
   <div class="space-y-8 sm:space-y-10">
-    <section class="page-cut rounded-[1.6rem] p-6 sm:p-8 lg:p-10">
-      <div class="grid gap-6 lg:grid-cols-[1.04fr,0.96fr] lg:items-start">
-        <div class="space-y-4">
-          <p class="kicker">FAQ</p>
-          <h1 class="editorial-title max-w-3xl text-[clamp(2.45rem,5vw,4.5rem)] text-foreground">
-            Les réponses qui lèvent les derniers doutes
-          </h1>
-          <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {{ heroLead }}
-          </p>
-        </div>
-
-        <Card class="page-cut">
-          <CardContent class="space-y-4 p-6 text-sm leading-relaxed text-muted-foreground">
-            <p class="kicker">{{ closingNote.eyebrow }}</p>
-            <h2 class="text-2xl font-semibold text-foreground">{{ closingNote.title }}</h2>
-            <p>{{ closingNote.description }}</p>
-            <p>{{ closingNote.supportLine }}</p>
-            <div class="flex flex-wrap gap-3 pt-1">
-              <RouterLink to="/contact">
-                <Button size="lg">Être rappelé</Button>
-              </RouterLink>
-              <RouterLink to="/programme">
-                <Button size="lg" variant="outline">Voir le programme</Button>
-              </RouterLink>
-            </div>
-          </CardContent>
-        </Card>
+    <section class="grid gap-8 lg:grid-cols-[1.04fr,0.96fr] lg:items-start">
+      <div class="space-y-5">
+        <SectionTitle
+          eyebrow="FAQ RPMS"
+          title="Les réponses utiles avant un rappel"
+          :description="heroLead"
+        />
       </div>
+
+      <Card class="page-cut">
+        <CardContent class="space-y-4 p-6 text-sm leading-relaxed text-muted-foreground">
+          <p class="kicker">{{ closingNote.eyebrow }}</p>
+          <h2 class="text-2xl font-semibold text-foreground">{{ closingNote.title }}</h2>
+          <p>{{ closingNote.description }}</p>
+          <p>{{ closingNote.supportLine }}</p>
+          <div class="flex flex-wrap gap-3 pt-1">
+            <RouterLink to="/contact">
+              <Button size="lg">Être rappelé</Button>
+            </RouterLink>
+            <RouterLink to="/programme">
+              <Button size="lg" variant="outline">Voir le programme</Button>
+            </RouterLink>
+          </div>
+        </CardContent>
+      </Card>
     </section>
 
     <p v-if="loading" class="text-sm text-muted-foreground">Chargement de la FAQ...</p>

@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import LeadForm from '@/components/lead-form.vue'
+import SectionTitle from '@/components/section-title.vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { api } from '@/lib/api'
@@ -42,23 +43,17 @@ onMounted(async () => {
 })
 
 const contactCopy = computed(() => site.value.contact ?? {})
-const brandDescriptor = computed(
-  () => site.value.brand?.descriptor ?? 'Organisme de formation certifié Qualiopi'
-)
-const heroEyebrow = computed(() => contactCopy.value.heroEyebrow ?? 'Être rappelé')
-const heroTitle = computed(
-  () => contactCopy.value.heroTitle ?? "Parlons de votre projet de formation avec CITYZ'France"
-)
+const heroEyebrow = computed(() => 'Titre professionnel RPMS')
+const heroTitle = computed(() => "Faire le point sur le titre professionnel RPMS et votre projet")
 const heroSupport = computed(
   () =>
-    contactCopy.value.heroSupport ??
-    "Le rappel sert à faire le lien entre votre projet, le cadre du RPMS et le niveau 5 (Bac+2) visé."
+    "Le rappel sert à relier votre situation, le niveau Bac+2 et le format 100 % distanciel."
 )
 const formTitle = computed(() => contactCopy.value.formTitle ?? 'Présentez votre situation')
 const formIntro = computed(
   () =>
     contactCopy.value.formIntro ??
-    'Décrivez brièvement votre situation, ce que vous cherchez à clarifier et les questions que vous souhaitez aborder pendant l’échange.'
+    'Décrivez brièvement votre situation, les points utiles pour l’échange et ce que vous souhaitez vérifier à propos du titre professionnel RPMS.'
 )
 const formSupport = computed(
   () =>
@@ -66,7 +61,7 @@ const formSupport = computed(
     "Quelques informations suffisent pour permettre à CITYZ'France de revenir vers vous dans de bonnes conditions."
 )
 const guidanceTitle = computed(
-  () => contactCopy.value.guidanceTitle ?? "Ce que vous pouvez clarifier pendant l'échange"
+  () => contactCopy.value.guidanceTitle ?? "Points que vous pouvez aborder pendant l'échange"
 )
 const guidancePoints = computed(() => {
   const points = contactCopy.value.guidancePoints
@@ -75,9 +70,9 @@ const guidancePoints = computed(() => {
   }
 
   return [
-    "La place du RPMS dans votre projet d'évolution ou de reconversion.",
+    'La place du titre professionnel RPMS dans votre projet et le niveau visé.',
     "Le cadre 100 % distanciel, l'e-learning et l'accompagnement pédagogique.",
-    'Les compétences travaillées en pilotage, management, organisation et reporting.'
+    'Les compétences travaillées en pilotage, management, organisation, territoire et reporting.'
   ]
 })
 const nextStepNote = computed(() => {
@@ -100,7 +95,7 @@ const nextStepNote = computed(() => {
     ]
   }
 })
-const factsTitle = computed(() => contactCopy.value.factsTitle ?? 'Points utiles')
+const factsTitle = computed(() => contactCopy.value.factsTitle ?? 'Repères du titre')
 const footerBand = computed(() => {
   const band = contactCopy.value.footerBand
   if (band && typeof band === 'object') {
@@ -131,6 +126,7 @@ const displayAddress = computed(
 
 const supportFacts = computed(() =>
   [
+    { label: 'Titre', value: program.value?.title },
     { label: 'Niveau visé', value: program.value?.levelLabel },
     { label: 'Code RNCP', value: program.value?.rncpCode },
     { label: 'Modalité', value: program.value?.formatLabel },
@@ -142,32 +138,52 @@ const supportFacts = computed(() =>
 
 <template>
   <div class="space-y-12 sm:space-y-14">
-    <section class="page-cut rounded-[1.6rem] p-6 sm:p-8 lg:p-10">
+    <section class="grid gap-8 lg:grid-cols-[1.08fr,0.92fr] lg:items-start">
       <div class="space-y-5">
-        <div class="flex flex-wrap items-center gap-3">
-          <p class="kicker">{{ heroEyebrow }}</p>
-          <span class="trust-chip">{{ brandDescriptor }}</span>
+        <SectionTitle
+          :eyebrow="heroEyebrow"
+          :title="heroTitle"
+          :description="formIntro"
+        />
+        <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          {{ heroSupport }}
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <div class="flex flex-wrap gap-2">
+          <span class="trust-chip">{{ program.title }}</span>
+          <span class="trust-chip">{{ program.rncpCode }}</span>
+          <span class="trust-chip">{{ program.levelLabel }}</span>
+          <span class="trust-chip">{{ program.formatLabel }}</span>
         </div>
 
-        <div class="grid gap-5 lg:grid-cols-[1.08fr,0.92fr] lg:items-end">
-          <div class="space-y-4">
-            <h1 class="editorial-title max-w-3xl text-[clamp(2.45rem,5vw,4.6rem)] text-foreground">
-              {{ heroTitle }}
-            </h1>
-            <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              {{ formIntro }}
-            </p>
-            <p class="max-w-3xl text-sm leading-relaxed text-foreground/80 sm:text-base">
-              {{ heroSupport }}
-            </p>
-          </div>
+        <Card class="page-cut">
+          <CardHeader>
+            <CardTitle>{{ factsTitle }}</CardTitle>
+          </CardHeader>
+          <CardContent class="space-y-4 text-sm leading-relaxed text-muted-foreground">
+            <div class="space-y-3">
+              <p v-for="item in supportFacts" :key="item.label">
+                <strong class="text-foreground">{{ item.label }} :</strong> {{ item.value }}
+              </p>
+            </div>
 
-          <div class="flex flex-wrap gap-2 lg:justify-end">
-            <span class="trust-chip">{{ program.levelLabel }}</span>
-            <span class="trust-chip">{{ program.formatLabel }}</span>
-            <span class="trust-chip">{{ program.supportLabel }}</span>
-          </div>
-        </div>
+            <div class="space-y-3 border-t border-border/70 pt-4">
+              <p v-if="displayPhone">
+                <strong class="text-foreground">Téléphone :</strong> {{ displayPhone }}
+              </p>
+              <p v-if="displayAddress">
+                <strong class="text-foreground">Adresse :</strong> {{ displayAddress }}
+              </p>
+              <p v-if="site.organizationProfile?.certification">
+                <strong class="text-foreground">Certification :</strong>
+                {{ site.organizationProfile.certification }}
+              </p>
+              <p v-if="loading">Chargement des coordonnées...</p>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </section>
 
@@ -200,33 +216,6 @@ const supportFacts = computed(() =>
           </CardHeader>
           <CardContent class="space-y-3 text-sm leading-relaxed text-muted-foreground">
             <p v-for="point in nextStepNote.points" :key="point">{{ point }}</p>
-          </CardContent>
-        </Card>
-
-        <Card class="page-cut">
-          <CardHeader>
-            <CardTitle>{{ factsTitle }}</CardTitle>
-          </CardHeader>
-          <CardContent class="space-y-4 text-sm leading-relaxed text-muted-foreground">
-            <div class="space-y-3">
-              <p v-for="item in supportFacts" :key="item.label">
-                <strong class="text-foreground">{{ item.label }} :</strong> {{ item.value }}
-              </p>
-            </div>
-
-            <div class="space-y-3 border-t border-border/70 pt-4">
-              <p v-if="displayPhone">
-                <strong class="text-foreground">Téléphone :</strong> {{ displayPhone }}
-              </p>
-              <p v-if="displayAddress">
-                <strong class="text-foreground">Adresse :</strong> {{ displayAddress }}
-              </p>
-              <p v-if="site.organizationProfile?.certification">
-                <strong class="text-foreground">Certification :</strong>
-                {{ site.organizationProfile.certification }}
-              </p>
-              <p v-if="loading">Chargement des coordonnées...</p>
-            </div>
           </CardContent>
         </Card>
       </div>

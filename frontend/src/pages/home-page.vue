@@ -16,13 +16,13 @@ const site = ref({
     descriptor: 'Organisme de formation certifié Qualiopi'
   },
   positioning: {
-    eyebrow: "CITYZ'France",
+    eyebrow: 'Titre professionnel RPMS',
     title:
-      "Avec CITYZ'France, avancez vers des fonctions de pilotage, de management et d'organisation.",
+      'Un repère Bac+2 reconnu pour piloter, manager et organiser une petite ou moyenne structure.',
     subtitle:
-      "Le RPMS est une formation de niveau 5 (Bac+2) conçue pour développer des bases concrètes en pilotage, management et organisation, dans un cadre 100 % distanciel avec accompagnement pédagogique.",
+      "Le titre professionnel RPMS est un titre de niveau 5 (Bac+2) reconnu par l'État, conçu pour développer des bases concrètes en pilotage, management et organisation, dans un cadre 100 % distanciel avec accompagnement pédagogique.",
     fitLine:
-      "Si vous cherchez un parcours lisible pour clarifier votre projet et renforcer des responsabilités concrètes, CITYZ'France vous aide à comprendre ce que cette progression peut réellement vous apporter."
+      "Le site aide à situer le titre professionnel RPMS, son niveau, son format et les responsabilités qu'il prépare avant tout échange."
   },
   home: {
     proofItems: [],
@@ -31,18 +31,18 @@ const site = ref({
     journey: [],
     valueSection: {
       eyebrow: "Pourquoi CITYZ'France",
-      title: 'Un cadre clair pour relier votre projet, le niveau visé et la réalité du parcours',
+      title: 'Un cadre clair pour relier le titre, le niveau visé et la réalité du parcours',
       description:
-        "Avant de vous engager, l'enjeu est d'identifier ce que le RPMS peut structurer dans votre projet et la manière dont CITYZ'France vous accompagne.",
+        "Avant de vous engager, l'enjeu est d'identifier ce que le titre professionnel RPMS peut structurer dans votre projet et la manière dont CITYZ'France vous accompagne.",
       items: []
     },
     contactBand: {
       eyebrow: 'Prochaine étape',
-      title: 'Demandez un rappel pour vérifier si le RPMS correspond à votre projet',
+      title: 'Demandez un rappel pour situer le titre professionnel RPMS dans votre projet',
       description:
-        "L'échange avec CITYZ'France permet de faire le point sur votre situation, de clarifier les questions utiles et de voir comment avancer.",
+        "L'échange avec CITYZ'France permet de revenir sur le titre, le niveau 5 (Bac+2), le format à distance et les compétences visées.",
       supportLine:
-        'Vous repartez avec une vision plus claire du parcours, du niveau visé et des prochaines étapes possibles.'
+        'Vous repartez avec un cadre plus net sur le programme, les blocs de compétences et la suite possible.'
     }
   }
 })
@@ -50,6 +50,17 @@ const loading = ref(true)
 const errorMessage = ref('')
 
 const highlightIcons = [ShieldCheck, Waypoints, BookOpenCheck]
+
+const heroEyebrow = computed(() => site.value.positioning?.eyebrow ?? 'Titre professionnel RPMS')
+const brandDescriptor = computed(
+  () => site.value.brand?.descriptor ?? 'Organisme de formation certifié Qualiopi'
+)
+const heroTitle =
+  'Titre professionnel RPMS : un repère Bac+2 reconnu pour piloter, manager et organiser une structure.'
+const heroSubtitle =
+  "RNCP38575, 100 % distanciel, e-learning et accompagnement pédagogique. Le parcours met en avant le pilotage d'activité, le management d'équipe, l'organisation, le territoire, les partenariats, la production, la diffusion et le reporting."
+const heroFitLine =
+  "Le site aide à comprendre ce que le titre professionnel structure concrètement avant tout échange."
 
 onMounted(async () => {
   try {
@@ -63,26 +74,6 @@ onMounted(async () => {
   }
 })
 
-const brandDescriptor = computed(
-  () => site.value.brand?.descriptor ?? 'Organisme de formation certifié Qualiopi'
-)
-const heroEyebrow = computed(() => site.value.positioning?.eyebrow ?? "CITYZ'France")
-const heroTitle = computed(
-  () =>
-    site.value.positioning?.title ??
-    "Avec CITYZ'France, avancez vers des fonctions de pilotage, de management et d'organisation."
-)
-const heroSubtitle = computed(
-  () =>
-    site.value.positioning?.subtitle ??
-    "Le RPMS est une formation de niveau 5 (Bac+2) conçue pour développer des bases concrètes en pilotage, management et organisation, dans un cadre 100 % distanciel avec accompagnement pédagogique."
-)
-const heroFitLine = computed(
-  () =>
-    site.value.positioning?.fitLine ??
-    "Si vous cherchez un parcours lisible pour clarifier votre projet et renforcer des responsabilités concrètes, CITYZ'France vous aide à comprendre ce que cette progression peut réellement vous apporter."
-)
-
 const proofItems = computed(() => {
   const items = site.value.home?.proofItems
   if (Array.isArray(items) && items.length > 0) {
@@ -91,14 +82,19 @@ const proofItems = computed(() => {
 
   return [
     {
-      value: program.value?.rncpCode ?? 'RNCP38575',
-      label: 'Code RNCP',
-      note: 'Titre professionnel RPMS'
+      value: program.value?.title ?? 'Titre professionnel RPMS',
+      label: 'Titre',
+      note: 'Titre professionnel reconnu'
     },
     {
-      value: program.value?.levelLabel ?? 'Niveau 5 (Bac+2)',
-      label: 'Niveau visé',
-      note: 'Bac+2'
+      value: program.value?.rncpCode ?? 'RNCP38575',
+      label: 'Référence',
+      note: 'Code RNCP'
+    },
+    {
+      value: program.value?.levelLabel ?? 'Niveau 5 / Bac+2',
+      label: 'Niveau',
+      note: 'Titre de niveau 5'
     },
     {
       value: program.value?.formatLabel ?? '100 % distanciel',
@@ -117,15 +113,15 @@ const highlights = computed(() => {
   return [
     {
       title: 'Piloter une activité avec davantage de recul',
-      text: 'Le parcours aide à mieux suivre la performance, structurer les priorités et poser un cadre de décision plus lisible.'
+      text: "Le titre professionnel RPMS aide à suivre la performance, structurer les priorités et poser un cadre de décision plus lisible."
     },
     {
       title: 'Manager et coordonner plus sereinement',
-      text: "Le RPMS aborde l'animation d'équipe, l'organisation du travail et la coordination quotidienne avec une logique concrète."
+      text: "Le parcours aborde l'animation d'équipe, l'organisation du travail et la coordination quotidienne avec une logique concrète."
     },
     {
       title: 'Organiser les opérations avec méthode',
-      text: "Organisation, qualité, communication et reporting s'articulent pour donner une lecture plus complète des responsabilités visées."
+      text: "Organisation, qualité, communication et reporting s'articulent pour donner une lecture complète des responsabilités visées."
     }
   ]
 })
@@ -139,7 +135,7 @@ const competencyClusters = computed(() => {
   return [
     'Piloter une activité et sa performance',
     'Manager et animer une équipe',
-    "Organiser les opérations et la qualité",
+    'Organiser les opérations, la qualité et les ressources',
     "Développer l'offre, la communication et le reporting"
   ]
 })
@@ -149,19 +145,19 @@ const valueSection = computed(() => {
   if (section && typeof section === 'object') {
     return {
       eyebrow: section.eyebrow ?? "Pourquoi CITYZ'France",
-      title: section.title ?? 'Un cadre clair pour relier votre projet, le niveau visé et la réalité du parcours',
+      title: section.title ?? 'Un cadre clair pour relier le titre, le niveau visé et la réalité du parcours',
       description:
         section.description ??
-        "Avant de vous engager, l'enjeu est d'identifier ce que le RPMS peut structurer dans votre projet et la manière dont CITYZ'France vous accompagne.",
+        "Avant de vous engager, l'enjeu est d'identifier ce que le titre professionnel RPMS peut structurer dans votre projet et la manière dont CITYZ'France vous accompagne.",
       items: Array.isArray(section.items) ? section.items : []
     }
   }
 
   return {
     eyebrow: "Pourquoi CITYZ'France",
-    title: 'Un cadre clair pour relier votre projet, le niveau visé et la réalité du parcours',
+    title: 'Un cadre clair pour relier le titre, le niveau visé et la réalité du parcours',
     description:
-      "Avant de vous engager, l'enjeu est d'identifier ce que le RPMS peut structurer dans votre projet et la manière dont CITYZ'France vous accompagne.",
+      "Avant de vous engager, l'enjeu est d'identifier ce que le titre professionnel RPMS peut structurer dans votre projet et la manière dont CITYZ'France vous accompagne.",
     items: [
       'Situer le niveau 5 (Bac+2) dans une progression vers des fonctions de pilotage et de management.',
       "Comprendre le format 100 % distanciel, l'e-learning et la place de l'accompagnement pédagogique.",
@@ -179,15 +175,15 @@ const journey = computed(() => {
   return [
     {
       title: 'Faire le point sur votre projet',
-      text: 'Le rappel part de votre contexte, de vos questions et de ce que vous cherchez à structurer avant toute décision.'
+      text: "Le rappel part de votre contexte et de ce que vous cherchez à structurer avant toute décision."
     },
     {
       title: 'Comprendre le cadre du parcours',
-      text: "Vous pouvez clarifier le format 100 % distanciel, l'e-learning et l'accompagnement pédagogique avant d'aller plus loin."
+      text: "Vous pouvez revenir sur le format 100 % distanciel, l'e-learning et l'accompagnement pédagogique avant d'aller plus loin."
     },
     {
       title: 'Décider avec plus de visibilité',
-      text: "L'objectif est de vous donner des éléments utiles sur le RPMS, le niveau visé et la suite possible, sans vous brusquer."
+      text: "L'objectif est de vous donner des repères utiles sur le titre professionnel RPMS, le niveau visé et la suite possible."
     }
   ]
 })
@@ -197,23 +193,23 @@ const contactBand = computed(() => {
   if (band && typeof band === 'object') {
     return {
       eyebrow: band.eyebrow ?? 'Prochaine étape',
-      title: band.title ?? 'Demandez un rappel pour vérifier si le RPMS correspond à votre projet',
+      title: band.title ?? 'Demandez un rappel pour situer le titre professionnel RPMS dans votre projet',
       description:
         band.description ??
-        "L'échange avec CITYZ'France permet de faire le point sur votre situation, de clarifier les questions utiles et de voir comment avancer.",
+        "L'échange avec CITYZ'France permet de revenir sur le titre, le niveau 5 (Bac+2), le format à distance et les compétences visées.",
       supportLine:
         band.supportLine ??
-        'Vous repartez avec une vision plus claire du parcours, du niveau visé et des prochaines étapes possibles.'
+        'Vous repartez avec un cadre plus net sur le programme, les blocs de compétences et la suite possible.'
     }
   }
 
   return {
     eyebrow: 'Prochaine étape',
-    title: 'Demandez un rappel pour vérifier si le RPMS correspond à votre projet',
+    title: 'Demandez un rappel pour situer le titre professionnel RPMS dans votre projet',
     description:
-      "L'échange avec CITYZ'France permet de faire le point sur votre situation, de clarifier les questions utiles et de voir comment avancer.",
+      "L'échange avec CITYZ'France permet de revenir sur le titre, le niveau 5 (Bac+2), le format à distance et les compétences visées.",
     supportLine:
-      'Vous repartez avec une vision plus claire du parcours, du niveau visé et des prochaines étapes possibles.'
+      'Vous repartez avec un cadre plus net sur le programme, les blocs de compétences et la suite possible.'
   }
 })
 
@@ -228,23 +224,12 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
       :initial="motionVariants.block.initial"
       :enter="motionVariants.block.enter"
     >
-      <div class="space-y-6">
-        <div class="flex flex-wrap items-center gap-3">
-          <p class="kicker">{{ heroEyebrow }}</p>
-          <span class="trust-chip">{{ brandDescriptor }}</span>
-        </div>
+      <div class="space-y-5">
+        <SectionTitle :eyebrow="heroEyebrow" :title="heroTitle" :description="heroSubtitle" />
 
-        <div class="space-y-4">
-          <h1 class="editorial-title max-w-4xl text-[clamp(2.8rem,5.8vw,5.15rem)] text-foreground">
-            {{ heroTitle }}
-          </h1>
-          <p class="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {{ heroSubtitle }}
-          </p>
-          <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-lg">
-            {{ heroFitLine }}
-          </p>
-        </div>
+        <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-lg">
+          {{ heroFitLine }}
+        </p>
 
         <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <RouterLink to="/contact" class="sm:flex-none">
@@ -257,16 +242,26 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
             <Button size="lg" variant="outline" class="w-full sm:w-auto">Voir le programme</Button>
           </RouterLink>
         </div>
-
-        <p
-          v-if="errorMessage"
-          class="rounded-xl border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive"
-        >
-          {{ errorMessage }}
-        </p>
       </div>
 
       <div class="space-y-4 lg:pt-4">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="trust-chip">{{ brandDescriptor }}</span>
+          <span class="trust-chip">{{ program?.rncpCode ?? 'RNCP38575' }}</span>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div
+            v-for="(item, index) in proofItems"
+            :key="item.label"
+            v-motion
+            :initial="motionVariants.pop.initial"
+            :enter="staggerEnter(index, 70, 80)"
+          >
+            <ImpactStat :value="item.value" :label="item.label" :note="item.note" />
+          </div>
+        </div>
+
         <div class="page-cut rounded-[1.45rem] p-5 sm:p-6">
           <p class="kicker">{{ valueSection.eyebrow }}</p>
           <h2 class="mt-3 text-2xl font-semibold text-foreground sm:text-[2rem]">
@@ -287,18 +282,6 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
             </div>
           </div>
         </div>
-
-        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-3">
-          <div
-            v-for="(item, index) in proofItems"
-            :key="item.label"
-            v-motion
-            :initial="motionVariants.pop.initial"
-            :enter="staggerEnter(index, 70, 80)"
-          >
-            <ImpactStat :value="item.value" :label="item.label" :note="item.note" />
-          </div>
-        </div>
       </div>
     </section>
 
@@ -306,7 +289,7 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
       <SectionTitle
         eyebrow="Ce que le parcours développe"
         title="Des compétences qui renforcent votre capacité à piloter, organiser et manager."
-        description="Le niveau Bac+2 reste un repère utile, mais la valeur du RPMS se joue aussi dans la manière dont il structure des responsabilités très concrètes."
+        description="Le niveau Bac+2 reste un repère utile, mais la valeur du titre professionnel RPMS se joue aussi dans la manière dont il structure des responsabilités très concrètes."
       />
 
       <div class="grid gap-6 lg:grid-cols-[0.96fr,1.04fr]">
@@ -316,7 +299,7 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
           </CardHeader>
           <CardContent class="space-y-4">
             <p class="text-sm leading-relaxed text-muted-foreground">
-              Le RPMS aide à relier des enjeux de pilotage, de management et d'organisation à des
+              Le titre professionnel RPMS aide à relier des enjeux de pilotage, de management et d'organisation à des
               situations de travail plus lisibles au quotidien.
             </p>
             <ul class="grid gap-3 text-sm leading-relaxed text-muted-foreground sm:grid-cols-2">
@@ -360,7 +343,7 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
         <SectionTitle
           eyebrow="Progression"
           title="Le programme donne une lecture concrète du chemin à parcourir."
-          description="Trois blocs suffisent pour saisir la logique du RPMS avant d'aller consulter le détail complet du programme."
+          description="Trois blocs suffisent pour saisir la logique du titre professionnel RPMS avant d'aller consulter le détail complet du programme."
         />
 
         <div class="space-y-3">
@@ -401,8 +384,8 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
     <section class="space-y-8">
       <SectionTitle
         eyebrow="Avant de vous décider"
-        title="Un échange pour clarifier votre projet, pas pour vous précipiter."
-        description="Le rappel sert à vérifier l'adéquation du parcours, comprendre le cadre à distance et repartir avec des éléments utiles."
+        title="Un échange pour situer le titre dans votre projet."
+        description="Le rappel sert à revenir sur le cadre du parcours, les blocs de compétences et le format à distance avant d'aller plus loin."
       />
 
       <div class="grid gap-4 md:grid-cols-3">

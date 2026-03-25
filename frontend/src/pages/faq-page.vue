@@ -27,7 +27,7 @@ onMounted(async () => {
 const faqCopy = computed(() => site.value.faq ?? {})
 const heroLead = computed(
   () =>
-    "Commencez par les questions qui comptent vraiment pour votre projet avant de laisser vos coordonnées."
+    "Commencez par les questions qui comptent vraiment sur le titre, le format et les compétences travaillées avant de laisser vos coordonnées."
 )
 const closingNote = computed(() => {
   const note = faqCopy.value.closingNote
@@ -63,10 +63,10 @@ const closingNote = computed(() => {
       <div class="space-y-5">
         <div class="space-y-4">
           <p class="kicker">FAQ RPMS</p>
-          <h1 class="editorial-title max-w-4xl text-[clamp(2.05rem,4.2vw,3.7rem)] text-foreground">
-            Les questions qui bloquent le plus souvent la décision
+          <h1 class="editorial-title max-w-4xl text-[clamp(1.95rem,3.8vw,3.15rem)] text-foreground">
+            Les questions utiles avant de vous engager dans le RPMS
           </h1>
-          <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-[1.02rem]">
             {{ heroLead }}
           </p>
         </div>
@@ -96,7 +96,7 @@ const closingNote = computed(() => {
       <SectionTitle
         eyebrow="Objections fréquentes"
         title="Commencez par les points qui comptent le plus pour trancher"
-        description="Chaque réponse doit réduire une hésitation précise, pas seulement répéter la fiche du programme."
+        description="Chaque réponse doit éclairer le titre, le format, les repères officiels et la portée concrète du programme."
       />
 
       <div class="space-y-4">
@@ -125,8 +125,8 @@ const closingNote = computed(() => {
         <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
             <p class="kicker">Besoin d'un échange</p>
-            <h2 class="editorial-title text-[clamp(2rem,3.3vw,3.2rem)] text-foreground">
-              Faire le point avant d'aller plus loin
+            <h2 class="editorial-title text-[clamp(1.8rem,3vw,2.65rem)] text-foreground">
+              Faire le point sur votre projet et le cadre du titre
             </h2>
             <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
               Si vous voulez une réponse adaptée à votre projet, le rappel permet de cadrer la

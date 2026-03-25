@@ -5,14 +5,14 @@ import BrandLogo from '@/components/layout/brand-logo.vue'
 import TrustStrip from '@/components/visual/trust-strip.vue'
 import { footerNavigation } from '@/data/navigation'
 
-const footerTrustItems = ['RNCP38575', 'Bac+2', '100 % distanciel', 'E-learning']
+const footerTrustItems = ['RNCP38575', 'Bac+2 / Niveau 5', '100 % distanciel', 'E-learning']
 </script>
 
 <template>
-  <footer class="border-t border-primary/14 bg-white/94">
-    <div class="mx-auto grid w-full max-w-[1180px] gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1.1fr,0.9fr] lg:px-8">
+  <footer class="border-t border-border/60 bg-background/95">
+    <div class="mx-auto grid w-full max-w-[1180px] gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1.05fr,0.95fr] lg:px-8">
       <div class="space-y-4">
-        <brand-logo compact />
+        <brand-logo />
         <p class="max-w-md text-sm leading-relaxed text-muted-foreground">
           Pour vous aider à mieux piloter une activité, coordonner une équipe et organiser une
           structure avec un cadre à distance et un accompagnement pédagogique.
@@ -23,7 +23,7 @@ const footerTrustItems = ['RNCP38575', 'Bac+2', '100 % distanciel', 'E-learning'
       <div class="grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] lg:justify-end">
         <div class="space-y-3">
           <p class="footer-heading">Navigation</p>
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-x-4 gap-y-2">
             <RouterLink
               v-for="item in footerNavigation"
               :key="item.to"
@@ -52,18 +52,29 @@ const footerTrustItems = ['RNCP38575', 'Bac+2', '100 % distanciel', 'E-learning'
 
 <style scoped>
 .footer-link {
-  border-radius: 999px;
-  border: 1px solid color-mix(in oklab, var(--primary) 18%, var(--border));
-  background: rgb(255 255 255 / 0.9);
-  padding: 0.38rem 0.82rem;
+  display: inline-flex;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.375rem;
   color: var(--foreground);
-  font-size: 0.9rem;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease, text-decoration-color 0.15s ease;
+  border-bottom: 1px solid transparent;
 }
 
 .footer-link:hover {
-  transform: translateY(-1px);
-  border-color: color-mix(in oklab, var(--primary) 34%, var(--secondary));
-  background: color-mix(in oklab, var(--primary) 6%, white);
+  color: var(--primary);
+  border-bottom-color: color-mix(in oklab, var(--primary) 28%, var(--border));
+}
+
+.footer-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 0.375rem;
 }
 </style>

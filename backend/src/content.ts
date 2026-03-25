@@ -4,60 +4,60 @@ export const programsSeed = [
     category: 'particulier',
     title: 'Titre professionnel Responsable petite et moyenne structure (RPMS)',
     rncpCode: 'RNCP38575',
-    levelLabel: 'Niveau 5 (Bac+2)',
+    levelLabel: 'Niveau 5 / Bac+2',
     formatLabel: '100 % distanciel',
     rhythmLabel: 'E-learning',
     supportLabel: 'Accompagnement pédagogique',
     intro:
-      "Un parcours à distance pour renforcer votre pilotage, votre management et votre organisation dans une petite ou moyenne structure.",
+      'Titre professionnel de niveau 5 / Bac+2 pour diriger une petite ou moyenne structure dans ses dimensions stratégiques, administratives, humaines et territoriales.',
     objectiveSummary: [
-      "Piloter l'activité avec une lecture plus claire des priorités et des résultats.",
-      "Manager une équipe et mieux coordonner le travail au quotidien.",
-      "Structurer les opérations, les ressources, la qualité et la production.",
-      "Développer l'offre, les partenariats, le territoire et le reporting avec davantage de méthode."
+      "Diriger une organisation en intégrant les dimensions stratégiques, administratives, humaines et territoriales.",
+      "Piloter l'activité, encadrer et animer une équipe.",
+      'Développer des partenariats et inscrire la structure dans son environnement local.',
+      'Organiser la production, suivre la performance et formaliser le reporting.'
     ],
     professionalScope: [
-      "Piloter l'activité et la performance",
-      "Manager et coordonner une équipe",
-      'Organiser une structure au quotidien',
-      "Développer l'offre, le territoire et le reporting"
+      "Diriger une structure dans ses dimensions stratégiques, administratives, humaines et territoriales",
+      "Piloter l'activité, encadrer et animer une équipe",
+      'Développer des partenariats et inscrire la structure dans son environnement local',
+      'Organiser la production, les ressources, le reporting et la performance'
     ],
     blocks: [
       {
         code: 'Bloc 1',
         title: 'Diriger une structure et organiser son fonctionnement',
         details:
-          "Compréhension de l'écosystème de la structure.\nGestion administrative.\nVeille stratégique et réglementaire."
+          "Comprendre la structure et son écosystème.\nGestion administrative.\nVeille stratégique, intelligence économique et cadre réglementaire."
       },
       {
         code: 'Bloc 2',
         title: 'Inscrire la structure dans son territoire',
         details:
-          "Analyse du territoire.\nCommunication de l'offre.\nDéveloppement de partenariats."
+          'Définition et importance du territoire pour la structure.\nStratégies de communication et de marketing territorial.\nDéveloppement de réseaux et de partenariats territoriaux.'
       },
       {
         code: 'Bloc 3',
         title: 'Manager et animer une équipe',
         details:
-          "Fondamentaux du management.\nCommunication, motivation et développement des compétences.\nOrganisation du travail et gestion des tensions."
+          "Fondamentaux du management et de l'animation d'équipe.\nCommunication, motivation et développement des compétences internes.\nOrganisation du travail, gestion des conflits et évaluation."
       },
       {
         code: 'Bloc 4',
         title: "Adapter l'offre de la structure à la demande",
         details:
-          "Analyse du marché et des besoins.\nAjustement de l'offre.\nQualité, satisfaction et innovation."
+          'Analyse du marché, des besoins clients et de la concurrence.\nConception, développement et adaptation de l’offre.\nQualité, satisfaction client et innovation.'
       },
       {
         code: 'Bloc 5',
         title: "Organiser et développer la diffusion de l'offre",
         details:
-          'Stratégie commerciale.\nDiffusion de l’offre et relation client.\nSuivi des performances.'
+          'Stratégies de commercialisation et de distribution.\nMarketing digital, communication et relation client.\nDéveloppement commercial et suivi des performances.'
       },
       {
         code: 'Bloc 6',
         title: 'Organiser la production et les ressources',
         details:
-          'Organisation des processus.\nPlanification, ressources et sécurité.\nAmélioration continue et gestion de projet.'
+          'Organisation des processus et gestion de la qualité.\nPlanification, gestion des ressources et sécurité.\nOptimisation, amélioration continue et gestion de projet.'
       },
       {
         code: 'Bloc 7',
@@ -74,14 +74,14 @@ export const faqSeed = [
   {
     question: 'Ce parcours peut-il correspondre à mon projet ?',
     answer:
-      "Oui si vous cherchez à renforcer votre capacité à piloter une activité, coordonner une équipe et organiser une structure avec plus de méthode.",
+      "Oui si votre projet vise un titre professionnel de niveau 5 (Bac+2) pour diriger, coordonner et organiser une petite ou moyenne structure.",
     audience: 'particulier',
     sortOrder: 1
   },
   {
     question: "Qu'allez-vous travailler concrètement ?",
     answer:
-      "Le parcours couvre le pilotage d'une activité, le management d'équipe, l'organisation des opérations, la communication, le territoire, les partenariats et le reporting.",
+      "Le parcours couvre le pilotage d'activité, le management d'équipe, l'organisation des opérations, la communication, le territoire, les partenariats, la production et le reporting.",
     audience: 'particulier',
     sortOrder: 2
   },
@@ -95,7 +95,7 @@ export const faqSeed = [
   {
     question: "Sur quels repères officiels s'appuie le parcours ?",
     answer:
-      "Vous préparez le titre professionnel Responsable petite et moyenne structure (RPMS), code RNCP38575, un titre professionnel reconnu par l'État de niveau 5 (Bac+2).",
+      'Vous préparez le titre professionnel Responsable petite et moyenne structure (RPMS), code RNCP38575, de niveau 5 (Bac+2).',
     audience: 'particulier',
     sortOrder: 4
   },
@@ -124,20 +124,20 @@ export const siteContent = {
     secondaryCta: 'Voir le programme'
   },
   positioning: {
-    eyebrow: 'Titre professionnel RPMS',
+    eyebrow: 'Titre professionnel RPMS - RNCP38575',
     title:
-      'Vous cherchez à prendre plus de responsabilités dans une petite ou moyenne structure ?',
+      'Titre professionnel Responsable petite et moyenne structure (RPMS), niveau 5 (Bac+2).',
     subtitle:
-      "Ce parcours vous aide à renforcer votre pilotage, votre management et votre organisation avec des repères concrets en activité, équipe, offre, territoire et reporting.",
+      "Le parcours structure les compétences de pilotage, management, organisation, territoire, partenariats, production, performance et reporting.",
     fitLine:
-      "Avant de laisser vos coordonnées, voyez rapidement si ce parcours correspond à ce que vous cherchez à structurer dans votre projet."
+      "Avant de laisser vos coordonnées, vérifiez si ce titre professionnel correspond à votre projet de pilotage ou de management."
   },
   home: {
     proofItems: [
       {
-        value: 'Titre reconnu',
+        value: 'Responsable petite et moyenne structure (RPMS)',
         label: 'Titre',
-        note: 'Titre professionnel RPMS'
+        note: 'Intitulé officiel'
       },
       {
         value: 'RNCP38575',
@@ -145,9 +145,9 @@ export const siteContent = {
         note: 'Code RNCP'
       },
       {
-        value: 'Niveau 5',
+        value: 'Niveau 5 / Bac+2',
         label: 'Niveau',
-        note: 'Bac+2 reconnu par l’État'
+        note: 'Titre professionnel de niveau 5'
       },
       {
         value: '100 % distanciel',
@@ -156,36 +156,36 @@ export const siteContent = {
       }
     ],
     valueSection: {
-      eyebrow: 'Ce que ce parcours peut vous aider à structurer',
-      title: 'Un cadre plus clair pour tenir un rôle plus complet au quotidien.',
+      eyebrow: 'Ce que le RPMS structure',
+      title: 'Piloter une petite ou moyenne structure avec des repères de management, d’organisation et de performance.',
       description:
-        "L'enjeu n'est pas seulement d'identifier un titre, mais de voir si le parcours répond à ce que vous voulez vraiment mieux piloter, coordonner et organiser.",
+        "Le RPMS articule le pilotage de l'activité, le management d'équipe, l'organisation des ressources, le territoire, les partenariats, la production et le reporting.",
       items: [
-        "Prendre plus de recul sur l'activité et les priorités.",
-        "Mieux coordonner une équipe et organiser le travail.",
-        "Structurer l'offre, le territoire, les partenariats et le reporting avec plus de méthode."
+        "Diriger une structure dans ses dimensions stratégiques, administratives, humaines et territoriales.",
+        "Animer une équipe et organiser le travail au quotidien.",
+        "Développer l'offre, les partenariats, la production et le reporting."
       ]
     },
     contactBand: {
       eyebrow: 'Parler de votre projet',
-      title: 'Demandez un rappel pour savoir rapidement si ce parcours correspond à votre projet',
+      title: 'Demandez un rappel pour vérifier l’adéquation du RPMS à votre projet',
       description:
-        "En quelques minutes, vous pouvez clarifier le contenu, le niveau visé, le format à distance et les compétences travaillées.",
+        'En quelques minutes, vous pouvez clarifier le titre, le niveau visé, le format 100 % distanciel et les compétences travaillées.',
       supportLine:
-        "Vous repartez avec une vision plus nette du programme et de la place qu'il peut prendre dans votre projet."
+        "Vous repartez avec une vision plus nette du programme et de son cadre officiel."
     },
     highlights: [
       {
-        title: "Prendre plus de recul sur l'activité",
-        text: "Le parcours vous aide à suivre la performance, structurer les priorités et garder une lecture plus claire de l'activité."
+        title: "Piloter l'activité avec méthode",
+        text: "Le parcours relie performance, priorités et pilotage opérationnel."
       },
       {
-        title: 'Mieux coordonner une équipe',
-        text: "Vous travaillez l'animation d'équipe, l'organisation du travail et la coordination quotidienne dans une logique concrète."
+        title: 'Coordonner une équipe',
+        text: "Vous travaillez l'animation d'équipe, l'organisation du travail et la gestion des tensions."
       },
       {
-        title: 'Structurer les opérations avec méthode',
-        text: "Organisation, qualité, communication et reporting s'articulent pour vous donner un cadre d'action plus solide."
+        title: 'Structurer les opérations',
+        text: 'Organisation, qualité, communication et reporting soutiennent une action plus solide.'
       }
     ],
     journey: [
@@ -205,19 +205,19 @@ export const siteContent = {
     competencyClusters: [
       'Piloter une activité et sa performance',
       'Manager et animer une équipe',
-      'Organiser les opérations et la qualité',
+      'Organiser la production et les ressources',
       "Développer l'offre, les partenariats et le reporting"
     ]
   },
   access: {
     intro:
-      "Cette page vous aide à vérifier rapidement si le format à distance, l'accompagnement et les attentes du parcours correspondent à votre manière d'apprendre et à votre projet.",
+      "Cette page permet de vérifier si le titre professionnel RPMS, son format à distance et l'accompagnement pédagogique correspondent à votre projet.",
     reassuranceLine:
-      "Vous n'avez pas besoin de tout décider tout de suite: l'essentiel est de voir si le cadre vous convient vraiment.",
+      "L'essentiel est de vérifier l'adéquation du cadre avant de poursuivre.",
     expectations: [
-      "L'envie d'évoluer vers plus de pilotage, de coordination ou de management.",
-      "La disponibilité pour avancer avec régularité dans un parcours à distance.",
-      "Le besoin d'un cadre clair avant de vous engager."
+      'Vouloir évoluer vers plus de pilotage, de coordination ou de management.',
+      'Pouvoir avancer régulièrement dans un parcours à distance.',
+      "Chercher un cadre clair avant d'aller plus loin."
     ],
     supportPoints: [
       '100 % distanciel',
@@ -225,8 +225,8 @@ export const siteContent = {
       'Accompagnement pédagogique'
     ],
     processSteps: [
-      'Consultez les grands blocs et les compétences travaillées.',
-      "Vérifiez si le format à distance et l'accompagnement vous conviennent.",
+      'Lisez les blocs de compétences et les repères officiels.',
+      "Vérifiez si le format 100 % distanciel et l'accompagnement pédagogique vous conviennent.",
       "Demandez un rappel si vous voulez faire le point sur votre projet."
     ]
   },
@@ -242,19 +242,19 @@ export const siteContent = {
   },
   contact: {
     heroEyebrow: 'Être rappelé',
-    heroTitle: 'Vous voulez savoir si ce parcours correspond à votre projet ?',
+    heroTitle: 'Vous voulez vérifier l’adéquation du RPMS à votre projet ?',
     heroSupport:
-      "Expliquez en quelques lignes où vous en êtes et ce que vous cherchez à clarifier. Le rappel sert à vérifier l'adéquation du parcours avant toute décision.",
+      'Expliquez en quelques lignes où vous en êtes et ce que vous cherchez à clarifier. Le rappel sert à vérifier l’adéquation du parcours avant toute décision.',
     formTitle: 'Décrivez en quelques lignes où vous en êtes',
     formIntro:
-      "Vous pouvez simplement préciser votre situation, les responsabilités que vous visez et les points que vous voulez éclaircir.",
+      'Vous pouvez simplement préciser votre situation, le niveau visé et les points que vous voulez éclaircir.',
     formSupport:
       "Vous n'avez pas besoin de tout formaliser: quelques informations suffisent pour permettre à CITYZ'France de revenir vers vous dans de bonnes conditions.",
     guidanceTitle: "Ce que vous pouvez clarifier pendant l'échange",
     guidancePoints: [
-      "Le rôle ou les responsabilités vers lesquels vous voulez progresser.",
+      'Le rôle ou les responsabilités vers lesquels vous voulez progresser.',
       "L'adéquation du format 100 % distanciel avec votre rythme.",
-      "Les compétences que vous voulez renforcer: activité, équipe, organisation, offre, territoire et reporting."
+      'Les compétences que vous voulez renforcer: activité, équipe, organisation, offre, territoire, production et reporting.'
     ],
     nextStepNote: {
       title: 'Ce qui se passe après votre demande',

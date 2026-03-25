@@ -56,17 +56,17 @@ const heroEyebrow = computed(() => site.value.positioning?.eyebrow ?? 'Titre pro
 const heroTitle = computed(
   () =>
     site.value.positioning?.title ??
-    'Vous cherchez à prendre plus de responsabilités dans une petite ou moyenne structure ?'
+    'Titre professionnel Responsable petite et moyenne structure (RPMS), niveau 5 (Bac+2).'
 )
 const heroSubtitle = computed(
   () =>
     site.value.positioning?.subtitle ??
-    "Ce parcours vous aide à renforcer votre pilotage, votre management et votre organisation avec des repères concrets en activité, équipe, offre, territoire et reporting."
+    "Le parcours structure les compétences de pilotage, management, organisation, territoire, partenariats, production, performance et reporting."
 )
 const heroFitLine = computed(
   () =>
     site.value.positioning?.fitLine ??
-    "Avant de laisser vos coordonnées, voyez rapidement si ce parcours correspond à ce que vous cherchez à structurer dans votre projet."
+    "Avant de laisser vos coordonnées, vérifiez si ce titre professionnel correspond à votre projet de pilotage ou de management."
 )
 const trustStripItems = computed(() => [
   program.value?.rncpCode ?? 'RNCP38575',
@@ -148,8 +148,8 @@ const competencyClusters = computed(() => {
   return [
     'Piloter une activité et sa performance',
     'Manager et animer une équipe',
-    'Organiser les opérations, la qualité et les ressources',
-    "Développer l'offre, la communication et le reporting"
+    'Organiser la production et les ressources',
+    "Développer l'offre, les partenariats et le reporting"
   ]
 })
 
@@ -206,23 +206,23 @@ const contactBand = computed(() => {
   if (band && typeof band === 'object') {
     return {
       eyebrow: band.eyebrow ?? 'Parler de votre projet',
-      title: band.title ?? 'Demandez un rappel pour savoir rapidement si ce parcours correspond à votre projet',
+      title: band.title ?? 'Demandez un rappel pour vérifier l’adéquation du RPMS à votre projet',
       description:
         band.description ??
-        "En quelques minutes, vous pouvez clarifier le contenu, le niveau visé, le format à distance et les compétences travaillées.",
+        'En quelques minutes, vous pouvez clarifier le titre, le niveau visé, le format 100 % distanciel et les compétences travaillées.',
       supportLine:
         band.supportLine ??
-        "Vous repartez avec une vision plus nette du programme et de la place qu'il peut prendre dans votre projet."
+        "Vous repartez avec une vision plus nette du programme et de son cadre officiel."
     }
   }
 
   return {
     eyebrow: 'Parler de votre projet',
-    title: 'Demandez un rappel pour savoir rapidement si ce parcours correspond à votre projet',
+    title: 'Demandez un rappel pour vérifier l’adéquation du RPMS à votre projet',
     description:
-      "En quelques minutes, vous pouvez clarifier le contenu, le niveau visé, le format à distance et les compétences travaillées.",
+      'En quelques minutes, vous pouvez clarifier le titre, le niveau visé, le format 100 % distanciel et les compétences travaillées.',
     supportLine:
-      "Vous repartez avec une vision plus nette du programme, du cadre du titre et de la place qu'il peut prendre dans votre projet."
+      "Vous repartez avec une vision plus nette du programme et de son cadre officiel."
   }
 })
 
@@ -240,15 +240,15 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
       <div class="space-y-5">
         <div class="space-y-4">
           <p class="kicker">{{ heroEyebrow }}</p>
-          <h1 class="editorial-title max-w-4xl text-[clamp(2.35rem,5vw,4.55rem)] text-foreground">
+          <h1 class="editorial-title max-w-4xl text-[clamp(2.2rem,4.4vw,3.8rem)] text-foreground">
             {{ heroTitle }}
           </h1>
-          <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-[1.05rem]">
             {{ heroSubtitle }}
           </p>
         </div>
 
-        <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-lg">
+        <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-[1.02rem]">
           {{ heroFitLine }}
         </p>
 
@@ -305,9 +305,9 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
 
     <section class="space-y-8">
       <SectionTitle
-        eyebrow="Ce que vous allez réellement renforcer"
-        title="Un parcours pensé pour vous aider à mieux piloter, coordonner et organiser."
-        description="Le niveau du titre reste un repère utile, mais ce qui doit retenir votre attention est la manière dont le parcours travaille des responsabilités très concrètes."
+        eyebrow="Ce que le RPMS prépare"
+        title="Le titre travaille des responsabilités concrètes de pilotage, d'équipe et d'organisation."
+        description="Le RPMS relie le cadre officiel du titre à des situations de management, de territoire, de production, de performance et de reporting."
       />
 
       <div class="grid gap-6 lg:grid-cols-[0.96fr,1.04fr]">
@@ -317,8 +317,8 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
           </CardHeader>
           <CardContent class="space-y-4">
             <p class="text-sm leading-relaxed text-muted-foreground">
-              Vous retrouvez ici les dimensions concrètes du parcours pour voir si elles
-              répondent vraiment à votre quotidien et à vos objectifs.
+              Ces dimensions donnent une lecture concrète de ce que le RPMS vous prépare à piloter
+              dans une petite ou moyenne structure.
             </p>
             <ul class="grid gap-3 text-sm leading-relaxed text-muted-foreground sm:grid-cols-2">
               <li
@@ -360,14 +360,14 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
       <div class="space-y-6">
         <SectionTitle
           eyebrow="Progression"
-          title="Un programme qui montre clairement ce que vous allez travailler."
-          description="Trois blocs suffisent pour comprendre la logique du parcours avant d'aller consulter le détail complet du programme."
+          title="Trois blocs suffisent pour lire la logique du titre professionnel."
+          description="Le détail complet du programme précise ensuite l'écosystème, le territoire, l'équipe, l'offre, la production et le reporting."
         />
 
         <div class="space-y-3">
           <p class="text-sm leading-relaxed text-muted-foreground">
-            Vous pouvez consulter le programme pour retrouver l'ensemble des blocs de compétences
-            et la progression complète du parcours.
+            Le programme détaille l'ensemble des blocs de compétences et leur articulation dans le
+            RPMS.
           </p>
           <RouterLink
             to="/programme"
@@ -401,9 +401,9 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
 
     <section class="space-y-8">
         <SectionTitle
-          eyebrow="Décider sans perdre de temps"
-          title="Un échange utile pour vérifier le fit avant d'aller plus loin."
-          description="Le rappel sert à revenir sur votre projet et le format à distance sans transformer votre décision en parcours compliqué."
+          eyebrow="Vérifier avant de vous engager"
+          title="Un échange utile pour cadrer votre projet avant d'aller plus loin."
+          description="Le rappel sert à vérifier l'adéquation du titre, du format à distance et des responsabilités travaillées."
         />
 
       <div class="grid gap-4 md:grid-cols-3">
@@ -429,7 +429,7 @@ const featuredBlocks = computed(() => (program.value?.blocks ?? []).slice(0, 3))
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div class="space-y-3">
           <p class="kicker">{{ contactBand.eyebrow }}</p>
-          <h2 class="editorial-title max-w-3xl text-[clamp(2rem,3.4vw,3.35rem)] text-foreground">
+          <h2 class="editorial-title max-w-3xl text-[clamp(1.85rem,3vw,2.8rem)] text-foreground">
             {{ contactBand.title }}
           </h2>
           <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">

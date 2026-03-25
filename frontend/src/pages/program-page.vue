@@ -27,16 +27,16 @@ onMounted(async () => {
 
 const heroTitle = computed(
   () =>
-    'Ce que vous allez réellement travailler pour piloter, coordonner et organiser'
+    program.value?.title ?? 'Titre professionnel Responsable petite et moyenne structure (RPMS)'
 )
 const heroSubtitle = computed(
   () =>
     program.value
-      ? "Parcourez les grands blocs et les axes de travail pour voir si ce parcours correspond vraiment aux responsabilités que vous visez."
-      : "Parcourez les grands blocs et les axes de travail pour voir si ce parcours correspond vraiment aux responsabilités que vous visez."
+      ? program.value.intro
+      : 'Titre professionnel de niveau 5 / Bac+2 pour diriger une petite ou moyenne structure dans ses dimensions stratégiques, administratives, humaines et territoriales.'
 )
 const heroNote =
-  "Le programme vaut surtout par ce qu'il vous aide à mieux faire au quotidien, pas seulement par son intitulé."
+  "Le programme détaille les responsabilités que le RPMS vous prépare à tenir en activité, équipe, territoire, production et reporting."
 const trustStripItems = computed(() => [
   program.value?.rncpCode ?? 'RNCP38575',
   program.value?.levelLabel ?? 'Niveau 5 (Bac+2)',
@@ -60,15 +60,15 @@ const trustStripItems = computed(() => [
       <section class="grid gap-8 lg:grid-cols-[1.04fr,0.96fr] lg:items-start">
         <div class="space-y-5">
           <div class="space-y-4">
-            <p class="kicker">Programme</p>
-            <h1 class="editorial-title max-w-4xl text-[clamp(2.15rem,4.5vw,4rem)] text-foreground">
+            <p class="kicker">Programme RPMS - RNCP38575</p>
+            <h1 class="editorial-title max-w-4xl text-[clamp(2.05rem,4vw,3.45rem)] text-foreground">
               {{ heroTitle }}
             </h1>
-            <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-[1.05rem]">
               {{ heroSubtitle }}
             </p>
           </div>
-          <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-lg">
+          <p class="max-w-2xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-[1.02rem]">
             {{ heroNote }}
           </p>
 
@@ -105,8 +105,8 @@ const trustStripItems = computed(() => [
       <section class="space-y-8">
         <SectionTitle
           eyebrow="Repères du parcours"
-          title="Des axes de travail concrets pour tenir un rôle plus complet"
-          description="Le programme relie le pilotage, le management et l'organisation à des activités précises autour de la performance, de la structure et des responsabilités."
+          title="Des blocs de compétences pour lire clairement le cadre du titre"
+          description="Le programme relie pilotage, management, territoire, offre, production et reporting à des activités précises."
         />
 
         <div class="grid gap-6 lg:grid-cols-[0.92fr,1.08fr]">
@@ -129,12 +129,12 @@ const trustStripItems = computed(() => [
 
           <Card class="page-cut h-fit">
             <CardHeader>
-            <CardTitle>Repères officiels du parcours</CardTitle>
-          </CardHeader>
-          <CardContent class="space-y-4 text-sm leading-relaxed text-muted-foreground">
-            <p>
-                Le parcours s'appuie sur un cadre clair, reconnu par l'État, pour
-                structurer votre lecture du niveau visé et du contenu travaillé.
+              <CardTitle>Repères officiels du parcours</CardTitle>
+            </CardHeader>
+            <CardContent class="space-y-4 text-sm leading-relaxed text-muted-foreground">
+              <p>
+                Le RPMS s'appuie sur un titre professionnel de niveau 5 / Bac+2, avec un cadre
+                clair pour lire le niveau visé, la modalité et les compétences travaillées.
               </p>
               <trust-strip :items="trustStripItems" />
             </CardContent>
@@ -146,7 +146,7 @@ const trustStripItems = computed(() => [
         <SectionTitle
           eyebrow="Blocs de compétences"
           title="Le détail des grands blocs du programme"
-          description="Chaque bloc éclaire un pan concret du rôle: activité, équipe, offre, production et résultats."
+          description="Chaque bloc éclaire un pan concret du rôle: structure, territoire, équipe, offre, production et résultats."
         />
 
         <div class="grid gap-4 xl:grid-cols-2">
@@ -173,12 +173,12 @@ const trustStripItems = computed(() => [
         <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
             <p class="kicker">Contact</p>
-            <h2 class="editorial-title text-[clamp(2rem,3.4vw,3.25rem)] text-foreground">
-              Recevoir un rappel pour voir si le programme vous convient
+            <h2 class="editorial-title text-[clamp(1.8rem,3vw,2.7rem)] text-foreground">
+              Vérifier si le programme correspond à votre projet
             </h2>
             <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
               Si vous souhaitez aller plus loin après cette lecture, vous pouvez demander un rappel
-              pour faire le point sur votre projet et vos questions.
+              pour faire le point sur votre projet, le titre et vos questions.
             </p>
           </div>
 

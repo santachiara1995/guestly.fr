@@ -39,6 +39,11 @@ const accessIntro = computed(
     accessCopy.value.intro ??
     "Le format à distance, l'accompagnement pédagogique et les compétences visées sont pensés pour vous aider à vérifier si le parcours correspond à votre projet."
 )
+const reassuranceLine = computed(
+  () =>
+    accessCopy.value.reassuranceLine ??
+    "L'essentiel est de vérifier l'adéquation du cadre avant de poursuivre."
+)
 const accessContactBand = computed(() => {
   const band = site.value.home?.contactBand ?? accessCopy.value.contactBand
   if (band && typeof band === 'object') {
@@ -79,11 +84,14 @@ const quickFacts = computed(() =>
       <div class="space-y-5">
         <SectionTitle
           eyebrow="Accès et accompagnement"
-          title="Ce qu'il faut vérifier avant de vous engager"
-          description="Le rôle de cette page est simple: vous aider à vérifier si le cadre du parcours vous convient avant d'aller plus loin."
+          title="Vérifier le cadre du RPMS avant d'aller plus loin"
+          description="Cette page sert à vérifier le titre, la modalité à distance et l'accompagnement pédagogique avant de poursuivre."
         />
         <p class="max-w-3xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-lg">
           {{ accessIntro }}
+        </p>
+        <p class="max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+          {{ reassuranceLine }}
         </p>
         <trust-strip :items="trustStripItems" />
       </div>
@@ -134,8 +142,8 @@ const quickFacts = computed(() =>
     <section class="space-y-8">
       <SectionTitle
         eyebrow="Avant de demander un rappel"
-        title="Les points qui comptent vraiment"
-        description="L'objectif est de vérifier l'adéquation du parcours avec votre situation, sans détour inutile."
+        title="Les points à vérifier avant de vous engager"
+        description="L'objectif est de vérifier l'adéquation du cadre avec votre situation, sans détour inutile."
       />
 
       <div class="grid gap-4 md:grid-cols-3">
@@ -157,8 +165,8 @@ const quickFacts = computed(() =>
     <section class="space-y-8">
       <SectionTitle
         eyebrow="Prise de contact"
-        title="Du repère utile au premier échange"
-        description="Le parcours reste court pour que la demande de rappel ne devienne pas une étape supplémentaire."
+        title="Des repères utiles avant le premier échange"
+        description="Le rappel sert à clarifier le cadre du titre sans transformer votre décision en étape supplémentaire."
       />
 
       <div class="grid gap-4 md:grid-cols-3">
@@ -191,8 +199,8 @@ const quickFacts = computed(() =>
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div class="space-y-3">
           <p class="kicker">Contact</p>
-          <h2 class="editorial-title text-[clamp(2rem,3.3vw,3.2rem)] text-foreground">
-            Demander un rappel pour vérifier si le parcours vous convient
+          <h2 class="editorial-title text-[clamp(1.8rem,3vw,2.65rem)] text-foreground">
+            Demander un rappel pour vérifier si le RPMS vous convient
           </h2>
           <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">
             {{ accessContactBand }}

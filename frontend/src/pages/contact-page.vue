@@ -136,6 +136,7 @@ const displayAddress = computed(
 
 const supportFacts = computed(() =>
   [
+    { label: 'Titre', value: program.value?.title },
     { label: 'Niveau visé', value: program.value?.levelLabel },
     { label: 'Code RNCP', value: program.value?.rncpCode },
     { label: 'Modalité', value: program.value?.formatLabel },
@@ -150,15 +151,15 @@ const supportFacts = computed(() =>
     <section class="space-y-5">
       <div class="space-y-4">
         <p class="kicker">{{ heroEyebrow }}</p>
-        <h1 class="editorial-title max-w-4xl text-[clamp(2.2rem,4.7vw,4.1rem)] text-foreground">
+        <h1 class="editorial-title max-w-4xl text-[clamp(2.05rem,4vw,3.35rem)] text-foreground">
           {{ heroTitle }}
         </h1>
-        <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+        <p class="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-[1.05rem]">
           {{ heroSupport }}
         </p>
       </div>
 
-      <p class="max-w-3xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-lg">
+      <p class="max-w-3xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-[1.02rem]">
         {{ formIntro }}
       </p>
 
@@ -224,7 +225,7 @@ const supportFacts = computed(() =>
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div class="space-y-3">
           <p class="kicker">{{ footerBand.eyebrow }}</p>
-          <h2 class="editorial-title max-w-3xl text-[clamp(2rem,3.3vw,3.2rem)] text-foreground">
+          <h2 class="editorial-title max-w-3xl text-[clamp(1.8rem,3vw,2.65rem)] text-foreground">
             {{ footerBand.title }}
           </h2>
           <p class="max-w-2xl text-base leading-relaxed text-muted-foreground">

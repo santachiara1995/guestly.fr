@@ -16,10 +16,10 @@ defineProps({
 <template>
   <RouterLink
     :to="to"
-    class="inline-flex items-center gap-2.5 rounded-[0.9rem] text-left transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
+    class="inline-flex min-h-11 items-center gap-2 rounded-lg py-1 text-left transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     aria-label="Retour à l'accueil CITYZ'France"
   >
-    <span class="brand-symbol relative inline-flex h-9 w-9 items-center justify-center rounded-[0.82rem] sm:h-10 sm:w-10 sm:rounded-[0.9rem]">
+    <span class="brand-symbol relative inline-flex h-9 w-9 items-center justify-center rounded-xl sm:h-10 sm:w-10">
       <svg viewBox="0 0 56 56" class="h-6 w-6" aria-hidden="true">
         <path d="M20 38V18h16v20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
         <path d="M18 22h20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
@@ -29,14 +29,14 @@ defineProps({
     </span>
 
     <div class="leading-[1.02]">
-      <p class="font-heading text-[0.92rem] font-semibold tracking-[0.01em] text-foreground sm:text-[1rem]">
+      <p class="font-heading text-[0.92rem] font-semibold tracking-[0.01em] text-foreground sm:text-[0.98rem]">
         CITYZ'France
       </p>
       <p
         v-if="!compact"
-        class="mt-0.5 text-[0.6rem] font-medium uppercase tracking-[0.15em] text-muted-foreground sm:text-[0.62rem]"
+        class="mt-0.5 text-[0.62rem] font-medium uppercase tracking-[0.12em] text-muted-foreground sm:text-[0.64rem]"
       >
-        Pilotage · management · organisation
+        RPMS · Bac+2 / Niveau 5
       </p>
     </div>
   </RouterLink>

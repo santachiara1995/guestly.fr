@@ -5,95 +5,94 @@ function shouldReduceMotion() {
   )
 }
 
-const springEase = [0.22, 1, 0.36, 1]
+const structuralEase = [0.16, 1, 0.3, 1]
 
 function safeTransition(transition) {
-  if (!shouldReduceMotion()) {
-    return transition
-  }
-
-  return {
-    ...transition,
-    duration: 0,
-    delay: 0
-  }
+  return shouldReduceMotion()
+    ? {
+        duration: 0,
+        delay: 0
+      }
+    : transition
 }
 
 function toEnterState(target) {
-  if (!shouldReduceMotion()) {
-    return target
-  }
+  return shouldReduceMotion()
+    ? {
+        ...target,
+        x: 0,
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        transition: safeTransition(target.transition ?? {})
+      }
+    : target
+}
 
-  return {
-    ...target,
-    x: 0,
-    y: 0,
-    scale: 1,
-    opacity: 1,
-    transition: safeTransition(target.transition ?? {})
-  }
+function structuralTransition(duration, delay = 0) {
+  return safeTransition({
+    duration,
+    delay,
+    ease: structuralEase
+  })
 }
 
 export const motionVariants = {
   page: {
-    initial: { opacity: 0, y: 16 },
+    initial: { opacity: 0, y: 8 },
     enter: toEnterState({
       opacity: 1,
       y: 0,
-      transition: safeTransition({ duration: 320, ease: springEase })
+      transition: structuralTransition(200)
     })
   },
   block: {
-    initial: { opacity: 0, y: 12 },
+    initial: { opacity: 0, y: 6 },
     enter: toEnterState({
       opacity: 1,
       y: 0,
-      transition: safeTransition({ duration: 280, ease: springEase })
+      transition: structuralTransition(180)
     })
   },
   revealLeft: {
-    initial: { opacity: 0, x: -28 },
+    initial: { opacity: 0, x: -8 },
     enter: toEnterState({
       opacity: 1,
       x: 0,
-      transition: safeTransition({ duration: 450, ease: springEase })
+      transition: structuralTransition(180)
     })
   },
   revealRight: {
-    initial: { opacity: 0, x: 28 },
+    initial: { opacity: 0, x: 8 },
     enter: toEnterState({
       opacity: 1,
       x: 0,
-      transition: safeTransition({ duration: 450, ease: springEase })
+      transition: structuralTransition(180)
     })
   },
   scaleIn: {
-    initial: { opacity: 0, scale: 0.98 },
+    initial: { opacity: 0, scale: 0.992 },
     enter: toEnterState({
       opacity: 1,
       scale: 1,
-      transition: safeTransition({ duration: 260, ease: springEase })
+      transition: structuralTransition(160)
     })
   },
   pop: {
-    initial: { opacity: 0, y: 10, scale: 0.98 },
+    initial: { opacity: 0, y: 4, scale: 0.992 },
     enter: toEnterState({
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: safeTransition({ duration: 280, ease: springEase })
+      transition: structuralTransition(160)
     })
   }
 }
 
-export function staggerEnter(index, step = 90, baseDelay = 80) {
+export function staggerEnter(index, step = 56, baseDelay = 24) {
   return toEnterState({
     opacity: 1,
     y: 0,
-    transition: safeTransition({
-      duration: 300,
-      ease: springEase,
-      delay: baseDelay + index * step
-    })
+    transition: structuralTransition(180, baseDelay + index * step)
   })
 }

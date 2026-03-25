@@ -8,13 +8,14 @@ defineProps({
 </script>
 
 <template>
-  <div class="flex flex-wrap gap-2">
-    <span
-      v-for="item in items"
-      :key="item"
-      class="trust-chip px-2.5 py-1 text-[0.64rem] tracking-[0.11em] sm:text-[0.66rem]"
+  <ul class="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[0.72rem] font-medium text-muted-foreground">
+    <li
+      v-for="(item, index) in items"
+      :key="`${item}-${index}`"
+      class="inline-flex items-center gap-2"
     >
-      {{ item }}
-    </span>
-  </div>
+      <span>{{ item }}</span>
+      <span v-if="index < items.length - 1" aria-hidden="true" class="text-border">•</span>
+    </li>
+  </ul>
 </template>

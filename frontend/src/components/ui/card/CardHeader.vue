@@ -1,5 +1,5 @@
 <template>
-  <header class="mb-4 space-y-2">
+  <header class="mb-4 space-y-2.5">
     <slot />
   </header>
 </template>

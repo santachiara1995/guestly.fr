@@ -29,13 +29,13 @@ const isActive = (target) => {
 
 <template>
   <header class="sticky top-0 z-50">
-    <div class="mx-auto w-full max-w-[1200px] px-4 pt-2 sm:px-6 lg:px-8">
-      <div class="header-shell mx-auto grid max-w-[1080px] grid-cols-[auto,minmax(0,1fr),auto] items-center gap-4 px-4 py-2 sm:px-5 sm:py-2.5">
-        <brand-logo :to="homeLink" compact class="shrink-0" />
+    <div class="mx-auto w-full max-w-[1200px] px-4 pt-1.5 sm:px-6 lg:px-8">
+      <div class="header-shell mx-auto grid max-w-[1000px] grid-cols-[minmax(0,1fr),auto,minmax(0,1fr)] items-center gap-3 px-3 py-1 sm:px-4 sm:py-1">
+        <brand-logo :to="homeLink" compact class="justify-self-start shrink-0" />
 
         <nav
           aria-label="Navigation principale"
-          class="header-nav min-w-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          class="header-nav justify-self-center overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           <ul class="mx-auto flex min-w-max items-center justify-center gap-1.5 sm:gap-2.5">
             <li v-for="item in navigationItems" :key="item.to" class="shrink-0">
@@ -50,12 +50,12 @@ const isActive = (target) => {
           </ul>
         </nav>
 
-        <div class="flex shrink-0 items-center justify-end">
+        <div class="flex justify-self-end shrink-0 items-center justify-end">
           <Button
             :as="RouterLink"
             :to="contactLink"
             size="sm"
-            class="h-10 min-h-10 rounded-full px-4.5 text-[0.84rem]"
+            class="h-9 min-h-9 rounded-full px-4 text-[0.82rem]"
           >
             Être rappelé
           </Button>

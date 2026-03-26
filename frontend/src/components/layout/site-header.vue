@@ -29,8 +29,8 @@ const isActive = (target) => {
 
 <template>
   <header class="sticky top-0 z-50">
-    <div class="mx-auto w-full max-w-[1200px] px-4 pt-1.5 sm:px-6 lg:px-8">
-      <div class="header-shell mx-auto grid max-w-[1000px] grid-cols-[minmax(0,1fr),auto,minmax(0,1fr)] items-center gap-3 px-3 py-1 sm:px-4 sm:py-1">
+    <div class="mx-auto w-full max-w-[1200px] px-4 pt-1 sm:px-6 lg:px-8">
+      <div class="header-shell mx-auto grid max-w-[980px] grid-cols-[minmax(0,1fr),auto,minmax(0,1fr)] items-center gap-2 px-3 py-[0.3rem] sm:px-3.5 sm:py-[0.3rem]">
         <brand-logo :to="homeLink" compact class="justify-self-start shrink-0" />
 
         <nav
@@ -55,7 +55,7 @@ const isActive = (target) => {
             :as="RouterLink"
             :to="contactLink"
             size="sm"
-            class="h-9 min-h-9 rounded-full px-4 text-[0.82rem]"
+            class="h-8 min-h-8 rounded-full px-3.5 text-[0.8rem]"
           >
             Être rappelé
           </Button>

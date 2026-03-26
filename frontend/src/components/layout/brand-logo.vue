@@ -16,11 +16,19 @@ defineProps({
 <template>
   <RouterLink
     :to="to"
-    class="inline-flex min-h-11 items-center gap-2.5 rounded-lg py-1 text-left transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+    :class="[
+      'inline-flex items-center rounded-lg text-left transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+      compact ? 'min-h-10 gap-2 py-0.5' : 'min-h-11 gap-2.5 py-1'
+    ]"
     aria-label="Retour à l'accueil CITYZ'France"
   >
-    <span class="brand-symbol relative inline-flex h-9 w-9 items-center justify-center rounded-xl sm:h-10 sm:w-10">
-      <svg viewBox="0 0 56 56" class="h-6 w-6" aria-hidden="true">
+    <span
+      :class="[
+        'brand-symbol relative inline-flex items-center justify-center',
+        compact ? 'h-8 w-8 rounded-[0.85rem] sm:h-[2.15rem] sm:w-[2.15rem]' : 'h-9 w-9 rounded-xl sm:h-10 sm:w-10'
+      ]"
+    >
+      <svg :class="compact ? 'h-5 w-5' : 'h-6 w-6'" viewBox="0 0 56 56" aria-hidden="true">
         <path d="M20 38V18h16v20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
         <path d="M18 22h20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
         <path d="M24 14h8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3" />
@@ -29,7 +37,12 @@ defineProps({
     </span>
 
     <div class="leading-[1.02]">
-      <p class="font-heading text-[0.94rem] font-semibold tracking-[-0.02em] text-foreground sm:text-[1rem]">
+      <p
+        :class="[
+          'font-heading font-semibold tracking-[-0.02em] text-foreground',
+          compact ? 'text-[0.87rem] sm:text-[0.91rem]' : 'text-[0.94rem] sm:text-[1rem]'
+        ]"
+      >
         CITYZ'France
       </p>
       <p

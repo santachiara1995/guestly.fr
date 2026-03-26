@@ -30,21 +30,19 @@ const isActive = (target) => {
 <template>
   <header class="sticky top-0 z-50">
     <div class="mx-auto w-full max-w-[1200px] px-4 pt-2 sm:px-6 lg:px-8">
-      <div class="header-shell mx-auto grid max-w-[980px] grid-cols-[auto,minmax(0,1fr),auto] items-center gap-2 px-3 py-1.5 sm:gap-2.5 sm:px-4 sm:py-2">
-        <div class="flex items-center justify-start">
-          <brand-logo :to="homeLink" compact class="shrink-0" />
-        </div>
+      <div class="header-shell mx-auto grid max-w-[1080px] grid-cols-[auto,minmax(0,1fr),auto] items-center gap-4 px-4 py-2 sm:px-5 sm:py-2.5">
+        <brand-logo :to="homeLink" compact class="shrink-0" />
 
         <nav
           aria-label="Navigation principale"
           class="header-nav min-w-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          <ul class="mx-auto flex min-w-max items-center justify-center gap-1 sm:gap-2">
+          <ul class="mx-auto flex min-w-max items-center justify-center gap-1.5 sm:gap-2.5">
             <li v-for="item in navigationItems" :key="item.to" class="shrink-0">
               <RouterLink
                 :to="item.href"
                 :aria-current="isActive(item.to) ? 'page' : undefined"
-                class="nav-link"
+                :class="['nav-link', isActive(item.to) ? 'nav-link--header-active' : null]"
               >
                 {{ item.label }}
               </RouterLink>
@@ -52,12 +50,12 @@ const isActive = (target) => {
           </ul>
         </nav>
 
-        <div class="flex shrink-0 items-center justify-end gap-2.5">
+        <div class="flex shrink-0 items-center justify-end">
           <Button
             :as="RouterLink"
             :to="contactLink"
             size="sm"
-            class="h-9 min-h-9 min-w-0 shrink-0 rounded-full px-3.5 text-[0.8rem]"
+            class="h-10 min-h-10 rounded-full px-4.5 text-[0.84rem]"
           >
             Être rappelé
           </Button>
@@ -72,5 +70,10 @@ const isActive = (target) => {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+:deep(.nav-link--header-active) {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
 }
 </style>

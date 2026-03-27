@@ -93,6 +93,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
       >
         <div class="grid gap-8 lg:grid-cols-[1.06fr,0.94fr] lg:items-start">
           <div class="space-y-6 lg:space-y-7">
+            <p class="detail-key">Dossier financement</p>
             <div class="hero-badge">
               <span class="hero-badge__dot hero-badge__dot--red"></span>
               <span>Financement RPMS</span>
@@ -127,7 +128,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
 
           <aside class="sidebar-panel">
             <div class="space-y-3">
-              <span class="info-chip info-chip--soft">Prix de la formation</span>
+              <span class="info-chip info-chip--soft">Donnée publiée</span>
               <div>
                 <p class="detail-key">
                   Tarif annoncé
@@ -179,7 +180,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
             :initial="motionVariants.block.initial"
             :enter="motionVariants.block.enter"
           >
-            <p class="kicker">{{ financeCopy.paymentSection?.eyebrow ?? 'Modalités de paiement' }}</p>
+            <p class="kicker">{{ financeCopy.paymentSection?.eyebrow ?? 'Modalités publiées' }}</p>
             <h2 class="mt-3 text-[clamp(1.35rem,2vw,1.8rem)] font-extrabold tracking-[-0.05em] text-primary">
               {{
                 financeCopy.paymentSection?.title ??
@@ -212,7 +213,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
             :initial="motionVariants.block.initial"
             :enter="motionVariants.block.enter"
           >
-            <p class="kicker">{{ financeCopy.conditionsSection?.eyebrow ?? 'Conditions à connaître' }}</p>
+            <p class="kicker">{{ financeCopy.conditionsSection?.eyebrow ?? 'Conditions publiées' }}</p>
             <h2 class="mt-3 text-[clamp(1.35rem,2vw,1.8rem)] font-extrabold tracking-[-0.05em] text-primary">
               {{
                 financeCopy.conditionsSection?.title ??

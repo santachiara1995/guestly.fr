@@ -97,6 +97,7 @@ const supportTiles = computed(() => [
       >
         <div class="space-y-5">
           <div class="space-y-4">
+            <p class="detail-key">Dossier questions</p>
             <p class="kicker">{{ hero.eyebrow }}</p>
             <h1 class="editorial-title max-w-4xl text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
               {{ hero.title }}
@@ -123,7 +124,7 @@ const supportTiles = computed(() => [
         </div>
 
         <aside class="sidebar-panel paper-card p-5 sm:p-6">
-          <p class="kicker">{{ opening.eyebrow }}</p>
+          <p class="kicker">{{ opening.eyebrow ?? 'Repères publics' }}</p>
           <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
             {{ opening.title }}
           </h2>
@@ -163,7 +164,7 @@ const supportTiles = computed(() => [
       <section class="support-grid grid gap-6 lg:grid-cols-[minmax(0,1.18fr),minmax(0,0.82fr)]">
         <article class="space-y-5">
           <SectionTitle
-            eyebrow="Questions utiles"
+            eyebrow="Questions publiques"
             title="Les réponses essentielles avant de passer à l'étape suivante."
             description="Chaque réponse doit aider à vérifier le RPMS, pas à pousser une décision trop vite."
           />

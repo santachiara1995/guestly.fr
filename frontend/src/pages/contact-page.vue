@@ -133,6 +133,7 @@ const contactLines = computed(() =>
       >
         <div class="space-y-5">
           <div class="space-y-4">
+            <p class="detail-key">Dossier rappel</p>
             <p class="kicker">{{ hero.eyebrow }}</p>
             <h1 class="editorial-title max-w-4xl text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
               {{ hero.title }}
@@ -165,7 +166,7 @@ const contactLines = computed(() =>
         </div>
 
         <aside class="sidebar-panel paper-card p-5 sm:p-6">
-          <p class="kicker">Repères utiles</p>
+          <p class="kicker">Repères publics</p>
           <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
             Les éléments de base à garder sous les yeux.
           </h2>

@@ -124,6 +124,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         <div class="mx-auto max-w-[1120px]">
           <div class="hero-split grid gap-5 lg:grid-cols-[1.08fr,0.92fr] lg:items-stretch">
             <article class="page-hero paper-card flex flex-col gap-5 p-5 sm:p-6 lg:p-8">
+              <p class="detail-key">Dossier programme</p>
               <div class="hero-badge">
                 <span class="hero-badge__dot hero-badge__dot--blue"></span>
                 <span>{{ hero.eyebrow }}</span>
@@ -170,7 +171,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
             </article>
 
             <aside class="sidebar-panel trust-panel paper-card p-5 sm:p-6 lg:p-7">
-              <p class="kicker">Trois grands blocs</p>
+              <p class="kicker">Lecture d’ensemble</p>
               <h2 class="mt-4 text-[clamp(1.3rem,2.2vw,1.8rem)] font-semibold tracking-[-0.04em] text-foreground">
                 {{ summarySection.title ?? 'Le titre tient en trois blocs lisibles.' }}
               </h2>
@@ -209,7 +210,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
       <section class="program-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div class="mx-auto max-w-[1120px]">
           <div class="mx-auto mb-10 max-w-3xl text-center">
-            <p class="kicker">{{ competencySection.eyebrow ?? 'Ce que le titre prépare' }}</p>
+            <p class="kicker">{{ competencySection.eyebrow ?? 'Portée du titre' }}</p>
             <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
               {{ competencySection.title ?? 'Le RPMS prépare un rôle de direction, d’organisation et de suivi.' }}
             </h2>
@@ -273,7 +274,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
       <section class="program-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div class="mx-auto max-w-5xl">
           <div class="mb-10 text-center">
-            <p class="kicker">{{ blocksSection.eyebrow ?? 'Compétences détaillées' }}</p>
+            <p class="kicker">{{ blocksSection.eyebrow ?? 'Détail publié' }}</p>
             <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
               {{ blocksSection.title ?? 'Chaque bloc est décliné compétence par compétence.' }}
             </h2>
@@ -310,7 +311,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         <div class="cta-band arch-cta mx-auto max-w-[1120px] p-5 sm:p-6 lg:p-7">
           <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div class="space-y-3">
-              <p class="kicker">{{ ctaBand.eyebrow ?? 'Après la lecture du programme' }}</p>
+              <p class="kicker">{{ ctaBand.eyebrow ?? 'Après lecture' }}</p>
               <h2 class="editorial-title max-w-3xl text-[clamp(1.6rem,2.4vw,2.2rem)] text-foreground">
                 {{ ctaBand.title ?? 'Consultez le financement ou demandez un rappel' }}
               </h2>

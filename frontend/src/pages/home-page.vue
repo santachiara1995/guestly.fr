@@ -228,6 +228,13 @@ const contactBand = computed(() => {
                 {{ hero.decisionText }}
               </p>
 
+              <div class="prestige-note">
+                <p class="detail-key">Lecture éditoriale</p>
+                <p class="prestige-note__text">
+                  {{ contactBand.supportLine }}
+                </p>
+              </div>
+
               <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Button :as="RouterLink" :to="contactLink" size="lg" class="home-hero__cta">
                   Être rappelé
@@ -257,30 +264,33 @@ const contactBand = computed(() => {
                   <span>{{ site.brand?.descriptor ?? 'Centre de formation certifié Qualiopi' }}</span>
                 </div>
 
-                <div class="home-hero__badge home-hero__badge--bottom">
-                  <div
-                    v-for="item in proofItems.slice(1)"
-                    :key="item.label"
-                    class="home-hero__metric"
-                  >
-                    <span class="home-hero__metric-label">{{ item.label }}</span>
-                    <span class="home-hero__metric-value">{{ item.value }}</span>
+                <div class="prestige-caption">
+                  <p class="detail-key">Cadre du titre</p>
+                  <div class="mt-3 grid gap-2">
+                    <div
+                      v-for="item in proofItems.slice(0, 3)"
+                      :key="item.label"
+                      class="prestige-caption__row"
+                    >
+                      <span class="prestige-caption__label">{{ item.label }}</span>
+                      <span class="prestige-caption__value">{{ item.value }}</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="home-hero__points lg:col-span-2 lg:grid lg:grid-cols-3">
+            <div class="prestige-ledger lg:col-span-2">
               <article
                 v-for="(point, index) in hero.decisionPoints"
                 :key="point"
-                class="home-hero__point"
+                class="prestige-ledger__item"
                 v-motion
                 :initial="motionVariants.pop.initial"
                 :enter="staggerEnter(index, 42, 20)"
               >
-                <p class="detail-key">Étape {{ index + 1 }}</p>
-                <p class="mt-2 text-sm leading-7 text-muted-foreground">
+                <p class="detail-key">Repère {{ index + 1 }}</p>
+                <p class="prestige-ledger__text">
                   {{ point }}
                 </p>
               </article>
@@ -320,22 +330,21 @@ const contactBand = computed(() => {
             </p>
           </div>
 
-          <div class="home-feature-grid">
+          <div class="prestige-feature-list">
             <article
               v-for="(item, index) in featureCards"
               :key="item.code"
-              class="home-feature-card"
-              :class="{ 'home-feature-card--warm': item.tone === 'warm' }"
+              class="prestige-feature-row"
               v-motion
               :initial="motionVariants.block.initial"
               :enter="staggerEnter(index, 54, 28)"
             >
-              <div class="home-feature-card__icon">
-                <component :is="item.icon" class="h-7 w-7" />
+              <div class="prestige-feature-row__index">Bloc {{ index + 1 }}</div>
+              <div class="prestige-feature-row__content">
+                <p class="home-feature-card__code">{{ item.code }}</p>
+                <h3 class="home-feature-card__title">{{ item.title }}</h3>
+                <p class="home-feature-card__text">{{ item.text }}</p>
               </div>
-              <p class="home-feature-card__code">{{ item.code }}</p>
-              <h3 class="home-feature-card__title">{{ item.title }}</h3>
-              <p class="home-feature-card__text">{{ item.text }}</p>
             </article>
           </div>
         </div>
@@ -353,18 +362,17 @@ const contactBand = computed(() => {
             </div>
           </div>
 
-          <div class="home-program-ladder">
+          <div class="prestige-program-list">
             <article
               v-for="(block, index) in programPreview"
               :key="block.code"
-              class="home-program-block"
-              :class="{ 'home-program-block--accent': index === 1 }"
+              class="prestige-program-row"
               v-motion
               :initial="motionVariants.block.initial"
               :enter="staggerEnter(index, 56, 28)"
             >
-              <span class="home-program-block__number">{{ index + 1 }}</span>
-              <div>
+              <span class="prestige-program-row__index">0{{ index + 1 }}</span>
+              <div class="prestige-program-row__content">
                 <p class="home-program-block__code">{{ block.code }}</p>
                 <h3 class="home-program-block__title">{{ block.title }}</h3>
                 <p class="home-program-block__text">{{ block.text }}</p>
@@ -376,41 +384,44 @@ const contactBand = computed(() => {
 
       <section class="home-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div
-          class="home-final-band mx-auto max-w-[1120px]"
+          class="cta-band arch-cta prestige-cta mx-auto max-w-[1120px] p-5 sm:p-6 lg:p-7"
           v-motion
           :initial="motionVariants.block.initial"
           :enter="motionVariants.block.enter"
         >
-          <div class="home-final-band__content">
-            <p class="kicker text-white/78">{{ contactBand.eyebrow }}</p>
-            <h2 class="home-final-band__title">{{ contactBand.title }}</h2>
-            <p class="home-final-band__description">{{ contactBand.description }}</p>
+          <div class="grid gap-6 lg:grid-cols-[1.02fr,0.98fr] lg:items-start">
+            <div class="space-y-4">
+              <p class="kicker">{{ contactBand.eyebrow }}</p>
+              <h2 class="editorial-title max-w-3xl text-[clamp(1.45rem,2.15vw,1.92rem)] text-foreground">
+                {{ contactBand.title }}
+              </h2>
+              <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
+                {{ contactBand.description }}
+              </p>
 
-            <div class="home-final-band__steps">
+              <div class="grid gap-3">
               <article
                 v-for="(step, index) in journeySection.steps"
                 :key="step.title"
-                class="home-final-band__step"
+                class="prestige-ledger__item"
                 v-motion
                 :initial="motionVariants.pop.initial"
                 :enter="staggerEnter(index, 44, 22)"
               >
-                <span class="home-final-band__step-index">{{ index + 1 }}</span>
-                <div>
-                  <h3 class="text-sm font-semibold text-white">{{ step.title }}</h3>
-                  <p class="mt-1 text-sm leading-6 text-white/72">{{ step.text }}</p>
-                </div>
+                <p class="detail-key">Suite {{ index + 1 }}</p>
+                <h3 class="mt-2 text-sm font-semibold text-foreground">{{ step.title }}</h3>
+                <p class="mt-1 text-sm leading-6 text-muted-foreground">{{ step.text }}</p>
               </article>
+              </div>
             </div>
-          </div>
 
-          <aside class="home-final-band__card">
-            <p class="detail-key">Repères clés</p>
-            <div class="mt-5 grid gap-3">
+            <aside class="paper-card paper-card--soft p-5 sm:p-6">
+              <p class="detail-key">Repères clés</p>
+              <div class="mt-5 grid gap-3">
               <article
                 v-for="(item, index) in proofItems"
                 :key="item.label"
-                class="home-final-band__fact"
+                class="rounded-[0.92rem] border border-border/75 bg-white/86 px-4 py-3"
                 v-motion
                 :initial="motionVariants.pop.initial"
                 :enter="staggerEnter(index, 38, 18)"
@@ -423,24 +434,25 @@ const contactBand = computed(() => {
               </article>
             </div>
 
-            <div class="mt-6 flex flex-col gap-3">
-              <Button :as="RouterLink" :to="programLink" size="lg">
-                Voir le programme
-                <ArrowRight class="ml-2 h-4 w-4" />
-              </Button>
-              <Button :as="RouterLink" :to="contactLink" size="lg" variant="outline">
-                Être rappelé
-              </Button>
-            </div>
+              <div class="mt-6 flex flex-col gap-3">
+                <Button :as="RouterLink" :to="programLink" size="lg">
+                  Voir le programme
+                  <ArrowRight class="ml-2 h-4 w-4" />
+                </Button>
+                <Button :as="RouterLink" :to="contactLink" size="lg" variant="outline">
+                  Être rappelé
+                </Button>
+              </div>
 
-            <RouterLink :to="financeLink" class="home-inline-link mt-4">
-              Consulter le financement
-            </RouterLink>
+              <RouterLink :to="financeLink" class="home-inline-link mt-4">
+                Consulter le financement
+              </RouterLink>
 
-            <p class="mt-4 text-sm leading-7 text-muted-foreground">
-              {{ contactBand.supportLine }}
-            </p>
-          </aside>
+              <p class="mt-4 text-sm leading-7 text-muted-foreground">
+                {{ contactBand.supportLine }}
+              </p>
+            </aside>
+          </div>
         </div>
       </section>
     </template>

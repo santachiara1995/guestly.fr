@@ -241,22 +241,6 @@ const contactBand = computed(() => {
               <RouterLink :to="financeLink" class="home-inline-link">
                 Consulter le financement
               </RouterLink>
-
-              <div class="home-hero__points">
-                <article
-                  v-for="(point, index) in hero.decisionPoints"
-                  :key="point"
-                  class="home-hero__point"
-                  v-motion
-                  :initial="motionVariants.pop.initial"
-                  :enter="staggerEnter(index, 42, 20)"
-                >
-                  <p class="detail-key">Étape {{ index + 1 }}</p>
-                  <p class="mt-2 text-sm leading-7 text-muted-foreground">
-                    {{ point }}
-                  </p>
-                </article>
-              </div>
             </div>
 
             <div class="home-hero__panel lg:justify-self-end lg:w-full lg:max-w-[33rem]">
@@ -284,6 +268,22 @@ const contactBand = computed(() => {
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div class="home-hero__points lg:col-span-2 lg:grid lg:grid-cols-3">
+              <article
+                v-for="(point, index) in hero.decisionPoints"
+                :key="point"
+                class="home-hero__point"
+                v-motion
+                :initial="motionVariants.pop.initial"
+                :enter="staggerEnter(index, 42, 20)"
+              >
+                <p class="detail-key">Étape {{ index + 1 }}</p>
+                <p class="mt-2 text-sm leading-7 text-muted-foreground">
+                  {{ point }}
+                </p>
+              </article>
             </div>
           </div>
         </div>

@@ -18,25 +18,25 @@ const navigationItems = computed(() =>
 </script>
 
 <template>
-  <footer class="mt-16 border-t border-border/70 bg-background/75">
-    <div class="mx-auto px-4 py-12 sm:px-6 lg:px-8">
+  <footer class="mt-10 border-t border-border/70 bg-background/75 sm:mt-12">
+    <div class="mx-auto px-4 py-8 sm:px-6 sm:py-9 lg:px-8">
       <div
-        class="footer-shell mx-auto grid w-full max-w-[1120px] gap-8 px-5 py-6 sm:px-6 sm:py-7 lg:grid-cols-[1.05fr,0.95fr] lg:px-8"
+        class="footer-shell mx-auto grid w-full max-w-[1120px] gap-5 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[1.05fr_0.95fr] lg:px-6"
       >
-        <div class="space-y-4">
+        <div class="space-y-2.5">
           <brand-logo :to="homeLink" />
           <p class="max-w-md text-sm leading-relaxed text-muted-foreground">
             Titre professionnel RPMS, niveau 5 / Bac+2, en 100 % distanciel avec accompagnement
             pédagogique.
           </p>
-          <div class="grid gap-1 text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
+          <div class="grid gap-0.5 text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
             <p>RNCP38575 · Qualiopi · E-learning</p>
             <p>SIRET 992 448 936 00011 · NDA 11923039192</p>
           </div>
         </div>
 
-        <div class="grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] lg:justify-end">
-          <div class="space-y-3">
+        <div class="grid gap-5 sm:grid-cols-[minmax(0,_1fr)_auto] lg:justify-end">
+          <div class="space-y-2.5">
             <p class="footer-heading">Navigation</p>
             <div class="flex flex-wrap gap-x-4 gap-y-2">
               <RouterLink
@@ -50,7 +50,7 @@ const navigationItems = computed(() =>
             </div>
           </div>
 
-          <div class="space-y-3">
+          <div class="space-y-2.5">
             <p class="footer-heading">Coordonnées</p>
             <div class="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
               <p>

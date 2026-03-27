@@ -196,9 +196,9 @@
   .header-shell {
     position: relative;
     overflow: hidden;
-    border-radius: 0.8rem;
+    border-radius: 0.72rem;
     background: rgb(255 255 255 / 0.94);
-    box-shadow: 0 6px 16px rgb(17 39 65 / 0.05);
+    box-shadow: 0 5px 14px rgb(17 39 65 / 0.045);
     backdrop-filter: blur(14px);
   }
 
@@ -340,7 +340,7 @@
   }
 
   .nav-link {
-    @apply inline-flex min-h-8 items-center justify-center border-b-2 border-transparent px-1 py-0 text-[0.75rem] font-medium tracking-[0.01em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+    @apply inline-flex min-h-7 items-center justify-center whitespace-nowrap border-b-2 border-transparent px-1 py-0 text-[0.72rem] font-medium tracking-[0.005em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
     color: var(--muted-ink);
   }
 
@@ -404,7 +404,7 @@
 
   .footer-link {
     display: inline-flex;
-    min-height: 2.5rem;
+    min-height: 2rem;
     align-items: center;
     justify-content: flex-start;
     padding: 0;
@@ -643,6 +643,31 @@
 
   .home-inline-link:hover svg {
     transform: translateX(3px);
+  }
+
+  .home-hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.35rem;
+    border: 1px solid color-mix(in oklab, var(--line) 82%, var(--primary));
+    background: rgb(255 255 255 / 0.94);
+    padding: 1.15rem;
+    box-shadow: 0 22px 48px rgb(17 39 65 / 0.08);
+  }
+
+  .home-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 92% 10%, rgb(29 95 210 / 0.06), transparent 22%),
+      radial-gradient(circle at 6% 0%, rgb(216 74 83 / 0.04), transparent 18%);
+  }
+
+  .home-hero > * {
+    position: relative;
+    z-index: 1;
   }
 
   .home-hero__content {
@@ -1010,8 +1035,7 @@
     display: grid;
     gap: 1.5rem;
     border-radius: 1.5rem;
-    background:
-      linear-gradient(135deg, #081c46 0%, #12366f 54%, #1d5fd2 100%);
+    background: color-mix(in oklab, var(--blue-eclipse) 90%, #07152f);
     padding: 1.2rem;
     box-shadow: 0 26px 56px rgb(17 39 65 / 0.18);
   }
@@ -1543,6 +1567,10 @@
 }
 
 @media (min-width: 768px) {
+  .home-hero {
+    padding: 1.35rem;
+  }
+
   .hero-split {
     padding: 1.5rem;
   }

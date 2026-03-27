@@ -29,9 +29,9 @@ const isActive = (target) => {
 
 <template>
   <header class="sticky top-0 z-50">
-    <div class="mx-auto w-full max-w-[1200px] px-4 pt-2 sm:px-6 lg:px-8">
+    <div class="mx-auto w-full max-w-[1100px] px-4 pt-1 sm:px-6 lg:px-8">
       <div
-        class="header-shell mx-auto grid max-w-[1080px] grid-cols-[minmax(0,1fr),auto,minmax(0,1fr)] items-center gap-2.5 px-3 py-1.25 sm:px-3.5"
+        class="header-shell mx-auto grid max-w-[980px] grid-cols-[minmax(0,1fr),auto,minmax(0,1fr)] items-center gap-1.5 px-2.5 py-0.5 sm:px-3"
       >
         <brand-logo :to="homeLink" compact class="justify-self-start shrink-0" />
 
@@ -39,7 +39,7 @@ const isActive = (target) => {
           aria-label="Navigation principale"
           class="header-nav justify-self-center overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          <ul class="mx-auto flex min-w-max items-center justify-center gap-1.5 sm:gap-2.5">
+          <ul class="mx-auto flex min-w-max items-center justify-center gap-0.5 sm:gap-1.5">
             <li v-for="item in navigationItems" :key="item.to" class="shrink-0">
               <RouterLink
                 :to="item.href"
@@ -57,7 +57,7 @@ const isActive = (target) => {
             :as="RouterLink"
             :to="contactLink"
             size="sm"
-            class="h-10 min-h-10 rounded-full px-3.5 text-[0.78rem] tracking-[0.01em]"
+            class="h-8 min-h-8 rounded-full px-2.5 text-[0.72rem] tracking-[0.01em]"
           >
             Être rappelé
           </Button>

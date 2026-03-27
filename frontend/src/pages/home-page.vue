@@ -205,13 +205,13 @@ const contactBand = computed(() => {
 
     <template v-else-if="program">
       <section
-        class="home-section home-section--hero px-4 py-8 sm:px-6 lg:px-8 lg:py-12"
+        class="home-section home-section--hero px-4 py-6 sm:px-6 lg:px-8 lg:py-10"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
-        <div class="home-shell mx-auto max-w-7xl">
-          <div class="home-hero grid gap-10 lg:grid-cols-[minmax(0,1.04fr),minmax(24rem,0.82fr)] lg:items-start lg:gap-14">
+        <div class="home-shell mx-auto max-w-[1120px]">
+          <div class="home-hero grid gap-8 lg:grid-cols-[minmax(0,1.08fr),minmax(21rem,0.78fr)] lg:items-center lg:gap-11">
             <div class="home-hero__content">
               <span class="home-pill">{{ hero.eyebrow }}</span>
               <h1 class="home-hero__title">
@@ -243,7 +243,7 @@ const contactBand = computed(() => {
               </RouterLink>
             </div>
 
-            <div class="home-hero__panel lg:justify-self-end lg:w-full lg:max-w-[33rem]">
+            <div class="home-hero__panel lg:justify-self-end lg:w-full lg:max-w-[29rem]">
               <div class="home-hero__visual">
                 <div class="home-hero__visual-backdrop"></div>
                 <img
@@ -289,8 +289,8 @@ const contactBand = computed(() => {
         </div>
       </section>
 
-      <section class="home-section home-section--trust border-y border-border/60 bg-white/70 px-4 py-7 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-7xl">
+      <section class="home-section home-section--trust border-y border-border/60 bg-white/70 px-4 py-6 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-[1120px]">
           <p class="home-trust-strip__eyebrow">Repères et certifications</p>
           <div class="home-trust-strip">
             <article
@@ -308,8 +308,8 @@ const contactBand = computed(() => {
         </div>
       </section>
 
-      <section class="home-section px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div class="mx-auto max-w-7xl">
+      <section class="home-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+        <div class="mx-auto max-w-[1120px]">
           <div class="mx-auto mb-10 max-w-3xl text-center">
             <p class="kicker">{{ homeCopy.orientationSection?.eyebrow ?? 'Trois grands blocs' }}</p>
             <h2 class="mt-4 text-[clamp(1.7rem,3vw,2.35rem)] font-extrabold tracking-[-0.05em] text-primary">
@@ -341,7 +341,7 @@ const contactBand = computed(() => {
         </div>
       </section>
 
-      <section class="home-section home-section--program px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <section class="home-section home-section--program px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div class="mx-auto max-w-5xl">
           <div class="mb-12 text-center">
             <p class="kicker">Les trois blocs du référentiel</p>
@@ -374,9 +374,9 @@ const contactBand = computed(() => {
         </div>
       </section>
 
-      <section class="home-section px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <section class="home-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div
-          class="home-final-band mx-auto max-w-7xl"
+          class="home-final-band mx-auto max-w-[1120px]"
           v-motion
           :initial="motionVariants.block.initial"
           :enter="motionVariants.block.enter"

@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority'
 export { default as Button } from './Button.vue'
 
 export const buttonVariants = cva(
-  'inline-flex min-h-11 cursor-pointer items-center justify-center whitespace-nowrap rounded-[0.9rem] border text-sm font-semibold tracking-[-0.01em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 aria-busy:pointer-events-none aria-busy:opacity-70 data-[loading=true]:pointer-events-none data-[loading=true]:opacity-70',
+  'inline-flex min-h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded-[0.85rem] border text-[0.93rem] font-semibold tracking-[-0.01em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 aria-busy:pointer-events-none aria-busy:opacity-70 data-[loading=true]:pointer-events-none data-[loading=true]:opacity-70',
   {
     variants: {
       variant: {
@@ -19,10 +19,10 @@ export const buttonVariants = cva(
           'border-transparent bg-transparent px-0 text-primary underline-offset-4 hover:text-secondary hover:underline active:text-secondary'
       },
       size: {
-        default: 'min-h-11 px-4',
-        sm: 'min-h-11 px-3.5 text-[0.92rem]',
-        lg: 'min-h-12 px-5 text-base',
-        icon: 'size-11'
+        default: 'min-h-10 px-3.5',
+        sm: 'min-h-9 px-3 text-[0.84rem]',
+        lg: 'min-h-11 px-4 text-[0.97rem]',
+        icon: 'size-10'
       }
     },
     defaultVariants: {

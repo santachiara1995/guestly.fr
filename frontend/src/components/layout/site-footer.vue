@@ -18,10 +18,10 @@ const navigationItems = computed(() =>
 </script>
 
 <template>
-  <footer class="mt-16 border-t border-border/70 bg-background/75">
-    <div class="mx-auto px-4 py-12 sm:px-6 lg:px-8">
+  <footer class="mt-14 border-t border-border/70 bg-background/75">
+    <div class="mx-auto px-4 py-10 sm:px-6 lg:px-8">
       <div
-        class="footer-shell mx-auto grid w-full max-w-[1120px] gap-8 px-5 py-6 sm:px-6 sm:py-7 lg:grid-cols-[1.05fr,0.95fr] lg:px-8"
+        class="footer-shell mx-auto grid w-full max-w-[1040px] gap-6 px-4 py-5 sm:px-5 sm:py-6 lg:grid-cols-[1.05fr,0.95fr] lg:px-6"
       >
         <div class="space-y-4">
           <brand-logo :to="homeLink" />

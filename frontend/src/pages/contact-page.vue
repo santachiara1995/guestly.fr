@@ -121,7 +121,7 @@ const contactLines = computed(() =>
 </script>
 
 <template>
-  <div class="space-y-12 sm:space-y-14 lg:space-y-16">
+  <div class="space-y-10 sm:space-y-11 lg:space-y-12">
     <p v-if="loading" class="text-sm text-muted-foreground">Chargement du contact…</p>
 
     <template v-else>

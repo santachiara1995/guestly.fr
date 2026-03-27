@@ -55,7 +55,6 @@ const hero = computed(() => {
   }
 })
 
-const summarySection = computed(() => pageCopy.value.summarySection ?? {})
 const competencySection = computed(() => pageCopy.value.competencySection ?? {})
 const evaluationSection = computed(() => pageCopy.value.evaluationSection ?? {})
 const blocksSection = computed(() => pageCopy.value.blocksSection ?? {})
@@ -158,7 +157,7 @@ const evaluationSteps = computed(() => evaluationSection.value.steps ?? [])
             </article>
 
             <aside class="program-hero-aside p-5 sm:p-6 lg:p-7">
-              <div class="grid gap-3 sm:grid-cols-2">
+              <div class="grid gap-3">
                 <article
                   v-for="card in evaluationCards"
                   :key="card.label"
@@ -171,40 +170,6 @@ const evaluationSteps = computed(() => evaluationSection.value.steps ?? [])
                   <p class="mt-2 text-sm leading-6 text-muted-foreground">
                     {{ card.note }}
                   </p>
-                </article>
-              </div>
-
-              <div class="mt-1">
-                <p class="kicker">Les 3 blocs</p>
-                <h2 class="mt-3 text-[clamp(1.24rem,2vw,1.62rem)] font-semibold tracking-[-0.04em] text-foreground">
-                  {{ summarySection.title ?? 'Le programme tient en trois blocs.' }}
-                </h2>
-                <p class="mt-3 text-sm leading-7 text-muted-foreground">
-                  {{ summarySection.description ?? 'Chaque bloc correspond à un ensemble clair de compétences à maîtriser.' }}
-                </p>
-              </div>
-
-              <div class="mt-2 grid gap-3">
-                <article
-                  v-for="(block, index) in blocks"
-                  :key="block.code"
-                  class="program-note-card p-4"
-                  v-motion
-                  :initial="motionVariants.pop.initial"
-                  :enter="staggerEnter(index, 54, 28)"
-                >
-                  <div class="flex items-start gap-3">
-                    <span class="finance-badge">{{ index + 1 }}</span>
-                    <div>
-                      <p class="programme-block__code">{{ block.code }}</p>
-                      <h3 class="mt-2 text-base font-semibold leading-tight text-foreground">
-                        {{ block.title }}
-                      </h3>
-                      <p class="mt-2 text-sm leading-7 text-muted-foreground">
-                        {{ block.summary }}
-                      </p>
-                    </div>
-                  </div>
                 </article>
               </div>
             </aside>

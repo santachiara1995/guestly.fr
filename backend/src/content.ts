@@ -186,9 +186,9 @@ export const siteContent = {
   program: {
     hero: {
       eyebrow: 'Programme RPMS',
-      title: '300 h, 3 blocs, 1 épreuve finale : le RPMS sans détour.',
+      title: 'Le programme RPMS, bloc par bloc.',
       description:
-        'Retrouvez les trois blocs RNCP38575 et la liste des compétences associées.',
+        '300 h de formation à distance pour préparer un Bac+2 certifié par l’État et entrer dans le détail des compétences attendues.',
       note: 'Niveau 5 / Bac+2 · 100 % distanciel · accompagnement pédagogique.'
     },
     summarySection: {
@@ -211,14 +211,19 @@ export const siteContent = {
         "La fiche France Compétences RNCP38575 décrit une évaluation finale structurée autour d'un projet, d'un entretien technique et d'un entretien final.",
       summaryCards: [
         {
-          label: 'Volume indicatif',
+          label: 'Volume',
           value: '300 h de formation',
           note: 'Parcours 100 % distanciel avec accompagnement pédagogique.'
         },
         {
-          label: 'Épreuve finale',
+          label: 'Évaluation finale',
           value: '1 h 35 au total',
-          note: "Durée totale indiquée sur la fiche RNCP38575."
+          note: "Projet, entretien technique et entretien final selon la fiche RNCP38575."
+        },
+        {
+          label: 'Structure du titre',
+          value: '3 blocs / 3 CCP',
+          note: 'Chaque bloc correspond à un certificat de compétences professionnelles.'
         }
       ],
       steps: [

@@ -2,20 +2,20 @@
 @import "tailwindcss";
 
 :root {
-  --canvas: #0d2d63;
-  --paper: #fcfbf7;
-  --paper-soft: #f7f3eb;
-  --paper-tint: #f1ece2;
+  --canvas: #e1e4ea;
+  --paper: #ffffff;
+  --paper-soft: #f7f8fb;
+  --paper-tint: #f1f4f7;
   --ink: #112741;
   --navy-deep: #12366f;
   --cobalt-sky: #1d5fd2;
   --blue-eclipse: #0f2f63;
-  --harbor-haze: #ece5d9;
+  --harbor-haze: #e7ebf0;
   --tricolor-red: #d84a53;
   --tricolor-red-soft: #fdebed;
-  --line: #ddd4c6;
+  --line: #cfd6df;
   --muted-ink: #5a6b7e;
-  --spark-silver: rgb(214 219 227 / 0.75);
+  --spark-silver: rgb(223 227 234 / 0.8);
   --spark-gold: rgb(226 197 126 / 0.5);
   --spark-white: rgb(255 255 255 / 0.92);
   --motion-spring: cubic-bezier(0.22, 1, 0.36, 1);
@@ -39,8 +39,8 @@
   --ring: var(--cobalt-sky);
   --destructive: #c43d59;
 
-  --surface-shadow: 0 28px 70px rgb(2 14 37 / 0.28);
-  --surface-shadow-soft: 0 18px 40px rgb(2 14 37 / 0.2);
+  --surface-shadow: 0 22px 52px rgb(17 39 65 / 0.15);
+  --surface-shadow-soft: 0 14px 28px rgb(17 39 65 / 0.09);
 }
 
 @theme inline {

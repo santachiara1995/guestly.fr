@@ -40,6 +40,21 @@ function firstLine(value) {
     .find(Boolean)
 }
 
+const homeBlockSummaries = [
+  {
+    title: 'Diriger la structure et l’équipe',
+    text: 'Prenez de la hauteur sur la structure, son territoire et votre management.'
+  },
+  {
+    title: "Déployer l'activité et l'offre",
+    text: "Adaptez l'offre, organisez la diffusion et structurez la production."
+  },
+  {
+    title: 'Piloter les résultats',
+    text: "Analysez le bilan, le résultat et présentez l'activité avec clarté."
+  }
+]
+
 const homeCopy = computed(() => site.value.home ?? {})
 const programLink = computed(() => toWithExperience('/programme'))
 const financeLink = computed(() => toWithExperience('/financement'))
@@ -48,34 +63,45 @@ const contactLink = computed(() => toWithExperience('/contact'))
 const hero = computed(() => {
   const value = homeCopy.value.hero ?? {}
   return {
-    eyebrow: value.eyebrow ?? 'Titre professionnel RPMS - RNCP38575',
-    title: value.title ?? "Le RPMS s'articule autour de trois grands blocs de compétences.",
+    eyebrow: value.eyebrow ?? "Bac+2 certifié par l'État · 100 % à distance · 300 h",
+    title: value.title ?? "Préparez un Bac+2 certifié par l'État, 100 % à distance en 300 h.",
     lead:
       value.lead ??
-      'Titre professionnel Responsable petite et moyenne structure (RPMS), niveau 5 / Bac+2, en 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
+      "Le RPMS vous aide à gagner en crédibilité pour piloter une structure, encadrer une équipe et suivre l'activité.",
     fitLine:
       value.fitLine ??
-      "Commencez par lire le titre, son rôle et sa structure avant d'entrer dans le détail du programme.",
-    decisionTitle: value.decisionTitle ?? 'Pourquoi commencer ici',
+      "Bac+2, diplôme certifié par l'État, 300 h à distance : un cadre clair pour accélérer votre progression.",
     decisionText:
       value.decisionText ??
-      "En quelques minutes, vous visualisez l'architecture du titre et vous savez vers quelle étape poursuivre.",
-    decisionPoints: Array.isArray(value.decisionPoints)
-      ? value.decisionPoints
+      "Vérifiez ce que vous allez maîtriser, puis demandez un rappel si le titre correspond à votre objectif.",
+    proofs: Array.isArray(homeCopy.value.proofItems)
+      ? homeCopy.value.proofItems
       : [
-          'Repérez immédiatement le titre, le code RNCP38575, le niveau 5 / Bac+2 et le format à distance.',
-          "Découvrez les trois grands blocs qui structurent le référentiel avant d'entrer dans le détail.",
-          'Choisissez ensuite entre le programme détaillé, le financement ou une demande de rappel.'
+          {
+            label: 'Diplôme reconnu',
+            value: 'Bac+2 / niveau 5',
+            note: "Titre professionnel certifié par l'État"
+          },
+          {
+            label: 'Format souple',
+            value: '100 % à distance',
+            note: 'E-learning avec accompagnement pédagogique'
+          },
+          {
+            label: 'Durée du parcours',
+            value: '300 h',
+            note: 'Un format structuré pour avancer avec méthode'
+          }
         ]
   }
 })
 
 const programPreview = computed(() => {
   const blocks = program.value?.blocks ?? []
-  return blocks.map((block) => ({
+  return blocks.map((block, index) => ({
     code: block.code,
-    title: block.title,
-    text: firstLine(block.details)
+    title: homeBlockSummaries[index]?.title ?? block.title,
+    text: homeBlockSummaries[index]?.text ?? firstLine(block.details)
   }))
 })
 
@@ -83,10 +109,10 @@ const journeySection = computed(() => {
   const section = homeCopy.value.journeySection ?? {}
   return {
     eyebrow: section.eyebrow ?? 'La suite, en toute clarté',
-    title: section.title ?? 'Trois étapes pour avancer sereinement.',
+    title: section.title ?? "Trois leviers pour passer à l'action.",
     description:
       section.description ??
-      "Vous pouvez approfondir le contenu, consulter le financement ou demander un échange selon votre besoin du moment.",
+      'Programme, financement, contact : allez droit à ce qui vous décide.',
     steps: Array.isArray(section.steps)
       ? section.steps
       : [
@@ -110,14 +136,13 @@ const contactBand = computed(() => {
   const band = homeCopy.value.contactBand ?? {}
   return {
     eyebrow: band.eyebrow ?? 'Prêt à aller plus loin ?',
-    title:
-      band.title ?? 'Vous avez maintenant les repères essentiels pour décider de la suite.',
+    title: band.title ?? "Passez à l'étape suivante.",
     description:
       band.description ??
-      'Programme, financement et rappel suivent une même logique : vous donner une information claire pour avancer avec confiance.',
+      'Regardez le programme, vérifiez le financement, puis contactez-nous pour valider votre projet.',
     supportLine:
       band.supportLine ??
-      'RNCP38575, niveau 5 / Bac+2, 100 % distanciel, e-learning et accompagnement pédagogique.'
+      "Bac+2 / niveau 5 · diplôme certifié par l'État · 100 % à distance · 300 h"
   }
 })
 </script>
@@ -144,6 +169,9 @@ const contactBand = computed(() => {
         <div class="home-shell page-shell">
           <div class="home-hero grid gap-10 lg:grid-cols-[minmax(0,1.04fr)_minmax(24rem,0.82fr)] lg:items-start lg:gap-14">
             <div class="home-hero__content">
+              <p class="home-pill">
+                {{ hero.eyebrow }}
+              </p>
               <h1 class="home-hero__title">
                 {{ hero.title }}
               </h1>
@@ -186,16 +214,19 @@ const contactBand = computed(() => {
 
             <div class="home-hero__points lg:col-span-2 lg:grid lg:grid-cols-3">
               <article
-                v-for="(point, index) in hero.decisionPoints"
-                :key="point"
+                v-for="(point, index) in hero.proofs"
+                :key="point.label"
                 class="home-hero__point"
                 v-motion
                 :initial="motionVariants.pop.initial"
                 :enter="staggerEnter(index, 42, 20)"
               >
-                <p class="detail-key">Étape {{ index + 1 }}</p>
+                <p class="detail-key">{{ point.label }}</p>
+                <p class="mt-2 text-base font-semibold leading-6 text-foreground">
+                  {{ point.value }}
+                </p>
                 <p class="mt-2 text-sm leading-7 text-muted-foreground">
-                  {{ point }}
+                  {{ point.note }}
                 </p>
               </article>
             </div>
@@ -206,12 +237,12 @@ const contactBand = computed(() => {
       <section class="home-section home-section--program px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
         <div class="page-shell">
           <div class="mb-8 text-center">
-            <p class="kicker">Les trois blocs du référentiel</p>
+            <p class="kicker">Ce que vous allez maîtriser</p>
             <h2 class="mt-4 text-[clamp(1.7rem,3vw,2.35rem)] font-extrabold tracking-[-0.05em] text-primary">
-              Une structure lisible avant d’entrer dans le détail du programme.
+              Trois blocs pour piloter une structure avec méthode.
             </h2>
             <div class="mt-6 inline-flex rounded-full border border-primary/10 bg-[color:var(--paper-tint)] px-5 py-2 text-sm font-bold tracking-[0.03em] text-primary">
-              RNCP38575 · 3 grands blocs de compétences
+              RNCP38575 · les compétences clés du Bac+2
             </div>
           </div>
 

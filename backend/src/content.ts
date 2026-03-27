@@ -108,41 +108,30 @@ export const siteContent = {
   },
   home: {
     hero: {
-      eyebrow: '',
-      title: "Le RPMS s'articule autour de trois grands blocs de compétences.",
+      eyebrow: "Bac+2 certifié par l'État · 100 % à distance · 300 h",
+      title: "Préparez un Bac+2 certifié par l'État, 100 % à distance en 300 h.",
       lead:
-        'Titre professionnel Responsable petite et moyenne structure (RPMS), niveau 5 / Bac+2, en 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
+        "Le RPMS vous aide à gagner en crédibilité pour piloter une structure, encadrer une équipe et suivre l'activité.",
       fitLine:
-        "Avant d'aller plus loin, visualisez clairement ce que le titre couvre réellement et la manière dont il peut servir votre projet.",
-      decisionTitle: 'Pourquoi commencer ici',
+        "Bac+2, diplôme certifié par l'État, 300 h à distance : un cadre clair pour accélérer votre progression.",
       decisionText:
-        "En quelques minutes, vous visualisez l'architecture du titre et vous savez vers quelle étape poursuivre.",
-      decisionPoints: [
-        'Repérez immédiatement le titre, le code RNCP38575, le niveau 5 / Bac+2 et le format à distance.',
-        "Découvrez les trois grands blocs qui structurent le référentiel avant d'entrer dans le détail.",
-        'Choisissez ensuite entre le programme détaillé, le financement ou une demande de rappel.'
-      ]
+        "Vérifiez ce que vous allez maîtriser, puis demandez un rappel si le titre correspond à votre objectif."
     },
     proofItems: [
       {
-        value: 'Responsable petite et moyenne structure (RPMS)',
-        label: 'Titre',
-        note: 'Intitulé officiel'
+        value: 'Bac+2 / niveau 5',
+        label: 'Diplôme reconnu',
+        note: "Titre professionnel certifié par l'État"
       },
       {
-        value: 'RNCP38575',
-        label: 'Référence',
-        note: 'Code RNCP'
-      },
-      {
-        value: 'Niveau 5 / Bac+2',
-        label: 'Niveau',
-        note: "Titre professionnel reconnu par l'État"
-      },
-      {
-        value: '100 % distanciel',
-        label: 'Modalité',
+        value: '100 % à distance',
+        label: 'Format souple',
         note: 'E-learning avec accompagnement pédagogique'
+      },
+      {
+        value: '300 h',
+        label: 'Durée du parcours',
+        note: 'Un format structuré pour avancer avec méthode'
       }
     ],
     orientationSection: {
@@ -167,9 +156,9 @@ export const siteContent = {
     },
     journeySection: {
       eyebrow: 'La suite, en toute clarté',
-      title: 'Trois étapes pour avancer sereinement.',
+      title: "Trois leviers pour passer à l'action.",
       description:
-        "Vous pouvez approfondir le contenu, consulter les modalités financières ou demander un échange selon votre besoin du moment.",
+        'Programme, financement, contact : allez droit à ce qui vous décide.',
       steps: [
         {
           title: 'Approfondir le programme',
@@ -187,47 +176,69 @@ export const siteContent = {
     },
     contactBand: {
       eyebrow: 'Prêt à aller plus loin ?',
-      title: 'Vous avez maintenant les repères essentiels pour décider de la suite.',
+      title: "Passez à l'étape suivante.",
       description:
-        "Programme, financement et rappel suivent une même logique : vous donner une information claire pour avancer avec confiance.",
+        'Regardez le programme, vérifiez le financement, puis contactez-nous pour valider votre projet.',
       supportLine:
-        'RNCP38575, niveau 5 / Bac+2, 100 % distanciel, e-learning et accompagnement pédagogique.'
+        "Bac+2 / niveau 5 · diplôme certifié par l'État · 100 % à distance · 300 h"
     }
   },
   program: {
     hero: {
       eyebrow: 'Programme RPMS',
-      title:
-        'Le programme détaille les compétences contenues dans les trois grands blocs du référentiel.',
+      title: 'Le programme détaille les compétences du RPMS.',
       description:
-        "Chaque bloc est présenté avec sa liste de compétences associées, sans ajout hors référentiel.",
-      note:
-        "Vous passez ici d'une vue d'ensemble à une lecture précise des compétences qui structurent le titre."
+        'Retrouvez les trois blocs RNCP38575 et la liste des compétences associées.',
+      note: '300 h de formation, puis une évaluation finale en fin de parcours.'
     },
     summarySection: {
       eyebrow: "Vue d'ensemble",
       title: 'Trois blocs structurent le programme.',
       description:
-        "Le référentiel couvre la direction de la structure, la mise en oeuvre de son objet social et la présentation de son activité."
+        'Chaque bloc correspond à un certificat de compétences professionnelles (CCP).'
     },
     competencySection: {
       eyebrow: 'Ce que le titre prépare',
       title:
-        "Le RPMS prépare un rôle de direction, d'organisation, de mise en oeuvre et de suivi d'activité.",
+        "Le RPMS prépare à piloter, mettre en oeuvre et suivre l'activité.",
       description:
-        "Cette lecture vous aide à évaluer concrètement la portée du titre avant toute prise de décision."
+        'Voici les repères utiles avant le détail des compétences.'
+    },
+    evaluationSection: {
+      eyebrow: 'Durée et évaluation',
+      title: '300 h de formation, puis une évaluation finale en fin de parcours.',
+      description:
+        "La fiche France Compétences RNCP38575 décrit une évaluation finale structurée autour d'un projet, d'un entretien technique et d'un entretien final.",
+      summaryCards: [
+        {
+          label: 'Volume indicatif',
+          value: '300 h de formation',
+          note: 'Parcours 100 % distanciel avec accompagnement pédagogique.'
+        },
+        {
+          label: 'Épreuve finale',
+          value: '1 h 35 au total',
+          note: "Durée totale indiquée sur la fiche RNCP38575."
+        }
+      ],
+      steps: [
+        "Présentation d'un projet réalisé en amont de la session : 45 min.",
+        'Entretien technique : 30 min.',
+        'Entretien final : 20 min.',
+        'Validation par bloc : 45 min par CCP (30 min de présentation et 15 min d’entretien technique).'
+      ]
     },
     blocksSection: {
       eyebrow: 'Compétences détaillées',
-      title: 'Chaque bloc est décliné compétence par compétence.',
+      title: 'Le détail des compétences, bloc par bloc.',
       description:
-        "Vous retrouvez ici le détail de RNCP38575BC01, RNCP38575BC02 et RNCP38575BC03."
+        'Chaque compétence est reprise selon la fiche RNCP38575.'
     },
     ctaBand: {
-      eyebrow: 'Après le programme',
-      title: 'Consultez le financement ou demandez un rappel',
+      eyebrow: 'Une question sur le programme ?',
+      title: 'Contactez-nous.',
       description:
-        "Une fois le programme parcouru, vous pouvez vérifier les modalités financières ou faire le point sur votre projet."
+        'Un échange rapide permet de vérifier si le RPMS correspond à votre projet.'
     }
   },
   finance: {

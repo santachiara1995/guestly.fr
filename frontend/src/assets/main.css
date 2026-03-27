@@ -974,13 +974,14 @@
   }
 
   .home-program-block {
-    position: relative;
     display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
     gap: 1rem;
+    align-items: start;
     border-radius: 1.35rem;
     border: 1px solid color-mix(in oklab, var(--line) 82%, var(--primary));
     background: rgb(255 255 255 / 0.96);
-    padding: 1.3rem 1.15rem 1.3rem 4.6rem;
+    padding: 1.2rem 1.15rem;
     box-shadow: 0 14px 34px rgb(17 39 65 / 0.06);
     transition:
       transform 0.32s var(--motion-spring),
@@ -1000,9 +1001,6 @@
   }
 
   .home-program-block__number {
-    position: absolute;
-    left: 1.35rem;
-    top: 1.45rem;
     display: inline-flex;
     height: 2.6rem;
     width: 2.6rem;
@@ -1025,7 +1023,6 @@
   }
 
   .home-program-block__title {
-    margin-top: 0.4rem;
     font-size: 1.22rem;
     font-weight: 800;
     line-height: 1.16;
@@ -1034,7 +1031,7 @@
   }
 
   .home-program-block__text {
-    margin-top: 0.65rem;
+    margin-top: 0.5rem;
     max-width: 44rem;
     font-size: 0.94rem;
     line-height: 1.62;
@@ -1541,13 +1538,11 @@
   }
 
   .home-program-block {
-    padding-left: 1.25rem;
-    padding-top: 4.6rem;
+    grid-template-columns: 1fr;
   }
 
   .home-program-block__number {
-    left: 1.2rem;
-    top: 1rem;
+    margin-bottom: 0.15rem;
   }
 }
 

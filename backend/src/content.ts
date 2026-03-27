@@ -46,46 +46,39 @@ export const programsSeed = [
 
 export const faqSeed = [
   {
-    question: 'Comment lire rapidement le RPMS ?',
+    question: 'Le RPMS correspond-il à mon projet ?',
     answer:
-      "Commencez par les trois grands blocs de compétences, puis entrez dans le détail de chaque compétence dans l'onglet Programme.",
+      "Oui si vous cherchez un Bac+2 / niveau 5 pour piloter une structure, encadrer une équipe et suivre l'activité. Le détail des compétences est dans l'onglet Programme.",
     audience: 'particulier',
     sortOrder: 1
   },
   {
-    question: 'Où retrouver le détail des compétences ?',
+    question: 'Que couvre exactement le programme ?',
     answer:
-      "L'onglet Programme présente les trois blocs RNCP38575BC01, BC02 et BC03 avec la liste des compétences associées.",
+      "Le programme est structuré en trois blocs RNCP38575BC01, BC02 et BC03. Vous retrouvez dans l'onglet Programme les compétences bloc par bloc.",
     audience: 'particulier',
     sortOrder: 2
   },
   {
-    question: 'Quel est le format de la formation ?',
+    question: 'Quel format faut-il prévoir ?',
     answer:
-      'Le RPMS est présenté en 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
+      'Le RPMS se suit en 100 % distanciel, en e-learning, avec accompagnement pédagogique. Le parcours est pensé pour avancer à votre rythme.',
     audience: 'particulier',
     sortOrder: 3
   },
   {
-    question: 'Quel est le prix annoncé ?',
+    question: 'Combien de temps et quelle évaluation faut-il prévoir ?',
     answer:
-      'Le tarif indiqué pour la formation RPMS est de 3 500 € TTC.',
+      "Le parcours représente 300 h de formation. L'évaluation finale comprend un projet, un entretien technique et un entretien final. Le détail est dans l'onglet Programme.",
     audience: 'particulier',
     sortOrder: 4
   },
   {
-    question: 'Quelles sont les modalités de paiement ?',
+    question: 'Comment voir le financement ou poser ma question ?',
     answer:
-      "Le financement mentionne un paiement comptant ainsi qu'un paiement en plusieurs fois sans frais avec partenariat COFIDIS.",
+      "L'onglet Financement présente le prix, les modalités de paiement et les conditions de l'offre. Si un point reste à clarifier, demandez un rappel.",
     audience: 'particulier',
     sortOrder: 5
-  },
-  {
-    question: 'Pourquoi demander un rappel ?',
-    answer:
-      "Le rappel permet de vérifier l'adéquation du titre, du programme, du financement et du format avec votre projet.",
-    audience: 'particulier',
-    sortOrder: 6
   }
 ]
 
@@ -339,28 +332,15 @@ export const siteContent = {
   faq: {
     hero: {
       eyebrow: 'FAQ RPMS',
-      title: 'Les questions les plus utiles avant de vous décider.',
+      title: 'Les réponses utiles avant de choisir le RPMS.',
       description:
-        "Retrouvez les réponses essentielles sur le titre, le programme, le format et le financement."
-    },
-    opening: {
-      eyebrow: 'Avant de commencer',
-      title: 'Des réponses claires, sans détour.',
-      description:
-        "La FAQ vous aide à confirmer les points essentiels avant de revenir au programme, au financement ou au rappel.",
-      bullets: [
-        'Vérifier le titre, le niveau et le format.',
-        'Comprendre les trois blocs et le détail des compétences.',
-        "Consulter les informations financières utiles avant d'aller plus loin."
-      ]
+        "En cinq questions, vérifiez le titre, le programme, le format et le financement, puis avancez si le RPMS correspond à votre projet."
     },
     closingNote: {
-      eyebrow: 'Une question reste ouverte ?',
-      title: 'Revenez au programme, au financement ou demandez un rappel',
+      eyebrow: 'Choisissez la suite utile',
+      title: 'Passez à la page qui vous fait avancer.',
       description:
-        "Vous gardez ainsi une lecture claire du titre, des compétences et des conditions de l'offre.",
-      supportLine:
-        "Un échange peut ensuite vous aider à remettre ces éléments dans votre propre situation."
+        "Programme pour le détail des compétences, Financement pour les conditions de l'offre, Contact pour faire le point."
     }
   },
   contact: {

@@ -9,19 +9,24 @@ import { footerNavigation } from '@/data/navigation'
 const { toWithExperience } = useExperienceVariant()
 
 const homeLink = computed(() => toWithExperience('/'))
-const navigationItems = computed(() =>
-  footerNavigation.map((item) => ({
-    ...item,
-    to: toWithExperience(item.to)
-  }))
+const legalItems = computed(() =>
+  footerNavigation
+    .filter(
+      (item) =>
+        item.to === '/mentions-legales' || item.to === '/politique-confidentialite'
+    )
+    .map((item) => ({
+      ...item,
+      to: toWithExperience(item.to)
+    }))
 )
 </script>
 
 <template>
   <footer class="mt-10 border-t border-border/70 bg-background/75 sm:mt-12">
-    <div class="mx-auto px-4 py-8 sm:px-6 sm:py-9 lg:px-8">
+    <div class="mx-auto px-4 py-6 sm:px-6 sm:py-7 lg:px-8">
       <div
-        class="footer-shell mx-auto grid w-full max-w-[1120px] gap-5 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[1.05fr_0.95fr] lg:px-6"
+        class="footer-shell mx-auto grid w-full max-w-[1120px] gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[1.12fr_0.88fr] lg:px-6"
       >
         <div class="space-y-2.5">
           <brand-logo :to="homeLink" />
@@ -35,21 +40,7 @@ const navigationItems = computed(() =>
           </div>
         </div>
 
-        <div class="grid gap-5 sm:grid-cols-[minmax(0,_1fr)_auto] lg:justify-end">
-          <div class="space-y-2.5">
-            <p class="footer-heading">Navigation</p>
-            <div class="flex flex-wrap gap-x-4 gap-y-2">
-              <RouterLink
-                v-for="item in navigationItems"
-                :key="item.to"
-                class="footer-link"
-                :to="item.to"
-              >
-                {{ item.label }}
-              </RouterLink>
-            </div>
-          </div>
-
+        <div class="grid gap-4 lg:justify-end">
           <div class="space-y-2.5">
             <p class="footer-heading">Coordonnées</p>
             <div class="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
@@ -69,6 +60,20 @@ const navigationItems = computed(() =>
               <p class="max-w-xs">110 Esplanade du General de Gaulle, 92400 Courbevoie</p>
             </div>
           </div>
+
+          <div class="space-y-2">
+            <p class="footer-heading">Légal</p>
+            <div class="flex flex-wrap gap-x-4 gap-y-2">
+              <RouterLink
+                v-for="item in legalItems"
+                :key="item.to"
+                class="footer-link"
+                :to="item.to"
+              >
+                {{ item.label }}
+              </RouterLink>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -78,7 +83,7 @@ const navigationItems = computed(() =>
 <style scoped>
 .footer-link {
   display: inline-flex;
-  min-height: 2.5rem;
+  min-height: 2rem;
   align-items: center;
   justify-content: flex-start;
   padding: 0;

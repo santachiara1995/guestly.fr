@@ -3,7 +3,6 @@ import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { ArrowRight, ChevronDown } from 'lucide-vue-next'
 
-import SectionTitle from '@/components/section-title.vue'
 import { Button } from '@/components/ui/button'
 import { useExperienceVariant } from '@/composables/use-experience-variant'
 import { api } from '@/lib/api'
@@ -34,54 +33,21 @@ const contactLink = computed(() => toWithExperience('/contact'))
 
 const hero = computed(() => ({
   eyebrow: faqCopy.value.hero?.eyebrow ?? 'FAQ RPMS',
-  title: faqCopy.value.hero?.title ?? 'Les questions les plus utiles avant de vous décider.',
+  title: faqCopy.value.hero?.title ?? 'Les réponses utiles avant de choisir le RPMS.',
   description:
     faqCopy.value.hero?.description ??
-    'Retrouvez les réponses essentielles sur le titre, le programme, le format et le financement.'
-}))
-
-const opening = computed(() => ({
-  eyebrow: faqCopy.value.opening?.eyebrow ?? 'Avant de commencer',
-  title: faqCopy.value.opening?.title ?? 'Des réponses claires, sans détour.',
-  description:
-    faqCopy.value.opening?.description ??
-    'La FAQ vous aide à confirmer les points essentiels avant de revenir au programme, au financement ou au rappel.',
-  bullets: Array.isArray(faqCopy.value.opening?.bullets)
-    ? faqCopy.value.opening.bullets
-    : [
-        'Vérifier le titre, le niveau et le format.',
-        'Comprendre les trois blocs et le détail des compétences.',
-        "Consulter les informations financières utiles avant d'aller plus loin."
-      ]
+    'En cinq questions, vérifiez le titre, le programme, le format et le financement, puis avancez si le RPMS correspond à votre projet.'
 }))
 
 const closingNote = computed(() => ({
-  eyebrow: faqCopy.value.closingNote?.eyebrow ?? 'Une question reste ouverte ?',
-  title:
-    faqCopy.value.closingNote?.title ??
-    'Revenez au programme, au financement ou demandez un rappel',
+  eyebrow: faqCopy.value.closingNote?.eyebrow ?? 'Choisissez la suite utile',
+  title: faqCopy.value.closingNote?.title ?? 'Passez à la page qui vous fait avancer.',
   description:
     faqCopy.value.closingNote?.description ??
-    "Vous gardez ainsi une lecture claire du titre, des compétences et des conditions de l'offre.",
-  supportLine:
-    faqCopy.value.closingNote?.supportLine ??
-    'Un échange peut ensuite vous aider à remettre ces éléments dans votre propre situation.'
+    "Programme pour le détail des compétences, Financement pour les conditions de l'offre, Contact pour faire le point."
 }))
 
-const supportTiles = computed(() => [
-  {
-    label: 'Lire dans le bon ordre',
-    text: 'Le titre d’abord, le programme ensuite, puis le financement si un point reste à éclaircir.'
-  },
-  {
-    label: 'Rester sur le RPMS',
-    text: "Les réponses ci-dessous restent centrées sur le titre professionnel Responsable petite et moyenne structure."
-  },
-  {
-    label: 'Passer à l’action',
-    text: 'Quand la lecture est claire, vous pouvez demander un rappel sans quitter le parcours public.'
-  }
-])
+const topItems = computed(() => items.value.slice(0, 5))
 </script>
 
 <template>
@@ -90,160 +56,66 @@ const supportTiles = computed(() => [
 
     <template v-else>
       <section
-        class="page-shell hero-split grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start"
+        class="page-shell space-y-6"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
-        <article class="page-hero hero-split__content space-y-5 p-5 sm:p-6 lg:p-7">
-          <div class="space-y-4">
-            <h1 class="editorial-title max-w-4xl text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
+        <article class="page-hero p-5 sm:p-6 lg:p-7">
+          <div class="mx-auto max-w-3xl space-y-4 text-center">
+            <p class="kicker">{{ hero.eyebrow }}</p>
+            <h1 class="editorial-title text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
               {{ hero.title }}
             </h1>
-            <p class="max-w-3xl text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
+            <p class="text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
               {{ hero.description }}
             </p>
           </div>
-
-          <RouterLink :to="programLink" class="home-inline-link">
-            Relire le programme
-            <ArrowRight class="h-4 w-4" />
-          </RouterLink>
         </article>
 
-        <aside class="page-cut sidebar-panel hero-split__panel p-5 sm:p-6 lg:p-7">
-          <p class="kicker">{{ opening.eyebrow }}</p>
-          <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
-            {{ opening.title }}
-          </h2>
-          <p class="mt-4 text-sm leading-7 text-muted-foreground">
-            {{ opening.description }}
-          </p>
-
-          <div class="mt-6 grid gap-3">
-            <article
-              v-for="(bullet, index) in opening.bullets"
-              :key="bullet"
-              class="support-tile paper-card p-4"
-              v-motion
-              :initial="motionVariants.pop.initial"
-              :enter="staggerEnter(index, 44, 22)"
-            >
-              <div class="flex items-start gap-3">
-                <span class="finance-badge">{{ index + 1 }}</span>
-                <p class="text-sm leading-6 text-foreground">{{ bullet }}</p>
-              </div>
-            </article>
-          </div>
-
-          <div class="mt-6 grid gap-3">
-            <RouterLink :to="financeLink" class="home-inline-link">
-              Aller au financement
-              <ArrowRight class="h-4 w-4" />
-            </RouterLink>
-            <RouterLink :to="contactLink" class="home-inline-link">
-              Demander un rappel
-              <ArrowRight class="h-4 w-4" />
-            </RouterLink>
-          </div>
-        </aside>
-      </section>
-
-      <section class="page-shell space-y-6">
-        <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.86fr)] lg:items-start">
-          <article class="space-y-5">
-            <SectionTitle
-              eyebrow="Questions utiles"
-              title="Les réponses essentielles avant de passer à l'étape suivante."
-              description="Chaque réponse doit aider à vérifier le RPMS, pas à pousser une décision trop vite."
-            />
-          </article>
-
-          <aside class="sidebar-panel paper-card p-5 sm:p-6">
-            <p class="kicker">Lire dans le bon ordre</p>
-            <h2 class="mt-4 text-[clamp(1.2rem,1.9vw,1.55rem)] font-semibold tracking-[-0.04em] text-foreground">
-              Programme, financement, puis rappel si besoin.
-            </h2>
-
-            <div class="mt-5 grid gap-3">
-              <article
-                v-for="(tile, index) in supportTiles"
-                :key="tile.label"
-                class="support-tile paper-card p-4"
-                v-motion
-                :initial="motionVariants.pop.initial"
-                :enter="staggerEnter(index, 44, 22)"
-              >
-                <p class="detail-key">{{ tile.label }}</p>
-                <p class="mt-2 text-sm leading-7 text-muted-foreground">
-                  {{ tile.text }}
-                </p>
-              </article>
-            </div>
-
-            <div class="mt-6 grid gap-3 border-t border-border/70 pt-5">
-              <RouterLink :to="contactLink" class="home-inline-link">
-                Être rappelé
-                <ArrowRight class="h-4 w-4" />
-              </RouterLink>
-              <RouterLink :to="programLink" class="home-inline-link">
-                Voir le programme
-                <ArrowRight class="h-4 w-4" />
-              </RouterLink>
-            </div>
-          </aside>
-        </div>
-
-        <div class="grid gap-4">
+        <div class="mx-auto grid max-w-4xl gap-4">
           <details
-            v-for="(item, index) in items"
+            v-for="(item, index) in topItems"
             :key="item.question"
             class="accordion-card paper-card px-5 py-4 sm:px-6 sm:py-5"
             v-motion
             :initial="motionVariants.block.initial"
             :enter="staggerEnter(index, 40, 18)"
           >
-            <summary class="faq-summary">
+            <summary class="faq-summary accordion-summary">
               <span class="text-base font-semibold leading-6 text-foreground">{{ item.question }}</span>
-              <ChevronDown class="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+              <ChevronDown class="accordion-summary__icon mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
             </summary>
-            <p class="mt-4 text-sm leading-7 text-muted-foreground">
+            <p class="accordion-panel">
               {{ item.answer }}
             </p>
           </details>
         </div>
-      </section>
 
-      <section class="page-shell cta-band arch-cta paper-card p-5 sm:p-6 lg:p-8">
-        <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+        <div class="page-cut paper-card flex flex-col gap-5 p-5 sm:p-6 lg:flex-row lg:items-center lg:justify-between">
           <div class="space-y-3">
             <p class="kicker">{{ closingNote.eyebrow }}</p>
-            <h2 class="editorial-title max-w-3xl text-[clamp(1.55rem,2.3vw,2.1rem)] text-foreground">
+            <h2 class="text-[clamp(1.28rem,2vw,1.72rem)] font-semibold tracking-[-0.04em] text-foreground">
               {{ closingNote.title }}
             </h2>
             <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
               {{ closingNote.description }}
             </p>
-            <p class="max-w-2xl text-sm leading-7 text-muted-foreground">
-              {{ closingNote.supportLine }}
-            </p>
           </div>
 
           <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button :as="RouterLink" :to="programLink" size="lg" variant="outline">
+              Voir le programme
+            </Button>
+            <Button :as="RouterLink" :to="financeLink" size="lg" variant="outline">
+              Voir le financement
+            </Button>
             <Button :as="RouterLink" :to="contactLink" size="lg">
               Être rappelé
               <ArrowRight class="ml-2 h-4 w-4" />
             </Button>
-            <Button :as="RouterLink" :to="programLink" size="lg" variant="outline">
-              Voir le programme
-            </Button>
           </div>
         </div>
-
-        <RouterLink :to="financeLink" class="home-inline-link mt-4">
-          Aller vers le financement
-          <ArrowRight class="h-4 w-4" />
-        </RouterLink>
       </section>
     </template>
   </div>

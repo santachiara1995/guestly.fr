@@ -139,10 +139,7 @@ const contactBand = computed(() => {
     title: band.title ?? "Passez à l'étape suivante.",
     description:
       band.description ??
-      'Regardez le programme, vérifiez le financement, puis contactez-nous pour valider votre projet.',
-    supportLine:
-      band.supportLine ??
-      "Bac+2 / niveau 5 · diplôme certifié par l'État · 100 % à distance · 300 h"
+      'Regardez le programme, vérifiez le financement, puis contactez-nous pour valider votre projet.'
   }
 })
 </script>
@@ -284,40 +281,26 @@ const contactBand = computed(() => {
               >
                 <span class="home-final-band__step-index">{{ index + 1 }}</span>
                 <div>
-                  <h3 class="text-sm font-semibold text-white">{{ step.title }}</h3>
-                  <p class="mt-1 text-sm leading-6 text-white/72">{{ step.text }}</p>
+                  <p class="detail-key">Étape {{ index + 1 }}</p>
+                  <h3 class="mt-2 text-sm font-semibold text-foreground">{{ step.title }}</h3>
+                  <p class="mt-2 text-sm leading-6 text-muted-foreground">{{ step.text }}</p>
                 </div>
               </article>
             </div>
-          </div>
 
-          <aside class="home-final-band__card">
-            <p class="detail-key">Choisir la suite</p>
-            <h3 class="mt-3 text-[clamp(1.15rem,1.7vw,1.45rem)] font-semibold tracking-[-0.04em] text-foreground">
-              Continuez avec l’étape qui répond à votre question du moment.
-            </h3>
-            <p class="mt-3 text-sm leading-7 text-muted-foreground">
-              Le programme détaille les compétences, le financement clarifie les conditions, et le rappel permet de faire le point avec un conseiller.
-            </p>
-
-            <div class="mt-6 flex flex-col gap-3">
-              <Button :as="RouterLink" :to="programLink" size="lg">
+            <div class="mt-2 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button :as="RouterLink" :to="programLink" size="lg" variant="secondary">
                 Voir le programme
                 <ArrowRight class="ml-2 h-4 w-4" />
               </Button>
-              <Button :as="RouterLink" :to="contactLink" size="lg" variant="outline">
+              <Button :as="RouterLink" :to="financeLink" size="lg" variant="outline">
+                Voir le financement
+              </Button>
+              <Button :as="RouterLink" :to="contactLink" size="lg">
                 Être rappelé
               </Button>
             </div>
-
-            <RouterLink :to="financeLink" class="home-inline-link mt-4">
-              Consulter le financement
-            </RouterLink>
-
-            <p class="mt-4 text-sm leading-7 text-muted-foreground">
-              {{ contactBand.supportLine }}
-            </p>
-          </aside>
+          </div>
         </div>
       </section>
     </template>

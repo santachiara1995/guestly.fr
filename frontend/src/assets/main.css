@@ -259,11 +259,14 @@
   .sidebar-panel,
   .support-tile,
   .block-row,
+  .decision-card,
+  .info-chip,
   .home-hero__content,
   .home-hero__panel,
   .home-hero__point,
   .home-program-block,
   .home-final-band,
+  .home-final-band__step,
   .home-final-band__card,
   .program-hero-card,
   .program-hero-aside,
@@ -293,11 +296,14 @@
   .sidebar-panel:hover,
   .support-tile:hover,
   .block-row:hover,
+  .decision-card:hover,
+  .info-chip:hover,
   .home-hero__content:hover,
   .home-hero__panel:hover,
   .home-hero__point:hover,
   .home-program-block:hover,
   .home-final-band:hover,
+  .home-final-band__step:hover,
   .home-final-band__card:hover,
   .program-hero-card:hover,
   .program-hero-aside:hover,
@@ -305,10 +311,10 @@
   .program-note-card:hover,
   .program-cta-shell:hover {
     transform: translateY(-4px);
-    border-color: color-mix(in oklab, var(--primary) 28%, var(--line));
+    border-color: color-mix(in oklab, var(--primary) 42%, var(--line));
     box-shadow:
-      0 26px 62px rgb(2 14 37 / 0.28),
-      0 0 0 1px rgb(255 255 255 / 0.08);
+      0 24px 52px rgb(17 39 65 / 0.16),
+      0 0 0 1px color-mix(in oklab, var(--primary) 22%, white);
   }
 
   .page-hero:hover::after,
@@ -1187,9 +1193,10 @@
     gap: 0.8rem;
     align-items: start;
     border-radius: 1rem;
-    border: 1px solid rgb(255 255 255 / 0.1);
-    background: rgb(255 255 255 / 0.05);
-    padding: 0.78rem 0.88rem;
+    border: 1px solid color-mix(in oklab, var(--line) 80%, var(--primary));
+    background: rgb(255 255 255 / 0.96);
+    padding: 0.92rem 0.96rem;
+    box-shadow: 0 14px 28px rgb(17 39 65 / 0.12);
   }
 
   .home-final-band__step-index {
@@ -1199,8 +1206,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    background: rgb(255 255 255 / 0.14);
-    color: white;
+    background: color-mix(in oklab, var(--paper-tint) 86%, white);
+    color: var(--blue-eclipse);
     font-size: 0.82rem;
     font-weight: 800;
   }
@@ -1766,9 +1773,11 @@
   }
 
   .home-final-band {
-    grid-template-columns: minmax(0, 1.08fr) minmax(21rem, 0.92fr);
-    align-items: stretch;
     padding: 1.45rem;
+  }
+
+  .home-final-band__steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .home-hero {

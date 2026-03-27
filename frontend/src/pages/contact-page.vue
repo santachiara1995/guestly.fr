@@ -13,48 +13,20 @@ const site = ref({
   contact: {},
   organizationProfile: {}
 })
-const program = ref({
-  title: 'Titre professionnel Responsable petite et moyenne structure (RPMS)',
-  rncpCode: 'RNCP38575',
-  levelLabel: 'Niveau 5 / Bac+2',
-  formatLabel: '100 % distanciel',
-  rhythmLabel: 'E-learning',
-  supportLabel: 'Accompagnement pédagogique'
-})
 const loading = ref(true)
 
 const { toWithExperience } = useExperienceVariant()
 
 onMounted(async () => {
   try {
-    const [sitePayload, programPayload] = await Promise.all([api.getSite(), api.getProgram('rpms')])
+    const sitePayload = await api.getSite()
     site.value = sitePayload
-    program.value = programPayload
   } finally {
     loading.value = false
   }
 })
 
 const contactCopy = computed(() => site.value.contact ?? {})
-const displayPhone = computed(() => site.value.contact?.phone?.trim() ?? null)
-const displayAddress = computed(
-  () =>
-    site.value.contact?.address?.trim() ??
-    site.value.organizationProfile?.headquartersAddress?.trim() ??
-    null
-)
-const displayWebsite = computed(
-  () =>
-    site.value.contact?.website?.trim() ??
-    site.value.organizationProfile?.website?.trim() ??
-    null
-)
-const phoneHref = computed(() => {
-  if (!displayPhone.value) return null
-  const digits = displayPhone.value.replace(/\D/g, '').replace(/^0/, '')
-  return digits ? `tel:+33${digits}` : null
-})
-
 const programLink = computed(() => toWithExperience('/programme'))
 const financeLink = computed(() => toWithExperience('/financement'))
 const faqLink = computed(() => toWithExperience('/faq'))
@@ -89,34 +61,6 @@ const nextStepPoints = computed(() =>
         'Les informations demandées restent limitées à ce qui est utile pour vous recontacter.'
       ]
 )
-
-const supportFacts = computed(() =>
-  [
-    { label: 'Titre', value: program.value?.title },
-    { label: 'Référence', value: program.value?.rncpCode },
-    { label: 'Niveau', value: program.value?.levelLabel },
-    { label: 'Modalité', value: program.value?.formatLabel },
-    { label: 'Appui', value: program.value?.supportLabel }
-  ].filter((item) => item.value)
-)
-
-const contactLines = computed(() =>
-  [
-    {
-      label: 'Téléphone',
-      value: displayPhone.value,
-      href: phoneHref.value
-    },
-    {
-      label: 'Adresse',
-      value: displayAddress.value
-    },
-    {
-      label: 'Site',
-      value: displayWebsite.value
-    }
-  ].filter((item) => item.value)
-)
 </script>
 
 <template>
@@ -125,12 +69,12 @@ const contactLines = computed(() =>
 
     <template v-else>
       <section
-        class="page-shell hero-split grid gap-6 lg:grid-cols-[1.04fr_0.96fr] lg:items-start"
+        class="page-shell"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
-        <article class="page-hero hero-split__content space-y-5 p-5 sm:p-6 lg:p-7">
+        <article class="page-hero space-y-5 p-5 sm:p-6 lg:p-7">
           <div class="space-y-4">
             <h1 class="editorial-title max-w-4xl text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
               {{ hero.title }}
@@ -161,52 +105,6 @@ const contactLines = computed(() =>
             </RouterLink>
           </div>
         </article>
-
-        <aside class="page-cut sidebar-panel hero-split__panel p-5 sm:p-6 lg:p-7">
-          <p class="kicker">Repères utiles</p>
-          <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
-            Les éléments de base à garder sous les yeux.
-          </h2>
-
-          <div class="mt-6 grid gap-3">
-            <article
-              v-for="(item, index) in supportFacts"
-              :key="item.label"
-              class="support-tile paper-card p-4"
-              v-motion
-              :initial="motionVariants.pop.initial"
-              :enter="staggerEnter(index, 44, 22)"
-            >
-              <p class="detail-key">{{ item.label }}</p>
-              <p class="mt-2 text-sm leading-6 text-foreground">
-                {{ item.value }}
-              </p>
-            </article>
-          </div>
-
-          <div class="mt-6 border-t border-border/70 pt-5">
-            <p class="detail-key">Coordonnées</p>
-            <div class="mt-4 grid gap-3">
-              <article
-                v-for="line in contactLines"
-                :key="line.label"
-                class="rounded-[1rem] border border-border/70 bg-[color:var(--paper-tint)]/55 p-4"
-              >
-                <p class="detail-key">{{ line.label }}</p>
-                <a
-                  v-if="line.href"
-                  :href="line.href"
-                  class="mt-2 block text-sm leading-6 text-foreground underline-offset-4 hover:underline"
-                >
-                  {{ line.value }}
-                </a>
-                <p v-else class="mt-2 text-sm leading-6 text-foreground">
-                  {{ line.value }}
-                </p>
-              </article>
-            </div>
-          </div>
-        </aside>
       </section>
 
       <section

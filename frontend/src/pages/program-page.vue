@@ -48,16 +48,16 @@ const financeLink = computed(() => toWithExperience('/financement'))
 const hero = computed(() => {
   const value = pageCopy.value.hero ?? {}
   return {
-    eyebrow: value.eyebrow ?? 'Programme RPMS',
+    eyebrow: value.eyebrow ?? 'Cadre du programme RPMS',
     title:
       value.title ??
-      'Le programme détaille les compétences contenues dans les trois grands blocs du référentiel.',
+      'Le programme détaille les compétences publiées dans les trois blocs du référentiel.',
     description:
       value.description ??
       'Chaque bloc est présenté avec sa liste de compétences associées, sans ajout hors référentiel.',
     note:
       value.note ??
-      "Vous passez d'une vue d'ensemble à une lecture précise des compétences qui structurent le titre."
+      "Le détail ci-dessous permet de mesurer la portée du titre bloc par bloc."
   }
 })
 
@@ -68,7 +68,7 @@ const ctaBand = computed(() => pageCopy.value.ctaBand ?? {})
 const roleSummary = computed(
   () =>
     competencySection.value.title ??
-    'Le programme reste relié à un rôle de pilotage, d’organisation et de suivi.'
+    "Le titre prépare des responsabilités de direction, de mise en oeuvre et de suivi d'activité."
 )
 
 const blocks = computed(() =>
@@ -170,24 +170,24 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
             </article>
 
             <aside class="sidebar-panel trust-panel paper-card p-5 sm:p-6 lg:p-7">
-              <p class="kicker">Trois grands blocs</p>
+              <p class="kicker">Cadre du titre</p>
               <h2 class="mt-4 text-[clamp(1.3rem,2.2vw,1.8rem)] font-semibold tracking-[-0.04em] text-foreground">
-                {{ summarySection.title ?? 'Le titre tient en trois blocs lisibles.' }}
+                {{ summarySection.title ?? 'Trois blocs structurent la lecture du référentiel.' }}
               </h2>
               <p class="mt-4 max-w-xl text-sm leading-7 text-muted-foreground">
-                {{ summarySection.description ?? 'Le détail des compétences arrive juste après cette lecture d’ensemble.' }}
+                {{ summarySection.description ?? 'Le détail des compétences intervient après cette vue d’ensemble sur la structure du titre.' }}
               </p>
 
-              <div class="block-ladder programme-ladder mt-6">
+              <div class="mt-6 grid gap-3">
                 <article
                   v-for="(block, index) in blocks"
                   :key="block.code"
-                  class="block-row programme-block"
+                  class="rounded-[0.96rem] border border-border/75 bg-white/82 px-4 py-4"
                   v-motion
                   :initial="motionVariants.pop.initial"
                   :enter="staggerEnter(index, 54, 28)"
                 >
-                  <span class="programme-block__badge">{{ index + 1 }}</span>
+                  <p class="detail-key">Bloc {{ index + 1 }}</p>
                   <p class="programme-block__code">{{ block.code }}</p>
                   <h3 class="mt-2 text-base font-semibold leading-tight text-foreground">
                     {{ block.title }}
@@ -209,18 +209,18 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
       <section class="program-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div class="mx-auto max-w-[1120px]">
           <div class="mx-auto mb-10 max-w-3xl text-center">
-            <p class="kicker">{{ competencySection.eyebrow ?? 'Ce que le titre prépare' }}</p>
+            <p class="kicker">{{ competencySection.eyebrow ?? 'Portée du titre' }}</p>
             <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
-              {{ competencySection.title ?? 'Le RPMS prépare un rôle de direction, d’organisation et de suivi.' }}
+              {{ competencySection.title ?? 'Deux repères pour situer la portée du titre.' }}
             </h2>
             <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
-              {{ competencySection.description ?? 'La lecture se fait d’abord par les blocs, puis par les responsabilités qui leur donnent sens.' }}
+              {{ competencySection.description ?? 'Cette lecture relie les blocs du référentiel à ce que le titre couvre et à ce qu’il prépare.' }}
             </p>
           </div>
 
           <div class="grid gap-6 lg:grid-cols-2">
             <article class="page-cut paper-card p-5 sm:p-6">
-              <p class="detail-key">Repères de lecture</p>
+              <p class="detail-key">Ce que couvre le titre</p>
               <h3 class="mt-4 text-[clamp(1.2rem,2vw,1.6rem)] font-semibold tracking-[-0.04em] text-foreground">
                 Trois points pour comprendre la portée du RPMS.
               </h3>
@@ -234,7 +234,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
                   :initial="motionVariants.block.initial"
                   :enter="staggerEnter(index, 48, 24)"
                 >
-                  <p class="detail-key">Point {{ index + 1 }}</p>
+                  <p class="detail-key">Repère {{ index + 1 }}</p>
                   <p class="mt-3 text-sm leading-7 text-muted-foreground">
                     {{ item }}
                   </p>
@@ -243,7 +243,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
             </article>
 
             <article class="page-cut paper-card p-5 sm:p-6">
-              <p class="detail-key">Responsabilités travaillées</p>
+              <p class="detail-key">Ce que le titre prépare</p>
               <h3 class="mt-4 text-[clamp(1.2rem,2vw,1.6rem)] font-semibold tracking-[-0.04em] text-foreground">
                 {{ roleSummary }}
               </h3>
@@ -291,7 +291,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
               :initial="motionVariants.block.initial"
               :enter="staggerEnter(index, 56, 28)"
             >
-              <span class="programme-block__badge">{{ index + 1 }}</span>
+              <p class="detail-key">Bloc {{ index + 1 }} sur 3</p>
               <p class="programme-block__code">{{ block.code }}</p>
               <h3 class="mt-2 text-[1.08rem] font-semibold leading-tight tracking-[-0.03em] text-foreground">
                 {{ block.title }}
@@ -310,22 +310,22 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         <div class="cta-band arch-cta mx-auto max-w-[1120px] p-5 sm:p-6 lg:p-7">
           <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div class="space-y-3">
-              <p class="kicker">{{ ctaBand.eyebrow ?? 'Après la lecture du programme' }}</p>
+              <p class="kicker">{{ ctaBand.eyebrow ?? 'Suite de lecture' }}</p>
               <h2 class="editorial-title max-w-3xl text-[clamp(1.6rem,2.4vw,2.2rem)] text-foreground">
-                {{ ctaBand.title ?? 'Consultez le financement ou demandez un rappel' }}
+                {{ ctaBand.title ?? 'Consultez le financement ou situez votre demande' }}
               </h2>
               <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
-                {{ ctaBand.description ?? 'Une fois le programme parcouru, vous pouvez vérifier les modalités financières ou faire le point sur votre projet.' }}
+                {{ ctaBand.description ?? 'Une fois le programme parcouru, vous pouvez vérifier les modalités financières ou préciser votre demande dans le cadre du RPMS.' }}
               </p>
             </div>
 
             <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button :as="RouterLink" :to="financeLink" size="lg" variant="outline">
+                Voir le financement
+              </Button>
               <Button :as="RouterLink" :to="contactLink" size="lg">
                 Être rappelé
                 <ArrowRight class="ml-2 h-4 w-4" />
-              </Button>
-              <Button :as="RouterLink" :to="financeLink" size="lg" variant="outline">
-                Voir le financement
               </Button>
               <Button :as="RouterLink" :to="accessLink" size="lg" variant="ghost">
                 Accès et accompagnement

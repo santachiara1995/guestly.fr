@@ -1,13 +1,7 @@
 <script setup>
-import { computed, markRaw, onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import {
-  ArrowRight,
-  BadgeCheck,
-  Building2,
-  FileText,
-  Megaphone
-} from 'lucide-vue-next'
+import { ArrowRight, BadgeCheck } from 'lucide-vue-next'
 
 import { Button } from '@/components/ui/button'
 import { useExperienceVariant } from '@/composables/use-experience-variant'
@@ -61,11 +55,11 @@ const hero = computed(() => {
       'Titre professionnel Responsable petite et moyenne structure (RPMS), niveau 5 / Bac+2, en 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
     fitLine:
       value.fitLine ??
-      "Commencez par lire le titre, son rôle et sa structure avant d'entrer dans le détail du programme.",
+      "Commencez par lire le cadre du titre, sa structure et les données publiées avant d'entrer dans le détail du programme.",
     decisionTitle: value.decisionTitle ?? 'Pourquoi commencer ici',
     decisionText:
       value.decisionText ??
-      "En quelques minutes, vous visualisez l'architecture du titre et vous savez vers quelle étape poursuivre.",
+      'Vous disposez ici des repères utiles pour lire le titre avant de poursuivre.',
     decisionPoints: Array.isArray(value.decisionPoints)
       ? value.decisionPoints
       : [
@@ -124,8 +118,6 @@ const trustMarks = computed(() => [
 const featureCards = computed(() => {
   const blocks = program.value?.blocks ?? []
   const sourcePillars = homeCopy.value.orientationSection?.pillars ?? []
-  const icons = [markRaw(Building2), markRaw(Megaphone), markRaw(FileText)]
-  const tones = ['default', 'warm', 'default']
 
   return blocks.map((block, index) => ({
     code: block.code,
@@ -133,9 +125,7 @@ const featureCards = computed(() => {
     text:
       sourcePillars[index]?.text ??
       firstLine(block.details) ??
-      'Lecture du référentiel et du rôle préparé.',
-    icon: icons[index] ?? markRaw(BadgeCheck),
-    tone: tones[index] ?? 'default'
+      'Lecture du référentiel et du rôle préparé.'
   }))
 })
 
@@ -152,10 +142,10 @@ const journeySection = computed(() => {
   const section = homeCopy.value.journeySection ?? {}
   return {
     eyebrow: section.eyebrow ?? 'La suite, en toute clarté',
-    title: section.title ?? 'Trois étapes pour avancer sereinement.',
+    title: section.title ?? 'Trois repères pour décider de la suite.',
     description:
       section.description ??
-      "Vous pouvez approfondir le contenu, consulter le financement ou demander un échange selon votre besoin du moment.",
+      "Vous pouvez approfondir le contenu, consulter le financement ou situer votre demande selon votre besoin du moment.",
     steps: Array.isArray(section.steps)
       ? section.steps
       : [
@@ -180,10 +170,10 @@ const contactBand = computed(() => {
   return {
     eyebrow: band.eyebrow ?? 'Prêt à aller plus loin ?',
     title:
-      band.title ?? 'Vous avez maintenant les repères essentiels pour décider de la suite.',
+      band.title ?? 'Vous avez maintenant les repères essentiels pour situer la suite.',
     description:
       band.description ??
-      'Programme, financement et rappel suivent une même logique : vous donner une information claire pour avancer avec confiance.',
+      "Programme, financement et rappel prolongent ici une même lecture: cadre du titre, structure du référentiel et données publiées de l'offre.",
     supportLine:
       band.supportLine ??
       'RNCP38575, niveau 5 / Bac+2, 100 % distanciel, e-learning et accompagnement pédagogique.'
@@ -259,7 +249,7 @@ const contactBand = computed(() => {
 
                 <div class="home-hero__badge home-hero__badge--bottom">
                   <div
-                    v-for="item in proofItems.slice(1)"
+                    v-for="item in proofItems.slice(1, 3)"
                     :key="item.label"
                     class="home-hero__metric"
                   >
@@ -270,19 +260,47 @@ const contactBand = computed(() => {
               </div>
             </div>
 
-            <div class="home-hero__points lg:col-span-2 lg:grid lg:grid-cols-3">
-              <article
-                v-for="(point, index) in hero.decisionPoints"
-                :key="point"
-                class="home-hero__point"
-                v-motion
-                :initial="motionVariants.pop.initial"
-                :enter="staggerEnter(index, 42, 20)"
-              >
-                <p class="detail-key">Étape {{ index + 1 }}</p>
-                <p class="mt-2 text-sm leading-7 text-muted-foreground">
-                  {{ point }}
+            <div class="lg:col-span-2 grid gap-3 lg:grid-cols-[1.08fr,0.92fr]">
+              <article class="rounded-[0.96rem] border border-border/80 bg-white/84 p-4 shadow-sm sm:p-5">
+                <p class="detail-key">Cadre du titre</p>
+                <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                  <article
+                    v-for="(item, index) in proofItems"
+                    :key="item.label"
+                    class="rounded-[0.9rem] border border-border/70 bg-[color:var(--paper-soft)] px-3.5 py-3"
+                    v-motion
+                    :initial="motionVariants.pop.initial"
+                    :enter="staggerEnter(index, 40, 18)"
+                  >
+                    <p class="detail-key">{{ item.label }}</p>
+                    <p class="mt-2 text-sm font-semibold leading-6 text-foreground">{{ item.value }}</p>
+                    <p v-if="item.note" class="mt-1 text-sm leading-6 text-muted-foreground">
+                      {{ item.note }}
+                    </p>
+                  </article>
+                </div>
+              </article>
+
+              <article class="rounded-[0.96rem] border border-border/80 bg-white/84 p-4 shadow-sm sm:p-5">
+                <p class="detail-key">Avant de poursuivre</p>
+                <p class="mt-3 text-sm leading-7 text-muted-foreground">
+                  Lisez d'abord la structure du titre, puis le détail du programme, avant de revenir vers le financement ou le rappel.
                 </p>
+                <div class="mt-4 grid gap-3">
+                  <article
+                    v-for="(point, index) in hero.decisionPoints"
+                    :key="point"
+                    class="rounded-[0.9rem] border border-border/70 bg-[color:var(--paper-soft)] px-3.5 py-3"
+                    v-motion
+                    :initial="motionVariants.pop.initial"
+                    :enter="staggerEnter(index, 40, 18)"
+                  >
+                    <p class="detail-key">Repère {{ index + 1 }}</p>
+                    <p class="mt-2 text-sm leading-7 text-muted-foreground">
+                      {{ point }}
+                    </p>
+                  </article>
+                </div>
               </article>
             </div>
           </div>
@@ -291,7 +309,7 @@ const contactBand = computed(() => {
 
       <section class="home-section home-section--trust border-y border-border/60 bg-white/70 px-4 py-6 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-[1120px]">
-          <p class="home-trust-strip__eyebrow">Repères et certifications</p>
+          <p class="home-trust-strip__eyebrow">Cadre et repères publics</p>
           <div class="home-trust-strip">
             <article
               v-for="(item, index) in trustMarks"
@@ -325,14 +343,11 @@ const contactBand = computed(() => {
               v-for="(item, index) in featureCards"
               :key="item.code"
               class="home-feature-card"
-              :class="{ 'home-feature-card--warm': item.tone === 'warm' }"
               v-motion
               :initial="motionVariants.block.initial"
               :enter="staggerEnter(index, 54, 28)"
             >
-              <div class="home-feature-card__icon">
-                <component :is="item.icon" class="h-7 w-7" />
-              </div>
+              <p class="detail-key">Structure du titre</p>
               <p class="home-feature-card__code">{{ item.code }}</p>
               <h3 class="home-feature-card__title">{{ item.title }}</h3>
               <p class="home-feature-card__text">{{ item.text }}</p>
@@ -357,13 +372,11 @@ const contactBand = computed(() => {
             <article
               v-for="(block, index) in programPreview"
               :key="block.code"
-              class="home-program-block"
-              :class="{ 'home-program-block--accent': index === 1 }"
+              class="home-program-block home-program-block--flat"
               v-motion
               :initial="motionVariants.block.initial"
               :enter="staggerEnter(index, 56, 28)"
             >
-              <span class="home-program-block__number">{{ index + 1 }}</span>
               <div>
                 <p class="home-program-block__code">{{ block.code }}</p>
                 <h3 class="home-program-block__title">{{ block.title }}</h3>
@@ -376,71 +389,75 @@ const contactBand = computed(() => {
 
       <section class="home-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div
-          class="home-final-band mx-auto max-w-[1120px]"
+          class="cta-band arch-cta mx-auto max-w-[1120px] p-5 sm:p-6 lg:p-7"
           v-motion
           :initial="motionVariants.block.initial"
           :enter="motionVariants.block.enter"
         >
-          <div class="home-final-band__content">
-            <p class="kicker text-white/78">{{ contactBand.eyebrow }}</p>
-            <h2 class="home-final-band__title">{{ contactBand.title }}</h2>
-            <p class="home-final-band__description">{{ contactBand.description }}</p>
+          <div class="grid gap-6 lg:grid-cols-[1.05fr,0.95fr] lg:items-start">
+            <div class="space-y-4">
+              <p class="kicker">{{ contactBand.eyebrow }}</p>
+              <h2 class="editorial-title max-w-3xl text-[clamp(1.45rem,2.15vw,1.92rem)] text-foreground">
+                {{ journeySection.title }}
+              </h2>
+              <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
+                {{ contactBand.description }}
+              </p>
 
-            <div class="home-final-band__steps">
-              <article
-                v-for="(step, index) in journeySection.steps"
-                :key="step.title"
-                class="home-final-band__step"
-                v-motion
-                :initial="motionVariants.pop.initial"
-                :enter="staggerEnter(index, 44, 22)"
-              >
-                <span class="home-final-band__step-index">{{ index + 1 }}</span>
-                <div>
-                  <h3 class="text-sm font-semibold text-white">{{ step.title }}</h3>
-                  <p class="mt-1 text-sm leading-6 text-white/72">{{ step.text }}</p>
-                </div>
-              </article>
+              <div class="grid gap-3">
+                <article
+                  v-for="(step, index) in journeySection.steps"
+                  :key="step.title"
+                  class="rounded-[0.94rem] border border-border/75 bg-white/78 px-4 py-3"
+                  v-motion
+                  :initial="motionVariants.pop.initial"
+                  :enter="staggerEnter(index, 42, 18)"
+                >
+                  <p class="detail-key">Repère {{ index + 1 }}</p>
+                  <h3 class="mt-2 text-sm font-semibold text-foreground">{{ step.title }}</h3>
+                  <p class="mt-1 text-sm leading-6 text-muted-foreground">{{ step.text }}</p>
+                </article>
+              </div>
+
+              <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Button :as="RouterLink" :to="programLink" size="lg">
+                  Voir le programme
+                  <ArrowRight class="ml-2 h-4 w-4" />
+                </Button>
+                <Button :as="RouterLink" :to="contactLink" size="lg" variant="outline">
+                  Être rappelé
+                </Button>
+              </div>
+
+              <RouterLink :to="financeLink" class="home-inline-link">
+                Consulter le financement
+              </RouterLink>
             </div>
+
+            <aside class="paper-card paper-card--soft p-5 sm:p-6">
+              <p class="detail-key">Repères publics</p>
+              <div class="mt-4 grid gap-3">
+                <article
+                  v-for="(item, index) in proofItems"
+                  :key="item.label"
+                  class="rounded-[0.92rem] border border-border/75 bg-white/86 px-4 py-3"
+                  v-motion
+                  :initial="motionVariants.pop.initial"
+                  :enter="staggerEnter(index, 38, 18)"
+                >
+                  <p class="detail-key">{{ item.label }}</p>
+                  <p class="mt-2 text-base font-semibold leading-6 text-foreground">{{ item.value }}</p>
+                  <p v-if="item.note" class="mt-1 text-sm leading-6 text-muted-foreground">
+                    {{ item.note }}
+                  </p>
+                </article>
+              </div>
+
+              <p class="mt-5 text-sm leading-7 text-muted-foreground">
+                {{ contactBand.supportLine }}
+              </p>
+            </aside>
           </div>
-
-          <aside class="home-final-band__card">
-            <p class="detail-key">Repères clés</p>
-            <div class="mt-5 grid gap-3">
-              <article
-                v-for="(item, index) in proofItems"
-                :key="item.label"
-                class="home-final-band__fact"
-                v-motion
-                :initial="motionVariants.pop.initial"
-                :enter="staggerEnter(index, 38, 18)"
-              >
-                <p class="detail-key">{{ item.label }}</p>
-                <p class="mt-2 text-base font-semibold leading-6 text-foreground">{{ item.value }}</p>
-                <p v-if="item.note" class="mt-1 text-sm leading-6 text-muted-foreground">
-                  {{ item.note }}
-                </p>
-              </article>
-            </div>
-
-            <div class="mt-6 flex flex-col gap-3">
-              <Button :as="RouterLink" :to="programLink" size="lg">
-                Voir le programme
-                <ArrowRight class="ml-2 h-4 w-4" />
-              </Button>
-              <Button :as="RouterLink" :to="contactLink" size="lg" variant="outline">
-                Être rappelé
-              </Button>
-            </div>
-
-            <RouterLink :to="financeLink" class="home-inline-link mt-4">
-              Consulter le financement
-            </RouterLink>
-
-            <p class="mt-4 text-sm leading-7 text-muted-foreground">
-              {{ contactBand.supportLine }}
-            </p>
-          </aside>
         </div>
       </section>
     </template>

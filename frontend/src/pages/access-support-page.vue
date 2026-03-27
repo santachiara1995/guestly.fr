@@ -60,7 +60,7 @@ const trustStripItems = computed(() => [
       >
         <div class="space-y-6">
           <div class="space-y-4">
-            <p class="kicker">{{ hero.eyebrow }}</p>
+          <p class="kicker">{{ hero.eyebrow ?? 'Format et cadre pédagogique' }}</p>
             <h1 class="editorial-title max-w-4xl text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
               {{ hero.title }}
             </h1>
@@ -70,7 +70,7 @@ const trustStripItems = computed(() => [
           </div>
 
           <p class="max-w-2xl text-base font-medium leading-7 text-foreground sm:text-[1rem]">
-            {{ hero.fitLine }}
+            {{ hero.fitLine ?? "Le format doit être lu ici comme un dispositif: 100 % distanciel, e-learning, avec accompagnement pédagogique." }}
           </p>
 
           <TrustStrip :items="trustStripItems" />
@@ -153,7 +153,7 @@ const trustStripItems = computed(() => [
         </article>
 
         <article class="page-cut p-5 sm:p-6">
-          <p class="kicker">Parcours conseillé</p>
+          <p class="kicker">Note de lecture</p>
           <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
             Programme, financement, puis échange si nécessaire.
           </h2>

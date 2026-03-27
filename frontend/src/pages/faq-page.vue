@@ -34,14 +34,14 @@ const contactLink = computed(() => toWithExperience('/contact'))
 
 const hero = computed(() => ({
   eyebrow: faqCopy.value.hero?.eyebrow ?? 'FAQ RPMS',
-  title: faqCopy.value.hero?.title ?? 'Les questions les plus utiles avant de vous décider.',
+  title: faqCopy.value.hero?.title ?? 'Les questions utiles pour confirmer le cadre du titre.',
   description:
     faqCopy.value.hero?.description ??
     'Retrouvez les réponses essentielles sur le titre, le programme, le format et le financement.'
 }))
 
 const opening = computed(() => ({
-  eyebrow: faqCopy.value.opening?.eyebrow ?? 'Avant de commencer',
+  eyebrow: faqCopy.value.opening?.eyebrow ?? 'Avant de décider',
   title: faqCopy.value.opening?.title ?? 'Des réponses claires, sans détour.',
   description:
     faqCopy.value.opening?.description ??
@@ -56,10 +56,10 @@ const opening = computed(() => ({
 }))
 
 const closingNote = computed(() => ({
-  eyebrow: faqCopy.value.closingNote?.eyebrow ?? 'Une question reste ouverte ?',
+  eyebrow: faqCopy.value.closingNote?.eyebrow ?? 'Pour poursuivre la lecture',
   title:
     faqCopy.value.closingNote?.title ??
-    'Revenez au programme, au financement ou demandez un rappel',
+    'Revenez au programme, au financement ou vers le rappel',
   description:
     faqCopy.value.closingNote?.description ??
     "Vous gardez ainsi une lecture claire du titre, des compétences et des conditions de l'offre.",
@@ -70,16 +70,16 @@ const closingNote = computed(() => ({
 
 const supportTiles = computed(() => [
   {
-    label: 'Lire dans le bon ordre',
+    label: 'Ordre de lecture',
     text: 'Le titre d’abord, le programme ensuite, puis le financement si un point reste à éclaircir.'
   },
   {
-    label: 'Rester sur le RPMS',
+    label: 'Cadre du site',
     text: "Les réponses ci-dessous restent centrées sur le titre professionnel Responsable petite et moyenne structure."
   },
   {
-    label: 'Passer à l’action',
-    text: 'Quand la lecture est claire, vous pouvez demander un rappel sans quitter le parcours public.'
+    label: 'Suite utile',
+    text: 'Quand la lecture est claire, vous pouvez demander un rappel sans quitter les pages publiques.'
   }
 ])
 </script>
@@ -189,7 +189,7 @@ const supportTiles = computed(() => [
         </article>
 
         <aside class="sidebar-panel paper-card p-5 sm:p-6">
-          <p class="kicker">Lire dans le bon ordre</p>
+          <p class="kicker">Pour poursuivre la lecture</p>
           <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
             Programme, financement, puis rappel si besoin.
           </h2>

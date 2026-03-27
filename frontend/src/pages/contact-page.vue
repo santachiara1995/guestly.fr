@@ -62,7 +62,7 @@ const faqLink = computed(() => toWithExperience('/faq'))
 
 const hero = computed(() => ({
   eyebrow: contactCopy.value.heroEyebrow ?? 'Être rappelé',
-  title: contactCopy.value.heroTitle ?? 'Le rappel sert à vérifier si le RPMS correspond à votre projet.',
+  title: contactCopy.value.heroTitle ?? 'Le rappel permet de situer votre demande dans le cadre du RPMS.',
   support:
     contactCopy.value.heroSupport ??
     'Précisez votre situation, le bloc qui retient votre attention et, si besoin, le point de financement que vous souhaitez éclaircir.',
@@ -217,8 +217,8 @@ const contactLines = computed(() =>
       >
         <article class="paper-card sidebar-panel p-5 sm:p-6">
           <SectionTitle
-            :eyebrow="contactCopy.formTitle ?? 'Parlez-nous de votre projet'"
-            :title="contactCopy.formSupport ?? 'Donnez assez de contexte pour que le rappel soit utile.'"
+            :eyebrow="contactCopy.formTitle ?? 'Demande de rappel'"
+            :title="contactCopy.formSupport ?? 'Précisez les éléments utiles à votre demande.'"
             :description="hero.intro"
           />
 
@@ -229,9 +229,9 @@ const contactLines = computed(() =>
 
         <aside class="sidebar-panel paper-card p-5 sm:p-6">
           <SectionTitle
-            :eyebrow="contactCopy.guidanceTitle ?? 'Préparez votre échange'"
+            :eyebrow="contactCopy.guidanceTitle ?? 'Informations utiles'"
             title="Les trois repères à préciser dans votre message."
-            description="Plus la demande est cadrée, plus le rappel peut répondre simplement et sans détour."
+            description="Plus la demande est cadrée, plus le rappel peut être traité simplement et sans détour."
           />
 
           <div class="mt-6 grid gap-3">
@@ -253,7 +253,7 @@ const contactLines = computed(() =>
           </div>
 
           <div class="mt-6 border-t border-border/70 pt-5">
-            <p class="detail-key">Après l'envoi</p>
+            <p class="detail-key">Traitement de la demande</p>
             <div class="mt-4 grid gap-3">
               <article
                 v-for="(point, index) in nextStepPoints"

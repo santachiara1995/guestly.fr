@@ -122,41 +122,44 @@ const nextStepPoints = computed(() =>
             </p>
           </div>
 
-          <div class="mt-6 rounded-[1.1rem] border border-border/70 bg-[color:var(--paper-tint)]/60 p-4 sm:p-5 lg:p-6">
+          <div class="mt-5 border-t border-border/70 pt-5">
             <LeadForm source-page="/contact" />
           </div>
         </article>
 
-        <aside class="sidebar-panel paper-card p-5 sm:p-6">
-          <div class="space-y-3">
-            <p class="kicker">{{ contactCopy.guidanceTitle ?? 'Préparez votre échange' }}</p>
-            <h2 class="editorial-title text-[clamp(1.4rem,2vw,1.85rem)] text-foreground">
-              Les trois repères à préciser dans votre message.
-            </h2>
-            <p class="text-sm leading-7 text-muted-foreground sm:text-[0.97rem]">
-              Plus la demande est cadrée, plus le rappel peut répondre simplement et sans détour.
-            </p>
-          </div>
+        <aside class="grid gap-4 self-start">
+          <article class="sidebar-panel paper-card p-5 sm:p-6">
+            <div class="space-y-3">
+              <p class="kicker">{{ contactCopy.guidanceTitle ?? 'Préparez votre échange' }}</p>
+              <h2 class="editorial-title text-[clamp(1.4rem,2vw,1.85rem)] text-foreground">
+                Les trois repères à préciser.
+              </h2>
+              <p class="text-sm leading-7 text-muted-foreground sm:text-[0.97rem]">
+                Plus la demande est cadrée, plus le rappel peut répondre simplement.
+              </p>
+            </div>
 
-          <div class="mt-6 grid gap-3">
-            <article
-              v-for="(point, index) in guidancePoints"
-              :key="point"
-              class="support-tile paper-card p-4"
-              v-motion
-              :initial="motionVariants.pop.initial"
-              :enter="staggerEnter(index, 44, 22)"
-            >
-              <div class="flex items-start gap-3">
-                <span class="finance-badge">{{ index + 1 }}</span>
-                <p class="text-sm leading-6 text-foreground">
-                  {{ point }}
-                </p>
-              </div>
-            </article>
-          </div>
+            <div class="mt-5 grid gap-3">
+              <article
+                v-for="(point, index) in guidancePoints"
+                :key="point"
+                class="support-tile paper-card p-4"
+                v-motion
+                :initial="motionVariants.pop.initial"
+                :enter="staggerEnter(index, 44, 22)"
+              >
+                <div class="flex items-start gap-3">
+                  <span class="finance-badge">{{ index + 1 }}</span>
+                  <p class="text-sm leading-6 text-foreground">
+                    {{ point }}
+                  </p>
+                </div>
+              </article>
+            </div>
 
-          <div class="mt-6 border-t border-border/70 pt-5">
+          </article>
+
+          <article class="sidebar-panel paper-card p-5 sm:p-6">
             <p class="detail-key">Après l'envoi</p>
             <div class="mt-4 grid gap-3">
               <article
@@ -175,7 +178,7 @@ const nextStepPoints = computed(() =>
                 </div>
               </article>
             </div>
-          </div>
+          </article>
         </aside>
       </section>
 

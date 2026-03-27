@@ -188,9 +188,9 @@
   .header-shell {
     position: relative;
     overflow: hidden;
-    border-radius: 0.78rem;
+    border-radius: 0.72rem;
     background: rgb(255 255 255 / 0.94);
-    box-shadow: 0 10px 24px rgb(2 14 37 / 0.18);
+    box-shadow: 0 9px 22px rgb(2 14 37 / 0.16);
     backdrop-filter: blur(14px);
   }
 
@@ -350,7 +350,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 1.4rem;
-    background: rgb(252 251 247 / 0.92);
+    background: color-mix(in oklab, var(--paper) 92%, var(--paper-soft));
     box-shadow: var(--surface-shadow);
   }
 
@@ -369,7 +369,7 @@
   .arch-cta {
     position: relative;
     overflow: hidden;
-    background: rgb(252 251 247 / 0.94);
+    background: color-mix(in oklab, var(--paper) 90%, var(--paper-tint));
   }
 
   .elevated-item,
@@ -507,7 +507,7 @@
 
   .trust-panel {
     padding: 1rem 1.05rem;
-    background: rgb(250 247 241 / 0.96);
+    background: color-mix(in oklab, var(--paper) 88%, var(--paper-tint));
   }
 
   .footer-heading {
@@ -581,12 +581,12 @@
 
   .page-stack {
     display: grid;
-    gap: clamp(1.5rem, 2.4vw, 2rem);
+    gap: clamp(1.35rem, 2.05vw, 1.7rem);
   }
 
   .page-shell {
     margin-inline: auto;
-    width: min(100%, 71rem);
+    width: min(100%, 70rem);
   }
 
   .programme-ladder {
@@ -1151,10 +1151,10 @@
   .home-final-band {
     display: grid;
     gap: 1.25rem;
-    border-radius: 1.5rem;
+    border-radius: 1.4rem;
     border: 1px solid color-mix(in oklab, var(--line) 76%, var(--primary));
     background: color-mix(in oklab, var(--paper-soft) 90%, var(--paper-tint));
-    padding: 1.15rem;
+    padding: 1.2rem;
     box-shadow: var(--surface-shadow-soft);
   }
 
@@ -1254,6 +1254,10 @@
     align-content: start;
   }
 
+  .hero-split__panel {
+    align-self: start;
+  }
+
   .hero-badge {
     display: none;
   }
@@ -1346,7 +1350,7 @@
   }
 
   .paper-card--soft {
-    background: rgb(250 247 241 / 0.96);
+    background: color-mix(in oklab, var(--paper) 86%, var(--paper-tint));
   }
 
   .paper-card__icon {
@@ -1373,7 +1377,7 @@
 
   .sidebar-panel {
     padding: 1.05rem;
-    background: rgb(250 247 241 / 0.96);
+    background: color-mix(in oklab, var(--paper) 90%, var(--paper-tint));
   }
 
   .program-hero-shell,
@@ -1383,7 +1387,7 @@
     position: relative;
     overflow: hidden;
     border: 1px solid color-mix(in oklab, var(--line) 86%, var(--primary));
-    background: rgb(252 251 247 / 0.95);
+    background: color-mix(in oklab, var(--paper) 90%, var(--paper-tint));
     box-shadow: var(--surface-shadow-soft);
   }
 
@@ -1427,7 +1431,7 @@
     gap: 1.25rem;
     border-radius: 1.3rem;
     border: 1px solid color-mix(in oklab, var(--line) 86%, var(--primary));
-    background: rgb(252 251 247 / 0.96);
+    background: color-mix(in oklab, var(--paper) 92%, var(--paper-soft));
     box-shadow: var(--surface-shadow-soft);
   }
 
@@ -1435,9 +1439,10 @@
     display: grid;
     gap: 0.9rem;
     align-content: start;
+    align-self: start;
     border-radius: 1.3rem;
     border: 1px solid color-mix(in oklab, var(--line) 86%, var(--primary));
-    background: rgb(252 251 247 / 0.96);
+    background: color-mix(in oklab, var(--paper) 90%, var(--paper-tint));
     box-shadow: var(--surface-shadow-soft);
   }
 
@@ -1599,6 +1604,7 @@
   .support-grid {
     display: grid;
     gap: 1rem;
+    align-items: start;
   }
 
   .support-tile {
@@ -1621,7 +1627,7 @@
   }
 
   .cta-band {
-    padding: 1.1rem;
+    padding: 1rem;
   }
 
   .cta-band__inner {
@@ -1759,7 +1765,7 @@
   }
 
   .home-final-band {
-    padding: 1.45rem;
+    padding: 1.35rem;
   }
 
   .home-final-band__steps {

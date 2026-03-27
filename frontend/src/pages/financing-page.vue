@@ -91,7 +91,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
-        <div class="grid gap-8 lg:grid-cols-[1.06fr_0.94fr] lg:items-start">
+        <div class="grid gap-6 lg:grid-cols-[1.06fr_0.94fr] lg:items-start">
           <article class="page-hero hero-split__content space-y-6 p-5 sm:p-6 lg:space-y-7 lg:p-7">
             <div class="space-y-4">
               <h1 class="editorial-title max-w-3xl text-[clamp(1.95rem,3.4vw,3rem)] text-foreground">
@@ -113,31 +113,26 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
                 {{ chip }}
               </span>
             </div>
-
-            <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
-              Le détail ci-dessous reprend uniquement les informations publiées pour cette offre
-              RPMS.
-            </p>
           </article>
 
-          <aside class="page-cut sidebar-panel hero-split__panel p-5 sm:p-6 lg:p-7">
-            <div class="space-y-3">
-              <span class="info-chip info-chip--soft">Prix de la formation</span>
-              <div>
-                <p class="detail-key">
-                  Tarif annoncé
-                </p>
-                <p class="mt-2 text-[clamp(2rem,3.8vw,3rem)] font-extrabold tracking-[-0.06em] text-primary">
-                  {{ financeCopy.pricing?.amount ?? '3 500 € TTC' }}
-                </p>
-                <p class="mt-3 text-sm leading-7 text-muted-foreground">
-                  {{
-                    financeCopy.pricing?.description ??
-                    "Le tarif présenté correspond à l'offre RPMS de CITYZ'France."
-                  }}
-                </p>
+          <aside class="hero-split__panel self-start">
+            <article class="sidebar-panel p-5 sm:p-6">
+              <div class="space-y-3">
+                <span class="info-chip info-chip--soft">Prix de la formation</span>
+                <div>
+                  <p class="detail-key">Tarif annoncé</p>
+                  <p class="mt-2 text-[clamp(2rem,3.8vw,3rem)] font-extrabold tracking-[-0.06em] text-primary">
+                    {{ financeCopy.pricing?.amount ?? '3 500 € TTC' }}
+                  </p>
+                  <p class="mt-3 text-sm leading-7 text-muted-foreground">
+                    {{
+                      financeCopy.pricing?.description ??
+                      "Le tarif présenté correspond à l'offre RPMS de CITYZ'France."
+                    }}
+                  </p>
+                </div>
               </div>
-            </div>
+            </article>
 
             <div class="grid gap-3">
               <article

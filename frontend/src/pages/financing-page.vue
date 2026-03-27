@@ -93,22 +93,23 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
       >
         <div class="grid gap-8 lg:grid-cols-[1.06fr,0.94fr] lg:items-start">
           <div class="space-y-6 lg:space-y-7">
+            <p class="detail-key">Étape 3 · Financement</p>
             <div class="hero-badge">
               <span class="hero-badge__dot hero-badge__dot--red"></span>
-              <span>Financement RPMS</span>
+              <span>Étape 3 · Financement RPMS</span>
             </div>
 
             <div class="space-y-4">
               <h1 class="hero-gradient-title max-w-3xl text-foreground">
                 {{
                   financeCopy.hero?.title ??
-                  'Le financement du RPMS, présenté de manière claire et directe.'
+                  'Le financement du RPMS, présenté comme la troisième étape du parcours.'
                 }}
               </h1>
               <p class="hero-lead max-w-2xl text-base leading-7 text-muted-foreground sm:text-[1rem]">
                 {{
                   financeCopy.hero?.description ??
-                  "Prix, modalités de paiement et conditions de l'offre sont réunis ici pour vous permettre d'avancer en connaissance de cause."
+                  "Prix, modalités de paiement et conditions de l'offre sont réunis ici pour poursuivre la lecture après le programme."
                 }}
               </p>
             </div>
@@ -127,7 +128,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
 
           <aside class="sidebar-panel">
             <div class="space-y-3">
-              <span class="info-chip info-chip--soft">Prix de la formation</span>
+              <span class="info-chip info-chip--soft">Étape 3 · Prix de la formation</span>
               <div>
                 <p class="detail-key">
                   Tarif annoncé
@@ -179,11 +180,11 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
             :initial="motionVariants.block.initial"
             :enter="motionVariants.block.enter"
           >
-            <p class="kicker">{{ financeCopy.paymentSection?.eyebrow ?? 'Modalités de paiement' }}</p>
+            <p class="kicker">{{ financeCopy.paymentSection?.eyebrow ?? 'Étape 3A · Modalités de paiement' }}</p>
             <h2 class="mt-3 text-[clamp(1.35rem,2vw,1.8rem)] font-extrabold tracking-[-0.05em] text-primary">
               {{
                 financeCopy.paymentSection?.title ??
-                'Des solutions de règlement clairement établies'
+                'Le règlement proposé à cette étape'
               }}
             </h2>
 
@@ -212,11 +213,11 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
             :initial="motionVariants.block.initial"
             :enter="motionVariants.block.enter"
           >
-            <p class="kicker">{{ financeCopy.conditionsSection?.eyebrow ?? 'Conditions à connaître' }}</p>
+            <p class="kicker">{{ financeCopy.conditionsSection?.eyebrow ?? 'Étape 3B · Conditions à connaître' }}</p>
             <h2 class="mt-3 text-[clamp(1.35rem,2vw,1.8rem)] font-extrabold tracking-[-0.05em] text-primary">
               {{
                 financeCopy.conditionsSection?.title ??
-                "Les conditions principales liées à l'offre"
+                "Les conditions principales à vérifier avant d'aller plus loin"
               }}
             </h2>
 
@@ -250,16 +251,16 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
         >
           <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div class="space-y-2">
-              <p class="kicker">{{ financeCopy.ctaBand?.eyebrow ?? 'Besoin d’aller plus loin ?' }}</p>
+              <p class="kicker">{{ financeCopy.ctaBand?.eyebrow ?? 'Étape 4 · Suite du parcours' }}</p>
               <h2 class="editorial-title max-w-3xl text-[clamp(1.45rem,2.1vw,1.95rem)] text-foreground">
                 {{
-                  financeCopy.ctaBand?.title ?? 'Revenez au programme ou demandez un rappel'
+                  financeCopy.ctaBand?.title ?? 'Revenez au programme, à la FAQ ou vers le rappel'
                 }}
               </h2>
               <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
                 {{
                   financeCopy.ctaBand?.description ??
-                  'Le financement complète naturellement la lecture du programme.'
+                  "Le financement complète la lecture du programme. Ensuite, vous pouvez encore lever un doute dans la FAQ ou demander un rappel."
                 }}
               </p>
             </div>

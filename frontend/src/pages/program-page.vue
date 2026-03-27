@@ -48,16 +48,16 @@ const financeLink = computed(() => toWithExperience('/financement'))
 const hero = computed(() => {
   const value = pageCopy.value.hero ?? {}
   return {
-    eyebrow: value.eyebrow ?? 'Programme RPMS',
+    eyebrow: value.eyebrow ?? 'Étape 2 · Programme RPMS',
     title:
       value.title ??
       'Le programme détaille les compétences contenues dans les trois grands blocs du référentiel.',
     description:
       value.description ??
-      'Chaque bloc est présenté avec sa liste de compétences associées, sans ajout hors référentiel.',
+      'Cette étape ouvre les trois blocs puis déroule, pour chacun, la liste des compétences publiées.',
     note:
       value.note ??
-      "Vous passez d'une vue d'ensemble à une lecture précise des compétences qui structurent le titre."
+      "Vous passez ici d'une lecture d'ensemble à une lecture détaillée, bloc par bloc."
   }
 })
 
@@ -68,7 +68,7 @@ const ctaBand = computed(() => pageCopy.value.ctaBand ?? {})
 const roleSummary = computed(
   () =>
     competencySection.value.title ??
-    'Le programme reste relié à un rôle de pilotage, d’organisation et de suivi.'
+    'Le programme garde un fil pédagogique simple : bloc, compétences, puis portée du titre.'
 )
 
 const blocks = computed(() =>
@@ -124,6 +124,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         <div class="mx-auto max-w-[1120px]">
           <div class="hero-split grid gap-5 lg:grid-cols-[1.08fr,0.92fr] lg:items-stretch">
             <article class="page-hero paper-card flex flex-col gap-5 p-5 sm:p-6 lg:p-8">
+              <p class="detail-key">Étape 2 · Programme</p>
               <div class="hero-badge">
                 <span class="hero-badge__dot hero-badge__dot--blue"></span>
                 <span>{{ hero.eyebrow }}</span>
@@ -170,12 +171,12 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
             </article>
 
             <aside class="sidebar-panel trust-panel paper-card p-5 sm:p-6 lg:p-7">
-              <p class="kicker">Trois grands blocs</p>
+              <p class="kicker">Étape 2 · Les trois blocs</p>
               <h2 class="mt-4 text-[clamp(1.3rem,2.2vw,1.8rem)] font-semibold tracking-[-0.04em] text-foreground">
-                {{ summarySection.title ?? 'Le titre tient en trois blocs lisibles.' }}
+                {{ summarySection.title ?? 'Commencez par les trois blocs avant le détail.' }}
               </h2>
               <p class="mt-4 max-w-xl text-sm leading-7 text-muted-foreground">
-                {{ summarySection.description ?? 'Le détail des compétences arrive juste après cette lecture d’ensemble.' }}
+                {{ summarySection.description ?? 'Le détail des compétences arrive immédiatement après cette lecture d’ensemble.' }}
               </p>
 
               <div class="block-ladder programme-ladder mt-6">
@@ -209,7 +210,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
       <section class="program-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div class="mx-auto max-w-[1120px]">
           <div class="mx-auto mb-10 max-w-3xl text-center">
-            <p class="kicker">{{ competencySection.eyebrow ?? 'Ce que le titre prépare' }}</p>
+            <p class="kicker">{{ competencySection.eyebrow ?? 'Étape 2 · Lire la portée du titre' }}</p>
             <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
               {{ competencySection.title ?? 'Le RPMS prépare un rôle de direction, d’organisation et de suivi.' }}
             </h2>
@@ -222,7 +223,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
             <article class="page-cut paper-card p-5 sm:p-6">
               <p class="detail-key">Repères de lecture</p>
               <h3 class="mt-4 text-[clamp(1.2rem,2vw,1.6rem)] font-semibold tracking-[-0.04em] text-foreground">
-                Trois points pour comprendre la portée du RPMS.
+                Trois repères pour comprendre ce que couvre cette étape.
               </h3>
 
               <div class="mt-6 grid gap-3">
@@ -234,7 +235,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
                   :initial="motionVariants.block.initial"
                   :enter="staggerEnter(index, 48, 24)"
                 >
-                  <p class="detail-key">Point {{ index + 1 }}</p>
+                  <p class="detail-key">Repère {{ index + 1 }}</p>
                   <p class="mt-3 text-sm leading-7 text-muted-foreground">
                     {{ item }}
                   </p>
@@ -273,7 +274,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
       <section class="program-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div class="mx-auto max-w-5xl">
           <div class="mb-10 text-center">
-            <p class="kicker">{{ blocksSection.eyebrow ?? 'Compétences détaillées' }}</p>
+            <p class="kicker">{{ blocksSection.eyebrow ?? 'Étape 2 · Compétences détaillées' }}</p>
             <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
               {{ blocksSection.title ?? 'Chaque bloc est décliné compétence par compétence.' }}
             </h2>
@@ -310,7 +311,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         <div class="cta-band arch-cta mx-auto max-w-[1120px] p-5 sm:p-6 lg:p-7">
           <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div class="space-y-3">
-              <p class="kicker">{{ ctaBand.eyebrow ?? 'Après la lecture du programme' }}</p>
+              <p class="kicker">{{ ctaBand.eyebrow ?? 'Étape 3 · Après le programme' }}</p>
               <h2 class="editorial-title max-w-3xl text-[clamp(1.6rem,2.4vw,2.2rem)] text-foreground">
                 {{ ctaBand.title ?? 'Consultez le financement ou demandez un rappel' }}
               </h2>

@@ -60,7 +60,8 @@ const trustStripItems = computed(() => [
       >
         <div class="space-y-6">
           <div class="space-y-4">
-            <p class="kicker">{{ hero.eyebrow }}</p>
+            <p class="detail-key">Étape complémentaire</p>
+            <p class="kicker">{{ hero.eyebrow ?? 'Étape complémentaire · Accès et accompagnement' }}</p>
             <h1 class="editorial-title max-w-4xl text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
               {{ hero.title }}
             </h1>
@@ -77,7 +78,7 @@ const trustStripItems = computed(() => [
         </div>
 
         <aside class="trust-panel page-cut p-5 sm:p-6">
-          <p class="kicker">{{ supportSection.eyebrow }}</p>
+          <p class="kicker">{{ supportSection.eyebrow ?? 'Étape complémentaire · Note de lecture' }}</p>
           <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
             {{ supportSection.title }}
           </h2>
@@ -153,7 +154,7 @@ const trustStripItems = computed(() => [
         </article>
 
         <article class="page-cut p-5 sm:p-6">
-          <p class="kicker">Parcours conseillé</p>
+          <p class="kicker">Parcours conseillé · programme puis financement</p>
           <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
             Programme, financement, puis échange si nécessaire.
           </h2>

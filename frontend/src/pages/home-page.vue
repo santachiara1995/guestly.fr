@@ -54,18 +54,18 @@ const contactLink = computed(() => toWithExperience('/contact'))
 const hero = computed(() => {
   const value = homeCopy.value.hero ?? {}
   return {
-    eyebrow: value.eyebrow ?? 'Titre professionnel RPMS - RNCP38575',
+    eyebrow: value.eyebrow ?? 'Étape 1 · Comprendre le titre RPMS',
     title: value.title ?? "Le RPMS s'articule autour de trois grands blocs de compétences.",
     lead:
       value.lead ??
       'Titre professionnel Responsable petite et moyenne structure (RPMS), niveau 5 / Bac+2, en 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
     fitLine:
       value.fitLine ??
-      "Commencez par lire le titre, son rôle et sa structure avant d'entrer dans le détail du programme.",
-    decisionTitle: value.decisionTitle ?? 'Pourquoi commencer ici',
+      "Commencez par situer le titre, son format et ses trois grands blocs avant de passer à l'étape suivante.",
+    decisionTitle: value.decisionTitle ?? 'Parcours conseillé',
     decisionText:
       value.decisionText ??
-      "En quelques minutes, vous visualisez l'architecture du titre et vous savez vers quelle étape poursuivre.",
+      "L'accueil vous donne les repères de départ. Le reste du site suit ensuite un ordre simple : programme, financement, puis rappel si besoin.",
     decisionPoints: Array.isArray(value.decisionPoints)
       ? value.decisionPoints
       : [
@@ -75,6 +75,37 @@ const hero = computed(() => {
         ]
   }
 })
+
+const discoverySteps = computed(() => [
+  {
+    index: 1,
+    title: 'Comprendre le titre',
+    text: 'Repérez immédiatement le code RNCP38575, le niveau 5 / Bac+2 et le cadre 100 % distanciel.',
+    to: null,
+    cta: 'Vous êtes ici'
+  },
+  {
+    index: 2,
+    title: 'Explorer le programme',
+    text: 'Ouvrez ensuite les trois blocs et le détail des compétences publiées dans le référentiel.',
+    to: programLink.value,
+    cta: 'Voir le programme'
+  },
+  {
+    index: 3,
+    title: 'Vérifier le financement',
+    text: "Consultez le prix, les modalités de paiement et les conditions annoncées pour l'offre.",
+    to: financeLink.value,
+    cta: 'Voir le financement'
+  },
+  {
+    index: 4,
+    title: 'Demander un rappel',
+    text: 'Terminez par un échange si vous souhaitez replacer ces éléments dans votre situation.',
+    to: contactLink.value,
+    cta: 'Être rappelé'
+  }
+])
 
 const proofItems = computed(() => {
   const items = homeCopy.value.proofItems
@@ -151,8 +182,8 @@ const programPreview = computed(() => {
 const journeySection = computed(() => {
   const section = homeCopy.value.journeySection ?? {}
   return {
-    eyebrow: section.eyebrow ?? 'La suite, en toute clarté',
-    title: section.title ?? 'Trois étapes pour avancer sereinement.',
+    eyebrow: section.eyebrow ?? 'La suite, étape par étape',
+    title: section.title ?? 'Continuez votre lecture sans perdre le fil.',
     description:
       section.description ??
       "Vous pouvez approfondir le contenu, consulter le financement ou demander un échange selon votre besoin du moment.",
@@ -178,12 +209,12 @@ const journeySection = computed(() => {
 const contactBand = computed(() => {
   const band = homeCopy.value.contactBand ?? {}
   return {
-    eyebrow: band.eyebrow ?? 'Prêt à aller plus loin ?',
+    eyebrow: band.eyebrow ?? 'Après l’étape 1',
     title:
-      band.title ?? 'Vous avez maintenant les repères essentiels pour décider de la suite.',
+      band.title ?? 'Le programme, le financement et le rappel prolongent un même parcours.',
     description:
       band.description ??
-      'Programme, financement et rappel suivent une même logique : vous donner une information claire pour avancer avec confiance.',
+      "Chaque onglet ajoute seulement l'information utile à l'étape suivante, sans casser le fil de lecture du RPMS.",
     supportLine:
       band.supportLine ??
       'RNCP38575, niveau 5 / Bac+2, 100 % distanciel, e-learning et accompagnement pédagogique.'
@@ -228,6 +259,18 @@ const contactBand = computed(() => {
                 {{ hero.decisionText }}
               </p>
 
+              <div class="path-step-rail">
+                <article
+                  v-for="step in discoverySteps"
+                  :key="step.index"
+                  class="path-step-chip"
+                  :class="{ 'path-step-chip--current': step.index === 1 }"
+                >
+                  <span class="path-step-chip__number">{{ step.index }}</span>
+                  <span>{{ step.title }}</span>
+                </article>
+              </div>
+
               <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Button :as="RouterLink" :to="contactLink" size="lg" class="home-hero__cta">
                   Être rappelé
@@ -270,19 +313,27 @@ const contactBand = computed(() => {
               </div>
             </div>
 
-            <div class="home-hero__points lg:col-span-2 lg:grid lg:grid-cols-3">
+            <div class="path-step-grid lg:col-span-2">
               <article
-                v-for="(point, index) in hero.decisionPoints"
-                :key="point"
-                class="home-hero__point"
+                v-for="(step, index) in discoverySteps"
+                :key="step.title"
+                class="path-step-card"
                 v-motion
                 :initial="motionVariants.pop.initial"
                 :enter="staggerEnter(index, 42, 20)"
               >
-                <p class="detail-key">Étape {{ index + 1 }}</p>
-                <p class="mt-2 text-sm leading-7 text-muted-foreground">
-                  {{ point }}
+                <span class="path-step-card__index">Étape {{ step.index }}</span>
+                <p class="detail-key">Parcours conseillé</p>
+                <h3 class="path-step-card__title">{{ step.title }}</h3>
+                <p class="path-step-card__text">
+                  {{ step.text }}
                 </p>
+                <RouterLink v-if="step.to" :to="step.to" class="path-step-card__link">
+                  {{ step.cta }}
+                </RouterLink>
+                <span v-else class="path-step-card__link path-step-card__link--current">
+                  {{ step.cta }}
+                </span>
               </article>
             </div>
           </div>
@@ -291,7 +342,7 @@ const contactBand = computed(() => {
 
       <section class="home-section home-section--trust border-y border-border/60 bg-white/70 px-4 py-6 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-[1120px]">
-          <p class="home-trust-strip__eyebrow">Repères et certifications</p>
+          <p class="home-trust-strip__eyebrow">Les repères de départ</p>
           <div class="home-trust-strip">
             <article
               v-for="(item, index) in trustMarks"
@@ -311,7 +362,7 @@ const contactBand = computed(() => {
       <section class="home-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div class="mx-auto max-w-[1120px]">
           <div class="mx-auto mb-10 max-w-3xl text-center">
-            <p class="kicker">{{ homeCopy.orientationSection?.eyebrow ?? 'Trois grands blocs' }}</p>
+            <p class="kicker">{{ homeCopy.orientationSection?.eyebrow ?? 'Étape 1 · Trois grands blocs' }}</p>
             <h2 class="mt-4 text-[clamp(1.7rem,3vw,2.35rem)] font-extrabold tracking-[-0.05em] text-primary">
               {{ homeCopy.orientationSection?.title ?? 'Une lecture claire du référentiel dès le premier regard.' }}
             </h2>
@@ -344,7 +395,7 @@ const contactBand = computed(() => {
       <section class="home-section home-section--program px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div class="mx-auto max-w-5xl">
           <div class="mb-12 text-center">
-            <p class="kicker">Les trois blocs du référentiel</p>
+            <p class="kicker">Étape 2 · Ouvrir le programme détaillé</p>
             <h2 class="mt-4 text-[clamp(1.7rem,3vw,2.35rem)] font-extrabold tracking-[-0.05em] text-primary">
               Une structure lisible avant d’entrer dans le détail du programme.
             </h2>

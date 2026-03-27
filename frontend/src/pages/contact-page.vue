@@ -61,8 +61,8 @@ const financeLink = computed(() => toWithExperience('/financement'))
 const faqLink = computed(() => toWithExperience('/faq'))
 
 const hero = computed(() => ({
-  eyebrow: contactCopy.value.heroEyebrow ?? 'Être rappelé',
-  title: contactCopy.value.heroTitle ?? 'Le rappel sert à vérifier si le RPMS correspond à votre projet.',
+  eyebrow: contactCopy.value.heroEyebrow ?? 'Étape 5 · Être rappelé',
+  title: contactCopy.value.heroTitle ?? 'Le rappel correspond à la dernière étape du parcours public.',
   support:
     contactCopy.value.heroSupport ??
     'Précisez votre situation, le bloc qui retient votre attention et, si besoin, le point de financement que vous souhaitez éclaircir.',
@@ -133,6 +133,7 @@ const contactLines = computed(() =>
       >
         <div class="space-y-5">
           <div class="space-y-4">
+            <p class="detail-key">Étape 5 · Rappel</p>
             <p class="kicker">{{ hero.eyebrow }}</p>
             <h1 class="editorial-title max-w-4xl text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
               {{ hero.title }}
@@ -143,7 +144,7 @@ const contactLines = computed(() =>
           </div>
 
           <div class="max-w-2xl rounded-[1rem] border border-border/80 bg-[color:var(--paper-tint)]/65 p-4 sm:p-5">
-            <p class="detail-key">À préparer avant l'envoi</p>
+            <p class="detail-key">Étape 5 · À préparer avant l'envoi</p>
             <p class="mt-2 text-sm leading-7 text-foreground">
               {{ hero.intro }}
             </p>
@@ -165,7 +166,7 @@ const contactLines = computed(() =>
         </div>
 
         <aside class="sidebar-panel paper-card p-5 sm:p-6">
-          <p class="kicker">Repères utiles</p>
+          <p class="kicker">Étape 5 · Repères utiles</p>
           <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
             Les éléments de base à garder sous les yeux.
           </h2>
@@ -217,7 +218,7 @@ const contactLines = computed(() =>
       >
         <article class="paper-card sidebar-panel p-5 sm:p-6">
           <SectionTitle
-            :eyebrow="contactCopy.formTitle ?? 'Parlez-nous de votre projet'"
+            :eyebrow="contactCopy.formTitle ?? 'Étape 5 · Parlez-nous de votre projet'"
             :title="contactCopy.formSupport ?? 'Donnez assez de contexte pour que le rappel soit utile.'"
             :description="hero.intro"
           />
@@ -229,7 +230,7 @@ const contactLines = computed(() =>
 
         <aside class="sidebar-panel paper-card p-5 sm:p-6">
           <SectionTitle
-            :eyebrow="contactCopy.guidanceTitle ?? 'Préparez votre échange'"
+            :eyebrow="contactCopy.guidanceTitle ?? 'Étape 5 · Préparez votre échange'"
             title="Les trois repères à préciser dans votre message."
             description="Plus la demande est cadrée, plus le rappel peut répondre simplement et sans détour."
           />
@@ -253,7 +254,7 @@ const contactLines = computed(() =>
           </div>
 
           <div class="mt-6 border-t border-border/70 pt-5">
-            <p class="detail-key">Après l'envoi</p>
+              <p class="detail-key">Après l'étape 5</p>
             <div class="mt-4 grid gap-3">
               <article
                 v-for="(point, index) in nextStepPoints"
@@ -278,7 +279,7 @@ const contactLines = computed(() =>
       <section class="cta-band arch-cta paper-card p-5 sm:p-6 lg:p-8">
         <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
-            <p class="kicker">{{ contactCopy.footerBand?.eyebrow ?? "Avant d'envoyer votre demande" }}</p>
+            <p class="kicker">{{ contactCopy.footerBand?.eyebrow ?? "Après l'étape 5" }}</p>
             <h2 class="editorial-title max-w-3xl text-[clamp(1.55rem,2.3vw,2.1rem)] text-foreground">
               {{
                 contactCopy.footerBand?.title ??

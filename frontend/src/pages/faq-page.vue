@@ -33,19 +33,19 @@ const financeLink = computed(() => toWithExperience('/financement'))
 const contactLink = computed(() => toWithExperience('/contact'))
 
 const hero = computed(() => ({
-  eyebrow: faqCopy.value.hero?.eyebrow ?? 'FAQ RPMS',
-  title: faqCopy.value.hero?.title ?? 'Les questions les plus utiles avant de vous décider.',
+  eyebrow: faqCopy.value.hero?.eyebrow ?? 'Étape 4 · FAQ RPMS',
+  title: faqCopy.value.hero?.title ?? 'Les questions utiles avant la dernière étape.',
   description:
     faqCopy.value.hero?.description ??
     'Retrouvez les réponses essentielles sur le titre, le programme, le format et le financement.'
 }))
 
 const opening = computed(() => ({
-  eyebrow: faqCopy.value.opening?.eyebrow ?? 'Avant de commencer',
-  title: faqCopy.value.opening?.title ?? 'Des réponses claires, sans détour.',
+  eyebrow: faqCopy.value.opening?.eyebrow ?? 'Étape 4 · Ce que cette page répond',
+  title: faqCopy.value.opening?.title ?? 'Des réponses courtes pour continuer sans détour.',
   description:
     faqCopy.value.opening?.description ??
-    'La FAQ vous aide à confirmer les points essentiels avant de revenir au programme, au financement ou au rappel.',
+    'La FAQ vous aide à confirmer les points essentiels avant de passer au rappel ou de revenir au programme.',
   bullets: Array.isArray(faqCopy.value.opening?.bullets)
     ? faqCopy.value.opening.bullets
     : [
@@ -56,7 +56,7 @@ const opening = computed(() => ({
 }))
 
 const closingNote = computed(() => ({
-  eyebrow: faqCopy.value.closingNote?.eyebrow ?? 'Une question reste ouverte ?',
+  eyebrow: faqCopy.value.closingNote?.eyebrow ?? 'Étape 5 · Si un point reste ouvert',
   title:
     faqCopy.value.closingNote?.title ??
     'Revenez au programme, au financement ou demandez un rappel',
@@ -70,15 +70,15 @@ const closingNote = computed(() => ({
 
 const supportTiles = computed(() => [
   {
-    label: 'Lire dans le bon ordre',
+    label: 'Étape 1 à 3',
     text: 'Le titre d’abord, le programme ensuite, puis le financement si un point reste à éclaircir.'
   },
   {
-    label: 'Rester sur le RPMS',
+    label: 'Rester centré',
     text: "Les réponses ci-dessous restent centrées sur le titre professionnel Responsable petite et moyenne structure."
   },
   {
-    label: 'Passer à l’action',
+    label: 'Étape 5',
     text: 'Quand la lecture est claire, vous pouvez demander un rappel sans quitter le parcours public.'
   }
 ])
@@ -97,6 +97,7 @@ const supportTiles = computed(() => [
       >
         <div class="space-y-5">
           <div class="space-y-4">
+            <p class="detail-key">Étape 4 · FAQ</p>
             <p class="kicker">{{ hero.eyebrow }}</p>
             <h1 class="editorial-title max-w-4xl text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
               {{ hero.title }}
@@ -163,7 +164,7 @@ const supportTiles = computed(() => [
       <section class="support-grid grid gap-6 lg:grid-cols-[minmax(0,1.18fr),minmax(0,0.82fr)]">
         <article class="space-y-5">
           <SectionTitle
-            eyebrow="Questions utiles"
+            eyebrow="Étape 4 · Questions utiles"
             title="Les réponses essentielles avant de passer à l'étape suivante."
             description="Chaque réponse doit aider à vérifier le RPMS, pas à pousser une décision trop vite."
           />
@@ -189,7 +190,7 @@ const supportTiles = computed(() => [
         </article>
 
         <aside class="sidebar-panel paper-card p-5 sm:p-6">
-          <p class="kicker">Lire dans le bon ordre</p>
+          <p class="kicker">Étape 4 · Lire dans le bon ordre</p>
           <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
             Programme, financement, puis rappel si besoin.
           </h2>

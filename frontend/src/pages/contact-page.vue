@@ -4,7 +4,6 @@ import { RouterLink } from 'vue-router'
 import { ArrowRight } from 'lucide-vue-next'
 
 import LeadForm from '@/components/lead-form.vue'
-import SectionTitle from '@/components/section-title.vue'
 import { Button } from '@/components/ui/button'
 import { useExperienceVariant } from '@/composables/use-experience-variant'
 import { api } from '@/lib/api'
@@ -126,7 +125,7 @@ const contactLines = computed(() =>
 
     <template v-else>
       <section
-        class="hero-split page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.04fr,0.96fr] lg:p-8"
+        class="hero-split page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.04fr_0.96fr] lg:items-start lg:p-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
@@ -213,26 +212,34 @@ const contactLines = computed(() =>
 
       <section
         id="formulaire-rappel"
-        class="support-grid grid gap-6 lg:grid-cols-[minmax(0,1.05fr),minmax(0,0.95fr)]"
+        class="support-grid grid gap-6 lg:grid-cols-[minmax(0,1.28fr)_minmax(18rem,0.82fr)] xl:grid-cols-[minmax(0,1.34fr)_minmax(20rem,0.78fr)]"
       >
         <article class="paper-card sidebar-panel p-5 sm:p-6">
-          <SectionTitle
-            :eyebrow="contactCopy.formTitle ?? 'Parlez-nous de votre projet'"
-            :title="contactCopy.formSupport ?? 'Donnez assez de contexte pour que le rappel soit utile.'"
-            :description="hero.intro"
-          />
+          <div class="space-y-3">
+            <p class="kicker">{{ contactCopy.formTitle ?? 'Parlez-nous de votre projet' }}</p>
+            <h2 class="editorial-title max-w-4xl text-[clamp(1.5rem,2.35vw,2.15rem)] text-foreground">
+              {{ contactCopy.formSupport ?? 'Donnez assez de contexte pour que le rappel soit utile.' }}
+            </h2>
+            <p class="max-w-3xl text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
+              {{ hero.intro }}
+            </p>
+          </div>
 
-          <div class="mt-6 rounded-[1.1rem] border border-border/70 bg-[color:var(--paper-tint)]/60 p-4 sm:p-5">
+          <div class="mt-6 rounded-[1.1rem] border border-border/70 bg-[color:var(--paper-tint)]/60 p-4 sm:p-5 lg:p-6">
             <LeadForm source-page="/contact" />
           </div>
         </article>
 
         <aside class="sidebar-panel paper-card p-5 sm:p-6">
-          <SectionTitle
-            :eyebrow="contactCopy.guidanceTitle ?? 'Préparez votre échange'"
-            title="Les trois repères à préciser dans votre message."
-            description="Plus la demande est cadrée, plus le rappel peut répondre simplement et sans détour."
-          />
+          <div class="space-y-3">
+            <p class="kicker">{{ contactCopy.guidanceTitle ?? 'Préparez votre échange' }}</p>
+            <h2 class="editorial-title text-[clamp(1.4rem,2vw,1.85rem)] text-foreground">
+              Les trois repères à préciser dans votre message.
+            </h2>
+            <p class="text-sm leading-7 text-muted-foreground sm:text-[0.97rem]">
+              Plus la demande est cadrée, plus le rappel peut répondre simplement et sans détour.
+            </p>
+          </div>
 
           <div class="mt-6 grid gap-3">
             <article

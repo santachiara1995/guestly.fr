@@ -93,12 +93,12 @@ export const siteContent = {
   brand: {
     name: "CITYZ'France",
     shortName: "CITYZ'France",
-    descriptor: 'Centre de formation certifié Qualiopi',
+    descriptor: 'Formation RPMS 100 % distanciel',
     primaryCta: 'Être rappelé',
     secondaryCta: 'Voir le programme'
   },
   positioning: {
-    eyebrow: 'Titre professionnel RPMS - RNCP38575',
+    eyebrow: '',
     title:
       'Titre professionnel Responsable petite et moyenne structure (RPMS), niveau 5 / Bac+2.',
     subtitle:
@@ -108,7 +108,7 @@ export const siteContent = {
   },
   home: {
     hero: {
-      eyebrow: 'Titre professionnel RPMS - RNCP38575',
+      eyebrow: '',
       title: "Le RPMS s'articule autour de trois grands blocs de compétences.",
       lead:
         'Titre professionnel Responsable petite et moyenne structure (RPMS), niveau 5 / Bac+2, en 100 % distanciel, en e-learning, avec accompagnement pédagogique.',

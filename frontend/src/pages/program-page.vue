@@ -122,7 +122,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         :enter="motionVariants.block.enter"
       >
         <div class="mx-auto max-w-7xl">
-          <div class="hero-split grid gap-5 lg:grid-cols-[1.08fr,0.92fr] lg:items-stretch">
+          <div class="hero-split grid gap-5 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
             <article class="page-hero paper-card flex flex-col gap-5 p-5 sm:p-6 lg:p-8">
               <div class="hero-badge">
                 <span class="hero-badge__dot hero-badge__dot--blue"></span>
@@ -206,7 +206,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         </div>
       </section>
 
-      <section class="program-section px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <section class="program-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div class="mx-auto max-w-7xl">
           <div class="mx-auto mb-10 max-w-3xl text-center">
             <p class="kicker">{{ competencySection.eyebrow ?? 'Ce que le titre prépare' }}</p>
@@ -270,7 +270,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         </div>
       </section>
 
-      <section class="program-section px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <section class="program-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div class="mx-auto max-w-5xl">
           <div class="mb-10 text-center">
             <p class="kicker">{{ blocksSection.eyebrow ?? 'Compétences détaillées' }}</p>
@@ -306,7 +306,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         </div>
       </section>
 
-      <section class="program-section px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <section class="program-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div class="cta-band arch-cta mx-auto max-w-7xl p-5 sm:p-6 lg:p-8">
           <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div class="space-y-3">

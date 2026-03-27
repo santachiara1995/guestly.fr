@@ -1,13 +1,7 @@
 <script setup>
-import { computed, markRaw, onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import {
-  ArrowRight,
-  BadgeCheck,
-  Building2,
-  FileText,
-  Megaphone
-} from 'lucide-vue-next'
+import { ArrowRight } from 'lucide-vue-next'
 
 import { Button } from '@/components/ui/button'
 import { useExperienceVariant } from '@/composables/use-experience-variant'
@@ -74,69 +68,6 @@ const hero = computed(() => {
           'Choisissez ensuite entre le programme détaillé, le financement ou une demande de rappel.'
         ]
   }
-})
-
-const proofItems = computed(() => {
-  const items = homeCopy.value.proofItems
-  if (Array.isArray(items) && items.length > 0) {
-    return items
-  }
-
-  return [
-    { value: program.value?.rncpCode ?? 'RNCP38575', label: 'Référence', note: 'Code RNCP' },
-    {
-      value: program.value?.levelLabel ?? 'Niveau 5 / Bac+2',
-      label: 'Niveau',
-      note: "Titre professionnel reconnu par l'État"
-    },
-    {
-      value: program.value?.formatLabel ?? '100 % distanciel',
-      label: 'Modalité',
-      note: 'Parcours en e-learning'
-    },
-    {
-      value: program.value?.supportLabel ?? 'Accompagnement pédagogique',
-      label: 'Appui',
-      note: 'Suivi du parcours'
-    }
-  ]
-})
-
-const trustMarks = computed(() => [
-  {
-    label: 'Qualiopi',
-    note: site.value.brand?.descriptor ?? 'Centre de formation certifié'
-  },
-  {
-    label: program.value?.rncpCode ?? 'RNCP38575',
-    note: 'Référence du titre'
-  },
-  {
-    label: program.value?.levelLabel ?? 'Niveau 5 / Bac+2',
-    note: 'Titre professionnel'
-  },
-  {
-    label: program.value?.formatLabel ?? '100 % distanciel',
-    note: program.value?.supportLabel ?? 'Accompagnement pédagogique'
-  }
-])
-
-const featureCards = computed(() => {
-  const blocks = program.value?.blocks ?? []
-  const sourcePillars = homeCopy.value.orientationSection?.pillars ?? []
-  const icons = [markRaw(Building2), markRaw(Megaphone), markRaw(FileText)]
-  const tones = ['default', 'warm', 'default']
-
-  return blocks.map((block, index) => ({
-    code: block.code,
-    title: block.title,
-    text:
-      sourcePillars[index]?.text ??
-      firstLine(block.details) ??
-      'Lecture du référentiel et du rôle préparé.',
-    icon: icons[index] ?? markRaw(BadgeCheck),
-    tone: tones[index] ?? 'default'
-  }))
 })
 
 const programPreview = computed(() => {
@@ -211,9 +142,8 @@ const contactBand = computed(() => {
         :enter="motionVariants.block.enter"
       >
         <div class="home-shell mx-auto max-w-7xl">
-          <div class="home-hero grid gap-10 lg:grid-cols-[minmax(0,1.04fr),minmax(24rem,0.82fr)] lg:items-start lg:gap-14">
+          <div class="home-hero grid gap-10 lg:grid-cols-[minmax(0,1.04fr)_minmax(24rem,0.82fr)] lg:items-start lg:gap-14">
             <div class="home-hero__content">
-              <span class="home-pill">{{ hero.eyebrow }}</span>
               <h1 class="home-hero__title">
                 {{ hero.title }}
               </h1>
@@ -251,22 +181,6 @@ const contactBand = computed(() => {
                   alt="Professionnelle dans un environnement de travail lumineux"
                   class="home-hero__image"
                 />
-
-                <div class="home-hero__badge home-hero__badge--top">
-                  <BadgeCheck class="h-4 w-4" />
-                  <span>{{ site.brand?.descriptor ?? 'Centre de formation certifié Qualiopi' }}</span>
-                </div>
-
-                <div class="home-hero__badge home-hero__badge--bottom">
-                  <div
-                    v-for="item in proofItems.slice(1)"
-                    :key="item.label"
-                    class="home-hero__metric"
-                  >
-                    <span class="home-hero__metric-label">{{ item.label }}</span>
-                    <span class="home-hero__metric-value">{{ item.value }}</span>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -289,61 +203,9 @@ const contactBand = computed(() => {
         </div>
       </section>
 
-      <section class="home-section home-section--trust border-y border-border/60 bg-white/70 px-4 py-7 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-7xl">
-          <p class="home-trust-strip__eyebrow">Repères et certifications</p>
-          <div class="home-trust-strip">
-            <article
-              v-for="(item, index) in trustMarks"
-              :key="item.label"
-              class="home-trust-strip__item"
-              v-motion
-              :initial="motionVariants.pop.initial"
-              :enter="staggerEnter(index, 34, 18)"
-            >
-              <span class="home-trust-strip__title">{{ item.label }}</span>
-              <span class="home-trust-strip__note">{{ item.note }}</span>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="home-section px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div class="mx-auto max-w-7xl">
-          <div class="mx-auto mb-10 max-w-3xl text-center">
-            <p class="kicker">{{ homeCopy.orientationSection?.eyebrow ?? 'Trois grands blocs' }}</p>
-            <h2 class="mt-4 text-[clamp(1.7rem,3vw,2.35rem)] font-extrabold tracking-[-0.05em] text-primary">
-              {{ homeCopy.orientationSection?.title ?? 'Une lecture claire du référentiel dès le premier regard.' }}
-            </h2>
-            <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
-              {{ homeCopy.orientationSection?.description ?? "Ces trois blocs donnent la structure complète du titre avant le détail du programme." }}
-            </p>
-          </div>
-
-          <div class="home-feature-grid">
-            <article
-              v-for="(item, index) in featureCards"
-              :key="item.code"
-              class="home-feature-card"
-              :class="{ 'home-feature-card--warm': item.tone === 'warm' }"
-              v-motion
-              :initial="motionVariants.block.initial"
-              :enter="staggerEnter(index, 54, 28)"
-            >
-              <div class="home-feature-card__icon">
-                <component :is="item.icon" class="h-7 w-7" />
-              </div>
-              <p class="home-feature-card__code">{{ item.code }}</p>
-              <h3 class="home-feature-card__title">{{ item.title }}</h3>
-              <p class="home-feature-card__text">{{ item.text }}</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="home-section home-section--program px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <section class="home-section home-section--program px-4 py-9 sm:px-6 lg:px-8 lg:py-10">
         <div class="mx-auto max-w-5xl">
-          <div class="mb-12 text-center">
+          <div class="mb-8 text-center">
             <p class="kicker">Les trois blocs du référentiel</p>
             <h2 class="mt-4 text-[clamp(1.7rem,3vw,2.35rem)] font-extrabold tracking-[-0.05em] text-primary">
               Une structure lisible avant d’entrer dans le détail du programme.
@@ -374,7 +236,7 @@ const contactBand = computed(() => {
         </div>
       </section>
 
-      <section class="home-section px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <section class="home-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div
           class="home-final-band mx-auto max-w-7xl"
           v-motion
@@ -405,23 +267,13 @@ const contactBand = computed(() => {
           </div>
 
           <aside class="home-final-band__card">
-            <p class="detail-key">Repères clés</p>
-            <div class="mt-5 grid gap-3">
-              <article
-                v-for="(item, index) in proofItems"
-                :key="item.label"
-                class="home-final-band__fact"
-                v-motion
-                :initial="motionVariants.pop.initial"
-                :enter="staggerEnter(index, 38, 18)"
-              >
-                <p class="detail-key">{{ item.label }}</p>
-                <p class="mt-2 text-base font-semibold leading-6 text-foreground">{{ item.value }}</p>
-                <p v-if="item.note" class="mt-1 text-sm leading-6 text-muted-foreground">
-                  {{ item.note }}
-                </p>
-              </article>
-            </div>
+            <p class="detail-key">Choisir la suite</p>
+            <h3 class="mt-3 text-[clamp(1.15rem,1.7vw,1.45rem)] font-semibold tracking-[-0.04em] text-foreground">
+              Continuez avec l’étape qui répond à votre question du moment.
+            </h3>
+            <p class="mt-3 text-sm leading-7 text-muted-foreground">
+              Le programme détaille les compétences, le financement clarifie les conditions, et le rappel permet de faire le point avec un conseiller.
+            </p>
 
             <div class="mt-6 flex flex-col gap-3">
               <Button :as="RouterLink" :to="programLink" size="lg">

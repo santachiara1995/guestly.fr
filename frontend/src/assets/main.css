@@ -15,6 +15,7 @@
   --tricolor-red-soft: #fdebed;
   --line: #d7e1ef;
   --muted-ink: #5a6b7e;
+  --motion-spring: cubic-bezier(0.22, 1, 0.36, 1);
 
   --background: var(--canvas);
   --foreground: var(--ink);
@@ -195,9 +196,9 @@
   .header-shell {
     position: relative;
     overflow: hidden;
-    border-radius: 0.9rem;
+    border-radius: 0.8rem;
     background: rgb(255 255 255 / 0.94);
-    box-shadow: 0 8px 22px rgb(17 39 65 / 0.06);
+    box-shadow: 0 6px 16px rgb(17 39 65 / 0.05);
     backdrop-filter: blur(14px);
   }
 
@@ -339,7 +340,7 @@
   }
 
   .nav-link {
-    @apply inline-flex min-h-10 items-center justify-center border-b-2 border-transparent px-1.25 py-0 text-[0.78rem] font-medium tracking-[0.01em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+    @apply inline-flex min-h-8 items-center justify-center border-b-2 border-transparent px-1 py-0 text-[0.75rem] font-medium tracking-[0.01em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
     color: var(--muted-ink);
   }
 
@@ -587,9 +588,9 @@
 
   .home-section--hero {
     background:
-      radial-gradient(circle at 88% 16%, rgb(29 95 210 / 0.1), transparent 22%),
-      radial-gradient(circle at 6% 6%, rgb(216 74 83 / 0.07), transparent 16%),
-      linear-gradient(180deg, rgb(249 249 255 / 0.98) 0%, rgb(246 248 252 / 0.98) 100%);
+      radial-gradient(circle at 84% 14%, rgb(29 95 210 / 0.08), transparent 20%),
+      radial-gradient(circle at 14% 0%, rgb(216 74 83 / 0.045), transparent 14%),
+      linear-gradient(180deg, rgb(251 252 255 / 0.98) 0%, rgb(245 248 255 / 0.97) 54%, rgb(247 248 252 / 0.98) 100%);
   }
 
   .home-section--trust {
@@ -622,13 +623,26 @@
     font-weight: 700;
     color: var(--primary);
     text-decoration: none;
-    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+    transition:
+      color 0.28s var(--motion-spring),
+      transform 0.28s var(--motion-spring),
+      text-decoration-color 0.28s var(--motion-spring);
+  }
+
+  .home-inline-link svg {
+    transition: transform 0.28s var(--motion-spring);
   }
 
   .home-inline-link:hover {
     color: var(--secondary);
+    transform: translateX(2px);
     text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--primary) 55%, white);
     text-underline-offset: 0.24em;
+  }
+
+  .home-inline-link:hover svg {
+    transform: translateX(3px);
   }
 
   .home-hero__content {
@@ -641,16 +655,20 @@
     max-width: 12ch;
     font-family: var(--font-heading);
     font-size: clamp(2.25rem, 4.6vw, 4rem);
+    font-weight: 800;
     line-height: 1.02;
     letter-spacing: -0.06em;
-    color: var(--blue-eclipse);
+    background: linear-gradient(135deg, #0d2450 0%, #12366f 42%, #1d5fd2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .home-hero__lead {
     max-width: 38rem;
     font-size: clamp(0.98rem, 1.2vw, 1.08rem);
     line-height: 1.7;
-    color: var(--muted-ink);
+    color: color-mix(in oklab, var(--ink) 72%, white);
   }
 
   .home-hero__fit {
@@ -682,6 +700,11 @@
     background: rgb(255 255 255 / 0.72);
     padding: 0.82rem 0.9rem;
     box-shadow: 0 12px 24px rgb(17 39 65 / 0.05);
+    transition:
+      transform 0.32s var(--motion-spring),
+      box-shadow 0.32s var(--motion-spring),
+      border-color 0.32s var(--motion-spring),
+      background-color 0.32s var(--motion-spring);
   }
 
   .home-hero__panel {
@@ -692,14 +715,19 @@
   .home-hero__visual {
     position: relative;
     min-height: 25.5rem;
+    transition: transform 0.42s var(--motion-spring);
   }
 
   .home-hero__visual-backdrop {
     position: absolute;
     inset: 0.8rem 0.6rem -0.45rem 0.7rem;
     border-radius: 1.5rem;
-    background: linear-gradient(180deg, rgb(0 39 103 / 0.16) 0%, rgb(0 86 210 / 0.1) 100%);
-    transform: rotate(3deg);
+    background: linear-gradient(135deg, rgb(227 236 255 / 0.94) 0%, rgb(239 245 255 / 0.86) 66%, rgb(253 240 242 / 0.68) 100%);
+    transform: rotate(2.5deg);
+    transition:
+      transform 0.42s var(--motion-spring),
+      box-shadow 0.42s var(--motion-spring),
+      inset 0.42s var(--motion-spring);
   }
 
   .home-hero__image {
@@ -711,6 +739,26 @@
     border-radius: 1.5rem;
     object-fit: cover;
     box-shadow: 0 28px 54px rgb(17 39 65 / 0.16);
+    transition:
+      transform 0.42s var(--motion-spring),
+      box-shadow 0.42s var(--motion-spring),
+      filter 0.42s var(--motion-spring);
+  }
+
+  .home-hero__visual:hover {
+    transform: translateY(-3px);
+  }
+
+  .home-hero__visual:hover .home-hero__visual-backdrop {
+    inset: 0.7rem 0.45rem -0.35rem 0.55rem;
+    transform: rotate(1.4deg) scale(1.01);
+    box-shadow: 0 26px 48px rgb(17 39 65 / 0.08);
+  }
+
+  .home-hero__visual:hover .home-hero__image {
+    transform: translateY(-2px) scale(1.014);
+    box-shadow: 0 34px 62px rgb(17 39 65 / 0.18);
+    filter: saturate(1.03);
   }
 
   .home-hero__badge {
@@ -819,12 +867,17 @@
     background: linear-gradient(180deg, rgb(255 255 255 / 0.98) 0%, rgb(246 249 255 / 0.98) 100%);
     padding: 1.22rem;
     box-shadow: 0 20px 40px rgb(17 39 65 / 0.06);
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    transition:
+      transform 0.32s var(--motion-spring),
+      box-shadow 0.32s var(--motion-spring),
+      border-color 0.32s var(--motion-spring),
+      background 0.32s var(--motion-spring);
   }
 
   .home-feature-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 26px 48px rgb(17 39 65 / 0.1);
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 28px 52px rgb(17 39 65 / 0.1);
+    border-color: color-mix(in oklab, var(--primary) 26%, var(--line));
   }
 
   .home-feature-card--warm {
@@ -842,11 +895,20 @@
     background: color-mix(in oklab, var(--paper-tint) 78%, white);
     color: var(--blue-eclipse);
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.9);
+    transition:
+      transform 0.32s var(--motion-spring),
+      box-shadow 0.32s var(--motion-spring),
+      background 0.32s var(--motion-spring);
   }
 
   .home-feature-card--warm .home-feature-card__icon {
     background: color-mix(in oklab, #ffdea5 86%, white);
     color: #5d4201;
+  }
+
+  .home-feature-card:hover .home-feature-card__icon {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 14px 28px rgb(17 39 65 / 0.1);
   }
 
   .home-feature-card__code {
@@ -885,10 +947,21 @@
     background: rgb(255 255 255 / 0.96);
     padding: 1.3rem 1.15rem 1.3rem 4.6rem;
     box-shadow: 0 14px 34px rgb(17 39 65 / 0.06);
+    transition:
+      transform 0.32s var(--motion-spring),
+      box-shadow 0.32s var(--motion-spring),
+      border-color 0.32s var(--motion-spring),
+      background 0.32s var(--motion-spring);
   }
 
   .home-program-block--accent {
-    background: linear-gradient(180deg, rgb(228 236 255 / 0.75) 0%, rgb(255 255 255 / 0.96) 100%);
+    background: linear-gradient(180deg, rgb(234 240 255 / 0.84) 0%, rgb(255 255 255 / 0.98) 100%);
+  }
+
+  .home-program-block:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 44px rgb(17 39 65 / 0.1);
+    border-color: color-mix(in oklab, var(--primary) 24%, var(--line));
   }
 
   .home-program-block__number {
@@ -938,7 +1011,7 @@
     gap: 1.5rem;
     border-radius: 1.5rem;
     background:
-      linear-gradient(135deg, #00143d 0%, #002767 52%, #0b3c8c 100%);
+      linear-gradient(135deg, #081c46 0%, #12366f 54%, #1d5fd2 100%);
     padding: 1.2rem;
     box-shadow: 0 26px 56px rgb(17 39 65 / 0.18);
   }
@@ -1453,7 +1526,12 @@
   .brand-symbol,
   .footer-link,
   .home-feature-card,
-  .home-inline-link {
+  .home-inline-link,
+  .home-hero__visual,
+  .home-hero__visual-backdrop,
+  .home-hero__image,
+  .home-hero__point,
+  .home-program-block {
     transition: none;
   }
 }
@@ -1489,10 +1567,6 @@
   .block-row__heading {
     grid-template-columns: auto 1fr;
     align-items: start;
-  }
-
-  .support-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .cta-band__inner {

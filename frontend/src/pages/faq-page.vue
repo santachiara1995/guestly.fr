@@ -90,7 +90,7 @@ const supportTiles = computed(() => [
 
     <template v-else>
       <section
-        class="hero-split page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.05fr,0.95fr] lg:p-8"
+        class="hero-split page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:p-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
@@ -103,16 +103,6 @@ const supportTiles = computed(() => [
             </h1>
             <p class="max-w-3xl text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
               {{ hero.description }}
-            </p>
-          </div>
-
-          <div class="max-w-2xl rounded-[1rem] border border-border/80 bg-[color:var(--paper-tint)]/65 p-4 sm:p-5">
-            <p class="detail-key">Lecture conseillée</p>
-            <p class="mt-2 text-sm leading-7 text-foreground">
-              La FAQ sert à lever les points de lecture, pas à ajouter de nouveaux arguments.
-            </p>
-            <p class="mt-2 text-sm leading-7 text-muted-foreground">
-              Si une réponse demande plus de contexte, revenez au programme ou au financement.
             </p>
           </div>
 
@@ -160,67 +150,69 @@ const supportTiles = computed(() => [
         </aside>
       </section>
 
-      <section class="support-grid grid gap-6 lg:grid-cols-[minmax(0,1.18fr),minmax(0,0.82fr)]">
-        <article class="space-y-5">
-          <SectionTitle
-            eyebrow="Questions utiles"
-            title="Les réponses essentielles avant de passer à l'étape suivante."
-            description="Chaque réponse doit aider à vérifier le RPMS, pas à pousser une décision trop vite."
-          />
+      <section class="space-y-6">
+        <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.86fr)] lg:items-start">
+          <article class="space-y-5">
+            <SectionTitle
+              eyebrow="Questions utiles"
+              title="Les réponses essentielles avant de passer à l'étape suivante."
+              description="Chaque réponse doit aider à vérifier le RPMS, pas à pousser une décision trop vite."
+            />
+          </article>
 
-          <div class="grid gap-4">
-            <details
-              v-for="(item, index) in items"
-              :key="item.question"
-              class="accordion-card paper-card px-5 py-4 sm:px-6 sm:py-5"
-              v-motion
-              :initial="motionVariants.block.initial"
-              :enter="staggerEnter(index, 40, 18)"
-            >
-              <summary class="faq-summary">
-                <span class="text-base font-semibold leading-6 text-foreground">{{ item.question }}</span>
-                <ChevronDown class="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-              </summary>
-              <p class="mt-4 text-sm leading-7 text-muted-foreground">
-                {{ item.answer }}
-              </p>
-            </details>
-          </div>
-        </article>
+          <aside class="sidebar-panel paper-card p-5 sm:p-6">
+            <p class="kicker">Lire dans le bon ordre</p>
+            <h2 class="mt-4 text-[clamp(1.2rem,1.9vw,1.55rem)] font-semibold tracking-[-0.04em] text-foreground">
+              Programme, financement, puis rappel si besoin.
+            </h2>
 
-        <aside class="sidebar-panel paper-card p-5 sm:p-6">
-          <p class="kicker">Lire dans le bon ordre</p>
-          <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
-            Programme, financement, puis rappel si besoin.
-          </h2>
+            <div class="mt-5 grid gap-3">
+              <article
+                v-for="(tile, index) in supportTiles"
+                :key="tile.label"
+                class="support-tile paper-card p-4"
+                v-motion
+                :initial="motionVariants.pop.initial"
+                :enter="staggerEnter(index, 44, 22)"
+              >
+                <p class="detail-key">{{ tile.label }}</p>
+                <p class="mt-2 text-sm leading-7 text-muted-foreground">
+                  {{ tile.text }}
+                </p>
+              </article>
+            </div>
 
-          <div class="mt-6 grid gap-3">
-            <article
-              v-for="(tile, index) in supportTiles"
-              :key="tile.label"
-              class="support-tile paper-card p-4"
-              v-motion
-              :initial="motionVariants.pop.initial"
-              :enter="staggerEnter(index, 44, 22)"
-            >
-              <p class="detail-key">{{ tile.label }}</p>
-              <p class="mt-2 text-sm leading-7 text-muted-foreground">
-                {{ tile.text }}
-              </p>
-            </article>
-          </div>
+            <div class="mt-6 grid gap-3 border-t border-border/70 pt-5">
+              <RouterLink :to="contactLink" class="home-inline-link">
+                Être rappelé
+                <ArrowRight class="h-4 w-4" />
+              </RouterLink>
+              <RouterLink :to="programLink" class="home-inline-link">
+                Voir le programme
+                <ArrowRight class="h-4 w-4" />
+              </RouterLink>
+            </div>
+          </aside>
+        </div>
 
-          <div class="mt-6 grid gap-3 border-t border-border/70 pt-5">
-            <RouterLink :to="contactLink" class="home-inline-link">
-              Être rappelé
-              <ArrowRight class="h-4 w-4" />
-            </RouterLink>
-            <RouterLink :to="programLink" class="home-inline-link">
-              Voir le programme
-              <ArrowRight class="h-4 w-4" />
-            </RouterLink>
-          </div>
-        </aside>
+        <div class="grid gap-4">
+          <details
+            v-for="(item, index) in items"
+            :key="item.question"
+            class="accordion-card paper-card px-5 py-4 sm:px-6 sm:py-5"
+            v-motion
+            :initial="motionVariants.block.initial"
+            :enter="staggerEnter(index, 40, 18)"
+          >
+            <summary class="faq-summary">
+              <span class="text-base font-semibold leading-6 text-foreground">{{ item.question }}</span>
+              <ChevronDown class="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+            </summary>
+            <p class="mt-4 text-sm leading-7 text-muted-foreground">
+              {{ item.answer }}
+            </p>
+          </details>
+        </div>
       </section>
 
       <section class="cta-band arch-cta paper-card p-5 sm:p-6 lg:p-8">

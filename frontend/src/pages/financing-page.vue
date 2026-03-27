@@ -86,12 +86,12 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
 
     <template v-else>
       <section
-        class="hero-split mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12"
+        class="hero-split mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:items-start lg:px-8 lg:py-12"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
-        <div class="grid gap-8 lg:grid-cols-[1.06fr,0.94fr] lg:items-start">
+        <div class="grid gap-8 lg:grid-cols-[1.06fr_0.94fr] lg:items-start">
           <div class="space-y-6 lg:space-y-7">
             <div class="hero-badge">
               <span class="hero-badge__dot hero-badge__dot--red"></span>

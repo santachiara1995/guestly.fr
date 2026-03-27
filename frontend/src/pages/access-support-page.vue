@@ -53,7 +53,7 @@ const trustStripItems = computed(() => [
 
     <template v-else>
       <section
-        class="page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.04fr,0.96fr] lg:p-8"
+        class="page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.04fr_0.96fr] lg:items-start lg:p-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
@@ -127,7 +127,7 @@ const trustStripItems = computed(() => [
         </div>
       </section>
 
-      <section class="grid gap-6 lg:grid-cols-[1fr,1fr]">
+      <section class="grid gap-6 lg:grid-cols-2">
         <article class="page-cut p-5 sm:p-6">
           <SectionTitle
             :eyebrow="processSection.eyebrow"

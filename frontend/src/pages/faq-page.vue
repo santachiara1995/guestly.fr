@@ -90,14 +90,13 @@ const supportTiles = computed(() => [
 
     <template v-else>
       <section
-        class="page-shell hero-split page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:p-8"
+        class="page-shell hero-split grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
-        <div class="space-y-5">
+        <article class="page-hero hero-split__content space-y-5 p-5 sm:p-6 lg:p-7">
           <div class="space-y-4">
-            <p class="kicker">{{ hero.eyebrow }}</p>
             <h1 class="editorial-title max-w-4xl text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
               {{ hero.title }}
             </h1>
@@ -110,9 +109,9 @@ const supportTiles = computed(() => [
             Relire le programme
             <ArrowRight class="h-4 w-4" />
           </RouterLink>
-        </div>
+        </article>
 
-        <aside class="sidebar-panel paper-card p-5 sm:p-6">
+        <aside class="page-cut sidebar-panel hero-split__panel p-5 sm:p-6 lg:p-7">
           <p class="kicker">{{ opening.eyebrow }}</p>
           <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
             {{ opening.title }}

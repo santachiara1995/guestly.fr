@@ -109,13 +109,13 @@ export const siteContent = {
   home: {
     hero: {
       eyebrow: "Bac+2 certifié par l'État · 100 % à distance · 300 h",
-      title: "Préparez un Bac+2 certifié par l'État, 100 % à distance en 300 h.",
+      title: "Bac+2 certifié par l'État, 100 % à distance en 300 h.",
       lead:
-        "Le RPMS vous aide à gagner en crédibilité pour piloter une structure, encadrer une équipe et suivre l'activité.",
+        "Pilotez une structure, encadrez une équipe et avancez vers un Bac+2 reconnu par l'État.",
       fitLine:
-        "Bac+2, diplôme certifié par l'État, 300 h à distance : un cadre clair pour accélérer votre progression.",
+        "RPMS, niveau 5, e-learning et accompagnement pédagogique : un cadre clair pour progresser sans interrompre votre rythme.",
       decisionText:
-        "Vérifiez ce que vous allez maîtriser, puis demandez un rappel si le titre correspond à votre objectif."
+        "Voyez ce que vous allez maîtriser, puis demandez un rappel si le titre correspond à votre projet."
     },
     proofItems: [
       {
@@ -186,14 +186,14 @@ export const siteContent = {
   program: {
     hero: {
       eyebrow: 'Programme RPMS',
-      title: 'Le programme détaille les compétences du RPMS.',
+      title: '300 h, 3 blocs, 1 épreuve finale : le RPMS sans détour.',
       description:
         'Retrouvez les trois blocs RNCP38575 et la liste des compétences associées.',
-      note: '300 h de formation, puis une évaluation finale en fin de parcours.'
+      note: 'Niveau 5 / Bac+2 · 100 % distanciel · accompagnement pédagogique.'
     },
     summarySection: {
       eyebrow: "Vue d'ensemble",
-      title: 'Trois blocs structurent le programme.',
+      title: 'Trois blocs. Une lecture nette du titre.',
       description:
         'Chaque bloc correspond à un certificat de compétences professionnelles (CCP).'
     },
@@ -202,11 +202,11 @@ export const siteContent = {
       title:
         "Le RPMS prépare à piloter, mettre en oeuvre et suivre l'activité.",
       description:
-        'Voici les repères utiles avant le détail des compétences.'
+        'Commencez par la structure. Le détail vient juste après.'
     },
     evaluationSection: {
       eyebrow: 'Durée et évaluation',
-      title: '300 h de formation, puis une évaluation finale en fin de parcours.',
+      title: '300 h de formation. Épreuve finale : 1 h 35 au total.',
       description:
         "La fiche France Compétences RNCP38575 décrit une évaluation finale structurée autour d'un projet, d'un entretien technique et d'un entretien final.",
       summaryCards: [
@@ -230,7 +230,7 @@ export const siteContent = {
     },
     blocksSection: {
       eyebrow: 'Compétences détaillées',
-      title: 'Le détail des compétences, bloc par bloc.',
+      title: 'Les compétences, bloc par bloc.',
       description:
         'Chaque compétence est reprise selon la fiche RNCP38575.'
     },

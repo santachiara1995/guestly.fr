@@ -161,17 +161,14 @@ const contactBand = computed(() => {
 
     <template v-else-if="program">
       <section
-        class="home-section home-section--hero px-4 py-8 sm:px-6 lg:px-8 lg:py-10"
+        class="home-section home-section--hero px-4 py-6 sm:px-6 lg:px-8 lg:py-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
         <div class="home-shell page-shell">
-          <div class="home-hero grid gap-10 lg:grid-cols-[minmax(0,1.04fr)_minmax(24rem,0.82fr)] lg:items-start lg:gap-14">
+          <div class="home-hero grid gap-6 lg:grid-cols-[minmax(0,1.04fr)_minmax(24rem,0.82fr)] lg:items-start lg:gap-6">
             <div class="home-hero__content">
-              <p class="home-pill">
-                {{ hero.eyebrow }}
-              </p>
               <h1 class="home-hero__title">
                 {{ hero.title }}
               </h1>
@@ -234,16 +231,13 @@ const contactBand = computed(() => {
         </div>
       </section>
 
-      <section class="home-section home-section--program px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+      <section class="home-section home-section--program px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         <div class="page-shell">
           <div class="mb-8 text-center">
             <p class="kicker">Ce que vous allez maîtriser</p>
             <h2 class="mt-4 text-[clamp(1.7rem,3vw,2.35rem)] font-extrabold tracking-[-0.05em] text-primary">
               Trois blocs pour piloter une structure avec méthode.
             </h2>
-            <div class="mt-6 inline-flex rounded-full border border-primary/10 bg-[color:var(--paper-tint)] px-5 py-2 text-sm font-bold tracking-[0.03em] text-primary">
-              RNCP38575 · les compétences clés du Bac+2
-            </div>
           </div>
 
           <div class="home-program-ladder">
@@ -267,7 +261,7 @@ const contactBand = computed(() => {
         </div>
       </section>
 
-      <section class="home-section px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+      <section class="home-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         <div
           class="home-final-band page-shell"
           v-motion

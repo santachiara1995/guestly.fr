@@ -42,27 +42,22 @@ function firstLine(value) {
 
 const pageCopy = computed(() => site.value.program ?? {})
 const contactLink = computed(() => toWithExperience('/contact'))
-const accessLink = computed(() => toWithExperience('/acces-et-accompagnement'))
 const financeLink = computed(() => toWithExperience('/financement'))
 
 const hero = computed(() => {
   const value = pageCopy.value.hero ?? {}
   return {
     eyebrow: value.eyebrow ?? 'Programme RPMS',
-    title:
-      value.title ??
-      'Le programme détaille les compétences contenues dans les trois grands blocs du référentiel.',
+    title: value.title ?? '3 blocs pour apprendre à piloter une structure.',
     description:
-      value.description ??
-      'Chaque bloc est présenté avec sa liste de compétences associées, sans ajout hors référentiel.',
-    note:
-      value.note ??
-      "Vous passez d'une vue d'ensemble à une lecture précise des compétences qui structurent le titre."
+      value.description ?? 'Compétences, durée et évaluation : les repères utiles sont ici.',
+    note: value.note ?? '300 h de formation. Évaluation finale en fin de parcours.'
   }
 })
 
 const summarySection = computed(() => pageCopy.value.summarySection ?? {})
 const competencySection = computed(() => pageCopy.value.competencySection ?? {})
+const evaluationSection = computed(() => pageCopy.value.evaluationSection ?? {})
 const blocksSection = computed(() => pageCopy.value.blocksSection ?? {})
 const ctaBand = computed(() => pageCopy.value.ctaBand ?? {})
 const roleSummary = computed(
@@ -81,25 +76,27 @@ const blocks = computed(() =>
 
 const infoChips = computed(() => [
   {
-    label: 'Référence',
-    value: program.value?.rncpCode ?? 'RNCP38575'
-  },
-  {
     label: 'Niveau',
     value: program.value?.levelLabel ?? 'Niveau 5 / Bac+2'
   },
   {
-    label: 'Modalité',
+    label: 'Format',
     value: program.value?.formatLabel ?? '100 % distanciel'
   },
   {
-    label: 'Appui',
-    value: program.value?.supportLabel ?? 'Accompagnement pédagogique'
+    label: 'Volume',
+    value: '300 h'
+  },
+  {
+    label: 'Évaluation',
+    value: '1 h 35'
   }
 ])
 
 const objectivePoints = computed(() => program.value?.objectiveSummary ?? [])
 const scopePoints = computed(() => program.value?.professionalScope ?? [])
+const evaluationCards = computed(() => evaluationSection.value.summaryCards ?? [])
+const evaluationSteps = computed(() => evaluationSection.value.steps ?? [])
 </script>
 
 <template>
@@ -116,21 +113,16 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
 
     <template v-else-if="program">
       <section
-        class="program-section program-section--hero px-4 py-8 sm:px-6 lg:px-8 lg:py-10"
+        class="program-section program-section--hero px-4 py-6 sm:px-6 lg:px-8 lg:py-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
         <div class="page-shell">
-          <div class="hero-split grid gap-5 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
-            <article class="page-hero paper-card flex flex-col gap-5 p-5 sm:p-6 lg:p-8">
-              <div class="hero-badge">
-                <span class="hero-badge__dot hero-badge__dot--blue"></span>
-                <span>{{ hero.eyebrow }}</span>
-              </div>
-
+          <div class="program-hero-shell grid gap-5 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
+            <article class="program-hero-card page-hero p-5 sm:p-6 lg:p-7">
               <div class="space-y-4">
-                <h1 class="hero-gradient-title editorial-title max-w-4xl text-foreground">
+                <h1 class="editorial-title max-w-4xl text-[clamp(1.95rem,3.5vw,3.2rem)] text-foreground">
                   {{ hero.title }}
                 </h1>
                 <p class="hero-lead max-w-3xl text-base leading-7 text-muted-foreground sm:text-[1rem]">
@@ -163,66 +155,117 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
                   Voir le financement
                 </Button>
               </div>
-
-              <RouterLink :to="accessLink" class="home-inline-link">
-                Accès et accompagnement
-              </RouterLink>
             </article>
 
-            <aside class="sidebar-panel trust-panel paper-card p-5 sm:p-6 lg:p-7">
-              <p class="kicker">Trois grands blocs</p>
-              <h2 class="mt-4 text-[clamp(1.3rem,2.2vw,1.8rem)] font-semibold tracking-[-0.04em] text-foreground">
-                {{ summarySection.title ?? 'Le titre tient en trois blocs lisibles.' }}
-              </h2>
-              <p class="mt-4 max-w-xl text-sm leading-7 text-muted-foreground">
-                {{ summarySection.description ?? 'Le détail des compétences arrive juste après cette lecture d’ensemble.' }}
-              </p>
-
-              <div class="block-ladder programme-ladder mt-6">
+            <aside class="program-hero-aside p-5 sm:p-6 lg:p-7">
+              <div class="grid gap-3 sm:grid-cols-2">
                 <article
-                  v-for="(block, index) in blocks"
-                  :key="block.code"
-                  class="block-row programme-block"
-                  v-motion
-                  :initial="motionVariants.pop.initial"
-                  :enter="staggerEnter(index, 54, 28)"
+                  v-for="card in evaluationCards"
+                  :key="card.label"
+                  class="program-note-card p-4"
                 >
-                  <span class="programme-block__badge">{{ index + 1 }}</span>
-                  <p class="programme-block__code">{{ block.code }}</p>
-                  <h3 class="mt-2 text-base font-semibold leading-tight text-foreground">
-                    {{ block.title }}
-                  </h3>
-                  <p class="mt-3 text-sm leading-7 text-muted-foreground">
-                    {{ block.summary }}
+                  <p class="detail-key">{{ card.label }}</p>
+                  <p class="mt-2 text-base font-semibold leading-6 text-foreground">
+                    {{ card.value }}
+                  </p>
+                  <p class="mt-2 text-sm leading-6 text-muted-foreground">
+                    {{ card.note }}
                   </p>
                 </article>
               </div>
 
-              <p class="hero-support-line mt-5 text-sm leading-7 text-muted-foreground">
-                {{ hero.note }}
-              </p>
+              <div class="mt-1">
+                <p class="kicker">Les 3 blocs</p>
+                <h2 class="mt-3 text-[clamp(1.24rem,2vw,1.62rem)] font-semibold tracking-[-0.04em] text-foreground">
+                  {{ summarySection.title ?? 'Le programme tient en trois blocs.' }}
+                </h2>
+                <p class="mt-3 text-sm leading-7 text-muted-foreground">
+                  {{ summarySection.description ?? 'Chaque bloc correspond à un ensemble clair de compétences à maîtriser.' }}
+                </p>
+              </div>
+
+              <div class="mt-2 grid gap-3">
+                <article
+                  v-for="(block, index) in blocks"
+                  :key="block.code"
+                  class="program-note-card p-4"
+                  v-motion
+                  :initial="motionVariants.pop.initial"
+                  :enter="staggerEnter(index, 54, 28)"
+                >
+                  <div class="flex items-start gap-3">
+                    <span class="finance-badge">{{ index + 1 }}</span>
+                    <div>
+                      <p class="programme-block__code">{{ block.code }}</p>
+                      <h3 class="mt-2 text-base font-semibold leading-tight text-foreground">
+                        {{ block.title }}
+                      </h3>
+                      <p class="mt-2 text-sm leading-7 text-muted-foreground">
+                        {{ block.summary }}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
             </aside>
           </div>
         </div>
       </section>
 
-      <section class="program-section px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+      <section class="program-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+        <div class="page-shell">
+          <div class="grid gap-6 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]">
+            <article class="program-eval-card p-5 sm:p-6">
+              <p class="kicker">{{ evaluationSection.eyebrow ?? 'Durée et évaluation' }}</p>
+              <h2 class="mt-4 text-[clamp(1.4rem,2.2vw,1.9rem)] font-semibold tracking-[-0.04em] text-foreground">
+                {{ evaluationSection.title ?? '300 h de formation, puis une évaluation finale.' }}
+              </h2>
+              <p class="mt-4 text-sm leading-7 text-muted-foreground">
+                {{ evaluationSection.description ?? "La fiche RNCP38575 précise le déroulé de l'épreuve finale." }}
+              </p>
+            </article>
+
+            <article class="program-eval-card p-5 sm:p-6">
+              <p class="kicker">Modalités d’évaluation</p>
+              <div class="mt-4 grid gap-3">
+                <article
+                  v-for="(step, index) in evaluationSteps"
+                  :key="step"
+                  class="program-note-card p-4"
+                  v-motion
+                  :initial="motionVariants.pop.initial"
+                  :enter="staggerEnter(index, 40, 18)"
+                >
+                  <div class="flex items-start gap-3">
+                    <span class="finance-badge">{{ index + 1 }}</span>
+                    <p class="text-sm leading-6 text-foreground">
+                      {{ step }}
+                    </p>
+                  </div>
+                </article>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="program-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         <div class="page-shell">
           <div class="mx-auto mb-10 max-w-3xl text-center">
             <p class="kicker">{{ competencySection.eyebrow ?? 'Ce que le titre prépare' }}</p>
             <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
-              {{ competencySection.title ?? 'Le RPMS prépare un rôle de direction, d’organisation et de suivi.' }}
+              {{ competencySection.title ?? "Le RPMS prépare à piloter, mettre en oeuvre et suivre l'activité." }}
             </h2>
             <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
-              {{ competencySection.description ?? 'La lecture se fait d’abord par les blocs, puis par les responsabilités qui leur donnent sens.' }}
+              {{ competencySection.description ?? 'Voici les repères utiles avant le détail des compétences.' }}
             </p>
           </div>
 
           <div class="grid gap-6 lg:grid-cols-2">
             <article class="page-cut paper-card p-5 sm:p-6">
-              <p class="detail-key">Repères de lecture</p>
+              <p class="detail-key">Pourquoi ce programme</p>
               <h3 class="mt-4 text-[clamp(1.2rem,2vw,1.6rem)] font-semibold tracking-[-0.04em] text-foreground">
-                Trois points pour comprendre la portée du RPMS.
+                Trois bénéfices concrets du RPMS.
               </h3>
 
               <div class="mt-6 grid gap-3">
@@ -234,7 +277,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
                   :initial="motionVariants.block.initial"
                   :enter="staggerEnter(index, 48, 24)"
                 >
-                  <p class="detail-key">Point {{ index + 1 }}</p>
+                  <p class="detail-key">Bénéfice {{ index + 1 }}</p>
                   <p class="mt-3 text-sm leading-7 text-muted-foreground">
                     {{ item }}
                   </p>
@@ -243,7 +286,7 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
             </article>
 
             <article class="page-cut paper-card p-5 sm:p-6">
-              <p class="detail-key">Responsabilités travaillées</p>
+              <p class="detail-key">Ce que vous saurez faire</p>
               <h3 class="mt-4 text-[clamp(1.2rem,2vw,1.6rem)] font-semibold tracking-[-0.04em] text-foreground">
                 {{ roleSummary }}
               </h3>
@@ -270,15 +313,15 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         </div>
       </section>
 
-      <section class="program-section px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+      <section class="program-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         <div class="page-shell">
           <div class="mb-10 text-center">
             <p class="kicker">{{ blocksSection.eyebrow ?? 'Compétences détaillées' }}</p>
             <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
-              {{ blocksSection.title ?? 'Chaque bloc est décliné compétence par compétence.' }}
+              {{ blocksSection.title ?? 'Le détail des compétences, bloc par bloc.' }}
             </h2>
             <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
-              {{ blocksSection.description ?? 'Vous retrouvez ici le détail de RNCP38575BC01, RNCP38575BC02 et RNCP38575BC03.' }}
+              {{ blocksSection.description ?? 'Chaque compétence est reprise selon la fiche RNCP38575.' }}
             </p>
           </div>
 
@@ -306,16 +349,16 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         </div>
       </section>
 
-      <section class="program-section px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
-        <div class="cta-band arch-cta page-shell p-5 sm:p-6 lg:p-8">
+      <section class="program-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+        <div class="program-cta-shell page-shell p-5 sm:p-6 lg:p-8">
           <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div class="space-y-3">
-              <p class="kicker">{{ ctaBand.eyebrow ?? 'Après la lecture du programme' }}</p>
+              <p class="kicker">{{ ctaBand.eyebrow ?? 'Une question sur le programme ?' }}</p>
               <h2 class="editorial-title max-w-3xl text-[clamp(1.6rem,2.4vw,2.2rem)] text-foreground">
-                {{ ctaBand.title ?? 'Consultez le financement ou demandez un rappel' }}
+                {{ ctaBand.title ?? 'Contactez-nous.' }}
               </h2>
               <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
-                {{ ctaBand.description ?? 'Une fois le programme parcouru, vous pouvez vérifier les modalités financières ou faire le point sur votre projet.' }}
+                {{ ctaBand.description ?? 'Un échange rapide permet de vérifier si le RPMS correspond à votre projet.' }}
               </p>
             </div>
 
@@ -326,9 +369,6 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
               </Button>
               <Button :as="RouterLink" :to="financeLink" size="lg" variant="outline">
                 Voir le financement
-              </Button>
-              <Button :as="RouterLink" :to="accessLink" size="lg" variant="ghost">
-                Accès et accompagnement
               </Button>
             </div>
           </div>

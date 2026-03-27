@@ -3,6 +3,7 @@ import { createRouter, createWebHistory, RouterLink } from 'vue-router'
 
 import AccessSupportPage from '@/pages/access-support-page.vue'
 import ContactPage from '@/pages/contact-page.vue'
+import FinancingPage from '@/pages/financing-page.vue'
 import FaqPage from '@/pages/faq-page.vue'
 import HomePage from '@/pages/home-page.vue'
 import LegalPage from '@/pages/legal-page.vue'
@@ -66,6 +67,14 @@ const routes = [
     component: ProgramPage,
     meta: {
       title: 'Programme'
+    }
+  },
+  {
+    path: '/financement',
+    name: 'financement',
+    component: FinancingPage,
+    meta: {
+      title: 'Financement'
     }
   },
   {

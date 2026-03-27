@@ -9,61 +9,35 @@ export const programsSeed = [
     rhythmLabel: 'E-learning',
     supportLabel: 'Accompagnement pédagogique',
     intro:
-      "Titre professionnel de niveau 5 / Bac+2 pour des managers polyvalents capables de piloter une activité, encadrer une équipe et gérer une structure.",
+      "Titre professionnel de niveau 5 / Bac+2 qui prépare à diriger une structure, mettre en oeuvre son activité et présenter ses résultats.",
     objectiveSummary: [
-      "Piloter une activité et sa performance avec des repères de gestion, d'organisation et de reporting.",
-      "Encadrer et animer une équipe en clarifiant le travail, la communication et les priorités.",
-      "Développer des partenariats et inscrire la structure dans son environnement territorial.",
-      'Organiser la production, les ressources et la lecture des résultats.'
+      "Comprendre l'environnement d'une structure, son territoire et son organisation d'ensemble.",
+      "Mettre en oeuvre l'objet social de la structure en adaptant l'offre, sa diffusion et sa production.",
+      "Lire l'activité et ses résultats à partir du bilan, du compte de résultat et du rapport d'activité."
     ],
     professionalScope: [
-      "Piloter l'activité, les priorités et la performance d'une structure",
-      "Encadrer une équipe et organiser le travail au quotidien",
-      'Développer des partenariats et inscrire la structure dans son territoire',
-      'Suivre la production, les ressources, le bilan et le reporting'
+      'Diriger une structure avec une équipe',
+      "Mettre en oeuvre l'objet social d'une structure",
+      "Suivre l'activité et présenter ses résultats"
     ],
     blocks: [
       {
-        code: 'Bloc 1',
-        title: 'Diriger une structure et une équipe',
+        code: 'RNCP38575BC01',
+        title: 'Diriger une structure avec une équipe',
         details:
-          "Compréhension de l'écosystème.\nGestion administrative.\nVeille stratégique et réglementaire."
+          "Développer une vision systémique de la structure dans son environnement\nInscrire la structure dans son territoire\nManager et animer une équipe"
       },
       {
-        code: 'Bloc 2',
-        title: 'Inscrire la structure dans son territoire',
+        code: 'RNCP38575BC02',
+        title: "Mettre en oeuvre l'objet social de la structure",
         details:
-          'Analyse du territoire.\nCommunication et marketing territorial.\nDéveloppement de partenariats.'
+          "Adapter l'offre de la structure à la demande\nOrganiser et développer la diffusion de l'offre\nOrganiser la production"
       },
       {
-        code: 'Bloc 3',
-        title: 'Manager et animer une équipe',
+        code: 'RNCP38575BC03',
+        title: "Établir et présenter un rapport d'activité de la structure",
         details:
-          "Fondamentaux du management.\nCommunication, motivation et développement des compétences.\nGestion des conflits et organisation du travail."
-      },
-      {
-        code: 'Bloc 4',
-        title: "Adapter l'offre à la demande",
-        details:
-          "Analyse du marché.\nConception de l'offre.\nInnovation et satisfaction client."
-      },
-      {
-        code: 'Bloc 5',
-        title: "Développer la diffusion de l'offre",
-        details:
-          'Stratégie commerciale.\nMarketing digital.\nSuivi des performances.'
-      },
-      {
-        code: 'Bloc 6',
-        title: 'Organiser la production',
-        details:
-          'Gestion des processus.\nPlanification et ressources.\nAmélioration continue.'
-      },
-      {
-        code: 'Bloc 7',
-        title: 'Gestion financière et reporting',
-        details:
-          "Lecture du bilan.\nCompte de résultat.\nRapport d'activité."
+          "Analyser le bilan de la structure\nAnalyser le compte de résultat de la structure\nRédiger le rapport d'activité de la structure"
       }
     ],
     sortOrder: 1
@@ -72,44 +46,44 @@ export const programsSeed = [
 
 export const faqSeed = [
   {
-    question: 'Ce titre peut-il correspondre à mon projet ?',
+    question: 'Comment lire rapidement le RPMS ?',
     answer:
-      "Oui si votre projet vise un titre professionnel de niveau 5 (Bac+2) pour piloter une activité, encadrer une équipe et organiser une structure.",
+      "Commencez par les trois grands blocs de compétences, puis entrez dans le détail de chaque compétence dans l'onglet Programme.",
     audience: 'particulier',
     sortOrder: 1
   },
   {
-    question: 'Que prépare concrètement le RPMS ?',
+    question: 'Où retrouver le détail des compétences ?',
     answer:
-      "Le parcours travaille la gestion, l'organisation, la communication, l'analyse stratégique, le territoire, les partenariats, la production et le reporting.",
+      "L'onglet Programme présente les trois blocs RNCP38575BC01, BC02 et BC03 avec la liste des compétences associées.",
     audience: 'particulier',
     sortOrder: 2
   },
   {
-    question: 'Comment le parcours se suit-il ?',
+    question: 'Quel est le format de la formation ?',
     answer:
-      'Le titre se suit en 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
+      'Le RPMS est présenté en 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
     audience: 'particulier',
     sortOrder: 3
   },
   {
-    question: "Quels repères faut-il vérifier en priorité ?",
+    question: 'Quel est le prix annoncé ?',
     answer:
-      "Commencez par l'intitulé officiel, le code RNCP38575, le niveau 5 (Bac+2), le format à distance et les blocs de compétences.",
+      'Le tarif indiqué pour la formation RPMS est de 3 500 € TTC.',
     audience: 'particulier',
     sortOrder: 4
   },
   {
-    question: "À quoi sert la demande de rappel ?",
+    question: 'Quelles sont les modalités de paiement ?',
     answer:
-      "Elle sert à vérifier si le titre, le format et les responsabilités travaillées correspondent à votre projet avant d'aller plus loin.",
+      "Le financement mentionne un paiement comptant ainsi qu'un paiement en plusieurs fois sans frais avec partenariat COFIDIS.",
     audience: 'particulier',
     sortOrder: 5
   },
   {
-    question: 'Le programme reste-t-il relié au terrain ?',
+    question: 'Pourquoi demander un rappel ?',
     answer:
-      "Oui. Il relie le pilotage d'activité au territoire, aux partenariats, à la production et au reporting.",
+      "Le rappel permet de vérifier l'adéquation du titre, du programme, du financement et du format avec votre projet.",
     audience: 'particulier',
     sortOrder: 6
   }
@@ -119,34 +93,34 @@ export const siteContent = {
   brand: {
     name: "CITYZ'France",
     shortName: "CITYZ'France",
-    descriptor: 'Organisme de formation certifié Qualiopi',
+    descriptor: 'Centre de formation certifié Qualiopi',
     primaryCta: 'Être rappelé',
     secondaryCta: 'Voir le programme'
   },
   positioning: {
     eyebrow: 'Titre professionnel RPMS - RNCP38575',
     title:
-      'Titre professionnel Responsable petite et moyenne structure (RPMS), niveau 5 (Bac+2).',
+      'Titre professionnel Responsable petite et moyenne structure (RPMS), niveau 5 / Bac+2.',
     subtitle:
-      "Le RPMS donne un cadre clair pour piloter une activité, encadrer une équipe et organiser une structure.",
+      "Un titre reconnu pour développer une vision globale de la structure, piloter son activité et encadrer une équipe.",
     fitLine:
-      "Commencez par vérifier si ce titre correspond à votre projet de pilotage, de coordination ou de management."
+      "En quelques repères, vous identifiez ce que couvre le titre, comment il se suit et quelle suite choisir."
   },
   home: {
     hero: {
       eyebrow: 'Titre professionnel RPMS - RNCP38575',
-      title: 'Vérifiez si le RPMS correspond à votre projet de pilotage ou de management.',
+      title: "Le RPMS s'articule autour de trois grands blocs de compétences.",
       lead:
-        'Titre professionnel Responsable petite et moyenne structure (RPMS), niveau 5 (Bac+2), en 100 % distanciel avec accompagnement pédagogique.',
+        'Titre professionnel Responsable petite et moyenne structure (RPMS), niveau 5 / Bac+2, en 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
       fitLine:
-        "Cette première lecture sert à comprendre ce que le titre prépare réellement : activité, équipe, organisation, territoire, production et reporting.",
-      decisionTitle: 'Ce que vous allez vérifier ici',
+        "Avant d'aller plus loin, visualisez clairement ce que le titre couvre réellement et la manière dont il peut servir votre projet.",
+      decisionTitle: 'Pourquoi commencer ici',
       decisionText:
-        "Lire le titre, comprendre les responsabilités travaillées, puis décider si le format et l'accompagnement correspondent à votre projet.",
+        "En quelques minutes, vous visualisez l'architecture du titre et vous savez vers quelle étape poursuivre.",
       decisionPoints: [
-        "Commencer par les repères officiels : titre, RNCP38575, niveau 5 et format à distance.",
-        'Relier ces repères aux responsabilités visées : activité, équipe, organisation et résultats.',
-        "Choisir ensuite entre la lecture détaillée du programme et une demande de rappel."
+        'Repérez immédiatement le titre, le code RNCP38575, le niveau 5 / Bac+2 et le format à distance.',
+        "Découvrez les trois grands blocs qui structurent le référentiel avant d'entrer dans le détail.",
+        'Choisissez ensuite entre le programme détaillé, le financement ou une demande de rappel.'
       ]
     },
     proofItems: [
@@ -172,201 +146,237 @@ export const siteContent = {
       }
     ],
     orientationSection: {
-      eyebrow: 'Ce que le titre structure',
-      title: 'Une lecture claire du rôle visé avant d’entrer dans le détail du programme.',
+      eyebrow: 'Trois grands blocs',
+      title: 'Une lecture claire du référentiel dès le premier regard.',
       description:
-        "Le RPMS relie le pilotage quotidien à des responsabilités plus larges de management, d'organisation, de territoire et de performance.",
+        "Ces trois blocs donnent la structure complète du titre. Le détail des compétences se retrouve ensuite dans l'onglet Programme.",
       pillars: [
         {
-          title: 'Piloter une activité',
-          text: 'Priorités, performance, arbitrages, suivi et reporting.'
+          title: 'BC01',
+          text: "Diriger la structure, comprendre son environnement, l'inscrire dans son territoire et animer une équipe."
         },
         {
-          title: 'Encadrer une équipe',
-          text: 'Organisation du travail, animation, communication et coordination.'
+          title: 'BC02',
+          text: "Mettre en oeuvre l'objet social, adapter l'offre, organiser sa diffusion et structurer la production."
         },
         {
-          title: 'Inscrire la structure dans son environnement',
-          text: 'Territoire, partenariats, diffusion de l’offre et résultats.'
+          title: 'BC03',
+          text: "Analyser l'activité, lire les résultats et rédiger le rapport d'activité de la structure."
         }
       ]
     },
-    featuredBlocksIntro: {
-      eyebrow: 'Ce que vous retrouverez dans le programme',
-      title: 'Trois blocs suffisent pour comprendre la logique du parcours.',
-      description:
-        "Le programme complet précise ensuite l'écosystème, le territoire, l'équipe, l'offre, la production et le reporting."
-    },
     journeySection: {
-      eyebrow: 'Comment décider',
-      title: 'Trois repères suffisent pour voir si le RPMS mérite d’aller plus loin dans votre projet.',
+      eyebrow: 'La suite, en toute clarté',
+      title: 'Trois étapes pour avancer sereinement.',
       description:
-        "Le site vous aide d'abord à lire le titre, puis à comprendre les responsabilités travaillées, avant de passer à un échange si nécessaire.",
+        "Vous pouvez approfondir le contenu, consulter les modalités financières ou demander un échange selon votre besoin du moment.",
       steps: [
         {
-          title: 'Lire les repères officiels',
-          text: 'Titre, RNCP, niveau, format et accompagnement pédagogique.'
+          title: 'Approfondir le programme',
+          text: 'Accédez au détail de chaque bloc et de chaque compétence pour mesurer précisément ce que couvre le RPMS.'
         },
         {
-          title: 'Comprendre le rôle préparé',
-          text: "Pilotage d'activité, management d'équipe, organisation, territoire et reporting."
+          title: 'Consulter le financement',
+          text: "Retrouvez le prix, les modalités de paiement et les principales conditions de l'offre."
         },
         {
-          title: 'Choisir votre prochaine étape',
-          text: 'Poursuivre avec le programme ou demander un rappel pour clarifier votre projet.'
+          title: 'Demander un rappel',
+          text: 'Faites le point sur votre situation et obtenez une réponse claire à vos questions.'
         }
       ]
     },
     contactBand: {
-      eyebrow: 'Parler de votre projet',
-      title: 'Demandez un rappel si vous voulez vérifier ce cadre avec votre situation.',
+      eyebrow: 'Prêt à aller plus loin ?',
+      title: 'Vous avez maintenant les repères essentiels pour décider de la suite.',
       description:
-        "Le rappel sert à clarifier le titre, le format et les responsabilités travaillées avant toute décision.",
+        "Programme, financement et rappel suivent une même logique : vous donner une information claire pour avancer avec confiance.",
       supportLine:
-        "Vous repartez avec une lecture plus nette du programme, de son cadre officiel et de son adéquation avec votre projet."
+        'RNCP38575, niveau 5 / Bac+2, 100 % distanciel, e-learning et accompagnement pédagogique.'
     }
   },
   program: {
     hero: {
       eyebrow: 'Programme RPMS',
-      title: 'Le programme comme carte de lecture du titre, du rôle et des blocs.',
+      title:
+        'Le programme détaille les compétences contenues dans les trois grands blocs du référentiel.',
       description:
-        "Cette page donne une lecture factuelle du RPMS : repères officiels, responsabilités travaillées et blocs de compétences.",
+        "Chaque bloc est présenté avec sa liste de compétences associées, sans ajout hors référentiel.",
       note:
-        "Commencez par les repères du titre, puis utilisez les blocs pour comprendre ce que le RPMS prépare concrètement."
+        "Vous passez ici d'une vue d'ensemble à une lecture précise des compétences qui structurent le titre."
     },
     summarySection: {
       eyebrow: "Vue d'ensemble",
-      title: 'Les points à regarder avant de parcourir chaque bloc.',
+      title: 'Trois blocs structurent le programme.',
       description:
-        "Le titre, le niveau, le format et les objectifs résument déjà la logique du parcours avant d'entrer dans le détail."
+        "Le référentiel couvre la direction de la structure, la mise en oeuvre de son objet social et la présentation de son activité."
     },
     competencySection: {
-      eyebrow: 'Ce que cela veut dire en pratique',
-      title: "Le RPMS prépare un rôle polyvalent de pilotage, d'organisation et de reporting.",
+      eyebrow: 'Ce que le titre prépare',
+      title:
+        "Le RPMS prépare un rôle de direction, d'organisation, de mise en oeuvre et de suivi d'activité.",
       description:
-        "Ces repères donnent une traduction concrète du rôle visé avant la lecture détaillée du programme."
+        "Cette lecture vous aide à évaluer concrètement la portée du titre avant toute prise de décision."
     },
     blocksSection: {
-      eyebrow: 'Blocs de compétences',
-      title: 'Le détail du programme, bloc par bloc.',
+      eyebrow: 'Compétences détaillées',
+      title: 'Chaque bloc est décliné compétence par compétence.',
       description:
-        "Chaque bloc éclaire une partie du rôle : structure, territoire, équipe, offre, production et résultats."
+        "Vous retrouvez ici le détail de RNCP38575BC01, RNCP38575BC02 et RNCP38575BC03."
     },
     ctaBand: {
-      eyebrow: 'Après la lecture du programme',
-      title: 'Vérifier si ce cadre correspond à votre projet',
+      eyebrow: 'Après le programme',
+      title: 'Consultez le financement ou demandez un rappel',
       description:
-        'Si cette lecture correspond à ce que vous cherchez, vous pouvez demander un rappel pour faire le point sur votre situation.'
+        "Une fois le programme parcouru, vous pouvez vérifier les modalités financières ou faire le point sur votre projet."
+    }
+  },
+  finance: {
+    hero: {
+      eyebrow: 'Financement RPMS',
+      title: 'Le financement du RPMS, présenté de manière claire et directe.',
+      description:
+        "Prix, modalités de paiement et conditions de l'offre sont réunis ici pour vous permettre d'avancer en connaissance de cause."
+    },
+    pricing: {
+      eyebrow: 'Prix de la formation',
+      title: 'Tarif annoncé pour la formation RPMS',
+      amount: '3 500 € TTC',
+      description:
+        "Le tarif présenté correspond à l'offre RPMS de CITYZ'France."
+    },
+    paymentSection: {
+      eyebrow: 'Modalités de paiement',
+      title: 'Des solutions de règlement clairement établies',
+      options: [
+        'Paiement comptant.',
+        'Paiement en plusieurs fois sans frais (partenariat COFIDIS).',
+        'En 3 fois : 1 000 € + 3 x 833 €.',
+        'En 4 fois : 1 000 € + 4 x 625 €.'
+      ]
+    },
+    conditionsSection: {
+      eyebrow: 'Conditions à connaître',
+      title: "Les conditions principales liées à l'offre",
+      items: [
+        "Accès à la plateforme conditionné au paiement.",
+        'Suspension en cas de défaut de paiement.',
+        "Passage de l'examen entre le 6ème et le 12ème mois."
+      ]
+    },
+    ctaBand: {
+      eyebrow: 'Besoin d’aller plus loin ?',
+      title: 'Revenez au programme ou demandez un rappel',
+      description:
+        "Le financement complète naturellement la lecture du programme. Si vous souhaitez valider ces éléments dans votre situation, demandez un rappel."
     }
   },
   access: {
     hero: {
       eyebrow: 'Accès et accompagnement',
-      title: "Voici ce qu'il faut comprendre avant d'aller plus loin.",
+      title: 'Un format pensé pour avancer à distance avec méthode.',
       description:
         'Le RPMS se suit en 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
       fitLine:
-        "Cette page aide à vérifier le format, l'appui pédagogique et les points utiles avant une demande de rappel."
+        "Vérifiez simplement si ce format correspond à votre rythme, à vos objectifs et à votre manière d'apprendre."
     },
     fitChecklist: {
-      eyebrow: 'Vérifier votre point de départ',
-      title: 'Trois questions simples avant de poursuivre.',
+      eyebrow: 'Les bons repères avant de démarrer',
+      title: 'Trois questions pour vous situer rapidement.',
       description:
-        "L'objectif n'est pas de vous convaincre, mais de vous aider à voir si le cadre du titre vous convient.",
+        "Cette lecture vous aide à confirmer l'adéquation du format avec votre projet.",
       items: [
-        'Cherchez-vous un titre pour piloter une activité, encadrer une équipe ou organiser une structure ?',
+        "Souhaitez-vous développer une vision plus complète de la structure, de son activité et de ses résultats ?",
         'Pouvez-vous avancer dans un parcours 100 % distanciel, en e-learning ?',
-        "Souhaitez-vous d'abord vérifier le cadre officiel avant d'aller plus loin ?"
+        'Cherchez-vous un cadre clair avant de passer à un échange individualisé ?'
       ]
     },
     supportSection: {
-      eyebrow: 'Ce que le cadre prévoit',
-      title: 'Un format à distance avec un accompagnement pédagogique lisible.',
+      eyebrow: 'Ce que CITYZ\'France met à disposition',
+      title: 'Un cadre lisible pour apprendre à distance.',
       description:
-        "Le parcours reste sobre dans sa promesse : un titre officiel, un format à distance et un appui pédagogique pour avancer avec plus de clarté.",
+        "Le format conjugue souplesse, accompagnement et points de repère concrets pour vous permettre d'avancer avec régularité.",
       points: [
         '100 % distanciel',
         'E-learning',
         'Accompagnement pédagogique',
-        'Titre professionnel de niveau 5 / Bac+2'
+        'Rendez-vous individuel avec un formateur'
       ]
     },
     processSection: {
-      eyebrow: 'Si vous demandez un rappel',
-      title: 'Le rappel suit un parcours court et concret.',
+      eyebrow: 'Le bon enchaînement',
+      title: 'Programme, financement, puis échange si vous en ressentez le besoin.',
       description:
-        "L'échange sert à clarifier votre projet, pas à ajouter une étape commerciale de plus.",
+        "Cette progression permet de prendre votre décision avec davantage de clarté et moins d'incertitude.",
       steps: [
-        'Lire les blocs de compétences et les repères officiels du titre.',
-        "Vérifier si le format 100 % distanciel et l'accompagnement pédagogique vous conviennent.",
-        'Demander un rappel si vous voulez faire le point sur votre situation.'
+        'Consultez le détail des trois blocs et des compétences associées.',
+        "Prenez connaissance du prix, des modalités de paiement et des conditions de l'offre.",
+        'Demandez un rappel pour vérifier la cohérence de votre projet.'
       ]
     },
     ctaBand: {
-      eyebrow: 'Aller plus loin',
-      title: 'Demander un rappel pour vérifier votre projet',
+      eyebrow: 'Faire le point',
+      title: 'Demandez un rappel pour clarifier votre projet',
       description:
-        "Si le cadre vous semble pertinent, l'échange permet de clarifier vos questions avant toute décision."
+        "Si le format, le programme et le financement correspondent à ce que vous recherchez, l'échange permet d'aller plus loin."
     }
   },
   faq: {
     hero: {
       eyebrow: 'FAQ RPMS',
-      title: 'Les questions qui tranchent vraiment avant d’aller plus loin.',
+      title: 'Les questions les plus utiles avant de vous décider.',
       description:
-        "Commencez par les points qui éclairent le titre, le format et les responsabilités travaillées."
+        "Retrouvez les réponses essentielles sur le titre, le programme, le format et le financement."
     },
     opening: {
-      eyebrow: 'Avant de dérouler les questions',
-      title: 'La FAQ sert à confirmer un choix, pas à tout expliquer.',
+      eyebrow: 'Avant de commencer',
+      title: 'Des réponses claires, sans détour.',
       description:
-        "Si un point reste flou après cette lecture, le plus utile est de revenir au programme ou de demander un rappel.",
+        "La FAQ vous aide à confirmer les points essentiels avant de revenir au programme, au financement ou au rappel.",
       bullets: [
         'Vérifier le titre, le niveau et le format.',
-        'Comprendre les responsabilités travaillées.',
-        'Décider si un échange vous aiderait à clarifier la suite.'
+        'Comprendre les trois blocs et le détail des compétences.',
+        "Consulter les informations financières utiles avant d'aller plus loin."
       ]
     },
     closingNote: {
-      eyebrow: 'Encore une question',
-      title: 'Revenez au programme ou demandez un rappel si un point reste ouvert.',
+      eyebrow: 'Une question reste ouverte ?',
+      title: 'Revenez au programme, au financement ou demandez un rappel',
       description:
-        "La FAQ doit vous aider à trancher. Si une question dépend de votre situation, l'échange permet de la remettre dans votre contexte.",
+        "Vous gardez ainsi une lecture claire du titre, des compétences et des conditions de l'offre.",
       supportLine:
-        "Le rappel sert ensuite à vérifier si le parcours correspond réellement à votre projet."
+        "Un échange peut ensuite vous aider à remettre ces éléments dans votre propre situation."
     }
   },
   contact: {
     heroEyebrow: 'Être rappelé',
-    heroTitle: 'Le rappel sert à vérifier si le RPMS correspond vraiment à votre projet.',
+    heroTitle: 'Le rappel sert à vérifier si le RPMS correspond à votre projet.',
     heroSupport:
-      'Décrivez en quelques lignes votre situation, ce que vous cherchez à clarifier et les responsabilités vers lesquelles vous souhaitez évoluer.',
-    formTitle: 'Décrire votre situation en quelques lignes',
+      "Précisez votre situation, le bloc qui retient votre attention et, si besoin, le point de financement que vous souhaitez éclaircir.",
+    formTitle: 'Parlez-nous de votre projet',
     formIntro:
-      "Le formulaire sert à préparer un échange utile, pas à tout formaliser.",
+      "Quelques informations suffisent pour préparer un échange utile autour du titre, du programme et du financement.",
     formSupport:
-      "L'essentiel est de préciser votre projet, vos questions et le cadre que vous voulez vérifier.",
-    guidanceTitle: "Ce que vous pouvez clarifier pendant l'échange",
+      "Plus votre demande est précise, plus la réponse pourra être adaptée à votre besoin.",
+    guidanceTitle: "Préparez votre échange",
     guidancePoints: [
-      'Le rôle ou les responsabilités vers lesquels vous souhaitez progresser.',
+      'Le rôle ou les responsabilités que vous visez.',
       "L'adéquation du format 100 % distanciel avec votre rythme.",
-      'Les compétences que vous voulez renforcer : activité, équipe, organisation, territoire, production et reporting.'
+      'Le prix, les modalités de paiement ou les conditions que vous souhaitez clarifier.'
     ],
     nextStepNote: {
       title: 'Ce qui se passe après votre demande',
       points: [
         "Votre demande est prise en compte par CITYZ'France.",
-        "L'échange sert à comprendre votre projet et à répondre à vos premières questions.",
+        "L'échange permet de comprendre votre projet et de répondre à vos premières questions.",
         "Les informations demandées restent limitées à ce qui est utile pour vous recontacter."
       ]
     },
     factsTitle: 'Repères utiles',
     footerBand: {
       eyebrow: "Avant d'envoyer votre demande",
-      title: 'Vous pouvez encore relire le programme ou revenir au formulaire',
+      title: 'Programme et financement restent accessibles à tout moment',
       description:
-        'Le programme et la FAQ restent accessibles si vous souhaitez reprendre les repères avant de finaliser votre demande.'
+        "Vous pouvez les relire avant de finaliser votre demande si vous souhaitez confirmer un point."
     },
     phone: '09 77 21 51 61',
     address: '110 Esplanade du General de Gaulle, 92400 Courbevoie',
@@ -375,7 +385,7 @@ export const siteContent = {
   },
   thankYou: {
     nextStepLine:
-      "Nous revenons vers vous pour préciser votre projet et répondre à vos questions."
+      "Nous revenons vers vous pour répondre à vos questions sur le programme, le financement et la suite à donner à votre projet."
   },
   organizationProfile: {
     legalName: "CITYZ'France",
@@ -387,8 +397,8 @@ export const siteContent = {
     headquartersAddress: '110 Esplanade du General de Gaulle, 92400 Courbevoie',
     website: 'www.cityzfrance.fr',
     phone: '09 77 21 51 61',
-    certification: 'Organisme de formation certifié Qualiopi',
+    certification: 'Centre de formation certifié Qualiopi',
     source:
-      "Projet RPMS, plaquette RPMS et dossier legal CITYZ'France"
+      "France Compétences RNCP38575, Projet RPMS et dossier légal CITYZ'France"
   }
 }

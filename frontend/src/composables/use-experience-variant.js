@@ -95,8 +95,9 @@ export function useExperienceVariant() {
     () => experienceVariantMeta.value?.previewLabel ?? ''
   )
 
-  const toWithExperience = (target) =>
-    withExperienceVariant(target, route.query[EXPERIENCE_QUERY_KEY])
+  // Legacy query support remains readable on incoming URLs, but the public
+  // site no longer propagates preview variants through navigation.
+  const toWithExperience = (target) => target
 
   return {
     experienceVariant,

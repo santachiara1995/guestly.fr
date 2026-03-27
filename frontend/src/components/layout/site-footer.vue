@@ -18,18 +18,21 @@ const navigationItems = computed(() =>
 </script>
 
 <template>
-  <footer class="border-t border-border/70 bg-background/60">
-    <div class="mx-auto px-4 py-10 sm:px-6 lg:px-8">
-      <div class="footer-shell grid w-full max-w-[1200px] gap-8 px-5 py-6 sm:px-6 sm:py-7 lg:grid-cols-[1.05fr,0.95fr] lg:px-8">
+  <footer class="mt-16 border-t border-border/70 bg-background/75">
+    <div class="mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <div
+        class="footer-shell mx-auto grid w-full max-w-[1120px] gap-8 px-5 py-6 sm:px-6 sm:py-7 lg:grid-cols-[1.05fr,0.95fr] lg:px-8"
+      >
         <div class="space-y-4">
           <brand-logo :to="homeLink" />
           <p class="max-w-md text-sm leading-relaxed text-muted-foreground">
             Titre professionnel RPMS, niveau 5 / Bac+2, en 100 % distanciel avec accompagnement
             pédagogique.
           </p>
-          <p class="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
-            RNCP38575 · E-learning · Accompagnement pédagogique
-          </p>
+          <div class="grid gap-1 text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
+            <p>RNCP38575 · Qualiopi · E-learning</p>
+            <p>SIRET 992 448 936 00011 · NDA 11923039192</p>
+          </div>
         </div>
 
         <div class="grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] lg:justify-end">
@@ -54,13 +57,16 @@ const navigationItems = computed(() =>
                 <a class="footer-link" href="tel:+33977215161">09 77 21 51 61</a>
               </p>
               <p>
-                <a class="footer-link" href="https://www.cityzfrance.fr" rel="noreferrer" target="_blank">
+                <a
+                  class="footer-link"
+                  href="https://www.cityzfrance.fr"
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   www.cityzfrance.fr
                 </a>
               </p>
-              <p class="max-w-xs">
-                110 Esplanade du General de Gaulle, 92400 Courbevoie
-              </p>
+              <p class="max-w-xs">110 Esplanade du General de Gaulle, 92400 Courbevoie</p>
             </div>
           </div>
         </div>
@@ -72,7 +78,7 @@ const navigationItems = computed(() =>
 <style scoped>
 .footer-link {
   display: inline-flex;
-  min-height: 2.75rem;
+  min-height: 2.5rem;
   align-items: center;
   justify-content: flex-start;
   padding: 0;

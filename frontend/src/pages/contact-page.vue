@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 import { ArrowRight } from 'lucide-vue-next'
 
 import LeadForm from '@/components/lead-form.vue'
-import TrustStrip from '@/components/visual/trust-strip.vue'
+import SectionTitle from '@/components/section-title.vue'
 import { Button } from '@/components/ui/button'
 import { useExperienceVariant } from '@/composables/use-experience-variant'
 import { api } from '@/lib/api'
@@ -50,25 +50,72 @@ const displayWebsite = computed(
     site.value.organizationProfile?.website?.trim() ??
     null
 )
+const phoneHref = computed(() => {
+  if (!displayPhone.value) return null
+  const digits = displayPhone.value.replace(/\D/g, '').replace(/^0/, '')
+  return digits ? `tel:+33${digits}` : null
+})
 
 const programLink = computed(() => toWithExperience('/programme'))
 const financeLink = computed(() => toWithExperience('/financement'))
+const faqLink = computed(() => toWithExperience('/faq'))
 
-const trustStripItems = computed(() => [
-  program.value?.rncpCode ?? 'RNCP38575',
-  program.value?.levelLabel ?? 'Niveau 5 / Bac+2',
-  program.value?.formatLabel ?? '100 % distanciel',
-  program.value?.supportLabel ?? 'Accompagnement pédagogique'
-])
+const hero = computed(() => ({
+  eyebrow: contactCopy.value.heroEyebrow ?? 'Être rappelé',
+  title: contactCopy.value.heroTitle ?? 'Le rappel sert à vérifier si le RPMS correspond à votre projet.',
+  support:
+    contactCopy.value.heroSupport ??
+    'Précisez votre situation, le bloc qui retient votre attention et, si besoin, le point de financement que vous souhaitez éclaircir.',
+  intro:
+    contactCopy.value.formIntro ??
+    'Quelques informations suffisent pour préparer un échange utile autour du titre, du programme et du financement.'
+}))
+
+const guidancePoints = computed(() =>
+  Array.isArray(contactCopy.value.guidancePoints) && contactCopy.value.guidancePoints.length > 0
+    ? contactCopy.value.guidancePoints
+    : [
+        'Le rôle ou les responsabilités que vous visez.',
+        "L'adéquation du format 100 % distanciel avec votre rythme.",
+        'Le prix, les modalités de paiement ou les conditions que vous souhaitez clarifier.'
+      ]
+)
+
+const nextStepPoints = computed(() =>
+  Array.isArray(contactCopy.value.nextStepNote?.points) && contactCopy.value.nextStepNote.points.length > 0
+    ? contactCopy.value.nextStepNote.points
+    : [
+        "Votre demande est prise en compte par CITYZ'France.",
+        "L'échange permet de comprendre votre projet et de répondre à vos premières questions.",
+        'Les informations demandées restent limitées à ce qui est utile pour vous recontacter.'
+      ]
+)
 
 const supportFacts = computed(() =>
   [
     { label: 'Titre', value: program.value?.title },
+    { label: 'Référence', value: program.value?.rncpCode },
     { label: 'Niveau', value: program.value?.levelLabel },
-    { label: 'Code RNCP', value: program.value?.rncpCode },
     { label: 'Modalité', value: program.value?.formatLabel },
-    { label: 'Cadre', value: program.value?.rhythmLabel },
     { label: 'Appui', value: program.value?.supportLabel }
+  ].filter((item) => item.value)
+)
+
+const contactLines = computed(() =>
+  [
+    {
+      label: 'Téléphone',
+      value: displayPhone.value,
+      href: phoneHref.value
+    },
+    {
+      label: 'Adresse',
+      value: displayAddress.value
+    },
+    {
+      label: 'Site',
+      value: displayWebsite.value
+    }
   ].filter((item) => item.value)
 )
 </script>
@@ -79,138 +126,170 @@ const supportFacts = computed(() =>
 
     <template v-else>
       <section
-        class="page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.04fr,0.96fr] lg:p-10"
+        class="hero-split page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.04fr,0.96fr] lg:p-10"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
-        <div class="space-y-6">
+        <div class="space-y-5">
           <div class="space-y-4">
-            <p class="kicker">{{ contactCopy.heroEyebrow }}</p>
-            <h1 class="editorial-title max-w-4xl text-[clamp(2rem,4vw,3.55rem)] text-foreground">
-              {{ contactCopy.heroTitle }}
+            <p class="kicker">{{ hero.eyebrow }}</p>
+            <h1 class="editorial-title max-w-4xl text-[clamp(2rem,4vw,3.6rem)] text-foreground">
+              {{ hero.title }}
             </h1>
             <p class="max-w-3xl text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
-              {{ contactCopy.heroSupport }}
+              {{ hero.support }}
             </p>
           </div>
 
-          <p class="max-w-2xl text-base font-medium leading-7 text-foreground sm:text-[1rem]">
-            {{ contactCopy.formIntro }}
-          </p>
+          <div class="max-w-2xl rounded-[1rem] border border-border/80 bg-[color:var(--paper-tint)]/65 p-4 sm:p-5">
+            <p class="detail-key">À préparer avant l'envoi</p>
+            <p class="mt-2 text-sm leading-7 text-foreground">
+              {{ hero.intro }}
+            </p>
+            <p class="mt-2 text-sm leading-7 text-muted-foreground">
+              Le formulaire sert à cadrer un rappel utile, pas à multiplier les champs.
+            </p>
+          </div>
 
-          <TrustStrip :items="trustStripItems" />
+          <div class="flex flex-wrap gap-4">
+            <a href="#formulaire-rappel" class="home-inline-link">
+              Aller au formulaire
+              <ArrowRight class="h-4 w-4" />
+            </a>
+            <RouterLink :to="faqLink" class="home-inline-link">
+              Lire la FAQ
+              <ArrowRight class="h-4 w-4" />
+            </RouterLink>
+          </div>
         </div>
 
-        <aside class="trust-panel page-cut p-6 sm:p-7">
-          <p class="kicker">{{ contactCopy.factsTitle }}</p>
-          <h2 class="mt-4 text-[clamp(1.5rem,3vw,2.05rem)] font-semibold tracking-[-0.04em] text-foreground">
-            Repères avant la prise de contact
+        <aside class="sidebar-panel paper-card p-6 sm:p-7">
+          <p class="kicker">Repères utiles</p>
+          <h2 class="mt-4 text-[clamp(1.55rem,3vw,2.15rem)] font-semibold tracking-[-0.04em] text-foreground">
+            Les éléments de base à garder sous les yeux.
           </h2>
 
           <div class="mt-6 grid gap-3">
             <article
               v-for="(item, index) in supportFacts"
               :key="item.label"
-              class="elevated-item rounded-[1rem] p-4"
+              class="support-tile paper-card p-4"
               v-motion
               :initial="motionVariants.pop.initial"
-              :enter="staggerEnter(index, 44, 24)"
+              :enter="staggerEnter(index, 44, 22)"
             >
               <p class="detail-key">{{ item.label }}</p>
-              <p class="mt-2 text-sm leading-6 text-foreground">{{ item.value }}</p>
-            </article>
-          </div>
-        </aside>
-      </section>
-
-      <section class="grid gap-6 lg:grid-cols-[1.02fr,0.98fr]" id="formulaire-rappel">
-        <article class="page-cut p-6 sm:p-7">
-          <p class="kicker">{{ contactCopy.formTitle }}</p>
-          <h2 class="mt-4 text-[clamp(1.55rem,3vw,2.1rem)] font-semibold tracking-[-0.04em] text-foreground">
-            {{ contactCopy.formSupport }}
-          </h2>
-
-          <div class="mt-6">
-            <LeadForm source-page="/contact" />
-          </div>
-        </article>
-
-        <aside class="page-cut p-6 sm:p-7">
-          <p class="kicker">{{ contactCopy.guidanceTitle }}</p>
-          <h2 class="mt-4 text-[clamp(1.55rem,3vw,2.1rem)] font-semibold tracking-[-0.04em] text-foreground">
-            Préparez votre demande autour d’un point précis.
-          </h2>
-
-          <div class="mt-6 grid gap-3">
-            <article
-              v-for="(point, index) in contactCopy.guidancePoints ?? []"
-              :key="point"
-              class="decision-card"
-              v-motion
-              :initial="motionVariants.pop.initial"
-              :enter="staggerEnter(index, 44, 24)"
-            >
-              <p class="detail-key">Point {{ index + 1 }}</p>
-              <p class="mt-3 text-sm leading-7 text-muted-foreground">
-                {{ point }}
+              <p class="mt-2 text-sm leading-6 text-foreground">
+                {{ item.value }}
               </p>
             </article>
           </div>
 
-          <div class="mt-6 space-y-3 text-sm leading-7 text-muted-foreground">
-            <p v-if="displayPhone">
-              Téléphone :
-              <a class="font-semibold text-foreground underline-offset-4 hover:underline" :href="`tel:+33${displayPhone.replace(/\\D/g, '').replace(/^0/, '')}`">
-                {{ displayPhone }}
-              </a>
-            </p>
-            <p v-if="displayWebsite">
-              Site : {{ displayWebsite }}
-            </p>
-            <p v-if="displayAddress">
-              Adresse : {{ displayAddress }}
-            </p>
-            <p v-if="site.organizationProfile?.certification">
-              {{ site.organizationProfile.certification }}
-            </p>
+          <div class="mt-6 border-t border-border/70 pt-5">
+            <p class="detail-key">Coordonnées</p>
+            <div class="mt-4 grid gap-3">
+              <article
+                v-for="line in contactLines"
+                :key="line.label"
+                class="rounded-[1rem] border border-border/70 bg-[color:var(--paper-tint)]/55 p-4"
+              >
+                <p class="detail-key">{{ line.label }}</p>
+                <a
+                  v-if="line.href"
+                  :href="line.href"
+                  class="mt-2 block text-sm leading-6 text-foreground underline-offset-4 hover:underline"
+                >
+                  {{ line.value }}
+                </a>
+                <p v-else class="mt-2 text-sm leading-6 text-foreground">
+                  {{ line.value }}
+                </p>
+              </article>
+            </div>
           </div>
         </aside>
       </section>
 
-      <section class="space-y-6">
-        <SectionTitle
-          :eyebrow="contactCopy.nextStepNote?.title"
-          title="Ce qui se passe après votre demande"
-          :description="contactCopy.footerBand?.description"
-        />
+      <section
+        id="formulaire-rappel"
+        class="support-grid grid gap-6 lg:grid-cols-[minmax(0,1.05fr),minmax(0,0.95fr)]"
+      >
+        <article class="paper-card sidebar-panel p-6 sm:p-7">
+          <SectionTitle
+            :eyebrow="contactCopy.formTitle ?? 'Parlez-nous de votre projet'"
+            :title="contactCopy.formSupport ?? 'Donnez assez de contexte pour que le rappel soit utile.'"
+            :description="hero.intro"
+          />
 
-        <div class="grid gap-4 xl:grid-cols-3">
-          <article
-            v-for="(point, index) in contactCopy.nextStepNote?.points ?? []"
-            :key="point"
-            class="feature-tile"
-            v-motion
-            :initial="motionVariants.block.initial"
-            :enter="staggerEnter(index, 44, 24)"
-          >
-            <p class="detail-key">Étape {{ index + 1 }}</p>
-            <p class="mt-3 text-sm leading-7 text-muted-foreground">
-              {{ point }}
-            </p>
-          </article>
-        </div>
+          <div class="mt-6 rounded-[1.1rem] border border-border/70 bg-[color:var(--paper-tint)]/60 p-4 sm:p-5">
+            <LeadForm source-page="/contact" />
+          </div>
+        </article>
+
+        <aside class="sidebar-panel paper-card p-6 sm:p-7">
+          <SectionTitle
+            :eyebrow="contactCopy.guidanceTitle ?? 'Préparez votre échange'"
+            title="Les trois repères à préciser dans votre message."
+            description="Plus la demande est cadrée, plus le rappel peut répondre simplement et sans détour."
+          />
+
+          <div class="mt-6 grid gap-3">
+            <article
+              v-for="(point, index) in guidancePoints"
+              :key="point"
+              class="support-tile paper-card p-4"
+              v-motion
+              :initial="motionVariants.pop.initial"
+              :enter="staggerEnter(index, 44, 22)"
+            >
+              <div class="flex items-start gap-3">
+                <span class="finance-badge">{{ index + 1 }}</span>
+                <p class="text-sm leading-6 text-foreground">
+                  {{ point }}
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="mt-6 border-t border-border/70 pt-5">
+            <p class="detail-key">Après l'envoi</p>
+            <div class="mt-4 grid gap-3">
+              <article
+                v-for="(point, index) in nextStepPoints"
+                :key="point"
+                class="rounded-[1rem] border border-border/70 bg-[color:var(--paper-tint)]/55 p-4"
+                v-motion
+                :initial="motionVariants.pop.initial"
+                :enter="staggerEnter(index, 42, 20)"
+              >
+                <div class="flex items-start gap-3">
+                  <span class="finance-line" aria-hidden="true"></span>
+                  <p class="text-sm leading-6 text-muted-foreground">
+                    {{ point }}
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </aside>
       </section>
 
-      <section class="arch-cta p-6 sm:p-8 lg:p-10">
+      <section class="cta-band arch-cta paper-card p-6 sm:p-8 lg:p-10">
         <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
-            <p class="kicker">{{ contactCopy.footerBand?.eyebrow }}</p>
+            <p class="kicker">{{ contactCopy.footerBand?.eyebrow ?? "Avant d'envoyer votre demande" }}</p>
             <h2 class="editorial-title max-w-3xl text-[clamp(1.9rem,3vw,2.75rem)] text-foreground">
-              {{ contactCopy.footerBand?.title }}
+              {{
+                contactCopy.footerBand?.title ??
+                'Programme et financement restent accessibles à tout moment'
+              }}
             </h2>
             <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
-              {{ contactCopy.footerBand?.description }}
+              {{
+                contactCopy.footerBand?.description ??
+                'Vous pouvez les relire avant de finaliser votre demande si vous souhaitez confirmer un point.'
+              }}
             </p>
           </div>
 

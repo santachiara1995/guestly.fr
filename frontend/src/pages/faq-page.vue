@@ -85,12 +85,12 @@ const supportTiles = computed(() => [
 </script>
 
 <template>
-  <div class="space-y-12 sm:space-y-14 lg:space-y-16">
+  <div class="page-stack">
     <p v-if="loading" class="text-sm text-muted-foreground">Chargement de la FAQ…</p>
 
     <template v-else>
       <section
-        class="hero-split page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:p-8"
+        class="page-shell hero-split page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:p-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
@@ -150,7 +150,7 @@ const supportTiles = computed(() => [
         </aside>
       </section>
 
-      <section class="space-y-6">
+      <section class="page-shell space-y-6">
         <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.86fr)] lg:items-start">
           <article class="space-y-5">
             <SectionTitle
@@ -215,7 +215,7 @@ const supportTiles = computed(() => [
         </div>
       </section>
 
-      <section class="cta-band arch-cta paper-card p-5 sm:p-6 lg:p-8">
+      <section class="page-shell cta-band arch-cta paper-card p-5 sm:p-6 lg:p-8">
         <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
             <p class="kicker">{{ closingNote.eyebrow }}</p>

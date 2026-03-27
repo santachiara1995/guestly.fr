@@ -136,12 +136,12 @@ const contactBand = computed(() => {
 
     <template v-else-if="program">
       <section
-        class="home-section home-section--hero px-4 py-8 sm:px-6 lg:px-8 lg:py-12"
+        class="home-section home-section--hero px-4 py-8 sm:px-6 lg:px-8 lg:py-10"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
-        <div class="home-shell mx-auto max-w-7xl">
+        <div class="home-shell page-shell">
           <div class="home-hero grid gap-10 lg:grid-cols-[minmax(0,1.04fr)_minmax(24rem,0.82fr)] lg:items-start lg:gap-14">
             <div class="home-hero__content">
               <h1 class="home-hero__title">
@@ -203,8 +203,8 @@ const contactBand = computed(() => {
         </div>
       </section>
 
-      <section class="home-section home-section--program px-4 py-9 sm:px-6 lg:px-8 lg:py-10">
-        <div class="mx-auto max-w-5xl">
+      <section class="home-section home-section--program px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <div class="page-shell">
           <div class="mb-8 text-center">
             <p class="kicker">Les trois blocs du référentiel</p>
             <h2 class="mt-4 text-[clamp(1.7rem,3vw,2.35rem)] font-extrabold tracking-[-0.05em] text-primary">
@@ -236,9 +236,9 @@ const contactBand = computed(() => {
         </div>
       </section>
 
-      <section class="home-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+      <section class="home-section px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
         <div
-          class="home-final-band mx-auto max-w-7xl"
+          class="home-final-band page-shell"
           v-motion
           :initial="motionVariants.block.initial"
           :enter="motionVariants.block.enter"

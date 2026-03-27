@@ -116,12 +116,12 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
 
     <template v-else-if="program">
       <section
-        class="program-section program-section--hero px-4 py-8 sm:px-6 lg:px-8 lg:py-12"
+        class="program-section program-section--hero px-4 py-8 sm:px-6 lg:px-8 lg:py-10"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
-        <div class="mx-auto max-w-7xl">
+        <div class="page-shell">
           <div class="hero-split grid gap-5 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
             <article class="page-hero paper-card flex flex-col gap-5 p-5 sm:p-6 lg:p-8">
               <div class="hero-badge">
@@ -206,8 +206,8 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         </div>
       </section>
 
-      <section class="program-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
-        <div class="mx-auto max-w-7xl">
+      <section class="program-section px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <div class="page-shell">
           <div class="mx-auto mb-10 max-w-3xl text-center">
             <p class="kicker">{{ competencySection.eyebrow ?? 'Ce que le titre prépare' }}</p>
             <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
@@ -270,8 +270,8 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         </div>
       </section>
 
-      <section class="program-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
-        <div class="mx-auto max-w-5xl">
+      <section class="program-section px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <div class="page-shell">
           <div class="mb-10 text-center">
             <p class="kicker">{{ blocksSection.eyebrow ?? 'Compétences détaillées' }}</p>
             <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
@@ -306,8 +306,8 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         </div>
       </section>
 
-      <section class="program-section px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
-        <div class="cta-band arch-cta mx-auto max-w-7xl p-5 sm:p-6 lg:p-8">
+      <section class="program-section px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <div class="cta-band arch-cta page-shell p-5 sm:p-6 lg:p-8">
           <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div class="space-y-3">
               <p class="kicker">{{ ctaBand.eyebrow ?? 'Après la lecture du programme' }}</p>

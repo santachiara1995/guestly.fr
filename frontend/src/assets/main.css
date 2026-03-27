@@ -196,7 +196,7 @@
   .header-shell {
     position: relative;
     overflow: hidden;
-    border-radius: 0.72rem;
+    border-radius: 0.78rem;
     background: rgb(255 255 255 / 0.94);
     box-shadow: 0 5px 14px rgb(17 39 65 / 0.045);
     backdrop-filter: blur(14px);
@@ -340,7 +340,7 @@
   }
 
   .nav-link {
-    @apply inline-flex min-h-7 items-center justify-center whitespace-nowrap border-b-2 border-transparent px-1 py-0 text-[0.72rem] font-medium tracking-[0.005em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+    @apply inline-flex min-h-8 items-center justify-center whitespace-nowrap border-b-2 border-transparent px-1 py-0 text-[0.73rem] font-medium tracking-[0.005em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
     color: var(--muted-ink);
   }
 
@@ -463,6 +463,16 @@
   .app-shell > * {
     position: relative;
     z-index: 1;
+  }
+
+  .page-stack {
+    display: grid;
+    gap: clamp(2rem, 3vw, 2.6rem);
+  }
+
+  .page-shell {
+    margin-inline: auto;
+    width: min(100%, 70rem);
   }
 
   .programme-ladder {

@@ -48,12 +48,12 @@ const trustStripItems = computed(() => [
 </script>
 
 <template>
-  <div class="space-y-12 sm:space-y-14 lg:space-y-16">
+  <div class="page-stack">
     <p v-if="loading" class="text-sm text-muted-foreground">Actualisation du contenu…</p>
 
     <template v-else>
       <section
-        class="page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.04fr_0.96fr] lg:items-start lg:p-8"
+        class="page-shell page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.04fr_0.96fr] lg:items-start lg:p-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
@@ -103,7 +103,7 @@ const trustStripItems = computed(() => [
         </aside>
       </section>
 
-      <section class="space-y-6">
+      <section class="page-shell space-y-6">
         <SectionTitle
           :eyebrow="checklist.eyebrow"
           :title="checklist.title"
@@ -127,7 +127,7 @@ const trustStripItems = computed(() => [
         </div>
       </section>
 
-      <section class="grid gap-6 lg:grid-cols-2">
+      <section class="page-shell grid gap-6 lg:grid-cols-2">
         <article class="page-cut p-5 sm:p-6">
           <SectionTitle
             :eyebrow="processSection.eyebrow"
@@ -180,7 +180,7 @@ const trustStripItems = computed(() => [
         </article>
       </section>
 
-      <section class="arch-cta p-5 sm:p-6 lg:p-8">
+      <section class="page-shell arch-cta p-5 sm:p-6 lg:p-8">
         <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
             <p class="kicker">{{ ctaBand.eyebrow }}</p>

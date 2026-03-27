@@ -120,12 +120,12 @@ const contactLines = computed(() =>
 </script>
 
 <template>
-  <div class="space-y-12 sm:space-y-14 lg:space-y-16">
+  <div class="page-stack">
     <p v-if="loading" class="text-sm text-muted-foreground">Chargement du contact…</p>
 
     <template v-else>
       <section
-        class="hero-split page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.04fr_0.96fr] lg:items-start lg:p-8"
+        class="page-shell hero-split page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.04fr_0.96fr] lg:items-start lg:p-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
@@ -212,7 +212,7 @@ const contactLines = computed(() =>
 
       <section
         id="formulaire-rappel"
-        class="support-grid grid gap-6 lg:grid-cols-[minmax(0,1.28fr)_minmax(18rem,0.82fr)] xl:grid-cols-[minmax(0,1.34fr)_minmax(20rem,0.78fr)]"
+        class="page-shell support-grid grid gap-6 lg:grid-cols-[minmax(0,1.28fr)_minmax(18rem,0.82fr)] xl:grid-cols-[minmax(0,1.34fr)_minmax(20rem,0.78fr)]"
       >
         <article class="paper-card sidebar-panel p-5 sm:p-6">
           <div class="space-y-3">
@@ -282,7 +282,7 @@ const contactLines = computed(() =>
         </aside>
       </section>
 
-      <section class="cta-band arch-cta paper-card p-5 sm:p-6 lg:p-8">
+      <section class="page-shell cta-band arch-cta paper-card p-5 sm:p-6 lg:p-8">
         <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
             <p class="kicker">{{ contactCopy.footerBand?.eyebrow ?? "Avant d'envoyer votre demande" }}</p>

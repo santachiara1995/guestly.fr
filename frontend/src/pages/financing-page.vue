@@ -72,7 +72,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
 </script>
 
 <template>
-  <div class="financing-page -mx-4 space-y-10 sm:-mx-6 sm:space-y-12 lg:-mx-8 lg:space-y-14">
+  <div class="financing-page page-stack -mx-4 sm:-mx-6 lg:-mx-8">
     <p v-if="loading" class="px-4 py-6 text-sm text-muted-foreground sm:px-6 lg:px-8">
       Chargement des informations…
     </p>
@@ -86,7 +86,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
 
     <template v-else>
       <section
-        class="hero-split mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:items-start lg:px-8 lg:py-12"
+        class="hero-split page-shell px-4 py-8 sm:px-6 lg:items-start lg:px-8 lg:py-10"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
@@ -171,7 +171,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
         </div>
       </section>
 
-      <section class="mx-auto max-w-7xl px-4 py-1 sm:px-6 lg:px-8">
+      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <div class="support-grid lg:grid-cols-2">
           <article
             class="paper-card p-5 sm:p-6"
@@ -241,7 +241,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
         </div>
       </section>
 
-      <section class="mx-auto max-w-7xl px-4 py-1 sm:px-6 sm:py-2 lg:px-8 lg:py-3">
+      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <div
           class="cta-band"
           v-motion

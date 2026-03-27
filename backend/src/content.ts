@@ -148,30 +148,30 @@ export const siteContent = {
       ]
     },
     journeySection: {
-      eyebrow: 'La suite, en toute clarté',
-      title: "Trois leviers pour passer à l'action.",
+      eyebrow: 'Choisissez votre prochaine étape',
+      title: 'Avancez là où la décision se joue.',
       description:
-        'Programme, financement, contact : allez droit à ce qui vous décide.',
+        'Programme, financement ou rappel : allez directement au point qui compte pour vous.',
       steps: [
         {
           title: 'Approfondir le programme',
-          text: 'Accédez au détail de chaque bloc et de chaque compétence pour mesurer précisément ce que couvre le RPMS.'
+          text: 'Vérifiez les blocs et les compétences avant de vous décider.'
         },
         {
-          title: 'Consulter le financement',
-          text: "Retrouvez le prix, les modalités de paiement et les principales conditions de l'offre."
+          title: 'Voir le financement',
+          text: "Retrouvez le prix, les modalités de paiement et les conditions de l'offre."
         },
         {
           title: 'Demander un rappel',
-          text: 'Faites le point sur votre situation et obtenez une réponse claire à vos questions.'
+          text: 'Faites le point sur votre situation et posez vos questions.'
         }
       ]
     },
     contactBand: {
       eyebrow: 'Prêt à aller plus loin ?',
-      title: "Passez à l'étape suivante.",
+      title: "Passez à l'étape utile.",
       description:
-        'Regardez le programme, vérifiez le financement, puis contactez-nous pour valider votre projet.',
+        'Programme, financement ou rappel : choisissez maintenant la suite la plus utile pour votre projet.',
       supportLine:
         "Bac+2 / niveau 5 · diplôme certifié par l'État · 100 % à distance · 300 h"
     }
@@ -242,9 +242,9 @@ export const siteContent = {
   finance: {
     hero: {
       eyebrow: 'Financement RPMS',
-      title: 'Le financement du RPMS, présenté de manière claire et directe.',
+      title: '3 500 € TTC, comptant ou en plusieurs fois.',
       description:
-        "Prix, modalités de paiement et conditions de l'offre sont réunis ici pour vous permettre d'avancer en connaissance de cause."
+        "Retrouvez ici le prix, les modalités de paiement et les conditions principales de l'offre RPMS."
     },
     pricing: {
       eyebrow: 'Prix de la formation',
@@ -255,7 +255,7 @@ export const siteContent = {
     },
     paymentSection: {
       eyebrow: 'Modalités de paiement',
-      title: 'Des solutions de règlement clairement établies',
+      title: 'Les solutions de règlement proposées',
       options: [
         'Paiement comptant.',
         'Paiement en plusieurs fois sans frais (partenariat COFIDIS).',
@@ -265,7 +265,7 @@ export const siteContent = {
     },
     conditionsSection: {
       eyebrow: 'Conditions à connaître',
-      title: "Les conditions principales liées à l'offre",
+      title: "Les conditions principales de l'offre",
       items: [
         "Accès à la plateforme conditionné au paiement.",
         'Suspension en cas de défaut de paiement.',
@@ -274,9 +274,9 @@ export const siteContent = {
     },
     ctaBand: {
       eyebrow: 'Besoin d’aller plus loin ?',
-      title: 'Revenez au programme ou demandez un rappel',
+      title: 'Besoin d’un point rapide ?',
       description:
-        "Le financement complète naturellement la lecture du programme. Si vous souhaitez valider ces éléments dans votre situation, demandez un rappel."
+        "Vérifiez le programme ou demandez un rappel pour faire le point sur le financement dans votre situation."
     }
   },
   access: {

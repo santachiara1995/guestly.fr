@@ -266,7 +266,7 @@ const contactBand = computed(() => {
           :enter="motionVariants.block.enter"
         >
           <div class="home-final-band__content">
-            <p class="kicker text-white/78">{{ contactBand.eyebrow }}</p>
+            <p class="kicker">{{ contactBand.eyebrow }}</p>
             <h2 class="home-final-band__title">{{ contactBand.title }}</h2>
             <p class="home-final-band__description">{{ contactBand.description }}</p>
 

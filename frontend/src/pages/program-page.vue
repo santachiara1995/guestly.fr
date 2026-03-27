@@ -116,27 +116,27 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
 
     <template v-else-if="program">
       <section
-        class="program-section program-section--hero px-4 py-10 sm:px-6 lg:px-8 lg:py-16"
+        class="program-section program-section--hero px-4 py-8 sm:px-6 lg:px-8 lg:py-12"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
         <div class="mx-auto max-w-7xl">
-          <div class="hero-split grid gap-6 lg:grid-cols-[1.08fr,0.92fr] lg:items-stretch">
-            <article class="page-hero paper-card flex flex-col gap-6 p-6 sm:p-8 lg:p-10">
+          <div class="hero-split grid gap-5 lg:grid-cols-[1.08fr,0.92fr] lg:items-stretch">
+            <article class="page-hero paper-card flex flex-col gap-5 p-5 sm:p-6 lg:p-8">
               <div class="hero-badge">
                 <span class="hero-badge__dot hero-badge__dot--blue"></span>
                 <span>{{ hero.eyebrow }}</span>
               </div>
 
               <div class="space-y-4">
-                <h1 class="hero-gradient-title editorial-title max-w-4xl text-[clamp(2.2rem,4.25vw,4.15rem)] text-foreground">
+                <h1 class="hero-gradient-title editorial-title max-w-4xl text-foreground">
                   {{ hero.title }}
                 </h1>
-                <p class="hero-lead max-w-3xl text-base leading-8 text-muted-foreground sm:text-[1.05rem]">
+                <p class="hero-lead max-w-3xl text-base leading-7 text-muted-foreground sm:text-[1rem]">
                   {{ hero.description }}
                 </p>
-                <p class="hero-support-line max-w-2xl text-sm leading-7 text-foreground sm:text-[1rem]">
+                <p class="hero-support-line max-w-2xl text-sm leading-6 text-foreground sm:text-[0.95rem]">
                   {{ hero.note }}
                 </p>
               </div>
@@ -169,9 +169,9 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
               </RouterLink>
             </article>
 
-            <aside class="sidebar-panel trust-panel paper-card p-6 sm:p-7 lg:p-8">
+            <aside class="sidebar-panel trust-panel paper-card p-5 sm:p-6 lg:p-7">
               <p class="kicker">Trois grands blocs</p>
-              <h2 class="mt-4 text-[clamp(1.55rem,3vw,2.2rem)] font-semibold tracking-[-0.04em] text-foreground">
+              <h2 class="mt-4 text-[clamp(1.3rem,2.2vw,1.8rem)] font-semibold tracking-[-0.04em] text-foreground">
                 {{ summarySection.title ?? 'Le titre tient en trois blocs lisibles.' }}
               </h2>
               <p class="mt-4 max-w-xl text-sm leading-7 text-muted-foreground">
@@ -206,11 +206,11 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         </div>
       </section>
 
-      <section class="program-section px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+      <section class="program-section px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div class="mx-auto max-w-7xl">
           <div class="mx-auto mb-10 max-w-3xl text-center">
             <p class="kicker">{{ competencySection.eyebrow ?? 'Ce que le titre prépare' }}</p>
-            <h2 class="editorial-title mt-4 text-[clamp(2rem,4vw,3rem)] text-primary">
+            <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
               {{ competencySection.title ?? 'Le RPMS prépare un rôle de direction, d’organisation et de suivi.' }}
             </h2>
             <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
@@ -219,9 +219,9 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
           </div>
 
           <div class="grid gap-6 lg:grid-cols-2">
-            <article class="page-cut paper-card p-6 sm:p-7">
+            <article class="page-cut paper-card p-5 sm:p-6">
               <p class="detail-key">Repères de lecture</p>
-              <h3 class="mt-4 text-[clamp(1.45rem,2.8vw,2rem)] font-semibold tracking-[-0.04em] text-foreground">
+              <h3 class="mt-4 text-[clamp(1.2rem,2vw,1.6rem)] font-semibold tracking-[-0.04em] text-foreground">
                 Trois points pour comprendre la portée du RPMS.
               </h3>
 
@@ -242,9 +242,9 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
               </div>
             </article>
 
-            <article class="page-cut paper-card p-6 sm:p-7">
+            <article class="page-cut paper-card p-5 sm:p-6">
               <p class="detail-key">Responsabilités travaillées</p>
-              <h3 class="mt-4 text-[clamp(1.45rem,2.8vw,2rem)] font-semibold tracking-[-0.04em] text-foreground">
+              <h3 class="mt-4 text-[clamp(1.2rem,2vw,1.6rem)] font-semibold tracking-[-0.04em] text-foreground">
                 {{ roleSummary }}
               </h3>
 
@@ -270,11 +270,11 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         </div>
       </section>
 
-      <section class="program-section px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+      <section class="program-section px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div class="mx-auto max-w-5xl">
           <div class="mb-10 text-center">
             <p class="kicker">{{ blocksSection.eyebrow ?? 'Compétences détaillées' }}</p>
-            <h2 class="editorial-title mt-4 text-[clamp(2rem,4vw,3rem)] text-primary">
+            <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
               {{ blocksSection.title ?? 'Chaque bloc est décliné compétence par compétence.' }}
             </h2>
             <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
@@ -306,12 +306,12 @@ const scopePoints = computed(() => program.value?.professionalScope ?? [])
         </div>
       </section>
 
-      <section class="program-section px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-        <div class="cta-band arch-cta mx-auto max-w-7xl p-6 sm:p-8 lg:p-10">
+      <section class="program-section px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <div class="cta-band arch-cta mx-auto max-w-7xl p-5 sm:p-6 lg:p-8">
           <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div class="space-y-3">
               <p class="kicker">{{ ctaBand.eyebrow ?? 'Après la lecture du programme' }}</p>
-              <h2 class="editorial-title max-w-3xl text-[clamp(1.95rem,3vw,2.85rem)] text-foreground">
+              <h2 class="editorial-title max-w-3xl text-[clamp(1.6rem,2.4vw,2.2rem)] text-foreground">
                 {{ ctaBand.title ?? 'Consultez le financement ou demandez un rappel' }}
               </h2>
               <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">

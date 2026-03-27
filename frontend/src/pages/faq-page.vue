@@ -90,7 +90,7 @@ const supportTiles = computed(() => [
 
     <template v-else>
       <section
-        class="hero-split page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.05fr,0.95fr] lg:p-10"
+        class="hero-split page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.05fr,0.95fr] lg:p-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
@@ -98,7 +98,7 @@ const supportTiles = computed(() => [
         <div class="space-y-5">
           <div class="space-y-4">
             <p class="kicker">{{ hero.eyebrow }}</p>
-            <h1 class="editorial-title max-w-4xl text-[clamp(2rem,4vw,3.6rem)] text-foreground">
+            <h1 class="editorial-title max-w-4xl text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
               {{ hero.title }}
             </h1>
             <p class="max-w-3xl text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
@@ -122,9 +122,9 @@ const supportTiles = computed(() => [
           </RouterLink>
         </div>
 
-        <aside class="sidebar-panel paper-card p-6 sm:p-7">
+        <aside class="sidebar-panel paper-card p-5 sm:p-6">
           <p class="kicker">{{ opening.eyebrow }}</p>
-          <h2 class="mt-4 text-[clamp(1.55rem,3vw,2.15rem)] font-semibold tracking-[-0.04em] text-foreground">
+          <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
             {{ opening.title }}
           </h2>
           <p class="mt-4 text-sm leading-7 text-muted-foreground">
@@ -188,9 +188,9 @@ const supportTiles = computed(() => [
           </div>
         </article>
 
-        <aside class="sidebar-panel paper-card p-6 sm:p-7">
+        <aside class="sidebar-panel paper-card p-5 sm:p-6">
           <p class="kicker">Lire dans le bon ordre</p>
-          <h2 class="mt-4 text-[clamp(1.55rem,3vw,2.15rem)] font-semibold tracking-[-0.04em] text-foreground">
+          <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
             Programme, financement, puis rappel si besoin.
           </h2>
 
@@ -223,11 +223,11 @@ const supportTiles = computed(() => [
         </aside>
       </section>
 
-      <section class="cta-band arch-cta paper-card p-6 sm:p-8 lg:p-10">
+      <section class="cta-band arch-cta paper-card p-5 sm:p-6 lg:p-8">
         <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
             <p class="kicker">{{ closingNote.eyebrow }}</p>
-            <h2 class="editorial-title max-w-3xl text-[clamp(1.9rem,3vw,2.75rem)] text-foreground">
+            <h2 class="editorial-title max-w-3xl text-[clamp(1.55rem,2.3vw,2.1rem)] text-foreground">
               {{ closingNote.title }}
             </h2>
             <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">

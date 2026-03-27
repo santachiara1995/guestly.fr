@@ -126,7 +126,7 @@ const contactLines = computed(() =>
 
     <template v-else>
       <section
-        class="hero-split page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.04fr,0.96fr] lg:p-10"
+        class="hero-split page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.04fr,0.96fr] lg:p-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
@@ -134,7 +134,7 @@ const contactLines = computed(() =>
         <div class="space-y-5">
           <div class="space-y-4">
             <p class="kicker">{{ hero.eyebrow }}</p>
-            <h1 class="editorial-title max-w-4xl text-[clamp(2rem,4vw,3.6rem)] text-foreground">
+            <h1 class="editorial-title max-w-4xl text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
               {{ hero.title }}
             </h1>
             <p class="max-w-3xl text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
@@ -164,9 +164,9 @@ const contactLines = computed(() =>
           </div>
         </div>
 
-        <aside class="sidebar-panel paper-card p-6 sm:p-7">
+        <aside class="sidebar-panel paper-card p-5 sm:p-6">
           <p class="kicker">Repères utiles</p>
-          <h2 class="mt-4 text-[clamp(1.55rem,3vw,2.15rem)] font-semibold tracking-[-0.04em] text-foreground">
+          <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
             Les éléments de base à garder sous les yeux.
           </h2>
 
@@ -215,7 +215,7 @@ const contactLines = computed(() =>
         id="formulaire-rappel"
         class="support-grid grid gap-6 lg:grid-cols-[minmax(0,1.05fr),minmax(0,0.95fr)]"
       >
-        <article class="paper-card sidebar-panel p-6 sm:p-7">
+        <article class="paper-card sidebar-panel p-5 sm:p-6">
           <SectionTitle
             :eyebrow="contactCopy.formTitle ?? 'Parlez-nous de votre projet'"
             :title="contactCopy.formSupport ?? 'Donnez assez de contexte pour que le rappel soit utile.'"
@@ -227,7 +227,7 @@ const contactLines = computed(() =>
           </div>
         </article>
 
-        <aside class="sidebar-panel paper-card p-6 sm:p-7">
+        <aside class="sidebar-panel paper-card p-5 sm:p-6">
           <SectionTitle
             :eyebrow="contactCopy.guidanceTitle ?? 'Préparez votre échange'"
             title="Les trois repères à préciser dans votre message."
@@ -275,11 +275,11 @@ const contactLines = computed(() =>
         </aside>
       </section>
 
-      <section class="cta-band arch-cta paper-card p-6 sm:p-8 lg:p-10">
+      <section class="cta-band arch-cta paper-card p-5 sm:p-6 lg:p-8">
         <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
             <p class="kicker">{{ contactCopy.footerBand?.eyebrow ?? "Avant d'envoyer votre demande" }}</p>
-            <h2 class="editorial-title max-w-3xl text-[clamp(1.9rem,3vw,2.75rem)] text-foreground">
+            <h2 class="editorial-title max-w-3xl text-[clamp(1.55rem,2.3vw,2.1rem)] text-foreground">
               {{
                 contactCopy.footerBand?.title ??
                 'Programme et financement restent accessibles à tout moment'

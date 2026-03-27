@@ -18,17 +18,17 @@ defineProps({
     :to="to"
     :class="[
       'inline-flex items-center rounded-lg text-left transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-      compact ? 'h-11 gap-2 py-0' : 'min-h-12 gap-3 py-1'
+      compact ? 'h-10 gap-1.5 py-0' : 'min-h-11 gap-2.5 py-1'
     ]"
     aria-label="Retour à l'accueil CITYZ'France"
   >
     <span
       :class="[
         'brand-symbol relative inline-flex items-center justify-center',
-        compact ? 'h-8 w-8 rounded-[0.9rem]' : 'h-10 w-10 rounded-[1rem] sm:h-11 sm:w-11'
+        compact ? 'h-7 w-7 rounded-[0.8rem]' : 'h-9 w-9 rounded-[0.95rem] sm:h-10 sm:w-10'
       ]"
     >
-      <svg :class="compact ? 'h-[1.05rem] w-[1.05rem]' : 'h-6 w-6'" viewBox="0 0 56 56" aria-hidden="true">
+      <svg :class="compact ? 'h-[0.95rem] w-[0.95rem]' : 'h-5.5 w-5.5'" viewBox="0 0 56 56" aria-hidden="true">
         <path d="M20 38V18h16v20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
         <path d="M18 22h20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
         <path d="M24 14h8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3" />
@@ -40,7 +40,7 @@ defineProps({
       <p
         :class="[
           'font-heading font-extrabold tracking-[-0.03em] text-foreground',
-          compact ? 'text-[0.88rem] sm:text-[0.92rem]' : 'text-[1.02rem] sm:text-[1.08rem]'
+          compact ? 'text-[0.82rem] sm:text-[0.86rem]' : 'text-[0.96rem] sm:text-[1rem]'
         ]"
       >
         CITYZ'France

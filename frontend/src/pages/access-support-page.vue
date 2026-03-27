@@ -53,7 +53,7 @@ const trustStripItems = computed(() => [
 
     <template v-else>
       <section
-        class="page-hero grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.04fr,0.96fr] lg:p-10"
+        class="page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.04fr,0.96fr] lg:p-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
@@ -61,7 +61,7 @@ const trustStripItems = computed(() => [
         <div class="space-y-6">
           <div class="space-y-4">
             <p class="kicker">{{ hero.eyebrow }}</p>
-            <h1 class="editorial-title max-w-4xl text-[clamp(2rem,4vw,3.6rem)] text-foreground">
+            <h1 class="editorial-title max-w-4xl text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
               {{ hero.title }}
             </h1>
             <p class="max-w-3xl text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
@@ -76,9 +76,9 @@ const trustStripItems = computed(() => [
           <TrustStrip :items="trustStripItems" />
         </div>
 
-        <aside class="trust-panel page-cut p-6 sm:p-7">
+        <aside class="trust-panel page-cut p-5 sm:p-6">
           <p class="kicker">{{ supportSection.eyebrow }}</p>
-          <h2 class="mt-4 text-[clamp(1.5rem,3vw,2.05rem)] font-semibold tracking-[-0.04em] text-foreground">
+          <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
             {{ supportSection.title }}
           </h2>
           <p class="mt-4 text-sm leading-7 text-muted-foreground">
@@ -128,7 +128,7 @@ const trustStripItems = computed(() => [
       </section>
 
       <section class="grid gap-6 lg:grid-cols-[1fr,1fr]">
-        <article class="page-cut p-6 sm:p-7">
+        <article class="page-cut p-5 sm:p-6">
           <SectionTitle
             :eyebrow="processSection.eyebrow"
             :title="processSection.title"
@@ -152,9 +152,9 @@ const trustStripItems = computed(() => [
           </div>
         </article>
 
-        <article class="page-cut p-6 sm:p-7">
+        <article class="page-cut p-5 sm:p-6">
           <p class="kicker">Parcours conseillé</p>
-          <h2 class="mt-4 text-[clamp(1.5rem,3vw,2.05rem)] font-semibold tracking-[-0.04em] text-foreground">
+          <h2 class="mt-4 text-[clamp(1.25rem,2vw,1.7rem)] font-semibold tracking-[-0.04em] text-foreground">
             Programme, financement, puis échange si nécessaire.
           </h2>
           <p class="mt-4 text-sm leading-7 text-muted-foreground">
@@ -180,11 +180,11 @@ const trustStripItems = computed(() => [
         </article>
       </section>
 
-      <section class="arch-cta p-6 sm:p-8 lg:p-10">
+      <section class="arch-cta p-5 sm:p-6 lg:p-8">
         <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
             <p class="kicker">{{ ctaBand.eyebrow }}</p>
-            <h2 class="editorial-title max-w-3xl text-[clamp(1.9rem,3vw,2.75rem)] text-foreground">
+            <h2 class="editorial-title max-w-3xl text-[clamp(1.55rem,2.3vw,2.1rem)] text-foreground">
               {{ ctaBand.title }}
             </h2>
             <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">

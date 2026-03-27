@@ -86,7 +86,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
 
     <template v-else>
       <section
-        class="hero-split mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14"
+        class="hero-split mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
@@ -99,13 +99,13 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
             </div>
 
             <div class="space-y-4">
-              <h1 class="hero-gradient-title max-w-3xl text-[clamp(2.4rem,5vw,4.85rem)] text-foreground">
+              <h1 class="hero-gradient-title max-w-3xl text-foreground">
                 {{
                   financeCopy.hero?.title ??
                   'Le financement du RPMS, présenté de manière claire et directe.'
                 }}
               </h1>
-              <p class="hero-lead max-w-2xl text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
+              <p class="hero-lead max-w-2xl text-base leading-7 text-muted-foreground sm:text-[1rem]">
                 {{
                   financeCopy.hero?.description ??
                   "Prix, modalités de paiement et conditions de l'offre sont réunis ici pour vous permettre d'avancer en connaissance de cause."
@@ -132,7 +132,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
                 <p class="detail-key">
                   Tarif annoncé
                 </p>
-                <p class="mt-2 text-[clamp(2.35rem,4.6vw,3.8rem)] font-extrabold tracking-[-0.06em] text-primary">
+                <p class="mt-2 text-[clamp(2rem,3.8vw,3rem)] font-extrabold tracking-[-0.06em] text-primary">
                   {{ financeCopy.pricing?.amount ?? '3 500 € TTC' }}
                 </p>
                 <p class="mt-3 text-sm leading-7 text-muted-foreground">
@@ -171,16 +171,16 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
         </div>
       </section>
 
-      <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section class="mx-auto max-w-7xl px-4 py-1 sm:px-6 lg:px-8">
         <div class="support-grid lg:grid-cols-2">
           <article
-            class="paper-card p-6 sm:p-7"
+            class="paper-card p-5 sm:p-6"
             v-motion
             :initial="motionVariants.block.initial"
             :enter="motionVariants.block.enter"
           >
             <p class="kicker">{{ financeCopy.paymentSection?.eyebrow ?? 'Modalités de paiement' }}</p>
-            <h2 class="mt-3 text-[clamp(1.65rem,2.9vw,2.4rem)] font-extrabold tracking-[-0.05em] text-primary">
+            <h2 class="mt-3 text-[clamp(1.35rem,2vw,1.8rem)] font-extrabold tracking-[-0.05em] text-primary">
               {{
                 financeCopy.paymentSection?.title ??
                 'Des solutions de règlement clairement établies'
@@ -207,13 +207,13 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
           </article>
 
           <article
-            class="paper-card p-6 sm:p-7"
+            class="paper-card p-5 sm:p-6"
             v-motion
             :initial="motionVariants.block.initial"
             :enter="motionVariants.block.enter"
           >
             <p class="kicker">{{ financeCopy.conditionsSection?.eyebrow ?? 'Conditions à connaître' }}</p>
-            <h2 class="mt-3 text-[clamp(1.65rem,2.9vw,2.4rem)] font-extrabold tracking-[-0.05em] text-primary">
+            <h2 class="mt-3 text-[clamp(1.35rem,2vw,1.8rem)] font-extrabold tracking-[-0.05em] text-primary">
               {{
                 financeCopy.conditionsSection?.title ??
                 "Les conditions principales liées à l'offre"
@@ -241,7 +241,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
         </div>
       </section>
 
-      <section class="mx-auto max-w-7xl px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4">
+      <section class="mx-auto max-w-7xl px-4 py-1 sm:px-6 sm:py-2 lg:px-8 lg:py-3">
         <div
           class="cta-band"
           v-motion
@@ -251,7 +251,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
           <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div class="space-y-2">
               <p class="kicker">{{ financeCopy.ctaBand?.eyebrow ?? 'Besoin d’aller plus loin ?' }}</p>
-              <h2 class="editorial-title max-w-3xl text-[clamp(1.6rem,2.8vw,2.35rem)] text-foreground">
+              <h2 class="editorial-title max-w-3xl text-[clamp(1.45rem,2.1vw,1.95rem)] text-foreground">
                 {{
                   financeCopy.ctaBand?.title ?? 'Revenez au programme ou demandez un rappel'
                 }}
@@ -279,138 +279,3 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
     </template>
   </div>
 </template>
-
-<style scoped>
-.hero-split,
-.paper-card,
-.sidebar-panel,
-.cta-band {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: var(--surface-shadow-soft);
-}
-
-.hero-split {
-  border-radius: 1.7rem;
-  background:
-    radial-gradient(circle at 88% 16%, rgb(29 95 210 / 0.08), transparent 22%),
-    radial-gradient(circle at 6% 8%, rgb(216 74 83 / 0.06), transparent 16%),
-    linear-gradient(180deg, rgb(255 255 255 / 0.98) 0%, rgb(247 249 253 / 0.98) 100%);
-}
-
-.hero-split::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, rgb(255 255 255 / 0.18), transparent 36%),
-    linear-gradient(180deg, rgb(255 255 255 / 0.22), transparent 58%);
-}
-
-.hero-split > *,
-.cta-band > * {
-  position: relative;
-  z-index: 1;
-}
-
-.info-chip {
-  display: inline-flex;
-  min-height: 2.2rem;
-  align-items: center;
-  border-radius: 999px;
-  border: 1px solid color-mix(in oklab, var(--line) 78%, var(--primary));
-  background: color-mix(in oklab, var(--paper-tint) 70%, white);
-  padding: 0.42rem 0.9rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  color: var(--blue-eclipse);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.9);
-}
-
-.info-chip--soft {
-  background: color-mix(in oklab, var(--harbor-haze) 68%, white);
-}
-
-.sidebar-panel {
-  display: grid;
-  gap: 1rem;
-  border-radius: 1.45rem;
-  background:
-    linear-gradient(180deg, rgb(255 255 255 / 0.98) 0%, rgb(240 245 255 / 0.96) 100%);
-  padding: 1.25rem;
-}
-
-.sidebar-panel::before,
-.paper-card::before,
-.cta-band::before {
-  content: '';
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 3px;
-  background: linear-gradient(
-    180deg,
-    var(--primary) 0%,
-    color-mix(in oklab, var(--tricolor-red) 54%, var(--primary)) 100%
-  );
-}
-
-.paper-card {
-  position: relative;
-  border-radius: 1.15rem;
-  background: var(--paper);
-}
-
-.paper-card--compact {
-  padding: 0.95rem 0.95rem 0.95rem 1rem;
-  background: var(--paper-soft);
-}
-
-.paper-card--soft {
-  background: var(--paper-soft);
-  box-shadow: none;
-  padding: 1rem 1.05rem;
-}
-
-.paper-card__icon {
-  display: inline-flex;
-  height: 2.25rem;
-  width: 2.25rem;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.8rem;
-  background: color-mix(in oklab, var(--paper-tint) 76%, white);
-  color: var(--blue-eclipse);
-}
-
-.support-grid {
-  display: grid;
-  gap: 1rem;
-}
-
-.cta-band {
-  border-radius: 1.35rem;
-  background: linear-gradient(180deg, rgb(255 255 255 / 0.98) 0%, rgb(237 243 255 / 0.94) 100%);
-  padding: 1.25rem;
-}
-
-@media (min-width: 640px) {
-  .sidebar-panel {
-    padding: 1.4rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .support-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.25rem;
-  }
-
-  .cta-band {
-    padding: 1.45rem 1.5rem;
-  }
-}
-</style>

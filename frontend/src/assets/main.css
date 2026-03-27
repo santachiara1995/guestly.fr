@@ -268,11 +268,13 @@
   .home-final-band,
   .home-final-band__step,
   .home-final-band__card,
+  .prefooter-panel,
   .program-hero-card,
   .program-hero-aside,
   .program-eval-card,
   .program-note-card,
-  .program-cta-shell {
+  .program-cta-shell,
+  .prefooter-panel {
     transition:
       transform 0.34s var(--motion-spring),
       box-shadow 0.34s var(--motion-spring),
@@ -309,7 +311,8 @@
   .program-hero-aside:hover,
   .program-eval-card:hover,
   .program-note-card:hover,
-  .program-cta-shell:hover {
+  .program-cta-shell:hover,
+  .prefooter-panel:hover {
     transform: translateY(-4px);
     border-color: color-mix(in oklab, var(--primary) 42%, var(--line));
     box-shadow:
@@ -342,7 +345,8 @@
   .program-hero-aside:hover::after,
   .program-eval-card:hover::after,
   .program-note-card:hover::after,
-  .program-cta-shell:hover::after {
+  .program-cta-shell:hover::after,
+  .prefooter-panel:hover::after {
     opacity: 1;
   }
 
@@ -370,6 +374,38 @@
     position: relative;
     overflow: hidden;
     background: color-mix(in oklab, var(--paper) 90%, var(--paper-tint));
+  }
+
+  .prefooter-panel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.35rem;
+    border: 1px solid color-mix(in oklab, var(--line) 88%, white);
+    background: color-mix(in oklab, var(--paper) 89%, var(--paper-tint));
+    box-shadow: var(--surface-shadow-soft);
+  }
+
+  .prefooter-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: rgb(255 255 255 / 0.12);
+    opacity: 0;
+    transition: opacity 0.34s var(--motion-spring);
+  }
+
+  .prefooter-panel > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .prefooter-panel:hover {
+    border-color: color-mix(in oklab, var(--line) 66%, white);
+    box-shadow:
+      0 24px 52px rgb(17 39 65 / 0.14),
+      0 0 0 1px rgb(255 255 255 / 0.55);
   }
 
   .elevated-item,

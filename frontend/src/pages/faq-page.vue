@@ -92,7 +92,7 @@ const topItems = computed(() => items.value.slice(0, 5))
           </details>
         </div>
 
-        <div class="page-cut paper-card flex flex-col gap-5 p-5 sm:p-6 lg:flex-row lg:items-center lg:justify-between">
+        <div class="prefooter-panel flex flex-col gap-5 p-5 sm:p-6 lg:flex-row lg:items-end lg:justify-between lg:p-8">
           <div class="space-y-3">
             <p class="kicker">{{ closingNote.eyebrow }}</p>
             <h2 class="text-[clamp(1.28rem,2vw,1.72rem)] font-semibold tracking-[-0.04em] text-foreground">

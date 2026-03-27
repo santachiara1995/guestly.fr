@@ -182,7 +182,7 @@ const nextStepPoints = computed(() =>
         </aside>
       </section>
 
-      <section class="page-shell cta-band arch-cta paper-card p-5 sm:p-6 lg:p-8">
+      <section class="page-shell prefooter-panel p-5 sm:p-6 lg:p-8">
         <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div class="space-y-3">
             <p class="kicker">{{ contactCopy.footerBand?.eyebrow ?? "Avant d'envoyer votre demande" }}</p>

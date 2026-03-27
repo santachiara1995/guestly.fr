@@ -233,12 +233,12 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <div
-          class="cta-band"
+          class="prefooter-panel p-5 sm:p-6 lg:p-8"
           v-motion
           :initial="motionVariants.block.initial"
           :enter="motionVariants.block.enter"
         >
-          <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+          <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div class="space-y-2">
               <p class="kicker">{{ financeCopy.ctaBand?.eyebrow ?? 'Besoin d’aller plus loin ?' }}</p>
               <h2 class="editorial-title max-w-3xl text-[clamp(1.45rem,2.1vw,1.95rem)] text-foreground">

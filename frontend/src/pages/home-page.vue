@@ -39,21 +39,6 @@ function firstLine(value) {
     .find(Boolean)
 }
 
-const homeBlockSummaries = [
-  {
-    title: 'Diriger la structure et l’équipe',
-    text: 'Prenez de la hauteur sur la structure, son territoire et votre management.'
-  },
-  {
-    title: "Déployer l'activité et l'offre",
-    text: "Adaptez l'offre, organisez la diffusion et structurez la production."
-  },
-  {
-    title: 'Piloter les résultats',
-    text: "Analysez le bilan, le résultat et présentez l'activité avec clarté."
-  }
-]
-
 const homeCopy = computed(() => site.value.home ?? {})
 const programLink = computed(() => toWithExperience('/programme'))
 const financeLink = computed(() => toWithExperience('/financement'))
@@ -63,7 +48,10 @@ const hero = computed(() => {
   const value = homeCopy.value.hero ?? {}
   return {
     eyebrow: value.eyebrow ?? "Bac+2 certifié par l'État · 100 % à distance · 300 h",
-    title: value.title ?? "Devenez Manager avec un Bac+2 certifié par l'État.",
+    title: value.title ?? "Un Bac+2 certifié par l'État",
+    subtitleLines: Array.isArray(value.subtitleLines)
+      ? value.subtitleLines
+      : ['100 % à distance', 'En 300 heures'],
     intro:
       value.lead ??
       'Le titre professionnel RPMS (RNCP38575) forme des managers polyvalents capables de :',
@@ -119,9 +107,20 @@ const programPreview = computed(() => {
   const blocks = program.value?.blocks ?? []
   return blocks.map((block, index) => ({
     code: block.code,
-    title: homeBlockSummaries[index]?.title ?? block.title,
-    text: homeBlockSummaries[index]?.text ?? firstLine(block.details)
+    title: block.title,
+    text: firstLine(block.details)
   }))
+})
+
+const orientationSection = computed(() => {
+  const section = homeCopy.value.orientationSection ?? {}
+  return {
+    eyebrow: section.eyebrow ?? 'Trois grands blocs',
+    title:
+      section.title ??
+      'Trois blocs de compétences essentielles pour piloter une structure avec méthode.',
+    description: section.description ?? ''
+  }
 })
 
 const journeySection = computed(() => {
@@ -191,16 +190,25 @@ const journeyCards = computed(() => {
         <div class="home-shell page-shell">
           <div class="home-hero grid gap-6 lg:grid-cols-[minmax(0,1.04fr)_minmax(24rem,0.82fr)] lg:items-stretch lg:gap-6">
             <div class="home-hero__content">
-              <h1 class="home-hero__title">
-                <template v-if="heroTitleParts.accent">
-                  <span>{{ heroTitleParts.before }}</span>
-                  <span class="home-hero__title-accent">{{ heroTitleParts.accent }}</span>
-                  <span>{{ heroTitleParts.after }}</span>
-                </template>
-                <template v-else>
-                  {{ hero.title }}
-                </template>
-              </h1>
+              <div class="home-hero__title-stack">
+                <h1 class="home-hero__title">
+                  <template v-if="heroTitleParts.accent">
+                    <span>{{ heroTitleParts.before }}</span>
+                    <span class="home-hero__title-accent">{{ heroTitleParts.accent }}</span>
+                    <span>{{ heroTitleParts.after }}</span>
+                  </template>
+                  <template v-else>
+                    {{ hero.title }}
+                  </template>
+                </h1>
+                <p
+                  v-for="line in hero.subtitleLines"
+                  :key="line"
+                  class="home-hero__subtitle"
+                >
+                  {{ line }}
+                </p>
+              </div>
               <p class="home-hero__lead">
                 {{ hero.intro }}
               </p>
@@ -260,9 +268,13 @@ const journeyCards = computed(() => {
       <section class="home-section home-section--program px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         <div class="page-shell">
           <div class="mx-auto mb-8 max-w-3xl py-1 text-center">
+            <p class="kicker">{{ orientationSection.eyebrow }}</p>
             <h2 class="text-[clamp(1.7rem,3vw,2.35rem)] font-extrabold tracking-[-0.05em] text-primary">
-              Trois blocs pour piloter une structure avec méthode.
+              {{ orientationSection.title }}
             </h2>
+            <p v-if="orientationSection.description" class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
+              {{ orientationSection.description }}
+            </p>
           </div>
 
           <div class="home-program-ladder">
@@ -270,16 +282,14 @@ const journeyCards = computed(() => {
               v-for="(block, index) in programPreview"
               :key="block.code"
               class="home-program-block"
-              :class="{ 'home-program-block--accent': index === 1 }"
               v-motion
               :initial="motionVariants.block.initial"
               :enter="staggerEnter(index, 56, 28)"
             >
               <span class="home-program-block__number">{{ index + 1 }}</span>
-              <div>
+              <div class="home-program-block__body">
                 <p class="home-program-block__code">{{ block.code }}</p>
                 <h3 class="home-program-block__title">{{ block.title }}</h3>
-                <p class="home-program-block__text">{{ block.text }}</p>
               </div>
             </article>
           </div>

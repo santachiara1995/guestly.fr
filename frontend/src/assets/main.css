@@ -852,9 +852,23 @@
     color: var(--blue-eclipse);
   }
 
+  .home-hero__title-stack {
+    display: grid;
+    gap: 0.35rem;
+  }
+
   .home-hero__title-accent {
     color: var(--tricolor-red);
     white-space: nowrap;
+  }
+
+  .home-hero__subtitle {
+    font-family: var(--font-heading);
+    font-size: clamp(1.18rem, 2vw, 1.55rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+    color: var(--blue-eclipse);
   }
 
   .home-hero__lead {
@@ -1162,13 +1176,14 @@
   .home-program-ladder {
     display: grid;
     gap: 1.2rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .home-program-block {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     gap: 1rem;
-    align-items: start;
+    align-items: center;
     border-radius: 1.35rem;
     border: 1px solid var(--surface-border-soft);
     background: var(--surface-silver);
@@ -1179,10 +1194,6 @@
       box-shadow 0.32s var(--motion-spring),
       border-color 0.32s var(--motion-spring),
       background 0.32s var(--motion-spring);
-  }
-
-  .home-program-block--accent {
-    background: var(--surface-silver-strong);
   }
 
   .home-program-block:hover {
@@ -1205,6 +1216,13 @@
     box-shadow: 0 10px 20px rgb(0 0 145 / 0.18);
   }
 
+  .home-program-block__body {
+    display: grid;
+    gap: 0.45rem;
+    justify-items: center;
+    text-align: center;
+  }
+
   .home-program-block__code {
     font-size: 0.76rem;
     font-weight: 700;
@@ -1219,14 +1237,6 @@
     line-height: 1.16;
     letter-spacing: -0.04em;
     color: var(--blue-eclipse);
-  }
-
-  .home-program-block__text {
-    margin-top: 0.5rem;
-    max-width: 44rem;
-    font-size: 0.94rem;
-    line-height: 1.62;
-    color: var(--muted-ink);
   }
 
   .home-final-band {

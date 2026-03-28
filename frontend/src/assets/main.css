@@ -2,10 +2,10 @@
 @import "tailwindcss";
 
 :root {
-  --canvas: #e4e8ee;
+  --canvas: #d6dde6;
   --paper: #ffffff;
-  --paper-soft: #f4f6f9;
-  --paper-tint: #edf1f5;
+  --paper-soft: #eef2f6;
+  --paper-tint: #e2e8ef;
   --ink: #112741;
   --navy-deep: #00006b;
   --cobalt-sky: #000091;
@@ -13,16 +13,16 @@
   --harbor-haze: #e7ebf0;
   --tricolor-red: #e1000f;
   --tricolor-red-soft: #fdebed;
-  --line: #cfd6df;
+  --line: #bcc6d1;
   --muted-ink: #5a6b7e;
   --spark-silver: rgb(223 227 234 / 0.8);
   --spark-gold: rgb(223 227 234 / 0.52);
   --spark-white: rgb(255 255 255 / 0.92);
   --motion-spring: cubic-bezier(0.22, 1, 0.36, 1);
-  --surface-silver: color-mix(in oklab, var(--paper) 78%, var(--paper-tint));
-  --surface-silver-strong: color-mix(in oklab, var(--paper) 58%, var(--paper-tint));
-  --surface-border-soft: color-mix(in oklab, var(--line) 86%, white);
-  --surface-border-strong: color-mix(in oklab, var(--line) 72%, white);
+  --surface-silver: color-mix(in oklab, var(--paper) 64%, var(--paper-tint));
+  --surface-silver-strong: color-mix(in oklab, var(--paper) 42%, var(--paper-tint));
+  --surface-border-soft: color-mix(in oklab, var(--line) 78%, white);
+  --surface-border-strong: color-mix(in oklab, var(--line) 58%, white);
   --surface-glint: rgb(255 255 255 / 0.12);
 
   --background: var(--canvas);
@@ -44,8 +44,8 @@
   --ring: var(--cobalt-sky);
   --destructive: #c43d59;
 
-  --surface-shadow: 0 22px 52px rgb(17 39 65 / 0.15);
-  --surface-shadow-soft: 0 14px 28px rgb(17 39 65 / 0.09);
+  --surface-shadow: 0 26px 58px rgb(17 39 65 / 0.18);
+  --surface-shadow-soft: 0 16px 34px rgb(17 39 65 / 0.12);
 }
 
 @theme inline {
@@ -194,8 +194,8 @@
     position: relative;
     overflow: hidden;
     border-radius: 0.72rem;
-    background: rgb(255 255 255 / 0.94);
-    box-shadow: 0 9px 22px rgb(2 14 37 / 0.16);
+    background: color-mix(in oklab, var(--paper) 58%, var(--paper-tint));
+    box-shadow: 0 12px 28px rgb(2 14 37 / 0.18);
     backdrop-filter: blur(14px);
   }
 
@@ -548,7 +548,7 @@
 
   .trust-panel {
     padding: 1rem 1.05rem;
-    background: color-mix(in oklab, var(--paper) 88%, var(--paper-tint));
+    background: var(--surface-silver);
   }
 
   .footer-heading {
@@ -602,7 +602,7 @@
   .info-pair {
     border: 1px solid var(--border);
     border-radius: 1rem;
-    background: var(--paper-soft);
+    background: var(--surface-silver-strong);
     padding: 0.9rem 1rem;
   }
 
@@ -726,7 +726,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    background: color-mix(in oklab, var(--paper-tint) 82%, var(--primary));
+    background: color-mix(in oklab, var(--paper-tint) 88%, var(--paper));
     color: var(--blue-eclipse);
     font-size: 0.78rem;
     font-weight: 700;

@@ -243,7 +243,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
               <p class="kicker">{{ financeCopy.ctaBand?.eyebrow ?? 'Besoin d’aller plus loin ?' }}</p>
               <h2 class="editorial-title max-w-3xl text-[clamp(1.45rem,2.1vw,1.95rem)] text-foreground">
                 {{
-                  financeCopy.ctaBand?.title ?? 'Revenez au programme ou demandez un rappel'
+                  financeCopy.ctaBand?.title ?? 'Vérifiez le programme ou passez à l’inscription'
                 }}
               </h2>
               <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
@@ -260,7 +260,7 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
                 <ArrowRight class="ml-2 h-4 w-4" />
               </Button>
               <Button :as="RouterLink" :to="contactLink" size="default" variant="outline">
-                Être rappelé
+                S'inscrire
               </Button>
             </div>
           </div>

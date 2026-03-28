@@ -76,7 +76,7 @@ export const faqSeed = [
   {
     question: 'Comment voir le financement ou poser ma question ?',
     answer:
-      "L'onglet Financement présente le prix, les modalités de paiement et les conditions de l'offre. Si un point reste à clarifier, demandez un rappel.",
+      "L'onglet Financement présente le prix, les modalités de paiement et les conditions de l'offre. Si vous voulez avancer, contactez-nous directement.",
     audience: 'particulier',
     sortOrder: 5
   }
@@ -87,7 +87,7 @@ export const siteContent = {
     name: "CITYZ'France",
     shortName: "CITYZ'France",
     descriptor: 'Formation RPMS 100 % distanciel',
-    primaryCta: 'Être rappelé',
+    primaryCta: "S'inscrire",
     secondaryCta: 'Voir le programme'
   },
   positioning: {
@@ -108,7 +108,7 @@ export const siteContent = {
       fitLine:
         "RPMS, niveau 5, e-learning et accompagnement pédagogique : un cadre clair pour progresser sans interrompre votre rythme.",
       decisionText:
-        "Voyez ce que vous allez maîtriser, puis demandez un rappel si le titre correspond à votre projet."
+        "Voyez ce que vous allez maîtriser, puis inscrivez-vous si le titre correspond à votre projet."
     },
     proofItems: [
       {
@@ -151,7 +151,7 @@ export const siteContent = {
       eyebrow: 'Choisissez votre prochaine étape',
       title: 'Avancez là où la décision se joue.',
       description:
-        'Programme, financement ou rappel : allez directement au point qui compte pour vous.',
+        'Programme, financement ou inscription : allez directement au point qui compte pour vous.',
       steps: [
         {
           title: 'Approfondir le programme',
@@ -162,8 +162,8 @@ export const siteContent = {
           text: "Retrouvez le prix, les modalités de paiement et les conditions de l'offre."
         },
         {
-          title: 'Demander un rappel',
-          text: 'Faites le point sur votre situation et posez vos questions.'
+          title: "Passer à l'inscription",
+          text: "Lancez votre demande dès que le programme et le financement vous conviennent."
         }
       ]
     },
@@ -171,7 +171,7 @@ export const siteContent = {
       eyebrow: 'Prêt à aller plus loin ?',
       title: "Passez à l'étape utile.",
       description:
-        'Programme, financement ou rappel : choisissez maintenant la suite la plus utile pour votre projet.',
+        'Programme, financement ou inscription : choisissez maintenant la suite la plus utile pour votre projet.',
       supportLine:
         "Bac+2 / niveau 5 · diplôme certifié par l'État · 100 % à distance · 300 h"
     }
@@ -234,9 +234,9 @@ export const siteContent = {
     },
     ctaBand: {
       eyebrow: 'Une question sur le programme ?',
-      title: 'Contactez-nous.',
+      title: "Passez à l'inscription.",
       description:
-        'Un échange rapide permet de vérifier si le RPMS correspond à votre projet.'
+        "Vérifiez le financement ou inscrivez-vous si le RPMS correspond à votre projet."
     }
   },
   finance: {
@@ -274,9 +274,9 @@ export const siteContent = {
     },
     ctaBand: {
       eyebrow: 'Besoin d’aller plus loin ?',
-      title: 'Besoin d’un point rapide ?',
+      title: "Passez à l'inscription.",
       description:
-        "Vérifiez le programme ou demandez un rappel pour faire le point sur le financement dans votre situation."
+        "Vérifiez encore le programme ou passez directement à l'inscription."
     }
   },
   access: {
@@ -319,14 +319,14 @@ export const siteContent = {
       steps: [
         'Consultez le détail des trois blocs et des compétences associées.',
         "Prenez connaissance du prix, des modalités de paiement et des conditions de l'offre.",
-        'Demandez un rappel pour vérifier la cohérence de votre projet.'
+        "Passez à l'inscription si le programme et le financement vous conviennent."
       ]
     },
     ctaBand: {
       eyebrow: 'Faire le point',
-      title: 'Demandez un rappel pour clarifier votre projet',
+      title: "Inscrivez-vous si le format vous correspond",
       description:
-        "Si le format, le programme et le financement correspondent à ce que vous recherchez, l'échange permet d'aller plus loin."
+        "Si le format, le programme et le financement correspondent à ce que vous recherchez, passez à l'inscription."
     }
   },
   faq: {
@@ -340,39 +340,24 @@ export const siteContent = {
       eyebrow: 'Choisissez la suite utile',
       title: 'Passez à la page qui vous fait avancer.',
       description:
-        "Programme pour le détail des compétences, Financement pour les conditions de l'offre, Contact pour faire le point."
+        "Programme pour le détail des compétences, Financement pour les conditions de l'offre, Inscription pour passer à l'action."
     }
   },
   contact: {
-    heroEyebrow: 'Être rappelé',
-    heroTitle: 'Le rappel sert à vérifier si le RPMS correspond à votre projet.',
+    heroEyebrow: 'Inscription RPMS',
+    heroTitle: 'Inscrivez-vous au RPMS.',
     heroSupport:
-      "Précisez votre situation, le bloc qui retient votre attention et, si besoin, le point de financement que vous souhaitez éclaircir.",
-    formTitle: 'Parlez-nous de votre projet',
+      "Complétez le formulaire pour lancer votre demande et préciser le point que vous souhaitez encore clarifier.",
+    formTitle: "Lancez votre inscription",
     formIntro:
-      "Quelques informations suffisent pour préparer un échange utile autour du titre, du programme et du financement.",
+      "Quelques informations suffisent pour démarrer votre demande d'inscription.",
     formSupport:
-      "Plus votre demande est précise, plus la réponse pourra être adaptée à votre besoin.",
-    guidanceTitle: "Préparez votre échange",
-    guidancePoints: [
-      'Le rôle ou les responsabilités que vous visez.',
-      "L'adéquation du format 100 % distanciel avec votre rythme.",
-      'Le prix, les modalités de paiement ou les conditions que vous souhaitez clarifier.'
-    ],
-    nextStepNote: {
-      title: 'Ce qui se passe après votre demande',
-      points: [
-        "Votre demande est prise en compte par CITYZ'France.",
-        "L'échange permet de comprendre votre projet et de répondre à vos premières questions.",
-        "Les informations demandées restent limitées à ce qui est utile pour vous recontacter."
-      ]
-    },
-    factsTitle: 'Repères utiles',
+      "Renseignez simplement vos coordonnées et le point utile pour finaliser votre projet.",
     footerBand: {
-      eyebrow: "Avant d'envoyer votre demande",
+      eyebrow: "Avant de valider",
       title: 'Programme et financement restent accessibles à tout moment',
       description:
-        "Vous pouvez les relire avant de finaliser votre demande si vous souhaitez confirmer un point."
+        "Relisez-les si besoin, ou passez directement à l'inscription."
     },
     phone: '09 77 21 51 61',
     address: '110 Esplanade du General de Gaulle, 92400 Courbevoie',

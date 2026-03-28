@@ -111,7 +111,7 @@ const topItems = computed(() => items.value.slice(0, 5))
               Voir le financement
             </Button>
             <Button :as="RouterLink" :to="contactLink" size="lg">
-              Être rappelé
+              S'inscrire
               <ArrowRight class="ml-2 h-4 w-4" />
             </Button>
           </div>

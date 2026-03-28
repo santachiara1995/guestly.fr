@@ -16,7 +16,7 @@ onMounted(async () => {
     <SectionTitle
       eyebrow="Politique de confidentialité"
       title="Protection des données personnelles"
-      description="Les données transmises via la demande de rappel sont utilisées pour vous recontacter au sujet du programme RPMS."
+      description="Les données transmises via le formulaire sont utilisées pour traiter votre demande au sujet du programme RPMS."
     />
 
     <article class="monument-panel surface-cut p-6 text-sm leading-relaxed text-muted-foreground">
@@ -28,15 +28,15 @@ onMounted(async () => {
         <div class="detail-row">
           <p class="detail-key">Collecte</p>
           <p class="detail-value">
-            Les informations saisies dans la demande de rappel portent sur votre identité, vos
-            coordonnées et votre message.
+            Les informations saisies dans le formulaire portent sur votre identité, vos coordonnées
+            et votre message.
           </p>
         </div>
         <div class="detail-row">
           <p class="detail-key">Finalité</p>
           <p class="detail-value">
-            Ces données servent uniquement à traiter votre demande de rappel et à vous répondre au
-            sujet du programme.
+            Ces données servent uniquement à traiter votre demande et à vous répondre au sujet du
+            programme.
           </p>
         </div>
         <div class="detail-row">

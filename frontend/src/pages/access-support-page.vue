@@ -158,7 +158,7 @@ const trustStripItems = computed(() => [
             Programme, financement, puis échange si nécessaire.
           </h2>
           <p class="mt-4 text-sm leading-7 text-muted-foreground">
-            Prenez d'abord le temps de parcourir le programme et le financement. Si vous souhaitez ensuite valider votre projet, le rappel vous permet d'obtenir une réponse adaptée.
+            Prenez d'abord le temps de parcourir le programme et le financement. Si tout est clair pour vous ensuite, l'inscription vous permet d'avancer directement.
           </p>
 
           <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -167,7 +167,7 @@ const trustStripItems = computed(() => [
               <ArrowRight class="ml-2 h-4 w-4" />
             </Button>
             <Button :as="RouterLink" :to="contactLink" size="lg" variant="outline">
-              Être rappelé
+              S'inscrire
             </Button>
           </div>
 
@@ -194,7 +194,7 @@ const trustStripItems = computed(() => [
 
           <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Button :as="RouterLink" :to="contactLink" size="lg">
-              Être rappelé
+              S'inscrire
               <ArrowRight class="ml-2 h-4 w-4" />
             </Button>
             <Button :as="RouterLink" :to="programLink" size="lg" variant="outline">

@@ -120,7 +120,7 @@ async function submitForm() {
         v-model="form.message"
         autocomplete="off"
         name="message"
-        placeholder="Indiquez votre contexte, votre objectif et ce que vous souhaitez clarifier lors du rappel."
+        placeholder="Indiquez votre contexte, votre objectif et ce que vous souhaitez encore clarifier avant votre inscription."
         required
         rows="7"
       />
@@ -135,8 +135,8 @@ async function submitForm() {
         type="checkbox"
       >
       <span class="text-sm leading-relaxed text-muted-foreground">
-        J’accepte d’être recontacté par CITYZ'France dans le cadre de cette demande et du traitement
-        de mes données personnelles.
+        J’accepte que CITYZ'France utilise ces informations pour traiter ma demande d'inscription
+        et me recontacter.
       </span>
     </label>
 
@@ -150,7 +150,7 @@ async function submitForm() {
     </p>
 
     <Button :aria-busy="submitting ? 'true' : undefined" :disabled="submitting" size="lg" type="submit">
-      {{ submitting ? 'Envoi en cours...' : 'Être rappelé' }}
+      {{ submitting ? 'Envoi en cours...' : "S'inscrire" }}
     </Button>
   </form>
 </template>

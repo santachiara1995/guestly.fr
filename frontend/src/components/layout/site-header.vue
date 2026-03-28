@@ -31,7 +31,7 @@ const isActive = (target) => {
   <header class="sticky top-0 z-50">
     <div class="w-full px-4 pt-1.5 sm:px-6 lg:px-8">
       <div
-        class="header-shell page-shell grid w-full grid-cols-[auto_minmax(0,_1fr)_auto] items-center gap-2.5 px-2.5 py-1.5 sm:px-3"
+        class="header-shell page-shell grid grid-cols-[auto_minmax(0,_1fr)_auto] items-center gap-2.5 px-2.5 py-1.5 sm:px-3"
       >
         <brand-logo :to="homeLink" compact class="justify-self-start shrink-0" />
 
@@ -59,7 +59,7 @@ const isActive = (target) => {
             size="sm"
             class="h-9 min-h-9 rounded-full px-3.25 text-[0.74rem] font-semibold tracking-[0.01em]"
           >
-            Être rappelé
+            S'inscrire
           </Button>
         </div>
       </div>

@@ -41,6 +41,7 @@ function firstLine(value) {
 }
 
 const pageCopy = computed(() => site.value.program ?? {})
+const programLink = computed(() => toWithExperience('/programme'))
 const contactLink = computed(() => toWithExperience('/contact'))
 const financeLink = computed(() => toWithExperience('/financement'))
 
@@ -147,7 +148,7 @@ const evaluationSteps = computed(() => evaluationSection.value.steps ?? [])
 
               <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Button :as="RouterLink" :to="contactLink" size="lg">
-                  Être rappelé
+                  S'inscrire
                   <ArrowRight class="ml-2 h-4 w-4" />
                 </Button>
                 <Button :as="RouterLink" :to="financeLink" size="lg" variant="outline">
@@ -328,12 +329,15 @@ const evaluationSteps = computed(() => evaluationSection.value.steps ?? [])
             </div>
 
             <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button :as="RouterLink" :to="contactLink" size="lg">
-                Être rappelé
-                <ArrowRight class="ml-2 h-4 w-4" />
+              <Button :as="RouterLink" :to="programLink" size="lg" variant="outline">
+                Voir le programme
               </Button>
               <Button :as="RouterLink" :to="financeLink" size="lg" variant="outline">
                 Voir le financement
+              </Button>
+              <Button :as="RouterLink" :to="contactLink" size="lg">
+                S'inscrire
+                <ArrowRight class="ml-2 h-4 w-4" />
               </Button>
             </div>
           </div>

@@ -45,7 +45,7 @@ const notFoundPage = {
             class:
               'inline-flex items-center rounded-full border border-border bg-card/82 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-primary/35 hover:bg-accent'
           },
-          () => 'Être rappelé'
+          () => "S'inscrire"
         )
       ])
     ])

@@ -73,7 +73,7 @@ const hero = computed(() => {
       "Bac+2, diplôme certifié par l'État, 300 h à distance : un cadre clair pour accélérer votre progression.",
     decisionText:
       value.decisionText ??
-      "Vérifiez ce que vous allez maîtriser, puis demandez un rappel si le titre correspond à votre objectif.",
+      "Vérifiez ce que vous allez maîtriser, puis inscrivez-vous si le titre correspond à votre objectif.",
     proofs: Array.isArray(homeCopy.value.proofItems)
       ? homeCopy.value.proofItems
       : [
@@ -112,7 +112,7 @@ const journeySection = computed(() => {
     title: section.title ?? "Trois leviers pour passer à l'action.",
     description:
       section.description ??
-      'Programme, financement, contact : allez droit à ce qui vous décide.',
+      'Programme, financement, inscription : allez droit à l’essentiel.',
     steps: Array.isArray(section.steps)
       ? section.steps
       : [
@@ -125,8 +125,8 @@ const journeySection = computed(() => {
             text: "Retrouvez le prix, les modalités de paiement et les principales conditions de l'offre."
           },
           {
-            title: 'Demander un rappel',
-            text: 'Faites le point sur votre situation et obtenez une réponse claire à vos questions.'
+            title: "S'inscrire",
+            text: 'Passez directement à l’inscription dès que le programme et le financement vous conviennent.'
           }
         ]
   }
@@ -182,7 +182,7 @@ const contactBand = computed(() => {
 
               <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Button :as="RouterLink" :to="contactLink" size="lg" class="home-hero__cta">
-                  Être rappelé
+                  S'inscrire
                   <ArrowRight class="ml-2 h-4 w-4" />
                 </Button>
                 <Button :as="RouterLink" :to="programLink" size="lg" variant="outline">
@@ -297,7 +297,7 @@ const contactBand = computed(() => {
                 Voir le financement
               </Button>
               <Button :as="RouterLink" :to="contactLink" size="lg">
-                Être rappelé
+                S'inscrire
               </Button>
             </div>
           </div>

@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
-import { BadgeCheck, CircleDollarSign, Clock3, ShieldCheck } from 'lucide-vue-next'
+import { BadgeCheck, CircleDollarSign, Clock3 } from 'lucide-vue-next'
 
 import PrefooterCtaPanel from '@/components/shared/prefooter-cta-panel.vue'
 import { api } from '@/lib/api'
@@ -40,28 +40,28 @@ const pricingHighlights = computed(() => [
     value: financeCopy.value.pricing?.amount ?? '3 500 € TTC',
     note:
       financeCopy.value.pricing?.description ??
-      "Le tarif présenté correspond à l'offre RPMS de CITYZ'France.",
+      'Préparation à l’examen et accès aux formateurs inclus.',
     icon: CircleDollarSign
   },
   {
-    label: 'Paiement',
-    value: 'Comptant ou plusieurs fois sans frais',
-    note: 'Partenariat COFIDIS',
+    label: 'Paiement comptant',
+    value: 'Règlement en une fois',
+    note: 'Le montant de 3 500 € TTC est réglé comptant.',
     icon: BadgeCheck
   },
   {
-    label: 'Accès',
-    value: 'Conditionné au paiement',
-    note: 'Le parcours reste lié au règlement.',
-    icon: ShieldCheck
-  },
-  {
-    label: 'Examen',
-    value: 'Entre le 6ème et le 12ème mois',
-    note: 'Passage de l’examen du titre professionnel RPMS.',
+    label: 'Paiement en plusieurs fois sans frais',
+    value: '3x ou 4x',
+    note: 'Partenariat COFIDIS selon les modalités de l’offre.',
     icon: Clock3
   }
 ])
+
+const pricingFootnote = computed(
+  () =>
+    financeCopy.value.pricing?.footnote ??
+    "Retrouvez ici le prix de la formation. L'accès à la formation est conditionné au paiement."
+)
 </script>
 
 <template>
@@ -106,11 +106,11 @@ const pricingHighlights = computed(() => [
             </span>
           </div>
 
-          <div class="grid gap-3 lg:grid-cols-4">
+          <div class="grid gap-4 md:grid-cols-3">
             <article
               v-for="(item, index) in pricingHighlights"
               :key="item.label"
-              class="paper-card paper-card--compact h-full"
+              class="paper-card finance-summary-card h-full"
               v-motion
               :initial="motionVariants.pop.initial"
               :enter="staggerEnter(index, 44, 20)"
@@ -119,9 +119,9 @@ const pricingHighlights = computed(() => [
                 <span class="paper-card__icon" aria-hidden="true">
                   <component :is="item.icon" class="h-4 w-4" />
                 </span>
-                <div class="space-y-1">
+                <div class="space-y-2">
                   <p class="detail-key">{{ item.label }}</p>
-                  <p class="text-sm font-semibold leading-6 text-foreground">{{ item.value }}</p>
+                  <p class="finance-summary-card__value">{{ item.value }}</p>
                   <p v-if="item.note" class="text-sm leading-6 text-muted-foreground">
                     {{ item.note }}
                   </p>
@@ -129,6 +129,10 @@ const pricingHighlights = computed(() => [
               </div>
             </article>
           </div>
+
+          <p class="finance-footnote">
+            {{ pricingFootnote }}
+          </p>
         </article>
       </section>
 

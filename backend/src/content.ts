@@ -256,16 +256,17 @@ export const siteContent = {
   finance: {
     hero: {
       eyebrow: 'Financement RPMS',
-      title: '3 500 € TTC, comptant ou en plusieurs fois.',
+      title: 'Prix et modalités de paiement du RPMS.',
       description:
-        "Retrouvez ici le prix, les modalités de paiement et les conditions principales de l'offre RPMS."
+        "Retrouvez ici le prix de la formation et les solutions de règlement proposées pour préparer le titre professionnel RPMS."
     },
     pricing: {
       eyebrow: 'Prix de la formation',
       title: 'Tarif annoncé pour la formation RPMS',
       amount: '3 500 € TTC',
       description:
-        "Le tarif présenté correspond à l'offre RPMS de CITYZ'France."
+        "Préparation à l’examen et accès aux formateurs inclus.",
+      footnote: "Retrouvez ici le prix de la formation. L'accès à la formation est conditionné au paiement."
     },
     paymentSection: {
       eyebrow: 'Modalités de paiement',

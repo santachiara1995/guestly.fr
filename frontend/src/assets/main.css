@@ -1424,6 +1424,29 @@
     padding: 0.9rem 0.95rem;
   }
 
+  .finance-summary-card {
+    display: flex;
+    min-height: 12rem;
+    align-items: stretch;
+    padding: 1.1rem;
+    background: var(--paper-soft);
+  }
+
+  .finance-summary-card__value {
+    font-size: clamp(1.06rem, 1.45vw, 1.38rem);
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+
+  .finance-footnote {
+    border-top: 1px solid var(--surface-border-soft);
+    padding-top: 1rem;
+    font-size: 0.84rem;
+    line-height: 1.7;
+    color: var(--muted-ink);
+  }
+
   .paper-card--raised {
     box-shadow: 0 24px 48px rgb(17 39 65 / 0.08);
   }

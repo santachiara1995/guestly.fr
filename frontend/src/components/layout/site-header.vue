@@ -29,7 +29,7 @@ const isActive = (target) => {
 
 <template>
   <header class="sticky top-0 z-50">
-    <div class="w-full px-4 pt-1 sm:px-6 lg:px-8">
+    <div class="w-full px-4 pt-6 sm:px-6 sm:pt-7 lg:px-8 lg:pt-6">
       <div
         class="header-shell shell-track grid grid-cols-[auto_minmax(0,_1fr)_auto] items-center gap-3 px-3 py-[0.45rem] sm:px-3.5"
       >

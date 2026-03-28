@@ -384,6 +384,7 @@
   .prefooter-panel {
     position: relative;
     overflow: hidden;
+    margin-bottom: 2rem;
     border-radius: 1.35rem;
     border: 1px solid var(--surface-border-soft);
     background: var(--surface-silver);

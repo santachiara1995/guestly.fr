@@ -130,7 +130,7 @@ export const siteContent = {
       }
     ],
     orientationSection: {
-      eyebrow: 'Trois grands blocs',
+      eyebrow: 'Programme de formation',
       title: 'Trois blocs de compétences essentielles pour piloter une structure avec méthode.',
       description: '',
       pillars: [

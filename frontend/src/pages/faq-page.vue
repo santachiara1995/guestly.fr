@@ -41,7 +41,7 @@ const topItems = computed(() => items.value.slice(0, 5))
 
     <template v-else>
       <section
-        class="px-4 py-6 sm:px-6 lg:px-8 lg:py-8"
+        class="px-4 pb-0 pt-6 sm:px-6 lg:px-8 lg:pb-0 lg:pt-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"

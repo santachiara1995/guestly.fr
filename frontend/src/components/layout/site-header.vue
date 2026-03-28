@@ -31,7 +31,7 @@ const isActive = (target) => {
   <header class="sticky top-0 z-50">
     <div class="w-full px-4 pt-6 sm:px-6 sm:pt-7 lg:px-8 lg:pt-6">
       <div
-        class="header-shell shell-track grid grid-cols-[auto_minmax(0,_1fr)_auto] items-center gap-3 px-3 py-[0.45rem] sm:px-3.5"
+        class="header-shell shell-track grid grid-cols-[auto_minmax(0,_1fr)_auto] items-center gap-3 px-3 py-[0.58rem] sm:px-3.5 sm:py-[0.64rem]"
       >
         <brand-logo :to="homeLink" compact class="justify-self-start shrink-0" />
 
@@ -44,7 +44,7 @@ const isActive = (target) => {
               <RouterLink
                 :to="item.href"
                 :aria-current="isActive(item.to) ? 'page' : undefined"
-                :class="['nav-link', isActive(item.to) ? 'nav-link--header-active' : null]"
+                :class="['nav-link nav-link--header-item', isActive(item.to) ? 'nav-link--header-active' : null]"
               >
                 {{ item.label }}
               </RouterLink>
@@ -57,7 +57,7 @@ const isActive = (target) => {
             :as="RouterLink"
             :to="contactLink"
             size="sm"
-            class="h-10 min-h-10 rounded-full px-3.5 text-[0.75rem] font-semibold tracking-[0.01em]"
+            class="h-11 min-h-11 rounded-full px-4 text-[0.78rem] font-semibold tracking-[0.01em]"
           >
             S'inscrire
           </Button>
@@ -77,5 +77,9 @@ const isActive = (target) => {
 :deep(.nav-link--header-active) {
   color: var(--primary);
   border-bottom-color: var(--primary);
+}
+
+:deep(.nav-link--header-item) {
+  min-height: 2.75rem;
 }
 </style>

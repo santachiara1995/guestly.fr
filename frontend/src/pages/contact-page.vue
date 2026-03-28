@@ -32,32 +32,34 @@ const hero = computed(() => ({
 </script>
 
 <template>
-  <div class="page-stack">
+  <div class="page-stack -mx-4 sm:-mx-6 lg:-mx-8">
     <p v-if="loading" class="text-sm text-muted-foreground">Chargement de l’inscription…</p>
 
     <template v-else>
       <section
         id="formulaire-inscription"
-        class="shell-track py-8"
+        class="px-4 py-6 sm:px-6 lg:px-8 lg:py-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
-        <article class="page-hero p-5 sm:p-6 lg:p-7">
-          <div class="space-y-3">
-            <p class="kicker">{{ hero.formTitle }}</p>
-            <h1 class="editorial-title max-w-4xl text-[clamp(1.5rem,2.35vw,2.15rem)] text-foreground">
-              {{ hero.formSupport }}
-            </h1>
-            <p class="max-w-3xl text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
-              {{ hero.intro }}
-            </p>
-          </div>
+        <div class="shell-track">
+          <article class="page-hero p-5 sm:p-6 lg:p-7">
+            <div class="space-y-3">
+              <p class="kicker">{{ hero.formTitle }}</p>
+              <h1 class="editorial-title max-w-4xl text-[clamp(1.5rem,2.35vw,2.15rem)] text-foreground">
+                {{ hero.formSupport }}
+              </h1>
+              <p class="max-w-3xl text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
+                {{ hero.intro }}
+              </p>
+            </div>
 
-          <div class="mt-5 border-t border-border/70 pt-5">
-            <LeadForm source-page="/contact" />
-          </div>
-        </article>
+            <div class="mt-5 border-t border-border/70 pt-5">
+              <LeadForm source-page="/contact" />
+            </div>
+          </article>
+        </div>
       </section>
     </template>
   </div>

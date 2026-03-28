@@ -36,48 +36,50 @@ const topItems = computed(() => items.value.slice(0, 5))
 </script>
 
 <template>
-  <div class="page-stack">
+  <div class="page-stack -mx-4 sm:-mx-6 lg:-mx-8">
     <p v-if="loading" class="text-sm text-muted-foreground">Chargement de la FAQ…</p>
 
     <template v-else>
       <section
-        class="shell-track space-y-6"
+        class="px-4 py-6 sm:px-6 lg:px-8 lg:py-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
-        <article class="page-hero p-5 sm:p-6 lg:p-7">
-          <div class="mx-auto max-w-3xl space-y-4 text-center">
-            <p class="kicker">{{ hero.eyebrow }}</p>
-            <h1 class="editorial-title text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
-              {{ hero.title }}
-            </h1>
-            <p class="text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
-              {{ hero.description }}
-            </p>
+        <div class="shell-track space-y-6">
+          <article class="page-hero p-5 sm:p-6 lg:p-7">
+            <div class="mx-auto max-w-3xl space-y-4 text-center">
+              <p class="kicker">{{ hero.eyebrow }}</p>
+              <h1 class="editorial-title text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
+                {{ hero.title }}
+              </h1>
+              <p class="text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
+                {{ hero.description }}
+              </p>
+            </div>
+          </article>
+
+          <div class="mx-auto grid max-w-4xl gap-4">
+            <details
+              v-for="(item, index) in topItems"
+              :key="item.question"
+              class="accordion-card paper-card px-5 py-4 sm:px-6 sm:py-5"
+              v-motion
+              :initial="motionVariants.block.initial"
+              :enter="staggerEnter(index, 40, 18)"
+            >
+              <summary class="faq-summary accordion-summary">
+                <span class="text-base font-semibold leading-6 text-foreground">{{ item.question }}</span>
+                <ChevronDown class="accordion-summary__icon mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+              </summary>
+              <p class="accordion-panel">
+                {{ item.answer }}
+              </p>
+            </details>
           </div>
-        </article>
 
-        <div class="mx-auto grid max-w-4xl gap-4">
-          <details
-            v-for="(item, index) in topItems"
-            :key="item.question"
-            class="accordion-card paper-card px-5 py-4 sm:px-6 sm:py-5"
-            v-motion
-            :initial="motionVariants.block.initial"
-            :enter="staggerEnter(index, 40, 18)"
-          >
-            <summary class="faq-summary accordion-summary">
-              <span class="text-base font-semibold leading-6 text-foreground">{{ item.question }}</span>
-              <ChevronDown class="accordion-summary__icon mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-            </summary>
-            <p class="accordion-panel">
-              {{ item.answer }}
-            </p>
-          </details>
+          <PrefooterCtaPanel />
         </div>
-
-        <PrefooterCtaPanel />
       </section>
     </template>
   </div>

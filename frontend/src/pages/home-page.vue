@@ -275,9 +275,9 @@ const journeyCards = computed(() => {
         </div>
       </section>
 
-      <section class="home-section home-section--program px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+      <section class="home-section home-section--program px-4 pb-6 sm:px-6 lg:px-8 lg:pb-8">
         <div class="shell-track">
-          <div class="mx-auto mb-8 max-w-3xl py-1 text-center">
+          <div class="mx-auto mb-6 max-w-3xl py-1 text-center lg:mb-8">
             <p class="kicker">{{ orientationSection.eyebrow }}</p>
             <h2 class="text-[clamp(1.7rem,3vw,2.35rem)] font-extrabold tracking-[-0.05em] text-primary">
               {{ orientationSection.title }}
@@ -309,7 +309,7 @@ const journeyCards = computed(() => {
         </div>
       </section>
 
-      <section class="home-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+      <section class="home-section px-4 pb-6 pt-0 sm:px-6 lg:px-8 lg:pb-8 lg:pt-0">
         <div
           class="home-final-band shell-track"
           v-motion

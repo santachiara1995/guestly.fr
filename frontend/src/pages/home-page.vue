@@ -183,7 +183,7 @@ const contactBand = computed(() => {
         :enter="motionVariants.block.enter"
       >
         <div class="home-shell page-shell">
-          <div class="home-hero grid gap-6 lg:grid-cols-[minmax(0,1.04fr)_minmax(24rem,0.82fr)] lg:items-start lg:gap-6">
+          <div class="home-hero grid gap-6 lg:grid-cols-[minmax(0,1.04fr)_minmax(24rem,0.82fr)] lg:items-stretch lg:gap-6">
             <div class="home-hero__content">
               <h1 class="home-hero__title">
                 <template v-if="heroTitleParts.accent">

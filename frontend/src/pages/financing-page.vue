@@ -42,9 +42,11 @@ const trustChips = computed(() => [
 
 const pricingHighlights = computed(() => [
   {
-    label: financeCopy.value.pricing?.eyebrow ?? 'Tarif',
+    label: financeCopy.value.pricing?.eyebrow ?? 'Prix de la formation',
     value: financeCopy.value.pricing?.amount ?? '3 500 € TTC',
-    note: financeCopy.value.pricing?.description ?? "Tarif présenté pour l'offre RPMS.",
+    note:
+      financeCopy.value.pricing?.description ??
+      "Le tarif présenté correspond à l'offre RPMS de CITYZ'France.",
     icon: CircleDollarSign
   },
   {
@@ -62,13 +64,10 @@ const pricingHighlights = computed(() => [
   {
     label: 'Examen',
     value: 'Entre le 6ème et le 12ème mois',
-    note: 'Passage de l’examen mentionné dans le projet RMPS.',
+    note: 'Passage de l’examen du titre professionnel RPMS.',
     icon: Clock3
   }
 ])
-
-const paymentOptions = computed(() => financeCopy.value.paymentSection?.options ?? [])
-const financeConditions = computed(() => financeCopy.value.conditionsSection?.items ?? [])
 </script>
 
 <template>
@@ -86,149 +85,57 @@ const financeConditions = computed(() => financeCopy.value.conditionsSection?.it
 
     <template v-else>
       <section
-        class="hero-split page-shell px-4 py-6 sm:px-6 lg:items-start lg:px-8 lg:py-8"
+        class="page-shell px-4 py-6 sm:px-6 lg:px-8 lg:py-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
-        <div class="grid gap-6 lg:grid-cols-[1.06fr_0.94fr] lg:items-start">
-          <article class="page-hero hero-split__content space-y-6 p-5 sm:p-6 lg:space-y-7 lg:p-7">
-            <div class="space-y-4">
-              <h1 class="editorial-title max-w-3xl text-[clamp(1.95rem,3.4vw,3rem)] text-foreground">
-                {{
-                  financeCopy.hero?.title ??
-                  'Le financement du RPMS, présenté de manière claire et directe.'
-                }}
-              </h1>
-              <p class="hero-lead max-w-2xl text-base leading-7 text-muted-foreground sm:text-[1rem]">
-                {{
-                  financeCopy.hero?.description ??
-                  "Prix, modalités de paiement et conditions de l'offre sont réunis ici pour vous permettre d'avancer en connaissance de cause."
-                }}
-              </p>
-            </div>
+        <article class="page-hero space-y-6 p-5 sm:p-6 lg:space-y-7 lg:p-7">
+          <div class="space-y-4">
+            <h1 class="editorial-title max-w-3xl text-[clamp(1.95rem,3.4vw,3rem)] text-foreground">
+              {{
+                financeCopy.hero?.title ??
+                'Le financement du RPMS, présenté de manière claire et directe.'
+              }}
+            </h1>
+            <p class="hero-lead max-w-3xl text-base leading-7 text-muted-foreground sm:text-[1rem]">
+              {{
+                financeCopy.hero?.description ??
+                "Prix, modalités de paiement et conditions de l'offre sont réunis ici pour vous permettre d'avancer en connaissance de cause."
+              }}
+            </p>
+          </div>
 
-            <div class="flex flex-wrap gap-2">
-              <span v-for="chip in trustChips" :key="chip" class="info-chip info-chip--soft">
-                {{ chip }}
-              </span>
-            </div>
-          </article>
+          <div class="flex flex-wrap gap-2">
+            <span v-for="chip in trustChips" :key="chip" class="info-chip info-chip--soft">
+              {{ chip }}
+            </span>
+          </div>
 
-          <aside class="hero-split__panel self-start">
-            <article class="sidebar-panel p-5 sm:p-6">
-              <div class="space-y-3">
-                <span class="info-chip info-chip--soft">Prix de la formation</span>
-                <div>
-                  <p class="detail-key">Tarif annoncé</p>
-                  <p class="mt-2 text-[clamp(2rem,3.8vw,3rem)] font-extrabold tracking-[-0.06em] text-primary">
-                    {{ financeCopy.pricing?.amount ?? '3 500 € TTC' }}
-                  </p>
-                  <p class="mt-3 text-sm leading-7 text-muted-foreground">
-                    {{
-                      financeCopy.pricing?.description ??
-                      "Le tarif présenté correspond à l'offre RPMS de CITYZ'France."
-                    }}
+          <div class="grid gap-3 lg:grid-cols-4">
+            <article
+              v-for="(item, index) in pricingHighlights"
+              :key="item.label"
+              class="paper-card paper-card--compact h-full"
+              v-motion
+              :initial="motionVariants.pop.initial"
+              :enter="staggerEnter(index, 44, 20)"
+            >
+              <div class="flex items-start gap-3">
+                <span class="paper-card__icon" aria-hidden="true">
+                  <component :is="item.icon" class="h-4 w-4" />
+                </span>
+                <div class="space-y-1">
+                  <p class="detail-key">{{ item.label }}</p>
+                  <p class="text-sm font-semibold leading-6 text-foreground">{{ item.value }}</p>
+                  <p v-if="item.note" class="text-sm leading-6 text-muted-foreground">
+                    {{ item.note }}
                   </p>
                 </div>
               </div>
             </article>
-
-            <div class="grid gap-3">
-              <article
-                v-for="(item, index) in pricingHighlights"
-                :key="item.label"
-                class="paper-card paper-card--compact"
-                v-motion
-                :initial="motionVariants.pop.initial"
-                :enter="staggerEnter(index, 44, 20)"
-              >
-                <div class="flex items-start gap-3">
-                  <span class="paper-card__icon" aria-hidden="true">
-                    <component :is="item.icon" class="h-4 w-4" />
-                  </span>
-                  <div class="space-y-1">
-                    <p class="detail-key">{{ item.label }}</p>
-                    <p class="text-sm font-semibold leading-6 text-foreground">{{ item.value }}</p>
-                    <p v-if="item.note" class="text-sm leading-6 text-muted-foreground">
-                      {{ item.note }}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <div class="support-grid lg:grid-cols-2">
-          <article
-            class="paper-card p-5 sm:p-6"
-            v-motion
-            :initial="motionVariants.block.initial"
-            :enter="motionVariants.block.enter"
-          >
-            <p class="kicker">{{ financeCopy.paymentSection?.eyebrow ?? 'Modalités de paiement' }}</p>
-            <h2 class="mt-3 text-[clamp(1.35rem,2vw,1.8rem)] font-extrabold tracking-[-0.05em] text-primary">
-              {{
-                financeCopy.paymentSection?.title ??
-                'Des solutions de règlement clairement établies'
-              }}
-            </h2>
-
-            <div class="mt-6 grid gap-3">
-              <article
-                v-for="(option, index) in paymentOptions"
-                :key="option"
-                class="paper-card paper-card--soft"
-                v-motion
-                :initial="motionVariants.pop.initial"
-                :enter="staggerEnter(index, 40, 20)"
-              >
-                <div class="flex items-start gap-3">
-                  <span class="finance-badge">{{ index + 1 }}</span>
-                  <p class="text-sm leading-6 text-foreground">
-                    {{ option }}
-                  </p>
-                </div>
-              </article>
-            </div>
-          </article>
-
-          <article
-            class="paper-card p-5 sm:p-6"
-            v-motion
-            :initial="motionVariants.block.initial"
-            :enter="motionVariants.block.enter"
-          >
-            <p class="kicker">{{ financeCopy.conditionsSection?.eyebrow ?? 'Conditions à connaître' }}</p>
-            <h2 class="mt-3 text-[clamp(1.35rem,2vw,1.8rem)] font-extrabold tracking-[-0.05em] text-primary">
-              {{
-                financeCopy.conditionsSection?.title ??
-                "Les conditions principales liées à l'offre"
-              }}
-            </h2>
-
-            <div class="mt-6 grid gap-3">
-              <article
-                v-for="(item, index) in financeConditions"
-                :key="item"
-                class="paper-card paper-card--soft"
-                v-motion
-                :initial="motionVariants.pop.initial"
-                :enter="staggerEnter(index, 40, 20)"
-              >
-                <div class="flex items-start gap-3">
-                  <span class="finance-line" aria-hidden="true"></span>
-                  <p class="text-sm leading-6 text-foreground">
-                    {{ item }}
-                  </p>
-                </div>
-              </article>
-            </div>
-          </article>
-        </div>
+          </div>
+        </article>
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">

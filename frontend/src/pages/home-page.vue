@@ -96,6 +96,25 @@ const hero = computed(() => {
   }
 })
 
+const heroTitleParts = computed(() => {
+  const title = hero.value.title ?? ''
+  const match = title.match(/^(.*?)(par l['’](?:É|E)tat)(.*)$/u)
+
+  if (!match) {
+    return {
+      before: title,
+      accent: '',
+      after: ''
+    }
+  }
+
+  return {
+    before: match[1],
+    accent: match[2],
+    after: match[3]
+  }
+})
+
 const programPreview = computed(() => {
   const blocks = program.value?.blocks ?? []
   return blocks.map((block, index) => ({
@@ -167,7 +186,14 @@ const contactBand = computed(() => {
           <div class="home-hero grid gap-6 lg:grid-cols-[minmax(0,1.04fr)_minmax(24rem,0.82fr)] lg:items-start lg:gap-6">
             <div class="home-hero__content">
               <h1 class="home-hero__title">
-                {{ hero.title }}
+                <template v-if="heroTitleParts.accent">
+                  <span>{{ heroTitleParts.before }}</span>
+                  <span class="home-hero__title-accent">{{ heroTitleParts.accent }}</span>
+                  <span>{{ heroTitleParts.after }}</span>
+                </template>
+                <template v-else>
+                  {{ hero.title }}
+                </template>
               </h1>
               <p class="home-hero__lead">
                 {{ hero.lead }}

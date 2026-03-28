@@ -843,6 +843,11 @@
     color: var(--blue-eclipse);
   }
 
+  .home-hero__title-accent {
+    color: var(--tricolor-red);
+    white-space: nowrap;
+  }
+
   .home-hero__lead {
     max-width: 38rem;
     font-size: clamp(0.98rem, 1.2vw, 1.08rem);

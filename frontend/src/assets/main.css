@@ -910,25 +910,54 @@
     display: grid;
     align-content: start;
     position: relative;
-    overflow: hidden;
-    border-radius: 1.4rem;
-    border: 1px solid var(--surface-border-soft);
-    background: var(--surface-silver);
-    padding: 0.95rem;
-    box-shadow: var(--surface-shadow-soft);
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
   }
 
   .home-hero__visual {
     position: relative;
     min-height: 23rem;
+    border-radius: 1.55rem;
+    isolation: isolate;
     transition: transform 0.42s var(--motion-spring);
+  }
+
+  .home-hero__visual::before {
+    content: "";
+    position: absolute;
+    inset: -0.1rem;
+    z-index: 2;
+    pointer-events: none;
+    border-radius: 1.62rem;
+    border: 0.38rem solid rgb(255 255 255 / 0.92);
+    box-shadow:
+      0 22px 48px rgb(17 39 65 / 0.14),
+      inset 0 1px 0 rgb(255 255 255 / 0.88);
+  }
+
+  .home-hero__visual::after {
+    content: "";
+    position: absolute;
+    top: 1.05rem;
+    right: 1rem;
+    bottom: 1.05rem;
+    width: clamp(1rem, 7%, 1.9rem);
+    z-index: 2;
+    pointer-events: none;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.16);
+    box-shadow:
+      0 0 18px rgb(255 255 255 / 0.18),
+      inset 0 0 0 1px rgb(255 255 255 / 0.18);
+    mix-blend-mode: screen;
   }
 
   .home-hero__visual-backdrop {
     position: absolute;
-    inset: 0.8rem 0.6rem -0.45rem 0.7rem;
+    inset: 0.75rem 0.55rem -0.4rem 0.7rem;
     border-radius: 1.5rem;
-    background: color-mix(in oklab, var(--paper-tint) 82%, var(--paper));
+    background: color-mix(in oklab, var(--paper-tint) 88%, var(--paper));
     transform: rotate(2.5deg);
     transition:
       transform 0.42s var(--motion-spring),
@@ -939,12 +968,13 @@
   .home-hero__image {
     position: relative;
     display: block;
+    z-index: 1;
     height: 100%;
     width: 100%;
     min-height: 23rem;
     border-radius: 1.5rem;
     object-fit: cover;
-    box-shadow: 0 28px 54px rgb(17 39 65 / 0.16);
+    box-shadow: 0 26px 50px rgb(17 39 65 / 0.16);
     transition:
       transform 0.42s var(--motion-spring),
       box-shadow 0.42s var(--motion-spring),
@@ -956,7 +986,7 @@
   }
 
   .home-hero__visual:hover .home-hero__visual-backdrop {
-    inset: 0.7rem 0.45rem -0.35rem 0.55rem;
+    inset: 0.68rem 0.45rem -0.28rem 0.52rem;
     transform: rotate(1.4deg) scale(1.01);
     box-shadow: 0 26px 48px rgb(17 39 65 / 0.08);
   }
@@ -965,6 +995,13 @@
     transform: translateY(-2px) scale(1.014);
     box-shadow: 0 34px 62px rgb(17 39 65 / 0.18);
     filter: saturate(1.03);
+  }
+
+  .home-hero__visual:hover::after {
+    background: rgb(255 255 255 / 0.2);
+    box-shadow:
+      0 0 20px rgb(255 255 255 / 0.22),
+      inset 0 0 0 1px rgb(255 255 255 / 0.22);
   }
 
   .home-hero__badge {

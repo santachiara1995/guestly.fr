@@ -215,8 +215,8 @@ const journeyCards = computed(() => {
                 <Button :as="RouterLink" :to="programLink" size="lg" variant="outline" class="w-full justify-center">
                   Voir le programme
                 </Button>
-                <Button :as="RouterLink" :to="financeLink" size="lg" variant="outline" class="w-full justify-center">
-                  Financer la formation
+                <Button :as="RouterLink" :to="contactLink" size="lg" variant="outline" class="w-full justify-center">
+                  Être rappelé
                 </Button>
                 <Button :as="RouterLink" :to="contactLink" size="lg" class="home-hero__cta w-full justify-center">
                   S'inscrire
@@ -307,17 +307,16 @@ const journeyCards = computed(() => {
                 v-for="(step, index) in journeyCards"
                 :key="step.title"
                 :to="step.to"
-                class="home-hero__point home-final-band__step-card"
+                class="decision-card home-final-band__step-card"
                 v-motion
                 :initial="motionVariants.pop.initial"
                 :enter="staggerEnter(index, 44, 22)"
               >
                 <div>
-                  <p class="detail-key">Étape {{ index + 1 }}</p>
-                  <p class="mt-2 text-base font-semibold leading-6 text-foreground">
-                    {{ step.title }}
+                  <p class="detail-key">{{ step.title }}</p>
+                  <p class="mt-3 text-sm leading-7 text-muted-foreground">
+                    {{ step.text }}
                   </p>
-                  <p class="mt-2 text-sm leading-7 text-muted-foreground">{{ step.text }}</p>
                 </div>
               </RouterLink>
             </div>

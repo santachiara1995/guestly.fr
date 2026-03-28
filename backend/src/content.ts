@@ -159,7 +159,7 @@ export const siteContent = {
           text: 'Vérifiez les blocs et les compétences avant de vous décider.'
         },
         {
-          title: 'Voir le financement',
+          title: 'Financer la formation',
           text: "Retrouvez le prix, les modalités de paiement et les conditions de l'offre."
         },
         {

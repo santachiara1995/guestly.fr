@@ -68,9 +68,6 @@ const hero = computed(() => {
     intro:
       value.lead ??
       'Le titre professionnel RPMS (RNCP38575) forme des managers polyvalents capables de :',
-    supportLine:
-      value.supportLine ??
-      'La préparation du titre professionnel reste compatible avec une activité professionnelle grâce au 100 % distanciel, à l’e-learning et à des modalités souples pour monter en compétence à votre rythme.',
     capabilities: Array.isArray(value.capabilities)
       ? value.capabilities
       : [
@@ -207,23 +204,19 @@ const contactBand = computed(() => {
                   {{ item }}
                 </li>
               </ul>
-              <p class="home-hero__support">
-                {{ hero.supportLine }}
-              </p>
 
-              <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Button :as="RouterLink" :to="contactLink" size="lg" class="home-hero__cta">
+              <div class="home-hero__actions">
+                <Button :as="RouterLink" :to="programLink" size="lg" variant="outline" class="w-full justify-center">
+                  Voir le programme
+                </Button>
+                <Button :as="RouterLink" :to="financeLink" size="lg" variant="outline" class="w-full justify-center">
+                  Financer la formation
+                </Button>
+                <Button :as="RouterLink" :to="contactLink" size="lg" class="home-hero__cta w-full justify-center">
                   S'inscrire
                   <ArrowRight class="ml-2 h-4 w-4" />
                 </Button>
-                <Button :as="RouterLink" :to="programLink" size="lg" variant="outline">
-                  Voir le programme
-                </Button>
               </div>
-
-              <RouterLink :to="financeLink" class="home-inline-link">
-                Consulter le financement
-              </RouterLink>
             </div>
 
             <div class="home-hero__panel lg:justify-self-end lg:w-full lg:max-w-[33rem]">

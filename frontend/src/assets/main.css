@@ -881,11 +881,9 @@
     background: var(--blue-eclipse);
   }
 
-  .home-hero__support {
-    max-width: 39rem;
-    font-size: 0.95rem;
-    line-height: 1.68;
-    color: var(--muted-ink);
+  .home-hero__actions {
+    display: grid;
+    gap: 0.85rem;
   }
 
   .home-hero__cta {
@@ -1799,6 +1797,11 @@
 @media (min-width: 640px) {
   .home-trust-strip {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-hero__actions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
   }
 }
 

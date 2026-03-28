@@ -105,8 +105,6 @@ export const siteContent = {
       title: "Devenez Manager avec un Bac+2 certifié par l'État.",
       lead:
         'Le titre professionnel RPMS (RNCP38575) forme des managers polyvalents capables de :',
-      supportLine:
-        "La préparation du titre professionnel reste compatible avec une activité professionnelle grâce au 100 % distanciel, à l’e-learning et à des modalités souples pour monter en compétence à votre rythme.",
       capabilities: [
         'piloter une activité',
         'encadrer une équipe',
@@ -203,6 +201,8 @@ export const siteContent = {
     objectivesPanel: {
       eyebrow: 'Objectifs pédagogiques',
       title: 'À l’issue de la formation, les apprenants seront capables de :',
+      description:
+        "Le parcours se suit entièrement à distance, en e-learning, avec une organisation souple pensée pour progresser sans interrompre votre activité professionnelle.",
       items: [
         'diriger une organisation dans sa globalité',
         'piloter l’activité et la performance',

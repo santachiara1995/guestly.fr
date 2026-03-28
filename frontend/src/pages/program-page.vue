@@ -290,6 +290,12 @@ const evaluationSteps = computed(() => evaluationSection.value.steps ?? [])
                 'À l’issue de la formation, les apprenants seront capables de :'
               }}
             </h2>
+            <p class="mt-4 max-w-4xl text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
+              {{
+                objectivesPanel.description ??
+                "Le parcours se suit entièrement à distance, en e-learning, avec une organisation souple pensée pour progresser sans interrompre votre activité professionnelle."
+              }}
+            </p>
 
             <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               <article

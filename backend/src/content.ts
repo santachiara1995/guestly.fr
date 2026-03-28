@@ -256,9 +256,8 @@ export const siteContent = {
   finance: {
     hero: {
       eyebrow: 'Financement RPMS',
-      title: 'Prix et modalités de paiement du RPMS.',
-      description:
-        "Retrouvez ici le prix de la formation et les solutions de règlement proposées pour préparer le titre professionnel RPMS."
+      title: 'Financez votre formation',
+      description: ''
     },
     pricing: {
       eyebrow: 'Prix de la formation',
@@ -266,7 +265,7 @@ export const siteContent = {
       amount: '3 500 € TTC',
       description:
         "Préparation à l’examen et accès aux formateurs inclus.",
-      footnote: "Retrouvez ici le prix de la formation. L'accès à la formation est conditionné au paiement."
+      footnote: "L'accès à la formation est conditionné au paiement."
     },
     paymentSection: {
       eyebrow: 'Modalités de paiement',

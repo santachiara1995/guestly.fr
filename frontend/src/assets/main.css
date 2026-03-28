@@ -1426,22 +1426,47 @@
 
   .finance-summary-card {
     display: flex;
-    min-height: 12rem;
+    min-height: 9.5rem;
     align-items: stretch;
-    padding: 1.1rem;
+    padding: 1rem;
     background: var(--paper-soft);
+  }
+
+  .finance-summary-card__content {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.35rem;
   }
 
   .finance-summary-card__value {
     font-size: clamp(1.06rem, 1.45vw, 1.38rem);
     font-weight: 700;
-    line-height: 1.35;
+    line-height: 1.28;
     color: var(--ink);
+  }
+
+  .finance-summary-card__accent {
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--tricolor-red);
+  }
+
+  .finance-summary-card__note {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--muted-ink);
+  }
+
+  .finance-summary-card__note--italic {
+    font-style: italic;
   }
 
   .finance-footnote {
     border-top: 1px solid var(--surface-border-soft);
-    padding-top: 1rem;
+    padding-top: 0.85rem;
     font-size: 0.84rem;
     line-height: 1.7;
     color: var(--muted-ink);

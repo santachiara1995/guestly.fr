@@ -9,15 +9,12 @@ import { motionVariants, staggerEnter } from '@/lib/motion'
 const site = ref({
   finance: {}
 })
-const program = ref(null)
 const loading = ref(true)
 const errorMessage = ref('')
 
 onMounted(async () => {
   try {
-    const [sitePayload, programPayload] = await Promise.all([api.getSite(), api.getProgram('rpms')])
-    site.value = sitePayload
-    program.value = programPayload
+    site.value = await api.getSite()
   } catch (error) {
     errorMessage.value = error instanceof Error ? error.message : 'Contenu indisponible.'
   } finally {
@@ -27,13 +24,6 @@ onMounted(async () => {
 
 const financeCopy = computed(() => site.value.finance ?? {})
 
-const trustChips = computed(() => [
-  program.value?.rncpCode ?? 'RNCP38575',
-  program.value?.levelLabel ?? 'Niveau 5 / Bac+2',
-  program.value?.formatLabel ?? '100 % distanciel',
-  program.value?.supportLabel ?? 'Accompagnement pédagogique'
-])
-
 const pricingHighlights = computed(() => [
   {
     label: financeCopy.value.pricing?.eyebrow ?? 'Prix de la formation',
@@ -41,18 +31,20 @@ const pricingHighlights = computed(() => [
     note:
       financeCopy.value.pricing?.description ??
       'Préparation à l’examen et accès aux formateurs inclus.',
-    icon: CircleDollarSign
+    icon: CircleDollarSign,
+    noteClass: 'finance-summary-card__note finance-summary-card__note--italic'
   },
   {
     label: 'Paiement comptant',
-    value: 'Règlement en une fois',
-    note: 'Le montant de 3 500 € TTC est réglé comptant.',
+    value: 'Payez en une fois',
+    note: '',
     icon: BadgeCheck
   },
   {
-    label: 'Paiement en plusieurs fois sans frais',
+    label: 'Paiement en plusieurs fois',
     value: '3x ou 4x',
-    note: 'Partenariat COFIDIS selon les modalités de l’offre.',
+    note: '',
+    accent: 'Sans frais',
     icon: Clock3
   }
 ])
@@ -84,26 +76,23 @@ const pricingFootnote = computed(
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
-        <article class="page-hero space-y-6 p-5 sm:p-6 lg:space-y-7 lg:p-7">
-          <div class="space-y-4">
+        <article class="page-hero space-y-5 p-5 sm:p-6 lg:space-y-6 lg:p-7">
+          <div class="space-y-3">
             <h1 class="editorial-title max-w-3xl text-[clamp(1.95rem,3.4vw,3rem)] text-foreground">
               {{
                 financeCopy.hero?.title ??
                 'Le financement du RPMS, présenté de manière claire et directe.'
               }}
             </h1>
-            <p class="hero-lead max-w-3xl text-base leading-7 text-muted-foreground sm:text-[1rem]">
+            <p
+              v-if="financeCopy.hero?.description"
+              class="hero-lead max-w-3xl text-base leading-7 text-muted-foreground sm:text-[1rem]"
+            >
               {{
                 financeCopy.hero?.description ??
                 "Prix, modalités de paiement et conditions de l'offre sont réunis ici pour vous permettre d'avancer en connaissance de cause."
               }}
             </p>
-          </div>
-
-          <div class="flex flex-wrap gap-2">
-            <span v-for="chip in trustChips" :key="chip" class="info-chip info-chip--soft">
-              {{ chip }}
-            </span>
           </div>
 
           <div class="grid gap-4 md:grid-cols-3">
@@ -119,10 +108,13 @@ const pricingFootnote = computed(
                 <span class="paper-card__icon" aria-hidden="true">
                   <component :is="item.icon" class="h-4 w-4" />
                 </span>
-                <div class="space-y-2">
+                <div class="finance-summary-card__content">
                   <p class="detail-key">{{ item.label }}</p>
                   <p class="finance-summary-card__value">{{ item.value }}</p>
-                  <p v-if="item.note" class="text-sm leading-6 text-muted-foreground">
+                  <p v-if="item.accent" class="finance-summary-card__accent">
+                    {{ item.accent }}
+                  </p>
+                  <p v-if="item.note" :class="item.noteClass ?? 'finance-summary-card__note'">
                     {{ item.note }}
                   </p>
                 </div>

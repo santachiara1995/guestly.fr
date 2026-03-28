@@ -1176,7 +1176,9 @@
   .home-program-ladder {
     display: grid;
     gap: 1.2rem;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 62rem;
+    margin-inline: auto;
   }
 
   .home-program-block {
@@ -1236,6 +1238,19 @@
     font-weight: 800;
     line-height: 1.16;
     letter-spacing: -0.04em;
+    color: var(--blue-eclipse);
+  }
+
+  .home-program-block__text {
+    max-width: 28rem;
+    font-size: 0.92rem;
+    line-height: 1.68;
+    color: var(--muted-ink);
+    text-wrap: balance;
+  }
+
+  .home-program-block__text strong {
+    font-weight: 800;
     color: var(--blue-eclipse);
   }
 

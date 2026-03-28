@@ -135,16 +135,22 @@ export const siteContent = {
       description: '',
       pillars: [
         {
-          title: 'BC01',
-          text: "Diriger la structure, comprendre son environnement, l'inscrire dans son territoire et animer une équipe."
+          code: 'RNCP38575BC01',
+          title: 'Diriger une structure avec une équipe',
+          text:
+            "Analyse de l’environnement de l’entreprise, vision globale de l’activité, ancrage territorial, management, recrutement, motivation des équipes, droit social, gestion du changement."
         },
         {
-          title: 'BC02',
-          text: "Mettre en oeuvre l'objet social, adapter l'offre, organiser sa diffusion et structurer la production."
+          code: 'RNCP38575BC02',
+          title: "Mettre en œuvre l'objet social de la structure",
+          text:
+            'Étude de marché, marketing, prospection, développement commercial, vente, négociation, digital, e-commerce, administration commerciale, production et qualité.'
         },
         {
-          title: 'BC03',
-          text: "Analyser l'activité, lire les résultats et rédiger le rapport d'activité de la structure."
+          code: 'RNCP38575BC03',
+          title: "Établir et présenter un rapport d'activité de la structure",
+          text:
+            "Comptabilité, analyse du bilan, analyse du compte de résultat, gestion de trésorerie, business plan, prévisionnels financiers, KPI et rapports d’activité."
         }
       ]
     },

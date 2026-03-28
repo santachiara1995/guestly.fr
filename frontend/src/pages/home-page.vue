@@ -104,6 +104,16 @@ const heroTitleParts = computed(() => {
 })
 
 const programPreview = computed(() => {
+  const pillars = homeCopy.value.orientationSection?.pillars
+
+  if (Array.isArray(pillars) && pillars.length) {
+    return pillars.map((pillar, index) => ({
+      code: pillar.code ?? `Bloc ${index + 1}`,
+      title: pillar.title ?? '',
+      text: pillar.text ?? ''
+    }))
+  }
+
   const blocks = program.value?.blocks ?? []
   return blocks.map((block, index) => ({
     code: block.code,
@@ -290,6 +300,9 @@ const journeyCards = computed(() => {
               <div class="home-program-block__body">
                 <p class="home-program-block__code">{{ block.code }}</p>
                 <h3 class="home-program-block__title">{{ block.title }}</h3>
+                <p v-if="block.text" class="home-program-block__text">
+                  <strong>Thématiques abordées :</strong> {{ block.text }}
+                </p>
               </div>
             </article>
           </div>

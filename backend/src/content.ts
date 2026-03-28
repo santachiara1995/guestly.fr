@@ -170,9 +170,8 @@ export const siteContent = {
     },
     contactBand: {
       eyebrow: 'Prêt à aller plus loin ?',
-      title: "Passez à l'étape utile.",
-      description:
-        'Programme, financement ou inscription : choisissez maintenant la suite la plus utile pour votre projet.',
+      title: 'Développez vos compétences !',
+      description: '',
       supportLine:
         "Bac+2 / niveau 5 · diplôme certifié par l'État · 100 % à distance · 300 h"
     }

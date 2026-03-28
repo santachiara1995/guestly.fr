@@ -156,11 +156,17 @@ const contactBand = computed(() => {
   const band = homeCopy.value.contactBand ?? {}
   return {
     eyebrow: band.eyebrow ?? 'Prêt à aller plus loin ?',
-    title: band.title ?? "Passez à l'étape suivante.",
-    description:
-      band.description ??
-      'Regardez le programme, vérifiez le financement, puis contactez-nous pour valider votre projet.'
+    title: band.title ?? 'Développez vos compétences !',
+    description: band.description ?? ''
   }
+})
+
+const journeyCards = computed(() => {
+  const links = [programLink.value, financeLink.value, contactLink.value]
+  return journeySection.value.steps.map((step, index) => ({
+    ...step,
+    to: links[index] ?? contactLink.value
+  }))
 })
 </script>
 
@@ -292,37 +298,28 @@ const contactBand = computed(() => {
           <div class="home-final-band__content">
             <p class="kicker">{{ contactBand.eyebrow }}</p>
             <h2 class="home-final-band__title">{{ contactBand.title }}</h2>
-            <p class="home-final-band__description">{{ contactBand.description }}</p>
+            <p v-if="contactBand.description" class="home-final-band__description">
+              {{ contactBand.description }}
+            </p>
 
             <div class="home-final-band__steps">
-              <article
-                v-for="(step, index) in journeySection.steps"
+              <RouterLink
+                v-for="(step, index) in journeyCards"
                 :key="step.title"
-                class="home-final-band__step"
+                :to="step.to"
+                class="home-hero__point home-final-band__step-card"
                 v-motion
                 :initial="motionVariants.pop.initial"
                 :enter="staggerEnter(index, 44, 22)"
               >
-                <span class="home-final-band__step-index">{{ index + 1 }}</span>
                 <div>
                   <p class="detail-key">Étape {{ index + 1 }}</p>
-                  <h3 class="mt-2 text-sm font-semibold text-foreground">{{ step.title }}</h3>
-                  <p class="mt-2 text-sm leading-6 text-muted-foreground">{{ step.text }}</p>
+                  <p class="mt-2 text-base font-semibold leading-6 text-foreground">
+                    {{ step.title }}
+                  </p>
+                  <p class="mt-2 text-sm leading-7 text-muted-foreground">{{ step.text }}</p>
                 </div>
-              </article>
-            </div>
-
-            <div class="mt-2 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button :as="RouterLink" :to="programLink" size="lg" variant="secondary">
-                Voir le programme
-                <ArrowRight class="ml-2 h-4 w-4" />
-              </Button>
-              <Button :as="RouterLink" :to="financeLink" size="lg" variant="outline">
-                Voir le financement
-              </Button>
-              <Button :as="RouterLink" :to="contactLink" size="lg">
-                S'inscrire
-              </Button>
+              </RouterLink>
             </div>
           </div>
         </div>

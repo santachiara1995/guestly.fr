@@ -1260,6 +1260,13 @@
     margin-top: 0.4rem;
   }
 
+  .home-final-band__step-card {
+    display: grid;
+    align-content: start;
+    min-height: 100%;
+    text-decoration: none;
+  }
+
   .home-final-band__step {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -1802,6 +1809,10 @@
   .home-hero__actions {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: stretch;
+  }
+
+  .home-final-band__steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

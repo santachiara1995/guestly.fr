@@ -57,6 +57,7 @@ const hero = computed(() => {
 })
 
 const competencySection = computed(() => pageCopy.value.competencySection ?? {})
+const objectivesPanel = computed(() => pageCopy.value.objectivesPanel ?? {})
 const evaluationSection = computed(() => pageCopy.value.evaluationSection ?? {})
 const blocksSection = computed(() => pageCopy.value.blocksSection ?? {})
 const ctaBand = computed(() => pageCopy.value.ctaBand ?? {})
@@ -276,6 +277,38 @@ const evaluationSteps = computed(() => evaluationSection.value.steps ?? [])
               </div>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section class="program-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+        <div class="page-shell">
+          <article class="page-cut paper-card p-5 sm:p-6 lg:p-7">
+            <p class="kicker">{{ objectivesPanel.eyebrow ?? 'Objectifs pédagogiques' }}</p>
+            <h2 class="mt-4 text-[clamp(1.45rem,2.3vw,1.95rem)] font-semibold tracking-[-0.04em] text-foreground">
+              {{
+                objectivesPanel.title ??
+                'À l’issue de la formation, les apprenants seront capables de :'
+              }}
+            </h2>
+
+            <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <article
+                v-for="(item, index) in objectivesPanel.items ?? []"
+                :key="item"
+                class="paper-card paper-card--soft"
+                v-motion
+                :initial="motionVariants.pop.initial"
+                :enter="staggerEnter(index, 42, 20)"
+              >
+                <div class="flex items-start gap-3">
+                  <span class="finance-badge">{{ index + 1 }}</span>
+                  <p class="text-sm leading-6 text-foreground">
+                    {{ item }}
+                  </p>
+                </div>
+              </article>
+            </div>
+          </article>
         </div>
       </section>
 

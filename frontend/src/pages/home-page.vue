@@ -64,16 +64,20 @@ const hero = computed(() => {
   const value = homeCopy.value.hero ?? {}
   return {
     eyebrow: value.eyebrow ?? "Bac+2 certifié par l'État · 100 % à distance · 300 h",
-    title: value.title ?? "Préparez un Bac+2 certifié par l'État, 100 % à distance en 300 h.",
-    lead:
+    title: value.title ?? "Devenez Manager avec un Bac+2 certifié par l'État.",
+    intro:
       value.lead ??
-      "Le RPMS vous aide à gagner en crédibilité pour piloter une structure, encadrer une équipe et suivre l'activité.",
-    fitLine:
-      value.fitLine ??
-      "Bac+2, diplôme certifié par l'État, 300 h à distance : un cadre clair pour accélérer votre progression.",
-    decisionText:
-      value.decisionText ??
-      "Vérifiez ce que vous allez maîtriser, puis inscrivez-vous si le titre correspond à votre objectif.",
+      'Le titre professionnel RPMS (RNCP38575) forme des managers polyvalents capables de :',
+    supportLine:
+      value.supportLine ??
+      'La préparation du titre professionnel reste compatible avec une activité professionnelle grâce au 100 % distanciel, à l’e-learning et à des modalités souples pour monter en compétence à votre rythme.',
+    capabilities: Array.isArray(value.capabilities)
+      ? value.capabilities
+      : [
+          'piloter une activité',
+          'encadrer une équipe',
+          'gérer une structure (entreprise, association, organisation publique)'
+        ],
     proofs: Array.isArray(homeCopy.value.proofItems)
       ? homeCopy.value.proofItems
       : [
@@ -196,14 +200,15 @@ const contactBand = computed(() => {
                 </template>
               </h1>
               <p class="home-hero__lead">
-                {{ hero.lead }}
+                {{ hero.intro }}
               </p>
-              <p class="home-hero__fit">
-                {{ hero.fitLine }}
-              </p>
-
-              <p class="home-hero__decision">
-                {{ hero.decisionText }}
+              <ul class="home-hero__list" aria-label="Compétences clés du titre professionnel RPMS">
+                <li v-for="item in hero.capabilities" :key="item" class="home-hero__list-item">
+                  {{ item }}
+                </li>
+              </ul>
+              <p class="home-hero__support">
+                {{ hero.supportLine }}
               </p>
 
               <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">

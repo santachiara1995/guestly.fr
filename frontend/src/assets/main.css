@@ -852,20 +852,39 @@
     max-width: 38rem;
     font-size: clamp(0.98rem, 1.2vw, 1.08rem);
     line-height: 1.7;
-    color: color-mix(in oklab, var(--ink) 72%, white);
+    color: var(--muted-ink);
   }
 
-  .home-hero__fit {
-    max-width: 36rem;
-    font-size: 0.95rem;
-    line-height: 1.65;
+  .home-hero__list {
+    display: grid;
+    gap: 0.7rem;
+    max-width: 42rem;
+  }
+
+  .home-hero__list-item {
+    position: relative;
+    padding-left: 1.15rem;
+    font-size: 0.98rem;
+    font-weight: 600;
+    line-height: 1.6;
     color: var(--ink);
   }
 
-  .home-hero__decision {
-    max-width: 34rem;
+  .home-hero__list-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7rem;
+    height: 0.42rem;
+    width: 0.42rem;
+    border-radius: 999px;
+    background: var(--blue-eclipse);
+  }
+
+  .home-hero__support {
+    max-width: 39rem;
     font-size: 0.95rem;
-    line-height: 1.65;
+    line-height: 1.68;
     color: var(--muted-ink);
   }
 

@@ -102,13 +102,16 @@ export const siteContent = {
   home: {
     hero: {
       eyebrow: "Bac+2 certifié par l'État · 100 % à distance · 300 h",
-      title: "Bac+2 certifié par l'État, 100 % à distance en 300 h.",
+      title: "Devenez Manager avec un Bac+2 certifié par l'État.",
       lead:
-        "Pilotez une structure, encadrez une équipe et avancez vers un Bac+2 reconnu par l'État.",
-      fitLine:
-        "RPMS, niveau 5, e-learning et accompagnement pédagogique : un cadre clair pour progresser sans interrompre votre rythme.",
-      decisionText:
-        "Voyez ce que vous allez maîtriser, puis inscrivez-vous si le titre correspond à votre projet."
+        'Le titre professionnel RPMS (RNCP38575) forme des managers polyvalents capables de :',
+      supportLine:
+        "La préparation du titre professionnel reste compatible avec une activité professionnelle grâce au 100 % distanciel, à l’e-learning et à des modalités souples pour monter en compétence à votre rythme.",
+      capabilities: [
+        'piloter une activité',
+        'encadrer une équipe',
+        'gérer une structure (entreprise, association, organisation publique)'
+      ]
     },
     proofItems: [
       {
@@ -196,6 +199,18 @@ export const siteContent = {
         "Le RPMS prépare à piloter, mettre en oeuvre et suivre l'activité.",
       description:
         'Commencez par la structure. Le détail vient juste après.'
+    },
+    objectivesPanel: {
+      eyebrow: 'Objectifs pédagogiques',
+      title: 'À l’issue de la formation, les apprenants seront capables de :',
+      items: [
+        'diriger une organisation dans sa globalité',
+        'piloter l’activité et la performance',
+        'encadrer et animer une équipe',
+        'développer des partenariats',
+        'intégrer les enjeux territoriaux et stratégiques',
+        'prendre des décisions éclairées'
+      ]
     },
     evaluationSection: {
       eyebrow: 'Durée et évaluation',

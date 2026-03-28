@@ -1,10 +1,8 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
-import { RouterLink } from 'vue-router'
-import { ArrowRight, ChevronDown } from 'lucide-vue-next'
+import { ChevronDown } from 'lucide-vue-next'
 
-import { Button } from '@/components/ui/button'
-import { useExperienceVariant } from '@/composables/use-experience-variant'
+import PrefooterCtaPanel from '@/components/shared/prefooter-cta-panel.vue'
 import { api } from '@/lib/api'
 import { motionVariants, staggerEnter } from '@/lib/motion'
 
@@ -13,8 +11,6 @@ const site = ref({
 })
 const items = ref([])
 const loading = ref(true)
-
-const { toWithExperience } = useExperienceVariant()
 
 onMounted(async () => {
   try {
@@ -27,9 +23,6 @@ onMounted(async () => {
 })
 
 const faqCopy = computed(() => site.value.faq ?? {})
-const programLink = computed(() => toWithExperience('/programme'))
-const financeLink = computed(() => toWithExperience('/financement'))
-const contactLink = computed(() => toWithExperience('/contact'))
 
 const hero = computed(() => ({
   eyebrow: faqCopy.value.hero?.eyebrow ?? 'FAQ RPMS',
@@ -37,14 +30,6 @@ const hero = computed(() => ({
   description:
     faqCopy.value.hero?.description ??
     'En cinq questions, vérifiez le titre, le programme, le format et le financement, puis avancez si le RPMS correspond à votre projet.'
-}))
-
-const closingNote = computed(() => ({
-  eyebrow: faqCopy.value.closingNote?.eyebrow ?? 'Choisissez la suite utile',
-  title: faqCopy.value.closingNote?.title ?? 'Passez à la page qui vous fait avancer.',
-  description:
-    faqCopy.value.closingNote?.description ??
-    "Programme pour le détail des compétences, Financement pour les conditions de l'offre, Contact pour faire le point."
 }))
 
 const topItems = computed(() => items.value.slice(0, 5))
@@ -92,30 +77,7 @@ const topItems = computed(() => items.value.slice(0, 5))
           </details>
         </div>
 
-        <div class="prefooter-panel flex flex-col gap-5 p-5 sm:p-6 lg:flex-row lg:items-end lg:justify-between lg:p-8">
-          <div class="space-y-3">
-            <p class="kicker">{{ closingNote.eyebrow }}</p>
-            <h2 class="text-[clamp(1.28rem,2vw,1.72rem)] font-semibold tracking-[-0.04em] text-foreground">
-              {{ closingNote.title }}
-            </h2>
-            <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
-              {{ closingNote.description }}
-            </p>
-          </div>
-
-          <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Button :as="RouterLink" :to="programLink" size="lg" variant="outline">
-              Voir le programme
-            </Button>
-            <Button :as="RouterLink" :to="financeLink" size="lg" variant="outline">
-              Voir le financement
-            </Button>
-            <Button :as="RouterLink" :to="contactLink" size="lg">
-              S'inscrire
-              <ArrowRight class="ml-2 h-4 w-4" />
-            </Button>
-          </div>
-        </div>
+        <PrefooterCtaPanel />
       </section>
     </template>
   </div>

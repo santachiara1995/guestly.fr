@@ -1,10 +1,8 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
-import { RouterLink } from 'vue-router'
-import { ArrowRight, BadgeCheck, CircleDollarSign, Clock3, ShieldCheck } from 'lucide-vue-next'
+import { BadgeCheck, CircleDollarSign, Clock3, ShieldCheck } from 'lucide-vue-next'
 
-import { Button } from '@/components/ui/button'
-import { useExperienceVariant } from '@/composables/use-experience-variant'
+import PrefooterCtaPanel from '@/components/shared/prefooter-cta-panel.vue'
 import { api } from '@/lib/api'
 import { motionVariants, staggerEnter } from '@/lib/motion'
 
@@ -14,8 +12,6 @@ const site = ref({
 const program = ref(null)
 const loading = ref(true)
 const errorMessage = ref('')
-
-const { toWithExperience } = useExperienceVariant()
 
 onMounted(async () => {
   try {
@@ -30,8 +26,6 @@ onMounted(async () => {
 })
 
 const financeCopy = computed(() => site.value.finance ?? {})
-const programLink = computed(() => toWithExperience('/programme'))
-const contactLink = computed(() => toWithExperience('/contact'))
 
 const trustChips = computed(() => [
   program.value?.rncpCode ?? 'RNCP38575',
@@ -139,39 +133,7 @@ const pricingHighlights = computed(() => [
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <div
-          class="prefooter-panel p-5 sm:p-6 lg:p-8"
-          v-motion
-          :initial="motionVariants.block.initial"
-          :enter="motionVariants.block.enter"
-        >
-          <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <div class="space-y-2">
-              <p class="kicker">{{ financeCopy.ctaBand?.eyebrow ?? 'Besoin d’aller plus loin ?' }}</p>
-              <h2 class="editorial-title max-w-3xl text-[clamp(1.45rem,2.1vw,1.95rem)] text-foreground">
-                {{
-                  financeCopy.ctaBand?.title ?? 'Vérifiez le programme ou passez à l’inscription'
-                }}
-              </h2>
-              <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
-                {{
-                  financeCopy.ctaBand?.description ??
-                  'Le financement complète naturellement la lecture du programme.'
-                }}
-              </p>
-            </div>
-
-            <div class="flex flex-col gap-3 sm:flex-row">
-              <Button :as="RouterLink" :to="programLink" size="default">
-                Voir le programme
-                <ArrowRight class="ml-2 h-4 w-4" />
-              </Button>
-              <Button :as="RouterLink" :to="contactLink" size="default" variant="outline">
-                S'inscrire
-              </Button>
-            </div>
-          </div>
-        </div>
+        <PrefooterCtaPanel />
       </section>
     </template>
   </div>

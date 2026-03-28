@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { ArrowRight } from 'lucide-vue-next'
 
+import PrefooterCtaPanel from '@/components/shared/prefooter-cta-panel.vue'
 import SectionTitle from '@/components/section-title.vue'
 import TrustStrip from '@/components/visual/trust-strip.vue'
 import { Button } from '@/components/ui/button'
@@ -37,7 +38,6 @@ const hero = computed(() => accessCopy.value.hero ?? {})
 const checklist = computed(() => accessCopy.value.fitChecklist ?? {})
 const supportSection = computed(() => accessCopy.value.supportSection ?? {})
 const processSection = computed(() => accessCopy.value.processSection ?? {})
-const ctaBand = computed(() => accessCopy.value.ctaBand ?? {})
 
 const trustStripItems = computed(() => [
   program.value?.rncpCode ?? 'RNCP38575',
@@ -180,28 +180,8 @@ const trustStripItems = computed(() => [
         </article>
       </section>
 
-      <section class="page-shell arch-cta p-5 sm:p-6 lg:p-8">
-        <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-          <div class="space-y-3">
-            <p class="kicker">{{ ctaBand.eyebrow }}</p>
-            <h2 class="editorial-title max-w-3xl text-[clamp(1.55rem,2.3vw,2.1rem)] text-foreground">
-              {{ ctaBand.title }}
-            </h2>
-            <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
-              {{ ctaBand.description }}
-            </p>
-          </div>
-
-          <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Button :as="RouterLink" :to="contactLink" size="lg">
-              S'inscrire
-              <ArrowRight class="ml-2 h-4 w-4" />
-            </Button>
-            <Button :as="RouterLink" :to="programLink" size="lg" variant="outline">
-              Voir le programme
-            </Button>
-          </div>
-        </div>
+      <section class="page-shell">
+        <PrefooterCtaPanel />
       </section>
     </template>
   </div>

@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { ArrowRight } from 'lucide-vue-next'
 
+import PrefooterCtaPanel from '@/components/shared/prefooter-cta-panel.vue'
 import { Button } from '@/components/ui/button'
 import { useExperienceVariant } from '@/composables/use-experience-variant'
 import { api } from '@/lib/api'
@@ -60,7 +61,6 @@ const competencySection = computed(() => pageCopy.value.competencySection ?? {})
 const objectivesPanel = computed(() => pageCopy.value.objectivesPanel ?? {})
 const evaluationSection = computed(() => pageCopy.value.evaluationSection ?? {})
 const blocksSection = computed(() => pageCopy.value.blocksSection ?? {})
-const ctaBand = computed(() => pageCopy.value.ctaBand ?? {})
 const roleSummary = computed(
   () =>
     competencySection.value.title ??
@@ -355,31 +355,8 @@ const evaluationSteps = computed(() => evaluationSection.value.steps ?? [])
       </section>
 
       <section class="program-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-        <div class="page-shell prefooter-panel p-5 sm:p-6 lg:p-8">
-          <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <div class="space-y-3">
-              <p class="kicker">{{ ctaBand.eyebrow ?? 'Une question sur le programme ?' }}</p>
-              <h2 class="editorial-title max-w-3xl text-[clamp(1.6rem,2.4vw,2.2rem)] text-foreground">
-                {{ ctaBand.title ?? 'Contactez-nous.' }}
-              </h2>
-              <p class="max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[1rem]">
-                {{ ctaBand.description ?? 'Un échange rapide permet de vérifier si le RPMS correspond à votre projet.' }}
-              </p>
-            </div>
-
-            <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button :as="RouterLink" :to="programLink" size="lg" variant="outline">
-                Voir le programme
-              </Button>
-              <Button :as="RouterLink" :to="financeLink" size="lg" variant="outline">
-                Voir le financement
-              </Button>
-              <Button :as="RouterLink" :to="contactLink" size="lg">
-                S'inscrire
-                <ArrowRight class="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          </div>
+        <div class="page-shell">
+          <PrefooterCtaPanel />
         </div>
       </section>
     </template>

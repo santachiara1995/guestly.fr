@@ -24,7 +24,7 @@ const legalItems = computed(() =>
 
 <template>
   <footer class="mt-0 bg-background/75">
-    <div class="px-4 pb-6 pt-4 sm:px-6 sm:pb-7 sm:pt-5 lg:px-8 lg:pb-6 lg:pt-6">
+    <div class="px-4 pb-6 pt-0 sm:px-6 sm:pb-7 sm:pt-0 lg:px-8 lg:pb-6 lg:pt-0">
       <div
         class="footer-shell shell-track grid gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[1.12fr_0.88fr] lg:px-6"
       >

@@ -251,10 +251,9 @@ export const siteContent = {
       ]
     },
     blocksSection: {
-      eyebrow: 'Compétences détaillées',
-      title: 'Les compétences détaillées, bloc par bloc.',
-      description:
-        'Chaque compétence est reprise selon la fiche RNCP38575.'
+      eyebrow: 'Programme de formation',
+      title: 'Trois blocs de compétences essentielles pour piloter une structure avec méthode.',
+      description: ''
     },
     ctaBand: {
       eyebrow: 'Une question sur le programme ?',

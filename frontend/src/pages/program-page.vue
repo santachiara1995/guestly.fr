@@ -258,13 +258,22 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
 
       <section class="program-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         <div class="shell-track">
-          <div class="mb-8 text-center">
-            <p class="kicker">{{ blocksSection.eyebrow ?? 'Compétences détaillées' }}</p>
-            <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
-              {{ blocksSection.title ?? 'Le détail des compétences, bloc par bloc.' }}
+          <div class="mx-auto mb-6 max-w-3xl py-1 text-center lg:mb-8">
+            <p v-if="blocksSection.eyebrow" class="kicker">{{ blocksSection.eyebrow }}</p>
+            <h2
+              class="editorial-title text-[clamp(1.7rem,3vw,2.35rem)] text-primary"
+              :class="blocksSection.eyebrow ? 'mt-4' : ''"
+            >
+              {{
+                blocksSection.title ??
+                'Trois blocs de compétences essentielles pour piloter une structure avec méthode.'
+              }}
             </h2>
-            <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
-              {{ blocksSection.description ?? 'Chaque compétence est reprise selon la fiche RNCP38575.' }}
+            <p
+              v-if="blocksSection.description"
+              class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]"
+            >
+              {{ blocksSection.description }}
             </p>
           </div>
 

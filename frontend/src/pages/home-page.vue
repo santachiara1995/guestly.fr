@@ -48,10 +48,10 @@ const hero = computed(() => {
   const value = homeCopy.value.hero ?? {}
   return {
     eyebrow: value.eyebrow ?? "Bac+2 certifié par l'État · 100 % à distance · 300 h",
-    title: value.title ?? "Un Bac+2 certifié par l'État",
+    title: value.title ?? "Un Bac+2 certifié par l'État,",
     subtitleLines: Array.isArray(value.subtitleLines)
       ? value.subtitleLines
-      : ['100 % à distance', 'En 300 heures'],
+      : ['100 % à distance,', 'En 300 heures.'],
     intro:
       value.lead ??
       'Le titre professionnel RPMS (RNCP38575) forme des managers polyvalents capables de :',
@@ -125,7 +125,7 @@ const programPreview = computed(() => {
 const orientationSection = computed(() => {
   const section = homeCopy.value.orientationSection ?? {}
   return {
-    eyebrow: section.eyebrow ?? 'Trois grands blocs',
+    eyebrow: section.eyebrow ?? 'Programme de formation',
     title:
       section.title ??
       'Trois blocs de compétences essentielles pour piloter une structure avec méthode.',
@@ -146,7 +146,7 @@ const journeySection = computed(() => {
       : [
           {
             title: 'Approfondir le programme',
-            text: 'Accédez au détail de chaque bloc et de chaque compétence pour mesurer précisément ce que couvre le RPMS.'
+            text: 'Accédez au détail de chaque bloc et de chaque compétence pour découvrir ce que couvre le titre professionnel RPMS.'
           },
           {
             title: 'Consulter le financement',
@@ -154,7 +154,7 @@ const journeySection = computed(() => {
           },
           {
             title: "S'inscrire",
-            text: 'Passez directement à l’inscription dès que le programme et le financement vous conviennent.'
+            text: 'Passez directement à l’inscription.'
           }
         ]
   }

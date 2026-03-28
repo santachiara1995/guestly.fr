@@ -503,7 +503,7 @@
   }
 
   .nav-link {
-    @apply inline-flex min-h-9 items-center justify-center whitespace-nowrap border-b-2 border-transparent px-1.5 py-0 text-[0.75rem] font-medium tracking-[0.005em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+    @apply inline-flex min-h-10 items-center justify-center whitespace-nowrap border-b-2 border-transparent px-1.75 py-0 text-[0.76rem] font-medium tracking-[0.005em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
     color: var(--muted-ink);
   }
 
@@ -628,6 +628,10 @@
   .page-shell {
     margin-inline: auto;
     width: min(100%, 70rem);
+  }
+
+  .program-reference > .program-section {
+    padding-block: clamp(1.2rem, 2vw, 1.55rem);
   }
 
   .programme-ladder {

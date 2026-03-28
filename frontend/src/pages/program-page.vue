@@ -57,15 +57,9 @@ const hero = computed(() => {
   }
 })
 
-const competencySection = computed(() => pageCopy.value.competencySection ?? {})
 const objectivesPanel = computed(() => pageCopy.value.objectivesPanel ?? {})
 const evaluationSection = computed(() => pageCopy.value.evaluationSection ?? {})
 const blocksSection = computed(() => pageCopy.value.blocksSection ?? {})
-const roleSummary = computed(
-  () =>
-    competencySection.value.title ??
-    'Le programme reste relié à un rôle de pilotage, d’organisation et de suivi.'
-)
 
 const blocks = computed(() =>
   (program.value?.blocks ?? []).map((block) => ({
@@ -94,8 +88,6 @@ const infoChips = computed(() => [
   }
 ])
 
-const objectivePoints = computed(() => program.value?.objectiveSummary ?? [])
-const scopePoints = computed(() => program.value?.professionalScope ?? [])
 const evaluationCards = computed(() => evaluationSection.value.summaryCards ?? [])
 const evaluationSteps = computed(() => evaluationSection.value.steps ?? [])
 </script>
@@ -218,70 +210,6 @@ const evaluationSteps = computed(() => evaluationSection.value.steps ?? [])
 
       <section class="program-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         <div class="page-shell">
-          <div class="mx-auto mb-10 max-w-3xl text-center">
-            <p class="kicker">{{ competencySection.eyebrow ?? 'Ce que le titre prépare' }}</p>
-            <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
-              {{ competencySection.title ?? "Le RPMS prépare à piloter, mettre en oeuvre et suivre l'activité." }}
-            </h2>
-            <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
-              {{ competencySection.description ?? 'Voici les repères utiles avant le détail des compétences.' }}
-            </p>
-          </div>
-
-          <div class="grid gap-6 lg:grid-cols-2">
-            <article class="page-cut paper-card p-5 sm:p-6">
-              <p class="detail-key">Pourquoi ce programme</p>
-              <h3 class="mt-4 text-[clamp(1.2rem,2vw,1.6rem)] font-semibold tracking-[-0.04em] text-foreground">
-                Trois bénéfices concrets du RPMS.
-              </h3>
-
-              <div class="mt-6 grid gap-3">
-                <article
-                  v-for="(item, index) in objectivePoints"
-                  :key="item"
-                  class="decision-card"
-                  v-motion
-                  :initial="motionVariants.block.initial"
-                  :enter="staggerEnter(index, 48, 24)"
-                >
-                  <p class="detail-key">Bénéfice {{ index + 1 }}</p>
-                  <p class="mt-3 text-sm leading-7 text-muted-foreground">
-                    {{ item }}
-                  </p>
-                </article>
-              </div>
-            </article>
-
-            <article class="page-cut paper-card p-5 sm:p-6">
-              <p class="detail-key">Ce que vous saurez faire</p>
-              <h3 class="mt-4 text-[clamp(1.2rem,2vw,1.6rem)] font-semibold tracking-[-0.04em] text-foreground">
-                {{ roleSummary }}
-              </h3>
-
-              <div class="mt-6 grid gap-3">
-                <article
-                  v-for="(scope, index) in scopePoints"
-                  :key="scope"
-                  class="elevated-item rounded-[1rem] p-4"
-                  v-motion
-                  :initial="motionVariants.pop.initial"
-                  :enter="staggerEnter(index, 48, 24)"
-                >
-                  <div class="flex items-start gap-3">
-                    <span class="finance-badge">{{ index + 1 }}</span>
-                    <p class="text-sm leading-6 text-foreground">
-                      {{ scope }}
-                    </p>
-                  </div>
-                </article>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="program-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-        <div class="page-shell">
           <article class="page-cut paper-card p-5 sm:p-6 lg:p-7">
             <p class="kicker">{{ objectivesPanel.eyebrow ?? 'Objectifs pédagogiques' }}</p>
             <h2 class="mt-4 text-[clamp(1.45rem,2.3vw,1.95rem)] font-semibold tracking-[-0.04em] text-foreground">
@@ -320,7 +248,7 @@ const evaluationSteps = computed(() => evaluationSection.value.steps ?? [])
 
       <section class="program-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         <div class="page-shell">
-          <div class="mb-10 text-center">
+          <div class="mb-8 text-center">
             <p class="kicker">{{ blocksSection.eyebrow ?? 'Compétences détaillées' }}</p>
             <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
               {{ blocksSection.title ?? 'Le détail des compétences, bloc par bloc.' }}

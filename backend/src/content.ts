@@ -102,8 +102,8 @@ export const siteContent = {
   home: {
     hero: {
       eyebrow: '',
-      title: "Un Bac+2 certifié par l'État",
-      subtitleLines: ['100 % à distance', 'En 300 heures'],
+      title: "Un Bac+2 certifié par l'État,",
+      subtitleLines: ['100 % à distance,', 'En 300 heures.'],
       lead:
         'Le titre professionnel RPMS (RNCP38575) forme des managers polyvalents capables de :',
       capabilities: [

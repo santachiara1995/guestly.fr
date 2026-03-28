@@ -630,6 +630,11 @@
     width: min(100%, 70rem);
   }
 
+  .shell-track {
+    margin-inline: auto;
+    width: min(100%, 66rem);
+  }
+
   .program-reference > .program-section {
     padding-block: clamp(1.2rem, 2vw, 1.55rem);
   }
@@ -1575,6 +1580,48 @@
     border: 1px solid var(--surface-border-soft);
     background: var(--surface-silver);
     box-shadow: var(--surface-shadow-soft);
+  }
+
+  .program-overview-card {
+    display: flex;
+    min-height: 9.6rem;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .program-summary-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    border-radius: 1rem;
+    border: 1px solid var(--surface-border-soft);
+    background: var(--paper-soft);
+    padding: 0.9rem 1rem;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.68);
+  }
+
+  .program-summary-line__dot {
+    margin-top: 0.55rem;
+    height: 0.45rem;
+    width: 0.45rem;
+    flex: none;
+    border-radius: 999px;
+    background: var(--primary);
+  }
+
+  .program-summary-line p {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+
+  .objective-mini-card {
+    padding: 0.95rem 1rem;
+  }
+
+  .program-eval-footnote {
+    border-top: 1px solid var(--surface-border-soft);
+    padding-top: 0.9rem;
   }
 
   .sidebar-panel__title {

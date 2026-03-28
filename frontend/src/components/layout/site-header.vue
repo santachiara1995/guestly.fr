@@ -31,7 +31,7 @@ const isActive = (target) => {
   <header class="sticky top-0 z-50">
     <div class="w-full px-4 pt-1 sm:px-6 lg:px-8">
       <div
-        class="header-shell page-shell grid grid-cols-[auto_minmax(0,_1fr)_auto] items-center gap-3 px-3 py-[0.45rem] sm:px-3.5"
+        class="header-shell shell-track grid grid-cols-[auto_minmax(0,_1fr)_auto] items-center gap-3 px-3 py-[0.45rem] sm:px-3.5"
       >
         <brand-logo :to="homeLink" compact class="justify-self-start shrink-0" />
 

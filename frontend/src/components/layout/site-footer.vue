@@ -26,7 +26,7 @@ const legalItems = computed(() =>
   <footer class="mt-10 border-t border-border/70 bg-background/75 sm:mt-12">
     <div class="px-4 py-6 sm:px-6 sm:py-7 lg:px-8">
       <div
-        class="footer-shell page-shell grid gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[1.12fr_0.88fr] lg:px-6"
+        class="footer-shell shell-track grid gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[1.12fr_0.88fr] lg:px-6"
       >
         <div class="space-y-2.5">
           <brand-logo :to="homeLink" />

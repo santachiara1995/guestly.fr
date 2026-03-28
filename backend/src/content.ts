@@ -179,10 +179,14 @@ export const siteContent = {
   program: {
     hero: {
       eyebrow: 'Programme RPMS',
-      title: 'Le programme RPMS, bloc par bloc.',
+      title: 'Préparez un Bac+2 certifié pour piloter une structure.',
       description:
-        '300 h de formation à distance pour préparer un Bac+2 certifié par l’État et entrer dans le détail des compétences attendues.',
-      note: 'Niveau 5 / Bac+2 · 100 % distanciel · accompagnement pédagogique.'
+        'Titre professionnel RPMS, RNCP38575, niveau 5 / Bac+2.',
+      note: 'Formation 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
+      summaryLines: [
+        'Rendez-vous individuel avec un formateur pour avancer à votre rythme.',
+        'Évaluation finale officielle : 1 h 35 au total, avec projet, entretien technique et entretien final.'
+      ]
     },
     summarySection: {
       eyebrow: "Vue d'ensemble",
@@ -242,7 +246,7 @@ export const siteContent = {
     },
     blocksSection: {
       eyebrow: 'Compétences détaillées',
-      title: 'Les compétences, bloc par bloc.',
+      title: 'Les compétences détaillées, bloc par bloc.',
       description:
         'Chaque compétence est reprise selon la fiche RNCP38575.'
     },

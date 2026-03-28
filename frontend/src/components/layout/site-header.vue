@@ -29,9 +29,9 @@ const isActive = (target) => {
 
 <template>
   <header class="sticky top-0 z-50">
-    <div class="mx-auto w-full max-w-[70rem] px-4 pt-1.5 sm:px-6 lg:px-8">
+    <div class="w-full px-4 pt-1.5 sm:px-6 lg:px-8">
       <div
-        class="header-shell mx-auto grid w-full grid-cols-[auto_minmax(0,_1fr)_auto] items-center gap-2.5 px-2.5 py-1.5 sm:px-3"
+        class="header-shell page-shell grid w-full grid-cols-[auto_minmax(0,_1fr)_auto] items-center gap-2.5 px-2.5 py-1.5 sm:px-3"
       >
         <brand-logo :to="homeLink" compact class="justify-self-start shrink-0" />
 

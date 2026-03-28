@@ -38,7 +38,7 @@ const hero = computed(() => ({
     <template v-else>
       <section
         id="formulaire-inscription"
-        class="page-shell"
+        class="shell-track"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"

@@ -53,7 +53,7 @@ const trustStripItems = computed(() => [
 
     <template v-else>
       <section
-        class="page-shell page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.04fr_0.96fr] lg:items-start lg:p-8"
+        class="shell-track page-hero grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.04fr_0.96fr] lg:items-start lg:p-8"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
@@ -103,7 +103,7 @@ const trustStripItems = computed(() => [
         </aside>
       </section>
 
-      <section class="page-shell space-y-6">
+      <section class="shell-track space-y-6">
         <SectionTitle
           :eyebrow="checklist.eyebrow"
           :title="checklist.title"
@@ -127,7 +127,7 @@ const trustStripItems = computed(() => [
         </div>
       </section>
 
-      <section class="page-shell grid gap-6 lg:grid-cols-2">
+      <section class="shell-track grid gap-6 lg:grid-cols-2">
         <article class="page-cut p-5 sm:p-6">
           <SectionTitle
             :eyebrow="processSection.eyebrow"
@@ -180,7 +180,7 @@ const trustStripItems = computed(() => [
         </article>
       </section>
 
-      <section class="page-shell">
+      <section class="shell-track">
         <PrefooterCtaPanel />
       </section>
     </template>

@@ -121,7 +121,7 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"
       >
-        <div class="page-shell space-y-6">
+        <div class="shell-track space-y-6">
           <article class="program-hero-card page-hero p-5 sm:p-6 lg:p-7">
             <div class="grid gap-6 lg:grid-cols-[minmax(0,1.04fr)_minmax(0,0.96fr)] lg:items-start">
               <div class="space-y-5">
@@ -257,7 +257,7 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
       </section>
 
       <section class="program-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-        <div class="page-shell">
+        <div class="shell-track">
           <div class="mb-8 text-center">
             <p class="kicker">{{ blocksSection.eyebrow ?? 'Compétences détaillées' }}</p>
             <h2 class="editorial-title mt-4 text-[clamp(1.7rem,3vw,2.35rem)] text-primary">
@@ -293,7 +293,7 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
       </section>
 
       <section class="program-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-        <div class="page-shell">
+        <div class="shell-track">
           <PrefooterCtaPanel />
         </div>
       </section>

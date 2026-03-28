@@ -41,7 +41,7 @@ const topItems = computed(() => items.value.slice(0, 5))
 
     <template v-else>
       <section
-        class="page-shell space-y-6"
+        class="shell-track space-y-6"
         v-motion
         :initial="motionVariants.block.initial"
         :enter="motionVariants.block.enter"

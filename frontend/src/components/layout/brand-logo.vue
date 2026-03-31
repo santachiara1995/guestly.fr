@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 
-const logoSrc = '/CITYZ%20FRANCE.png'
+const logoSrc = '/CITYZ%20FRANCE%20(1).png'
 
 defineProps({
   compact: {

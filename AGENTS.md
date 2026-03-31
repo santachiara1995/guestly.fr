@@ -3,6 +3,8 @@
 This file is for automated coding agents working in this repository.
 Follow the commands and conventions below.
 
+For any deployment, VPS, nginx, Docker, or reboot-recovery task, read `DEPLOY.md` first.
+
 ## Repo overview
 
 - `backend/`: Bun + Elysia API (SQLite).
@@ -10,6 +12,7 @@ Follow the commands and conventions below.
 - `docker-compose.yml`: canonical source-build stack for VPS deploys.
 - `docker-compose.prod.yml`: optional prod override only.
 - `.github/workflows/deploy.yml`: SSH deploy over Tailscale.
+- `DEPLOY.md`: canonical VPS rebuild and deployment guide.
 
 ## Build / dev / test commands
 

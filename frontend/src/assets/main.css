@@ -865,10 +865,10 @@
 
   .home-hero__subtitle {
     font-family: var(--font-heading);
-    font-size: clamp(1.18rem, 2vw, 1.55rem);
+    font-size: clamp(2.15rem, 4.2vw, 3.55rem);
     font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -0.045em;
+    line-height: 1.02;
+    letter-spacing: -0.06em;
     color: var(--blue-eclipse);
   }
 
@@ -920,10 +920,14 @@
   }
 
   .home-hero__point {
+    display: grid;
+    justify-items: center;
+    align-content: center;
     border-radius: 1rem;
     border: 1px solid var(--surface-border-soft);
     background: rgb(255 255 255 / 0.82);
     padding: 0.88rem 0.95rem;
+    text-align: center;
     box-shadow: 0 12px 24px rgb(17 39 65 / 0.05);
     transition:
       transform 0.32s var(--motion-spring),
@@ -1178,13 +1182,13 @@
     display: grid;
     gap: 1.2rem;
     grid-template-columns: minmax(0, 1fr);
-    max-width: 62rem;
+    max-width: 66rem;
     margin-inline: auto;
   }
 
   .home-program-block {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: 4rem minmax(0, 1fr);
     gap: 1rem;
     align-items: center;
     border-radius: 1.35rem;
@@ -1209,6 +1213,8 @@
     display: inline-flex;
     height: 2.6rem;
     width: 2.6rem;
+    justify-self: center;
+    align-self: center;
     align-items: center;
     justify-content: center;
     border-radius: 999px;
@@ -1243,7 +1249,7 @@
   }
 
   .home-program-block__text {
-    max-width: 28rem;
+    max-width: 46rem;
     font-size: 0.92rem;
     line-height: 1.68;
     color: var(--muted-ink);
@@ -1269,6 +1275,8 @@
     display: grid;
     gap: 0.95rem;
     align-content: start;
+    justify-items: center;
+    text-align: center;
     color: var(--foreground);
   }
 
@@ -1289,6 +1297,11 @@
     font-size: 0.95rem;
     line-height: 1.68;
     color: var(--muted-ink);
+  }
+
+  .prefooter-panel .kicker,
+  .prefooter-panel .editorial-title {
+    text-align: center;
   }
 
   .home-final-band__steps {
@@ -1881,6 +1894,10 @@
 
   .home-program-block__number {
     margin-bottom: 0.15rem;
+  }
+
+  .home-program-block__text {
+    max-width: 100%;
   }
 }
 

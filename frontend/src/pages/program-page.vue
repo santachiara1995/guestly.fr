@@ -137,10 +137,8 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
                     <strong>{{ hero.note }}</strong>
                   </p>
                 </div>
-              </div>
 
-              <aside class="space-y-4">
-                <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+                <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-start">
                   <Button :as="RouterLink" :to="contactLink" size="lg" class="w-full justify-center sm:w-auto">
                     S'inscrire
                     <ArrowRight class="ml-2 h-4 w-4" />
@@ -165,7 +163,9 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
                     Télécharger le programme
                   </Button>
                 </div>
+              </div>
 
+              <aside class="space-y-4">
                 <div class="grid gap-3 sm:grid-cols-2">
                   <article
                     v-for="(card, index) in overviewCards"

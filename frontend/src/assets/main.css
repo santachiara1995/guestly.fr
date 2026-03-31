@@ -1326,6 +1326,10 @@
     width: 100%;
   }
 
+  .home-final-band__step-text {
+    white-space: pre-line;
+  }
+
   .home-final-band__step {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -2016,5 +2020,15 @@
   .home-hero {
     grid-template-columns: minmax(0, 1.04fr) minmax(24rem, 0.82fr);
     align-items: stretch;
+  }
+
+  .home-program-block {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .home-program-block__number {
+    margin-bottom: 0.15rem;
   }
 }

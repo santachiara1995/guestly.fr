@@ -335,7 +335,7 @@ const journeyCards = computed(() => {
               >
                 <div>
                   <p class="detail-key">{{ step.title }}</p>
-                  <p class="mt-3 text-sm leading-7 text-muted-foreground">
+                  <p class="home-final-band__step-text mt-3 text-sm leading-7 text-muted-foreground">
                     {{ step.text }}
                   </p>
                 </div>

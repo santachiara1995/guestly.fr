@@ -167,7 +167,7 @@ export const siteContent = {
         {
           title: 'Financer la formation',
           text:
-            "Retrouvez le prix, les modalités de paiement et les conditions de l'offre. Paiement en 3 fois sans frais possible."
+            "Retrouvez le prix, les modalités de paiement et les conditions de l'offre.\nPaiement en 3 fois sans frais possible."
         },
         {
           title: "Passer à l'inscription",
@@ -185,15 +185,11 @@ export const siteContent = {
   },
   program: {
     hero: {
-      eyebrow: 'Programme RPMS',
+      eyebrow: 'Programme du titre professionnel Responsable de petite et moyenne structure',
       title: 'Préparez un Bac+2 certifié pour piloter une structure.',
       description:
         'Titre professionnel RPMS, RNCP38575, niveau 5 / Bac+2.',
-      note: 'Formation 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
-      summaryLines: [
-        'Rendez-vous individuel avec un formateur pour avancer à votre rythme.',
-        'Évaluation finale officielle : 1 h 35 au total, avec projet, entretien technique et entretien final.'
-      ]
+      note: 'Formation 100 % distanciel, en e-learning, avec accompagnement pédagogique.'
     },
     summarySection: {
       eyebrow: "Vue d'ensemble",
@@ -214,17 +210,17 @@ export const siteContent = {
       description:
         "Le parcours se suit entièrement à distance, en e-learning, avec une organisation souple pensée pour progresser sans interrompre votre activité professionnelle.",
       items: [
-        'diriger une organisation dans sa globalité',
-        'piloter l’activité et la performance',
-        'encadrer et animer une équipe',
-        'développer des partenariats',
-        'intégrer les enjeux territoriaux et stratégiques',
-        'prendre des décisions éclairées'
+        'Diriger une organisation dans sa globalité',
+        'Piloter l’activité et la performance',
+        'Encadrer et animer une équipe',
+        'Développer des partenariats',
+        'Intégrer les enjeux territoriaux et stratégiques',
+        'Prendre des décisions éclairées'
       ]
     },
     evaluationSection: {
       eyebrow: 'Durée et évaluation',
-      title: '300 h de formation. Épreuve finale : 1 h 35 au total.',
+      title: '300h de formation,\nÉvaluation : 1h35 au total.',
       description:
         "La fiche France Compétences RNCP38575 décrit une évaluation finale structurée autour d'un projet, d'un entretien technique et d'un entretien final.",
       summaryCards: [

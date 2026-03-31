@@ -44,21 +44,19 @@ function firstLine(value) {
 const pageCopy = computed(() => site.value.program ?? {})
 const contactLink = computed(() => toWithExperience('/contact'))
 const financeLink = computed(() => toWithExperience('/financement'))
+const programDownloadHref = '/plaquette-titre-pro-rpms.pdf'
 
 const hero = computed(() => {
   const value = pageCopy.value.hero ?? {}
   return {
-    eyebrow: value.eyebrow ?? 'Programme RPMS',
+    eyebrow:
+      value.eyebrow ??
+      'Programme du titre professionnel Responsable de petite et moyenne structure',
     title: value.title ?? 'Préparez un Bac+2 certifié pour piloter une structure.',
     description:
       value.description ?? 'Titre professionnel RPMS, RNCP38575, niveau 5 / Bac+2.',
     note:
-      value.note ?? 'Formation 100 % distanciel, en e-learning, avec accompagnement pédagogique.',
-    summaryLines:
-      value.summaryLines ?? [
-        'Rendez-vous individuel avec un formateur pour avancer à votre rythme.',
-        'Évaluation finale officielle : 1 h 35 au total, avec projet, entretien technique et entretien final.'
-      ]
+      value.note ?? 'Formation 100 % distanciel, en e-learning, avec accompagnement pédagogique.'
   }
 })
 
@@ -76,27 +74,28 @@ const blocks = computed(() =>
 
 const overviewCards = computed(() => [
   {
-    label: 'Titre',
-    value: program.value?.levelLabel ?? 'Niveau 5 / Bac+2',
-    note: program.value?.rncpCode ?? 'RNCP38575'
+    label: "Diplôme certifié par l'État",
+    value: 'Titre professionnel Responsable de petite et moyenne structure',
+    note: `${program.value?.rncpCode ?? 'RNCP38575'} · ${program.value?.levelLabel ?? 'Niveau 5 / Bac+2'}`
   },
   {
-    label: 'Format',
-    value: program.value?.formatLabel ?? '100 % distanciel'
+    label: 'Format distanciel',
+    value: program.value?.formatLabel ?? '100 % distanciel',
+    note:
+      'E-learning souple pour apprendre où vous voulez, à votre rythme, sans interrompre votre activité.'
   },
   {
     label: 'Accompagnement',
     value: 'Avec un formateur',
-    note: 'Rendez-vous individuel pour avancer à votre rythme.'
+    note:
+      "Rendez-vous individuel, accompagnement pédagogique d'experts et suivi régulier pour augmenter vos chances de réussite."
   },
   {
-    label: 'Évaluation',
-    value: '1 h 35',
-    note: 'Projet, entretien technique et entretien final.'
+    label: 'Paiement',
+    value: '3 fois sans frais possible',
+    note: 'Une solution de règlement plus souple pour engager votre projet sereinement.'
   }
 ])
-
-const evaluationCards = computed(() => evaluationSection.value.summaryCards ?? [])
 const evaluationSteps = computed(() => evaluationSection.value.steps ?? [])
 const mainEvaluationSteps = computed(() => evaluationSteps.value.slice(0, 3))
 const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
@@ -138,27 +137,29 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
                   </p>
                 </div>
 
-                <div class="grid gap-3">
-                  <article
-                    v-for="(line, index) in hero.summaryLines"
-                    :key="line"
-                    class="program-summary-line"
-                    v-motion
-                    :initial="motionVariants.pop.initial"
-                    :enter="staggerEnter(index, 40, 18)"
-                  >
-                    <span class="program-summary-line__dot" aria-hidden="true"></span>
-                    <p>{{ line }}</p>
-                  </article>
-                </div>
-
                 <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <Button :as="RouterLink" :to="contactLink" size="lg">
+                  <Button :as="RouterLink" :to="contactLink" size="lg" class="w-full justify-center sm:w-auto">
                     S'inscrire
                     <ArrowRight class="ml-2 h-4 w-4" />
                   </Button>
-                  <Button :as="RouterLink" :to="financeLink" size="lg" variant="outline">
+                  <Button
+                    :as="RouterLink"
+                    :to="financeLink"
+                    size="lg"
+                    variant="outline"
+                    class="w-full justify-center sm:w-auto"
+                  >
                     Voir le financement
+                  </Button>
+                  <Button
+                    as="a"
+                    :href="programDownloadHref"
+                    download
+                    size="lg"
+                    variant="outline"
+                    class="w-full justify-center sm:w-auto"
+                  >
+                    Télécharger le programme
                   </Button>
                 </div>
               </div>
@@ -184,74 +185,72 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
             </div>
           </article>
 
-          <article class="page-cut paper-card p-5 sm:p-6 lg:p-7">
-            <div class="grid gap-6 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)]">
-              <div>
-                <p class="kicker">{{ objectivesPanel.eyebrow ?? 'Objectifs pédagogiques' }}</p>
-                <h2 class="mt-4 text-[clamp(1.45rem,2.3vw,1.95rem)] font-semibold tracking-[-0.04em] text-foreground">
-                  {{
-                    objectivesPanel.title ??
-                    'À l’issue de la formation, les apprenants seront capables de :'
-                  }}
-                </h2>
-                <p class="mt-4 max-w-4xl text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
-                  {{
-                    objectivesPanel.description ??
-                    "Le parcours se suit entièrement à distance, en e-learning, avec une organisation souple pensée pour progresser sans interrompre votre activité professionnelle."
-                  }}
-                </p>
+          <article class="page-cut paper-card space-y-6 p-5 sm:p-6 lg:p-7">
+            <div>
+              <p class="kicker">{{ objectivesPanel.eyebrow ?? 'Objectifs pédagogiques' }}</p>
+              <h2 class="mt-4 text-[clamp(1.45rem,2.3vw,1.95rem)] font-semibold tracking-[-0.04em] text-foreground">
+                {{
+                  objectivesPanel.title ??
+                  'À l’issue de la formation, les apprenants seront capables de :'
+                }}
+              </h2>
+              <p class="mt-4 max-w-4xl text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
+                {{
+                  objectivesPanel.description ??
+                  "Le parcours se suit entièrement à distance, en e-learning, avec une organisation souple pensée pour progresser sans interrompre votre activité professionnelle."
+                }}
+              </p>
 
-                <div class="mt-6 grid gap-3 sm:grid-cols-2">
-                  <article
-                    v-for="(item, index) in objectivesPanel.items ?? []"
-                    :key="item"
-                    class="paper-card paper-card--soft objective-mini-card"
-                    v-motion
-                    :initial="motionVariants.pop.initial"
-                    :enter="staggerEnter(index, 42, 20)"
-                  >
-                    <div class="flex items-start gap-3">
-                      <span class="finance-badge">{{ index + 1 }}</span>
-                      <p class="text-sm leading-6 text-foreground">
-                        {{ item }}
-                      </p>
-                    </div>
-                  </article>
-                </div>
+              <div class="mt-6 grid gap-3 sm:grid-cols-2">
+                <article
+                  v-for="(item, index) in objectivesPanel.items ?? []"
+                  :key="item"
+                  class="paper-card paper-card--soft objective-mini-card"
+                  v-motion
+                  :initial="motionVariants.pop.initial"
+                  :enter="staggerEnter(index, 42, 20)"
+                >
+                  <div class="flex items-start gap-3">
+                    <span class="finance-badge">{{ index + 1 }}</span>
+                    <p class="text-sm leading-6 text-foreground">
+                      {{ item }}
+                    </p>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <article class="program-eval-card p-5 sm:p-6">
+              <p class="kicker">{{ evaluationSection.eyebrow ?? 'Durée et évaluation' }}</p>
+              <h2 class="mt-4 whitespace-pre-line text-[clamp(1.4rem,2.2vw,1.9rem)] font-semibold tracking-[-0.04em] text-foreground">
+                {{ evaluationSection.title ?? '300h de formation,\nÉvaluation : 1h35 au total.' }}
+              </h2>
+              <p class="mt-4 text-sm leading-7 text-muted-foreground">
+                {{ evaluationSection.description ?? "La fiche RNCP38575 précise le déroulé de l'épreuve finale." }}
+              </p>
+
+              <div class="mt-5 grid gap-3">
+                <article
+                  v-for="(step, index) in mainEvaluationSteps"
+                  :key="step"
+                  class="program-note-card p-4"
+                  v-motion
+                  :initial="motionVariants.pop.initial"
+                  :enter="staggerEnter(index, 40, 18)"
+                >
+                  <div class="flex items-start gap-3">
+                    <span class="finance-badge">{{ index + 1 }}</span>
+                    <p class="text-sm leading-6 text-foreground">
+                      {{ step }}
+                    </p>
+                  </div>
+                </article>
               </div>
 
-              <article class="program-eval-card p-5 sm:p-6">
-                <p class="kicker">{{ evaluationSection.eyebrow ?? 'Durée et évaluation' }}</p>
-                <h2 class="mt-4 text-[clamp(1.4rem,2.2vw,1.9rem)] font-semibold tracking-[-0.04em] text-foreground">
-                  {{ evaluationSection.title ?? '300 h de formation. Épreuve finale : 1 h 35 au total.' }}
-                </h2>
-                <p class="mt-4 text-sm leading-7 text-muted-foreground">
-                  {{ evaluationSection.description ?? "La fiche RNCP38575 précise le déroulé de l'épreuve finale." }}
-                </p>
-
-                <div class="mt-5 grid gap-3">
-                  <article
-                    v-for="(step, index) in mainEvaluationSteps"
-                    :key="step"
-                    class="program-note-card p-4"
-                    v-motion
-                    :initial="motionVariants.pop.initial"
-                    :enter="staggerEnter(index, 40, 18)"
-                  >
-                    <div class="flex items-start gap-3">
-                      <span class="finance-badge">{{ index + 1 }}</span>
-                      <p class="text-sm leading-6 text-foreground">
-                        {{ step }}
-                      </p>
-                    </div>
-                  </article>
-                </div>
-
-                <p v-if="evaluationFootnote" class="program-eval-footnote mt-4 text-sm leading-6 text-muted-foreground">
-                  {{ evaluationFootnote }}
-                </p>
-              </article>
-            </div>
+              <p v-if="evaluationFootnote" class="program-eval-footnote mt-4 text-sm leading-6 text-muted-foreground">
+                {{ evaluationFootnote }}
+              </p>
+            </article>
           </article>
         </div>
       </section>

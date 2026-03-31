@@ -220,7 +220,7 @@ export const siteContent = {
     },
     evaluationSection: {
       eyebrow: 'Durée et évaluation',
-      title: '300h de formation,\nÉvaluation : 1h35 au total.',
+      title: '300h de formation,\nExamen de 1h35.',
       description:
         "La fiche France Compétences RNCP38575 décrit une évaluation finale structurée autour d'un projet, d'un entretien technique et d'un entretien final.",
       summaryCards: [

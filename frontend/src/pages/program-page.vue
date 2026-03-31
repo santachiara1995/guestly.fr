@@ -42,7 +42,7 @@ function firstLine(value) {
 }
 
 const pageCopy = computed(() => site.value.program ?? {})
-const contactLink = computed(() => toWithExperience('/contact'))
+const signupLink = computed(() => toWithExperience('/inscription'))
 const financeLink = computed(() => toWithExperience('/financement'))
 const programDownloadHref = '/plaquette-titre-pro-rpms.pdf'
 
@@ -139,7 +139,7 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
                 </div>
 
                 <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-start">
-                  <Button :as="RouterLink" :to="contactLink" size="lg" class="w-full justify-center sm:w-auto">
+                  <Button :as="RouterLink" :to="signupLink" size="lg" class="w-full justify-center sm:w-auto">
                     S'inscrire
                     <ArrowRight class="ml-2 h-4 w-4" />
                   </Button>

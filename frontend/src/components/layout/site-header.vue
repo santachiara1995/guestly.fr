@@ -11,7 +11,7 @@ const route = useRoute()
 const { toWithExperience } = useExperienceVariant()
 
 const homeLink = computed(() => toWithExperience('/'))
-const contactLink = computed(() => toWithExperience('/contact'))
+const signupLink = computed(() => toWithExperience('/inscription'))
 const navigationItems = computed(() =>
   primaryNavigation.map((item) => ({
     ...item,
@@ -55,7 +55,7 @@ const isActive = (target) => {
         <div class="flex justify-self-end shrink-0 items-center justify-end">
           <Button
             :as="RouterLink"
-            :to="contactLink"
+            :to="signupLink"
             size="sm"
             class="h-11 min-h-11 rounded-full px-4 text-[0.78rem] font-semibold tracking-[0.01em]"
           >

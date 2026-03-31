@@ -11,6 +11,7 @@ const { toWithExperience } = useExperienceVariant()
 const programLink = computed(() => toWithExperience('/programme'))
 const financeLink = computed(() => toWithExperience('/financement'))
 const contactLink = computed(() => toWithExperience('/contact'))
+const signupLink = computed(() => toWithExperience('/inscription'))
 const primaryAction = computed(() => {
   if (route.path.startsWith('/programme')) {
     return {
@@ -43,7 +44,7 @@ const primaryAction = computed(() => {
         <Button :as="RouterLink" :to="contactLink" size="lg" variant="outline" class="w-full justify-center sm:w-auto">
           Être rappelé
         </Button>
-        <Button :as="RouterLink" :to="contactLink" size="lg" class="w-full justify-center sm:w-auto">
+        <Button :as="RouterLink" :to="signupLink" size="lg" class="w-full justify-center sm:w-auto">
           S'inscrire
         </Button>
       </div>

@@ -46,39 +46,46 @@ export const programsSeed = [
 
 export const faqSeed = [
   {
-    question: 'Le RPMS correspond-il à mon projet ?',
+    question: 'La formation RPMS correspond-elle à mon projet ?',
     answer:
-      "Oui si vous cherchez un Bac+2 / niveau 5 pour piloter une structure, encadrer une équipe et suivre l'activité. Le détail des compétences est dans l'onglet Programme.",
+      "La formation RPMS est adaptée si vous cherchez un titre de niveau 5 / Bac+2 pour développer une vision globale d'une structure, encadrer une équipe et piloter une activité. Elle convient aux personnes qui veulent évoluer vers des fonctions de coordination, de gestion ou de responsabilité, avec une lecture à la fois opérationnelle, commerciale et financière.",
     audience: 'particulier',
     sortOrder: 1
   },
   {
-    question: 'Que couvre exactement le programme ?',
+    question: 'Que couvre exactement la formation RPMS ?',
     answer:
-      "Le programme est structuré en trois blocs RNCP38575BC01, BC02 et BC03. Vous retrouvez dans l'onglet Programme les compétences bloc par bloc.",
+      "La formation RPMS est structurée en trois blocs de compétences : diriger une structure avec une équipe, mettre en oeuvre l'objet social de la structure, et établir un rapport d'activité. Vous y travaillez le management, l'organisation de l'activité, le développement de l'offre, la lecture des résultats et la présentation des indicateurs clés.",
     audience: 'particulier',
     sortOrder: 2
   },
   {
-    question: 'Quel format faut-il prévoir ?',
+    question: 'Quels sont les prérequis pour suivre la formation RPMS ?',
     answer:
-      'Le RPMS se suit en 100 % distanciel, en e-learning, avec accompagnement pédagogique. Le parcours est pensé pour avancer à votre rythme.',
+      "La formation RPMS s'adresse à des personnes ayant un projet professionnel cohérent avec des fonctions d'encadrement, de coordination ou de gestion. Il est recommandé d'être à l'aise avec la lecture, la rédaction, les outils numériques du quotidien et l'organisation d'un travail personnel régulier dans un parcours à distance.",
     audience: 'particulier',
     sortOrder: 3
   },
   {
-    question: 'Combien de temps et quelle évaluation faut-il prévoir ?',
+    question: 'Quel format faut-il prévoir pour la formation RPMS ?',
     answer:
-      "Le parcours représente 300 h de formation. L'évaluation finale comprend un projet, un entretien technique et un entretien final. Le détail est dans l'onglet Programme.",
+      "La formation RPMS se suit en 100 % distanciel, en e-learning, avec accompagnement pédagogique. Le parcours est conçu pour avancer à votre rythme tout en gardant un cadre clair, avec des contenus structurés, des points de repère et un suivi pour sécuriser votre progression.",
     audience: 'particulier',
     sortOrder: 4
   },
   {
-    question: 'Comment voir le financement ou poser ma question ?',
+    question: 'Combien de temps et quelle évaluation faut-il prévoir pour la formation RPMS ?',
     answer:
-      "L'onglet Financement présente le prix, les modalités de paiement et les conditions de l'offre. Si vous voulez avancer, contactez-nous directement.",
+      "La formation RPMS représente 300 heures. L'évaluation finale prévoit un projet préparé en amont, un entretien technique et un entretien final, pour une durée totale de 1 h 35. Une validation par bloc reste également possible selon les modalités prévues par la fiche RNCP.",
     audience: 'particulier',
     sortOrder: 5
+  },
+  {
+    question: 'Comment financer la formation RPMS ou poser une question ?',
+    answer:
+      "La page Financement présente le prix de la formation, les modalités de règlement et les principales conditions d'accès. Si vous souhaitez être rappelé avant d'aller plus loin, la page Contact vous permet de laisser simplement vos coordonnées pour être recontacté.",
+    audience: 'particulier',
+    sortOrder: 6
   }
 ]
 
@@ -358,9 +365,9 @@ export const siteContent = {
   faq: {
     hero: {
       eyebrow: 'FAQ RPMS',
-      title: 'Les réponses utiles avant de choisir le RPMS.',
+      title: 'Les réponses utiles avant de choisir la formation RPMS.',
       description:
-        "En cinq questions, vérifiez le titre, le programme, le format et le financement, puis avancez si le RPMS correspond à votre projet."
+        "En six questions, vérifiez le contenu de la formation RPMS, ses prérequis, son format, son évaluation et son financement avant d'aller plus loin."
     },
     closingNote: {
       eyebrow: 'Choisissez la suite utile',
@@ -369,11 +376,11 @@ export const siteContent = {
         "Programme pour le détail des compétences, Financement pour les conditions de l'offre, Inscription pour passer à l'action."
     }
   },
-  contact: {
+  signup: {
     heroEyebrow: 'Inscription RPMS',
-    heroTitle: 'Inscrivez-vous au RPMS.',
+    heroTitle: 'Inscrivez-vous à la formation RPMS.',
     heroSupport:
-      "Complétez le formulaire pour lancer votre demande et préciser le point que vous souhaitez encore clarifier.",
+      "Complétez le formulaire pour lancer votre demande d'inscription et accéder ensuite au bon mode de règlement.",
     formTitle: "Lancez votre inscription",
     formIntro:
       "Quelques informations suffisent pour démarrer votre demande d'inscription.",
@@ -387,6 +394,23 @@ export const siteContent = {
       title: 'Programme et financement restent accessibles à tout moment',
       description:
         "Relisez-les si besoin, ou passez directement à l'inscription."
+    }
+  },
+  contact: {
+    heroEyebrow: 'Contact',
+    heroTitle: 'Demandez à être rappelé.',
+    heroSupport:
+      "Laissez simplement vos coordonnées pour que l'équipe CITYZ'France puisse vous recontacter.",
+    formTitle: 'Être rappelé',
+    formIntro:
+      "Indiquez vos coordonnées principales et nous reviendrons vers vous pour répondre à vos questions.",
+    formSupport:
+      "Le formulaire de contact est dédié aux demandes d'information et aux demandes de rappel.",
+    footerBand: {
+      eyebrow: "Avant de valider",
+      title: 'Programme et financement restent accessibles à tout moment',
+      description:
+        "Consultez-les si besoin, puis laissez vos coordonnées si vous souhaitez être rappelé."
     },
     phone: '09 77 21 51 61',
     address: '110 Esplanade du General de Gaulle, 92400 Courbevoie',

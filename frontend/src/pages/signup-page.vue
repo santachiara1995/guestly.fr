@@ -1,12 +1,15 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 import LeadForm from '@/components/lead-form.vue'
 import { api } from '@/lib/api'
 import { motionVariants } from '@/lib/motion'
 
+const route = useRoute()
 const site = ref({
-  contact: {}
+  signup: {},
+  finance: {}
 })
 const loading = ref(true)
 
@@ -19,26 +22,35 @@ onMounted(async () => {
   }
 })
 
-const contactCopy = computed(() => site.value.contact ?? {})
+const signupCopy = computed(() => site.value.signup ?? {})
 const hero = computed(() => ({
-  eyebrow: contactCopy.value.heroEyebrow ?? 'Contact',
-  title: contactCopy.value.heroTitle ?? 'Demandez à être rappelé.',
+  eyebrow: signupCopy.value.heroEyebrow ?? 'Inscription RPMS',
+  title: signupCopy.value.heroTitle ?? 'Inscrivez-vous à la formation RPMS.',
   support:
-    contactCopy.value.heroSupport ??
-    "Laissez simplement vos coordonnées pour que l'équipe CITYZ'France puisse vous recontacter.",
+    signupCopy.value.heroSupport ??
+    "Complétez le formulaire pour lancer votre demande d'inscription et accéder ensuite au bon mode de règlement.",
   intro:
-    contactCopy.value.formIntro ??
-    "Indiquez vos coordonnées principales et nous reviendrons vers vous pour répondre à vos questions."
+    signupCopy.value.formIntro ??
+    "Quelques informations suffisent pour démarrer votre demande d'inscription."
+}))
+
+const selectedPayment = computed(() =>
+  route.query.payment === 'installments' ? 'installments' : 'cash'
+)
+
+const paymentLinks = computed(() => ({
+  cashUrl: site.value.finance?.paymentLinks?.cashUrl ?? '',
+  installmentsUrl: site.value.finance?.paymentLinks?.installmentsUrl ?? ''
 }))
 </script>
 
 <template>
   <div class="page-stack -mx-4 sm:-mx-6 lg:-mx-8">
-    <p v-if="loading" class="text-sm text-muted-foreground">Chargement du contact…</p>
+    <p v-if="loading" class="text-sm text-muted-foreground">Chargement de l’inscription…</p>
 
     <template v-else>
       <section
-        id="formulaire-contact"
+        id="formulaire-inscription"
         class="px-4 py-6 sm:px-6 lg:px-8 lg:py-8"
         v-motion
         :initial="motionVariants.block.initial"
@@ -61,12 +73,12 @@ const hero = computed(() => ({
 
             <div class="mt-5 border-t border-border/70 pt-5">
               <LeadForm
-                source-page="/contact"
-                :show-date-of-birth="false"
-                :show-payment-section="false"
-                consent-label="J’accepte que CITYZ'France utilise ces informations pour me recontacter."
-                submission-message="Demande de rappel via formulaire de contact."
-                submit-label="Être rappelé"
+                source-page="/inscription"
+                :payment-links="paymentLinks"
+                :payment-support="signupCopy.paymentSupport"
+                :payment-title="signupCopy.paymentTitle"
+                :selected-payment="selectedPayment"
+                submit-label="S'inscrire"
               />
             </div>
           </article>

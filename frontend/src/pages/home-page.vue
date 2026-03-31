@@ -43,6 +43,7 @@ const homeCopy = computed(() => site.value.home ?? {})
 const programLink = computed(() => toWithExperience('/programme'))
 const financeLink = computed(() => toWithExperience('/financement'))
 const contactLink = computed(() => toWithExperience('/contact'))
+const signupLink = computed(() => toWithExperience('/inscription'))
 
 const hero = computed(() => {
   const value = homeCopy.value.hero ?? {}
@@ -170,10 +171,10 @@ const contactBand = computed(() => {
 })
 
 const journeyCards = computed(() => {
-  const links = [programLink.value, financeLink.value, contactLink.value]
+  const links = [programLink.value, financeLink.value, signupLink.value]
   return journeySection.value.steps.map((step, index) => ({
     ...step,
-    to: links[index] ?? contactLink.value
+    to: links[index] ?? signupLink.value
   }))
 })
 </script>
@@ -235,7 +236,7 @@ const journeyCards = computed(() => {
                 <Button :as="RouterLink" :to="contactLink" size="lg" variant="outline" class="w-full justify-center">
                   Être rappelé
                 </Button>
-                <Button :as="RouterLink" :to="contactLink" size="lg" class="home-hero__cta w-full justify-center">
+                <Button :as="RouterLink" :to="signupLink" size="lg" class="home-hero__cta w-full justify-center">
                   S'inscrire
                   <ArrowRight class="ml-2 h-4 w-4" />
                 </Button>

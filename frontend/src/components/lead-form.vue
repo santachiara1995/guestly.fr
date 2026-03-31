@@ -12,6 +12,14 @@ const props = defineProps({
     type: String,
     default: '/contact'
   },
+  showDateOfBirth: {
+    type: Boolean,
+    default: true
+  },
+  showPaymentSection: {
+    type: Boolean,
+    default: true
+  },
   paymentLinks: {
     type: Object,
     default: () => ({
@@ -30,6 +38,19 @@ const props = defineProps({
   paymentSupport: {
     type: String,
     default: "Les liens de paiement sont accessibles depuis ce formulaire dès qu'ils sont activés."
+  },
+  submitLabel: {
+    type: String,
+    default: "S'inscrire"
+  },
+  consentLabel: {
+    type: String,
+    default:
+      "J’accepte que CITYZ'France utilise ces informations pour traiter ma demande d'inscription et me recontacter."
+  },
+  submissionMessage: {
+    type: String,
+    default: ''
   }
 })
 
@@ -68,12 +89,17 @@ const paymentPreference = computed(() =>
   props.selectedPayment === 'installments' ? 'installments' : 'cash'
 )
 
-const hasPaymentLinks = computed(() => paymentOptions.value.some((option) => option.href))
+const hasPaymentLinks = computed(() =>
+  props.showPaymentSection && paymentOptions.value.some((option) => option.href)
+)
 
 const defaultMessage = computed(() =>
-  paymentPreference.value === 'installments'
-    ? 'Inscription RPMS. Préférence de paiement : plusieurs fois.'
-    : 'Inscription RPMS. Préférence de paiement : comptant.'
+  props.submissionMessage ||
+  (props.showPaymentSection
+    ? paymentPreference.value === 'installments'
+      ? 'Inscription RPMS. Préférence de paiement : plusieurs fois.'
+      : 'Inscription RPMS. Préférence de paiement : comptant.'
+    : 'Demande de rappel via formulaire de contact.')
 )
 
 async function submitForm() {
@@ -86,13 +112,25 @@ async function submitForm() {
 
   submitting.value = true
   try {
-    await api.submitLead({
-      ...form,
-      paymentPreference: paymentPreference.value,
+    const payload = {
+      firstName: form.firstName,
+      lastName: form.lastName,
+      email: form.email,
+      phone: form.phone,
       message: defaultMessage.value,
       sourcePage: sourcePageWithExperience.value,
       honeypot: ''
-    })
+    }
+
+    if (props.showDateOfBirth && form.dateOfBirth) {
+      payload.dateOfBirth = form.dateOfBirth
+    }
+
+    if (props.showPaymentSection) {
+      payload.paymentPreference = paymentPreference.value
+    }
+
+    await api.submitLead(payload)
     emit('submitted')
     router.push(toWithExperience('/merci'))
   } catch (error) {
@@ -160,7 +198,7 @@ async function submitForm() {
         />
       </label>
 
-      <label class="form-field sm:col-span-2">
+      <label v-if="showDateOfBirth" class="form-field sm:col-span-2">
         <span>Date de naissance</span>
         <Input
           v-model="form.dateOfBirth"
@@ -172,7 +210,10 @@ async function submitForm() {
       </label>
     </div>
 
-    <section class="space-y-3 rounded-[1rem] border border-border/70 bg-white/70 p-4">
+    <section
+      v-if="showPaymentSection"
+      class="space-y-3 rounded-[1rem] border border-border/70 bg-white/70 p-4"
+    >
       <div class="space-y-1">
         <p class="detail-key">{{ paymentTitle }}</p>
         <p class="text-sm leading-6 text-muted-foreground">
@@ -222,8 +263,7 @@ async function submitForm() {
         type="checkbox"
       >
       <span class="text-sm leading-relaxed text-muted-foreground">
-        J’accepte que CITYZ'France utilise ces informations pour traiter ma demande d'inscription
-        et me recontacter.
+        {{ consentLabel }}
       </span>
     </label>
 
@@ -237,7 +277,7 @@ async function submitForm() {
     </p>
 
     <Button :aria-busy="submitting ? 'true' : undefined" :disabled="submitting" size="lg" type="submit">
-      {{ submitting ? 'Envoi en cours...' : "S'inscrire" }}
+      {{ submitting ? 'Envoi en cours...' : submitLabel }}
     </Button>
   </form>
 </template>

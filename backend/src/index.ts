@@ -327,7 +327,7 @@ const app = new Elysia()
       const dateOfBirth = normalizeText(body.dateOfBirth)
       const paymentPreference = normalizePaymentPreference(body.paymentPreference)
 
-      if (!firstName || !lastName || !email || !dateOfBirth) {
+      if (!firstName || !lastName || !email) {
         set.status = 400
         return { error: 'Champs obligatoires manquants' }
       }
@@ -338,7 +338,7 @@ const app = new Elysia()
         $lastName: lastName,
         $email: email,
         $phone: normalizeText(body.phone) || null,
-        $dateOfBirth: dateOfBirth,
+        $dateOfBirth: dateOfBirth || null,
         $paymentPreference: paymentPreference || null,
         $targetProgramSlug: 'rpms',
         $message: message,
@@ -360,7 +360,7 @@ const app = new Elysia()
         lastName: t.String({ minLength: 2, maxLength: 80 }),
         email: t.String({ format: 'email', maxLength: 160 }),
         phone: t.Optional(t.String({ maxLength: 40 })),
-        dateOfBirth: t.String({ minLength: 10, maxLength: 10 }),
+        dateOfBirth: t.Optional(t.String({ minLength: 10, maxLength: 10 })),
         paymentPreference: t.Optional(t.String({ maxLength: 32 })),
         message: t.Optional(t.String({ maxLength: 2000 })),
         consentRgpd: t.Boolean(),

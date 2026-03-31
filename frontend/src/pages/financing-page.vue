@@ -42,13 +42,13 @@ const hasPaymentLinks = computed(
 
 const cashContactLink = computed(() =>
   toWithExperience({
-    path: '/contact',
+    path: '/inscription',
     query: { payment: 'cash' }
   })
 )
 const installmentsContactLink = computed(() =>
   toWithExperience({
-    path: '/contact',
+    path: '/inscription',
     query: { payment: 'installments' }
   })
 )

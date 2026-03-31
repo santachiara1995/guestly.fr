@@ -9,6 +9,7 @@ import HomePage from '@/pages/home-page.vue'
 import LegalPage from '@/pages/legal-page.vue'
 import PrivacyPage from '@/pages/privacy-page.vue'
 import ProgramPage from '@/pages/program-page.vue'
+import SignupPage from '@/pages/signup-page.vue'
 import ThankYouPage from '@/pages/thank-you-page.vue'
 
 const brandName = "CITYZ'France"
@@ -41,7 +42,7 @@ const notFoundPage = {
         h(
           RouterLink,
           {
-            to: '/contact',
+            to: '/inscription',
             class:
               'inline-flex items-center rounded-full border border-border bg-card/82 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-primary/35 hover:bg-accent'
           },
@@ -91,6 +92,14 @@ const routes = [
     component: FaqPage,
     meta: {
       title: 'FAQ'
+    }
+  },
+  {
+    path: '/inscription',
+    name: 'inscription',
+    component: SignupPage,
+    meta: {
+      title: 'Inscription'
     }
   },
   {

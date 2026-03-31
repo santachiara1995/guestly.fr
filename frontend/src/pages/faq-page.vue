@@ -32,7 +32,7 @@ const hero = computed(() => ({
     'En cinq questions, vérifiez le titre, le programme, le format et le financement, puis avancez si le RPMS correspond à votre projet.'
 }))
 
-const topItems = computed(() => items.value.slice(0, 5))
+const topItems = computed(() => items.value)
 </script>
 
 <template>

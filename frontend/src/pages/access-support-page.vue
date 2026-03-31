@@ -33,6 +33,7 @@ const accessCopy = computed(() => site.value.access ?? {})
 const programLink = computed(() => toWithExperience('/programme'))
 const financeLink = computed(() => toWithExperience('/financement'))
 const contactLink = computed(() => toWithExperience('/contact'))
+const signupLink = computed(() => toWithExperience('/inscription'))
 
 const hero = computed(() => accessCopy.value.hero ?? {})
 const checklist = computed(() => accessCopy.value.fitChecklist ?? {})
@@ -166,7 +167,7 @@ const trustStripItems = computed(() => [
               Voir le programme
               <ArrowRight class="ml-2 h-4 w-4" />
             </Button>
-            <Button :as="RouterLink" :to="contactLink" size="lg" variant="outline">
+            <Button :as="RouterLink" :to="signupLink" size="lg" variant="outline">
               S'inscrire
             </Button>
           </div>

@@ -78,7 +78,7 @@ const pricingFootnote = computed(
       >
         <article class="page-hero space-y-5 p-5 sm:p-6 lg:space-y-6 lg:p-7">
           <div class="space-y-3">
-            <h1 class="editorial-title max-w-3xl text-[clamp(1.95rem,3.4vw,3rem)] text-foreground">
+            <h1 class="editorial-title mx-auto max-w-3xl text-center text-[clamp(1.95rem,3.4vw,3rem)] text-foreground">
               {{
                 financeCopy.hero?.title ??
                 'Le financement du RPMS, présenté de manière claire et directe.'

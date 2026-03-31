@@ -1637,10 +1637,11 @@
   }
 
   .program-overview-card {
-    display: flex;
-    min-height: 9.6rem;
-    flex-direction: column;
-    justify-content: flex-start;
+    display: grid;
+    min-height: 11rem;
+    align-content: center;
+    justify-items: center;
+    text-align: center;
   }
 
   .program-summary-line {
@@ -1666,6 +1667,11 @@
   .program-summary-line p {
     font-size: 0.92rem;
     line-height: 1.65;
+    color: var(--ink);
+  }
+
+  .hero-support-line strong {
+    font-weight: 800;
     color: var(--ink);
   }
 
@@ -1714,6 +1720,10 @@
   .block-ladder {
     display: grid;
     gap: 1rem;
+  }
+
+  .program-reference .programme-ladder::before {
+    display: none;
   }
 
   .block-row {
@@ -1793,6 +1803,41 @@
     width: 0.45rem;
     border-radius: 999px;
     background: var(--primary);
+  }
+
+  .program-reference .block-row.programme-block {
+    justify-items: center;
+    padding: 1.25rem 1.15rem;
+    text-align: center;
+  }
+
+  .program-reference .programme-block__badge {
+    position: static;
+    margin-inline: auto;
+    margin-bottom: 0.3rem;
+    min-height: 2rem;
+    min-width: 2rem;
+    font-size: 0.84rem;
+    box-shadow: 0 10px 20px rgb(0 0 145 / 0.16);
+  }
+
+  .program-reference .programme-block__code,
+  .program-reference .block-row__title {
+    text-align: center;
+  }
+
+  .program-reference .programme-skills {
+    justify-items: center;
+  }
+
+  .program-reference .programme-skills > li {
+    max-width: 48rem;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .program-reference .programme-skills > li::before {
+    display: none;
   }
 
   .accordion-card {

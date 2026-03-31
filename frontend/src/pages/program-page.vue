@@ -75,8 +75,9 @@ const blocks = computed(() =>
 const overviewCards = computed(() => [
   {
     label: "Diplôme certifié par l'État",
-    value: 'Titre professionnel Responsable de petite et moyenne structure',
-    note: `${program.value?.rncpCode ?? 'RNCP38575'} · ${program.value?.levelLabel ?? 'Niveau 5 / Bac+2'}`
+    value: 'RPMS',
+    note:
+      `Titre professionnel Responsable de petite et moyenne structure · ${program.value?.rncpCode ?? 'RNCP38575'} · ${program.value?.levelLabel ?? 'Niveau 5 / Bac+2'} · Un diplôme Bac+2 certifié par l'État français pour valoriser vos compétences, crédibiliser votre profil et faciliter votre évolution professionnelle.`
   },
   {
     label: 'Format distanciel',
@@ -133,11 +134,32 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
                     {{ hero.description }}
                   </p>
                   <p class="hero-support-line max-w-3xl text-sm leading-6 text-foreground sm:text-[0.96rem]">
-                    {{ hero.note }}
+                    <strong>{{ hero.note }}</strong>
                   </p>
                 </div>
+              </div>
 
-                <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <aside class="space-y-4">
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <article
+                    v-for="(card, index) in overviewCards"
+                    :key="card.label"
+                    class="program-note-card program-overview-card p-4"
+                    v-motion
+                    :initial="motionVariants.pop.initial"
+                    :enter="staggerEnter(index, 40, 18)"
+                  >
+                    <p class="detail-key">{{ card.label }}</p>
+                    <p class="mt-2 text-base font-semibold leading-6 text-foreground">
+                      {{ card.value }}
+                    </p>
+                    <p v-if="card.note" class="mt-2 text-sm leading-6 text-muted-foreground">
+                      {{ card.note }}
+                    </p>
+                  </article>
+                </div>
+
+                <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
                   <Button :as="RouterLink" :to="contactLink" size="lg" class="w-full justify-center sm:w-auto">
                     S'inscrire
                     <ArrowRight class="ml-2 h-4 w-4" />
@@ -162,25 +184,6 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
                     Télécharger le programme
                   </Button>
                 </div>
-              </div>
-
-              <aside class="grid gap-3 sm:grid-cols-2">
-                <article
-                  v-for="(card, index) in overviewCards"
-                  :key="card.label"
-                  class="program-note-card program-overview-card p-4"
-                  v-motion
-                  :initial="motionVariants.pop.initial"
-                  :enter="staggerEnter(index, 40, 18)"
-                >
-                  <p class="detail-key">{{ card.label }}</p>
-                  <p class="mt-2 text-base font-semibold leading-6 text-foreground">
-                    {{ card.value }}
-                  </p>
-                  <p v-if="card.note" class="mt-2 text-sm leading-6 text-muted-foreground">
-                    {{ card.note }}
-                  </p>
-                </article>
               </aside>
             </div>
           </article>

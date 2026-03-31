@@ -137,6 +137,27 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
                     <strong>{{ hero.note }}</strong>
                   </p>
                 </div>
+              </div>
+
+              <aside class="space-y-4">
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <article
+                    v-for="(card, index) in overviewCards"
+                    :key="card.label"
+                    class="program-note-card program-overview-card p-4"
+                    v-motion
+                    :initial="motionVariants.pop.initial"
+                    :enter="staggerEnter(index, 40, 18)"
+                  >
+                    <p class="detail-key">{{ card.label }}</p>
+                    <p class="mt-2 text-base font-semibold leading-6 text-foreground">
+                      {{ card.value }}
+                    </p>
+                    <p v-if="card.note" class="mt-2 text-sm leading-6 text-muted-foreground">
+                      {{ card.note }}
+                    </p>
+                  </article>
+                </div>
 
                 <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-start">
                   <Button :as="RouterLink" :to="contactLink" size="lg" class="w-full justify-center sm:w-auto">
@@ -162,27 +183,6 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
                   >
                     Télécharger le programme
                   </Button>
-                </div>
-              </div>
-
-              <aside class="space-y-4">
-                <div class="grid gap-3 sm:grid-cols-2">
-                  <article
-                    v-for="(card, index) in overviewCards"
-                    :key="card.label"
-                    class="program-note-card program-overview-card p-4"
-                    v-motion
-                    :initial="motionVariants.pop.initial"
-                    :enter="staggerEnter(index, 40, 18)"
-                  >
-                    <p class="detail-key">{{ card.label }}</p>
-                    <p class="mt-2 text-base font-semibold leading-6 text-foreground">
-                      {{ card.value }}
-                    </p>
-                    <p v-if="card.note" class="mt-2 text-sm leading-6 text-muted-foreground">
-                      {{ card.note }}
-                    </p>
-                  </article>
                 </div>
               </aside>
             </div>

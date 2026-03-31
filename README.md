@@ -76,13 +76,23 @@ Public endpoints:
 
 ## Deployment
 
+The canonical deploy target is `/home/didi/Desktop/guestly.fr` on the VPS.
+
+The default deploy model is source-based:
+
+```bash
+git pull --ff-only origin master
+docker compose up -d --build
+```
+
 The repo keeps a GitHub Actions based deploy flow for `master`, plus helper scripts under `scripts/`.
 
 Relevant files:
 
 - `.github/workflows/deploy.yml`
 - `docker-compose.yml`
-- `docker-compose.prod.yml`
+- `docker-compose.prod.yml` (optional override)
+- `scripts/deploy-pull.sh`
 
 ## Environment
 

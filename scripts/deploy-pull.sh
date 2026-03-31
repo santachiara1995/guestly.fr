@@ -1,38 +1,29 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-APP_DIR=${APP_DIR:-/home/didi/Desktop/template-vps}
-REGISTRY=${REGISTRY:-ghcr.io}
-IMAGE_NAMESPACE=${IMAGE_NAMESPACE:-santachiara1995/template-vps}
-TOKEN_FILE=${TOKEN_FILE:-/etc/template-vps/ghcr.env}
+APP_DIR=${APP_DIR:-/home/didi/Desktop/guestly.fr}
+REMOTE=${REMOTE:-origin}
+BRANCH=${BRANCH:-master}
 
 if [[ ! -d "$APP_DIR" ]]; then
   echo "App directory not found: $APP_DIR"
   exit 1
 fi
 
-if [[ ! -f "$TOKEN_FILE" ]]; then
-  echo "Token file not found: $TOKEN_FILE"
-  echo "Create it with: sudo mkdir -p /etc/template-vps && sudo tee $TOKEN_FILE"
+if ! command -v git >/dev/null 2>&1; then
+  echo "git not found. Install git first."
   exit 1
 fi
 
-set -a
-source "$TOKEN_FILE"
-set +a
-
-if [[ -z "${GHCR_TOKEN:-}" ]]; then
-  echo "GHCR_TOKEN is missing in $TOKEN_FILE"
+if ! command -v docker >/dev/null 2>&1; then
+  echo "docker not found. Install Docker first."
   exit 1
 fi
 
-echo "Logging into $REGISTRY"
-echo "$GHCR_TOKEN" | docker login "$REGISTRY" -u "${GHCR_USER:-santachiara1995}" --password-stdin
-
-echo "Pulling latest images"
-docker pull "$REGISTRY/$IMAGE_NAMESPACE/api:latest"
-docker pull "$REGISTRY/$IMAGE_NAMESPACE/web:latest"
-
-echo "Starting stack"
 cd "$APP_DIR"
-docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+echo "Fetching latest git state"
+git fetch "$REMOTE" "$BRANCH"
+git pull --ff-only "$REMOTE" "$BRANCH"
+
+echo "Rebuilding and starting Docker services"
+docker compose up -d --build

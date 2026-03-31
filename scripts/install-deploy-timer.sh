@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SERVICE_NAME=${SERVICE_NAME:-template-vps-deploy}
-APP_DIR=${APP_DIR:-/home/didi/Desktop/template-vps}
+SERVICE_NAME=${SERVICE_NAME:-guestly-fr-deploy}
+APP_DIR=${APP_DIR:-/home/didi/Desktop/guestly.fr}
 UNIT_PATH=/etc/systemd/system/${SERVICE_NAME}.service
 TIMER_PATH=/etc/systemd/system/${SERVICE_NAME}.timer
 
@@ -19,7 +19,7 @@ fi
 echo "Writing systemd unit: $UNIT_PATH"
 sudo tee "$UNIT_PATH" >/dev/null <<EOF
 [Unit]
-Description=Pull latest images and deploy
+Description=Pull latest guestly.fr git state and rebuild
 Wants=network-online.target
 After=network-online.target docker.service
 Requires=docker.service
@@ -33,7 +33,7 @@ EOF
 echo "Writing systemd timer: $TIMER_PATH"
 sudo tee "$TIMER_PATH" >/dev/null <<EOF
 [Unit]
-Description=Periodic deploy pull
+Description=Periodic guestly.fr rebuild
 
 [Timer]
 OnBootSec=2min

@@ -1,4 +1,4 @@
-# Agent Guide (template-vps)
+# Agent Guide (CITYZ'France RPMS)
 
 This file is for automated coding agents working in this repository.
 Follow the commands and conventions below.
@@ -7,8 +7,8 @@ Follow the commands and conventions below.
 
 - `backend/`: Bun + Elysia API (SQLite).
 - `frontend/`: Vue + Vite app (static build served by nginx).
-- `docker-compose.yml`: local/dev builds on the VPS.
-- `docker-compose.prod.yml`: prebuilt images (GHCR) when used.
+- `docker-compose.yml`: canonical source-build stack for VPS deploys.
+- `docker-compose.prod.yml`: optional prod override only.
 - `.github/workflows/deploy.yml`: SSH deploy over Tailscale.
 
 ## Build / dev / test commands
@@ -44,8 +44,8 @@ Follow the commands and conventions below.
   - `docker compose up --build`
 - Rebuild after deploy pull:
   - `docker compose up -d --build`
-- With GHCR images (optional):
-  - `docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d`
+- Optional prod override:
+  - `docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build`
 
 ## Single test guidance
 
@@ -126,7 +126,9 @@ There is no test runner configured. If tests are added later, document here:
 
 - Default branch: `master`.
 - Deploy workflow uses Tailscale + SSH.
-- Deploy command runs `docker compose up -d --build`.
+- Canonical VPS path is `/home/didi/Desktop/guestly.fr`.
+- Deploy command runs `git pull --ff-only origin master` then `docker compose up -d --build`.
+- Frontend nginx is built into the web container from `frontend/nginx.conf`.
 - Ensure GitHub secrets:
   - `TAILSCALE_AUTH_KEY`
   - `SSH_PRIVATE_KEY` (full private key block, no passphrase)

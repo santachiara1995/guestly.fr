@@ -3,10 +3,10 @@ set -euo pipefail
 
 DOMAIN=${DOMAIN:-}
 EMAIL=${EMAIL:-}
-WEB_PORT=${WEB_PORT:-8080}
-API_PORT=${API_PORT:-3000}
-NGINX_SITE=${NGINX_SITE:-/etc/nginx/sites-available/vps-template}
-NGINX_ENABLED=${NGINX_ENABLED:-/etc/nginx/sites-enabled/vps-template}
+WEB_PORT=${WEB_PORT:-8086}
+API_PORT=${API_PORT:-3006}
+NGINX_SITE=${NGINX_SITE:-/etc/nginx/sites-available/guestly.fr}
+NGINX_ENABLED=${NGINX_ENABLED:-/etc/nginx/sites-enabled/guestly.fr}
 
 if [[ -z "$DOMAIN" || -z "$EMAIL" ]]; then
   echo "Usage: DOMAIN=example.com EMAIL=you@example.com $0"

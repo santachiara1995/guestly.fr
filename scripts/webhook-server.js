@@ -5,7 +5,7 @@ const port = Number(process.env.PORT ?? 9000);
 const secret = process.env.WEBHOOK_SECRET ?? "";
 const deployCmd =
   process.env.DEPLOY_CMD ??
-  "/home/didi/Desktop/template-vps/scripts/deploy-pull.sh";
+  "/home/didi/Desktop/guestly.fr/scripts/deploy-pull.sh";
 
 if (!secret) {
   console.error("WEBHOOK_SECRET is required");
@@ -53,7 +53,7 @@ const server = Bun.serve({
       return new Response("Invalid JSON", { status: 400 });
     }
 
-    if (payload.ref !== "refs/heads/main") {
+    if (payload.ref !== "refs/heads/master") {
       return new Response("Ignored", { status: 202 });
     }
 

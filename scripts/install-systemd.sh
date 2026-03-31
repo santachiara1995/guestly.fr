@@ -30,8 +30,8 @@ After=docker.service
 [Service]
 Type=oneshot
 WorkingDirectory=$APP_DIR
-ExecStart=/usr/bin/docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
-ExecStop=/usr/bin/docker compose -f docker-compose.yml -f docker-compose.prod.yml down
+ExecStart=/usr/bin/docker compose up -d --build
+ExecStop=/usr/bin/docker compose down
 RemainAfterExit=yes
 
 [Install]

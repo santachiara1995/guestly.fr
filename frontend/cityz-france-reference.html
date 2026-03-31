@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CITYZ'France - Formation RPMS Certifiée Bac+2</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed": "#ffdea5",
+              "error-container": "#ffdad6",
+              "inverse-surface": "#20304e",
+              "tertiary-container": "#3a2800",
+              "primary-fixed-dim": "#b2c5ff",
+              "on-tertiary-fixed": "#261900",
+              "on-tertiary-container": "#b08d48",
+              "secondary": "#4e5f7e",
+              "primary": "#00143d",
+              "on-background": "#081b38",
+              "surface-container-highest": "#d7e2ff",
+              "on-secondary-fixed-variant": "#374765",
+              "on-surface-variant": "#44474d",
+              "on-surface": "#081b38",
+              "outline-variant": "#c5c6ce",
+              "on-error": "#ffffff",
+              "primary-fixed": "#dae2ff",
+              "surface-container": "#e8eeff",
+              "error": "#ba1a1a",
+              "surface-bright": "#f9f9ff",
+              "background": "#f9f9ff",
+              "on-primary-container": "#5e8eff",
+              "on-secondary-container": "#4f5f7f",
+              "on-secondary": "#ffffff",
+              "secondary-fixed": "#d7e2ff",
+              "outline": "#75777e",
+              "on-primary": "#ffffff",
+              "tertiary": "#201500",
+              "inverse-on-surface": "#ecf0ff",
+              "on-primary-fixed": "#001847",
+              "surface": "#f9f9ff",
+              "secondary-container": "#cadaff",
+              "on-primary-fixed-variant": "#0040a1",
+              "surface-container-low": "#f1f3ff",
+              "surface-tint": "#0056d2",
+              "secondary-fixed-dim": "#b6c7eb",
+              "surface-dim": "#cadaff",
+              "on-error-container": "#93000a",
+              "surface-variant": "#d7e2ff",
+              "primary-container": "#002767",
+              "on-tertiary-fixed-variant": "#5d4201",
+              "inverse-primary": "#b2c5ff",
+              "surface-container-high": "#dfe8ff",
+              "tertiary-fixed-dim": "#e9c176",
+              "on-secondary-fixed": "#081b38",
+              "on-tertiary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }
+          }
+        }
+      }
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      h1,
+      h2,
+      h3,
+      .font-headline {
+        font-family: "Manrope", sans-serif;
+      }
+
+      .narrative-line {
+        position: relative;
+      }
+
+      @media (min-width: 768px) {
+        .narrative-line::after {
+          content: "";
+          position: absolute;
+          left: 2rem;
+          top: 100%;
+          width: 2px;
+          height: 3rem;
+          background: linear-gradient(to bottom, #0056d2, #4e5f7e);
+          z-index: 0;
+        }
+
+        .narrative-line:last-child::after {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-surface text-on-surface">
+    <header class="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md shadow-sm">
+      <nav class="mx-auto flex max-w-7xl items-center justify-between px-8 py-4">
+        <div class="text-xl font-bold tracking-tight text-slate-900">CITYZ'France</div>
+        <div class="hidden items-center gap-8 md:flex">
+          <a class="body-lg Inter text-slate-600 transition-colors hover:text-blue-600" href="#">Formations</a>
+          <a class="body-lg Inter text-slate-600 transition-colors hover:text-blue-600" href="#">Financement</a>
+          <a class="body-lg Inter text-slate-600 transition-colors hover:text-blue-600" href="#">Accompagnement</a>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="hidden items-center gap-2 text-slate-600 sm:flex">
+            <span class="material-symbols-outlined text-blue-700">verified_user</span>
+            <span class="text-sm font-medium">Qualiopi Certifié</span>
+          </div>
+          <button class="flex scale-95 items-center gap-2 rounded-lg bg-surface-tint px-6 py-2.5 font-bold text-on-primary transition-all duration-200 ease-in-out hover:bg-on-primary-container">
+            <span class="material-symbols-outlined">call</span>
+            Appeler un conseiller
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main class="pt-20">
+      <section class="relative overflow-hidden bg-surface py-20 lg:py-32">
+        <div class="mx-auto grid max-w-7xl items-center gap-16 px-8 lg:grid-cols-2">
+          <div class="z-10">
+            <span class="mb-6 inline-block rounded-full bg-secondary-container px-4 py-1.5 text-sm font-semibold text-on-secondary-container">
+              Titre RNCP38575 • Diplôme d'État
+            </span>
+            <h1 class="mb-8 text-5xl font-extrabold leading-[1.1] tracking-tight text-primary lg:text-7xl">
+              Devenez Manager Certifié Bac+2 -
+              <span class="text-surface-tint">100% en Ligne.</span>
+            </h1>
+            <p class="mb-10 max-w-xl text-lg leading-relaxed text-on-surface-variant lg:text-xl">
+              Obtenez un diplôme reconnu par l'État tout en gérant votre activité. Formation RPMS éligible et certifiée Qualiopi pour propulser votre carrière.
+            </p>
+            <div class="flex flex-col gap-4 sm:flex-row">
+              <button class="rounded-xl bg-surface-tint px-8 py-4 text-lg font-bold text-on-primary transition-all hover:-translate-y-1 hover:shadow-xl">
+                Être rappelé par un conseiller
+              </button>
+              <button class="rounded-xl border-2 border-outline-variant px-8 py-4 text-lg font-bold text-on-surface transition-all hover:bg-surface-container">
+                Découvrir le programme
+              </button>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="absolute inset-0 -z-10 rotate-3 rounded-[2rem] bg-primary-container opacity-10"></div>
+            <img
+              alt="Manager professionnel"
+              class="aspect-[4/5] w-full rounded-[2rem] object-cover shadow-2xl"
+              data-alt="professional woman manager in a bright modern office setting looking confident and smiling slightly soft natural lighting"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxek11yBm6DhC2ca_TKbFajPNC53QzMylReij6MYOswA4bcLzRdZAiFRLO6FBggrkw1bJ4nWTf6ZhXWmjuOY7gQqQrgOBIUw8ZW9e2_Ea2QR-9jH8sf6FkxdakH56425QdIo6kPwv9Lg9ImbEi8i8PDuX1_OAAZg6Va8o-ZDnEgeID23iRuklhF7JYCUGzDqcIJaBPeee_PRWbYXWSFP4GH1V9lAeAYeaHJ1hutHAs9nNC5z7dDYon9zhBiB3IhKmCSxEJIlpMX6o"
+            />
+          </div>
+        </div>
+      </section>
+      <section class="border-y border-outline-variant/20 bg-surface-container-low py-12">
+        <div class="mx-auto max-w-7xl px-8">
+          <p class="mb-8 text-center text-xs font-semibold uppercase tracking-widest text-on-surface-variant">
+            Partenaires et Certifications d'État
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-12 opacity-70 grayscale lg:gap-24">
+            <img
+              alt="Ministère du Travail"
+              class="h-16 object-contain"
+              data-alt="French Ministry of Labor official logo blue white red emblem"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxap-084jdQ9GKBpQu_XYqFz7egDcgKUaiunozVlFJiwc7dYuGECYsgx4lb3HzPKrVRfhWRa44dLfhuunBaVWq79cR4Q_-W9dXNO-3u4o41TLjA6YuLiOWqukZCnYQwXjga4dFYYkOUyVs3rWG-7kVvHMLpo9YE7YqUjDZ4vj7J2YTelQMINGq7G0WAi9MK8UUBR4Cadrh6zH5C-JMxiYm6zF4KFZJdvVwpuBQRMWKbC5gJcmgqz_PRpGwQSx5yjWm6x94mMIrx7Y"
+            />
+            <div class="flex flex-col items-center">
+              <span class="text-2xl font-black italic text-primary">Qualiopi</span>
+              <span class="text-center text-[8px] font-bold uppercase">Processus certifié</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <span class="text-2xl font-black text-primary">RNCP</span>
+              <span class="text-center text-[8px] font-bold uppercase">Niveau 5 (Bac+2)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="bg-surface py-24">
+        <div class="mx-auto max-w-7xl px-8">
+          <div class="mb-16 text-center">
+            <h2 class="mb-4 text-4xl font-extrabold text-primary">Pourquoi choisir la certification RPMS ?</h2>
+            <p class="mx-auto max-w-2xl text-lg text-on-surface-variant">
+              Un accompagnement sur mesure pour une transformation professionnelle concrète.
+            </p>
+          </div>
+          <div class="grid gap-8 md:grid-cols-3">
+            <div class="rounded-2xl bg-surface-container-lowest p-10 shadow-[0px_20px_40px_rgba(8,27,56,0.06)] transition-transform hover:-translate-y-2">
+              <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-secondary-container">
+                <span class="material-symbols-outlined text-3xl text-primary">trending_up</span>
+              </div>
+              <h3 class="mb-4 text-2xl font-bold text-primary">Évolution de Carrière</h3>
+              <p class="leading-relaxed text-on-surface-variant">
+                Passez au niveau supérieur. Validez vos compétences et accédez à des postes de direction stratégique.
+              </p>
+            </div>
+            <div class="rounded-2xl border-t-4 border-tertiary-fixed bg-surface-container-lowest p-10 shadow-[0px_20px_40px_rgba(8,27,56,0.06)] transition-transform hover:-translate-y-2">
+              <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-tertiary-fixed">
+                <span class="material-symbols-outlined text-3xl text-on-tertiary-fixed">workspace_premium</span>
+              </div>
+              <h3 class="mb-4 text-2xl font-bold text-primary">Diplôme Officiel</h3>
+              <p class="leading-relaxed text-on-surface-variant">
+                Une reconnaissance d'État (RNCP niveau 5) qui sécurise votre parcours et valorise votre profil sur le marché.
+              </p>
+            </div>
+            <div class="rounded-2xl bg-surface-container-lowest p-10 shadow-[0px_20px_40px_rgba(8,27,56,0.06)] transition-transform hover:-translate-y-2">
+              <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary-fixed">
+                <span class="material-symbols-outlined text-3xl text-on-primary-fixed">schedule</span>
+              </div>
+              <h3 class="mb-4 text-2xl font-bold text-primary">Flexibilité Totale</h3>
+              <p class="leading-relaxed text-on-surface-variant">
+                Formation 100% digitale. Apprenez à votre rythme, où vous voulez, quand vous voulez, sans interrompre votre travail.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="bg-surface-container-low py-24">
+        <div class="mx-auto max-w-4xl px-8">
+          <div class="mb-20 text-center">
+            <h2 class="mb-6 text-4xl font-extrabold text-primary">Le Programme RPMS</h2>
+            <div class="inline-block rounded-full border border-primary/10 bg-primary-fixed px-6 py-2">
+              <span class="text-sm font-bold tracking-wide text-primary">Bac +2 (120 ECTS) — Votre itinéraire vers le succès</span>
+            </div>
+            <p class="mt-4 text-on-surface-variant">7 Blocs de compétences pour maîtriser la gestion d'une structure.</p>
+          </div>
+          <div class="space-y-12">
+            <div class="narrative-line group relative flex items-start gap-8 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-8 shadow-sm transition-all hover:shadow-md">
+              <div class="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-surface-tint text-2xl font-bold text-on-primary shadow-lg shadow-surface-tint/20">
+                1
+              </div>
+              <div>
+                <div class="mb-2 flex items-center gap-3">
+                  <span class="material-symbols-outlined text-surface-tint">strategy</span>
+                  <h4 class="text-xl font-bold text-primary">Bloc 1 : Diriger une structure et une équipe</h4>
+                </div>
+                <p class="font-light leading-relaxed text-on-surface-variant">
+                  Compréhension de l’écosystème, gestion administrative et veille stratégique.
+                </p>
+              </div>
+            </div>
+            <div class="narrative-line group relative flex items-start gap-8 rounded-2xl border border-secondary/10 bg-secondary-container/20 p-8 shadow-sm transition-all hover:shadow-md">
+              <div class="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-secondary text-2xl font-bold text-on-secondary shadow-lg shadow-secondary/20">
+                2
+              </div>
+              <div>
+                <div class="mb-2 flex items-center gap-3">
+                  <span class="material-symbols-outlined text-secondary">public</span>
+                  <h4 class="text-xl font-bold text-primary">Bloc 2 : Inscrire la structure dans son territoire</h4>
+                </div>
+                <p class="font-light leading-relaxed text-on-surface-variant">
+                  Analyse du territoire, communication et marketing territorial, développement de partenariats.
+                </p>
+              </div>
+            </div>
+            <div class="narrative-line relative grid gap-6 md:grid-cols-2">
+              <div class="flex flex-col gap-4 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-8 shadow-sm">
+                <div class="flex items-center gap-3">
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary-fixed font-bold text-on-primary-fixed">3</div>
+                  <h4 class="font-bold text-primary">Bloc 3 : Manager et animer une équipe</h4>
+                </div>
+                <p class="text-sm font-light text-on-surface-variant">
+                  Fondamentaux du management, communication et gestion des conflits.
+                </p>
+              </div>
+              <div class="flex flex-col gap-4 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-8 shadow-sm">
+                <div class="flex items-center gap-3">
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary-fixed font-bold text-on-primary-fixed">4</div>
+                  <h4 class="font-bold text-primary">Bloc 4 : Adapter l’offre à la demande</h4>
+                </div>
+                <p class="text-sm font-light text-on-surface-variant">
+                  Analyse du marché, conception de l’offre et innovation client.
+                </p>
+              </div>
+            </div>
+            <div class="narrative-line group relative flex items-start gap-8 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-8 shadow-sm transition-all hover:shadow-md">
+              <div class="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-surface-tint text-2xl font-bold text-on-primary shadow-lg shadow-surface-tint/20">
+                5
+              </div>
+              <div>
+                <div class="mb-2 flex items-center gap-3">
+                  <span class="material-symbols-outlined text-surface-tint">campaign</span>
+                  <h4 class="text-xl font-bold text-primary">Bloc 5 : Développement de la diffusion de l’offre</h4>
+                </div>
+                <p class="font-light leading-relaxed text-on-surface-variant">
+                  Stratégie commerciale, marketing digital et suivi des performances.
+                </p>
+              </div>
+            </div>
+            <div class="narrative-line group relative flex items-start gap-8 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-8 shadow-sm transition-all hover:shadow-md">
+              <div class="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-surface-tint text-2xl font-bold text-on-primary shadow-lg shadow-surface-tint/20">
+                6
+              </div>
+              <div>
+                <div class="mb-2 flex items-center gap-3">
+                  <span class="material-symbols-outlined text-surface-tint">settings_applications</span>
+                  <h4 class="text-xl font-bold text-primary">Bloc 6 : Organiser la production</h4>
+                </div>
+                <p class="font-light leading-relaxed text-on-surface-variant">
+                  Gestion des processus, planification des ressources et amélioration continue.
+                </p>
+              </div>
+            </div>
+            <div class="group relative flex items-start gap-8 rounded-3xl bg-primary p-10 text-on-primary shadow-2xl shadow-primary/20">
+              <div class="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-3xl font-bold backdrop-blur-md">
+                7
+              </div>
+              <div>
+                <div class="mb-3 flex items-center gap-3">
+                  <span class="material-symbols-outlined text-tertiary-fixed">payments</span>
+                  <h4 class="font-headline text-2xl font-bold">Bloc 7 : Gestion financière et reporting</h4>
+                </div>
+                <p class="text-lg leading-relaxed text-primary-fixed-dim">
+                  Analyse du bilan, compte de résultat et rapport d’activité pour un pilotage financier expert.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="bg-primary py-24 text-on-primary">
+        <div class="mx-auto grid max-w-7xl items-center gap-16 px-8 lg:grid-cols-2">
+          <div>
+            <h2 class="mb-8 text-4xl font-extrabold leading-tight lg:text-5xl">Investissez dans votre avenir professionnel.</h2>
+            <div class="mb-12 space-y-6">
+              <div class="flex items-start gap-4">
+                <span class="material-symbols-outlined text-tertiary-fixed">check_circle</span>
+                <p class="text-lg">Accès illimité à la plateforme pendant 12 mois</p>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="material-symbols-outlined text-tertiary-fixed">check_circle</span>
+                <p class="text-lg">Coaching individuel personnalisé</p>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="material-symbols-outlined text-tertiary-fixed">check_circle</span>
+                <p class="text-lg">Passage de l'examen inclus</p>
+              </div>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-surface-container-low/10 p-8">
+              <div class="mb-4 flex items-center gap-4">
+                <span class="text-3xl font-bold">COFIDIS</span>
+                <div class="h-8 w-px bg-white/20"></div>
+                <span class="text-lg font-medium">Paiement échelonné</span>
+              </div>
+              <p class="text-primary-fixed-dim">
+                Facilités de paiement disponibles : réglez en 3x ou 4x sans frais pour plus de sérénité.
+              </p>
+            </div>
+          </div>
+          <div class="relative overflow-hidden rounded-[2rem] bg-surface-container-lowest p-12 text-on-surface shadow-2xl">
+            <div class="absolute right-0 top-0 rounded-bl-2xl bg-tertiary-fixed px-6 py-2 text-sm font-bold text-on-tertiary-fixed">
+              Offre Certifiée
+            </div>
+            <span class="mb-4 block text-sm font-bold uppercase tracking-widest text-on-surface-variant">
+              Tarif Formation RPMS
+            </span>
+            <div class="mb-8 flex items-baseline gap-2">
+              <span class="text-6xl font-black text-primary">3 500€</span>
+              <span class="text-on-surface-variant">TTC</span>
+            </div>
+            <p class="mb-10 leading-relaxed text-on-surface-variant">
+              Inclut l'ensemble des modules, le support pédagogique digital et l'accompagnement au diplôme.
+            </p>
+            <button class="w-full rounded-xl bg-surface-tint py-5 text-xl font-bold text-on-primary shadow-lg shadow-surface-tint/20 transition-all hover:bg-on-primary-fixed-variant">
+              Démarrer mon inscription
+            </button>
+            <p class="mt-6 text-center text-xs italic text-on-surface-variant">
+              Formation éligible à divers financements selon votre statut.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="bg-surface py-24 text-center">
+        <div class="mx-auto max-w-3xl px-8">
+          <h2 class="mb-8 text-4xl font-extrabold text-primary">Prêt à franchir le pas ?</h2>
+          <p class="mb-10 text-xl text-on-surface-variant">
+            Nos conseillers sont à votre disposition pour analyser votre projet et vos possibilités de financement.
+          </p>
+          <div class="flex flex-col justify-center gap-4 sm:flex-row">
+            <button class="rounded-xl bg-surface-tint px-10 py-5 text-xl font-bold text-on-primary transition-all hover:scale-105">
+              Lancez votre projet dès aujourd'hui
+            </button>
+          </div>
+          <div class="mt-12 flex items-center justify-center gap-8">
+            <div class="text-left">
+              <p class="text-3xl font-black text-primary">98%</p>
+              <p class="text-sm font-semibold text-on-surface-variant">Taux de réussite</p>
+            </div>
+            <div class="h-12 w-px bg-outline-variant"></div>
+            <div class="text-left">
+              <p class="text-3xl font-black text-primary">4.9/5</p>
+              <p class="text-sm font-semibold text-on-surface-variant">Satisfaction stagiaire</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="border-t border-slate-800 bg-slate-900 py-16 text-slate-400">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-8 md:grid-cols-4">
+        <div class="col-span-1 md:col-span-2">
+          <div class="mb-6 text-2xl font-bold text-white">CITYZ'France</div>
+          <p class="mb-8 max-w-sm">
+            L'institut de référence pour la formation des managers de demain. Accompagnement, excellence et réussite certifiée.
+          </p>
+          <div class="space-y-1 text-sm">
+            <p>SIRET : 992 448 936 00011</p>
+            <p>NDA : 11923039192</p>
+            <p>Siège Social : Paris, France</p>
+          </div>
+        </div>
+        <div>
+          <h4 class="headline-md Manrope mb-6 font-bold text-white">Liens Utiles</h4>
+          <ul class="space-y-4">
+            <li><a class="transition-all hover:text-white" href="#">Formation RPMS</a></li>
+            <li><a class="transition-all hover:text-white" href="#">Financements</a></li>
+            <li><a class="transition-all hover:text-white" href="#">Notre Expertise</a></li>
+            <li><a class="transition-all hover:text-white" href="#">Blog &amp; Actu</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="headline-md Manrope mb-6 font-bold text-white">Légal</h4>
+          <ul class="space-y-4">
+            <li><a class="transition-all hover:text-white" href="#">Mentions Légales</a></li>
+            <li><a class="transition-all hover:text-white" href="#">CGV</a></li>
+            <li><a class="transition-all hover:text-white" href="#">Politique de Confidentialité</a></li>
+            <li><a class="transition-all hover:text-white" href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mx-auto mt-16 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-slate-800 px-8 pt-8 text-xs uppercase tracking-widest md:flex-row">
+        <p>© 2024 CITYZ'France. Tous droits réservés.</p>
+        <div class="flex gap-6">
+          <span class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">verified</span> Qualiopi</span>
+          <span class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">school</span> RNCP Certifié</span>
+        </div>
+      </div>
+    </footer>
+    <div class="fixed bottom-6 left-1/2 z-40 hidden w-[90%] max-w-2xl -translate-x-1/2 items-center justify-between rounded-2xl border border-outline-variant/30 bg-white/90 p-4 shadow-2xl backdrop-blur-xl sm:flex">
+      <div class="flex items-center gap-4">
+        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-surface-tint text-on-primary">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">verified_user</span>
+        </div>
+        <div>
+          <p class="text-xs font-bold uppercase leading-tight text-primary">Certification Qualité</p>
+          <p class="text-[10px] text-on-surface-variant">Délivrée au titre de la catégorie : Actions de formation</p>
+        </div>
+      </div>
+      <button class="rounded-lg bg-secondary-container px-4 py-2 text-sm font-bold text-on-secondary-container transition-all hover:bg-on-secondary-container hover:text-white">
+        Talk to an Advisor
+      </button>
+    </div>
+  </body>
+</html>

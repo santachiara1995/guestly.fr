@@ -263,7 +263,8 @@ export const siteContent = {
     hero: {
       eyebrow: 'Financement RPMS',
       title: 'Financez votre formation',
-      description: ''
+      description:
+        "Retrouvez le prix de la formation, choisissez votre modalité de règlement et poursuivez vers l'inscription."
     },
     pricing: {
       eyebrow: 'Prix de la formation',
@@ -271,13 +272,18 @@ export const siteContent = {
       amount: '3 500 € TTC',
       description:
         "Préparation à l’examen et accès aux formateurs inclus.",
-      footnote: "L'accès à la formation est conditionné au paiement."
+      footnote:
+        "L'accès au paiement puis à la formation est conditionné à la validation de votre inscription."
+    },
+    paymentLinks: {
+      cashUrl: '',
+      installmentsUrl: ''
     },
     paymentSection: {
-      eyebrow: 'Modalités de paiement',
-      title: 'Les solutions de règlement proposées',
+      eyebrow: 'Accès au paiement',
+      title: 'Choisissez votre solution de règlement',
       options: [
-        'Paiement comptant.',
+        'Paiement comptant en une seule fois.',
         'Paiement en plusieurs fois sans frais (partenariat COFIDIS).',
         'En 3 fois : 1 000 € + 3 x 833 €.',
         'En 4 fois : 1 000 € + 4 x 625 €.'
@@ -373,6 +379,9 @@ export const siteContent = {
       "Quelques informations suffisent pour démarrer votre demande d'inscription.",
     formSupport:
       "Renseignez simplement vos coordonnées et le point utile pour finaliser votre projet.",
+    paymentTitle: 'Choisissez ensuite votre mode de règlement',
+    paymentSupport:
+      "Après le formulaire, utilisez le lien correspondant à votre mode de règlement pour passer au paiement.",
     footerBand: {
       eyebrow: "Avant de valider",
       title: 'Programme et financement restent accessibles à tout moment',

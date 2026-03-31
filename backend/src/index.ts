@@ -46,11 +46,14 @@ db.run(
   `create table if not exists ${TABLES.faqItems} (id integer primary key autoincrement, question text not null, answer text not null, audience text not null default 'particulier', sort_order integer not null default 0, active integer not null default 1)`
 )
 db.run(
-  `create table if not exists ${TABLES.leadRequests} (id integer primary key autoincrement, profile text not null, first_name text not null, last_name text not null, email text not null, phone text, target_program_slug text not null, message text not null, consent_rgpd integer not null, source_page text, status text not null default 'new', created_at text not null default (datetime('now')))`
+  `create table if not exists ${TABLES.leadRequests} (id integer primary key autoincrement, profile text not null, first_name text not null, last_name text not null, email text not null, phone text, date_of_birth text, payment_preference text, target_program_slug text not null, message text not null, consent_rgpd integer not null, source_page text, status text not null default 'new', created_at text not null default (datetime('now')))`
 )
 db.run(
   `create table if not exists ${TABLES.siteSettings} (key text primary key, value text not null)`
 )
+
+ensureTableColumn(TABLES.leadRequests, 'date_of_birth', 'text')
+ensureTableColumn(TABLES.leadRequests, 'payment_preference', 'text')
 
 const upsertProgram = db.query(
   `insert into ${TABLES.programs} (slug, category, title, rncp_code, level_label, format_label, rhythm_label, support_label, objective_summary, professional_scope, intro, sort_order, active) values ($slug, $category, $title, $rncpCode, $levelLabel, $formatLabel, $rhythmLabel, $supportLabel, $objectiveSummary, $professionalScope, $intro, $sortOrder, 1) on conflict(slug) do update set category=excluded.category, title=excluded.title, rncp_code=excluded.rncp_code, level_label=excluded.level_label, format_label=excluded.format_label, rhythm_label=excluded.rhythm_label, support_label=excluded.support_label, objective_summary=excluded.objective_summary, professional_scope=excluded.professional_scope, intro=excluded.intro, sort_order=excluded.sort_order, active=1`
@@ -81,7 +84,7 @@ const listFaq = db.query(
 )
 const listSiteSettings = db.query(`select key, value from ${TABLES.siteSettings}`)
 const createLead = db.query(
-  `insert into ${TABLES.leadRequests} (profile, first_name, last_name, email, phone, target_program_slug, message, consent_rgpd, source_page, status) values ($profile, $firstName, $lastName, $email, $phone, $targetProgramSlug, $message, $consentRgpd, $sourcePage, $status) returning id, status, created_at as createdAt`
+  `insert into ${TABLES.leadRequests} (profile, first_name, last_name, email, phone, date_of_birth, payment_preference, target_program_slug, message, consent_rgpd, source_page, status) values ($profile, $firstName, $lastName, $email, $phone, $dateOfBirth, $paymentPreference, $targetProgramSlug, $message, $consentRgpd, $sourcePage, $status) returning id, status, created_at as createdAt`
 )
 
 function safeJsonParse(value, fallback) {
@@ -100,6 +103,27 @@ function normalizeText(value) {
 
 function normalizeEmail(value) {
   return normalizeText(value).toLowerCase()
+}
+
+function normalizePaymentPreference(value) {
+  const normalized = normalizeText(value).toLowerCase()
+  if (normalized === 'cash' || normalized === 'installments') {
+    return normalized
+  }
+  return ''
+}
+
+function ensureTableColumn(tableName, columnName, definition) {
+  const existingColumns = db
+    .query(`pragma table_info(${tableName})`)
+    .all()
+    .map((column) => String(column.name ?? ''))
+
+  if (existingColumns.includes(columnName)) {
+    return
+  }
+
+  db.run(`alter table ${tableName} add column ${columnName} ${definition}`)
 }
 
 async function pathExists(path) {
@@ -299,9 +323,11 @@ const app = new Elysia()
       const firstName = normalizeText(body.firstName)
       const lastName = normalizeText(body.lastName)
       const email = normalizeEmail(body.email)
-      const message = normalizeText(body.message)
+      const message = normalizeText(body.message) || 'Inscription RPMS'
+      const dateOfBirth = normalizeText(body.dateOfBirth)
+      const paymentPreference = normalizePaymentPreference(body.paymentPreference)
 
-      if (!firstName || !lastName || !email || !message) {
+      if (!firstName || !lastName || !email || !dateOfBirth) {
         set.status = 400
         return { error: 'Champs obligatoires manquants' }
       }
@@ -312,6 +338,8 @@ const app = new Elysia()
         $lastName: lastName,
         $email: email,
         $phone: normalizeText(body.phone) || null,
+        $dateOfBirth: dateOfBirth,
+        $paymentPreference: paymentPreference || null,
         $targetProgramSlug: 'rpms',
         $message: message,
         $consentRgpd: body.consentRgpd ? 1 : 0,
@@ -332,7 +360,9 @@ const app = new Elysia()
         lastName: t.String({ minLength: 2, maxLength: 80 }),
         email: t.String({ format: 'email', maxLength: 160 }),
         phone: t.Optional(t.String({ maxLength: 40 })),
-        message: t.String({ minLength: 10, maxLength: 2000 }),
+        dateOfBirth: t.String({ minLength: 10, maxLength: 10 }),
+        paymentPreference: t.Optional(t.String({ maxLength: 32 })),
+        message: t.Optional(t.String({ maxLength: 2000 })),
         consentRgpd: t.Boolean(),
         sourcePage: t.Optional(t.String({ maxLength: 160 })),
         honeypot: t.Optional(t.String({ maxLength: 120 }))

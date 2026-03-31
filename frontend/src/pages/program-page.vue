@@ -241,7 +241,7 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
                   :initial="motionVariants.pop.initial"
                   :enter="staggerEnter(index, 40, 18)"
                 >
-                  <div class="flex items-start gap-3">
+                  <div class="flex flex-col items-center gap-3 text-center">
                     <span class="finance-badge">{{ index + 1 }}</span>
                     <p class="text-sm leading-6 text-foreground">
                       {{ step }}
@@ -250,7 +250,10 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
                 </article>
               </div>
 
-              <p v-if="evaluationFootnote" class="program-eval-footnote mt-4 text-sm leading-6 text-muted-foreground">
+              <p
+                v-if="evaluationFootnote"
+                class="program-eval-footnote mt-4 text-center text-sm leading-6 text-muted-foreground"
+              >
                 {{ evaluationFootnote }}
               </p>
             </article>

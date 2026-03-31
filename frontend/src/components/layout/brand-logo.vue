@@ -26,14 +26,14 @@ defineProps({
   >
     <span
       :class="[
-        'relative block overflow-hidden rounded-lg',
-        compact ? 'h-9 w-[5.8rem] sm:h-10 sm:w-[6.6rem]' : 'h-12 w-[7.6rem] sm:h-14 sm:w-[8.8rem]'
+        'relative block overflow-hidden rounded-lg bg-white p-1.5 shadow-sm ring-1 ring-black/5',
+        compact ? 'h-9 w-9 sm:h-10 sm:w-10' : 'h-12 w-12 sm:h-14 sm:w-14'
       ]"
     >
       <img
         :src="logoSrc"
         alt="CITYZ FRANCE"
-        class="block h-full w-full object-cover object-center"
+        class="block h-full w-full object-contain object-center"
       />
     </span>
   </RouterLink>

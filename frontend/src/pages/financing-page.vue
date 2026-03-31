@@ -321,67 +321,14 @@ const paymentOptions = computed(() => {
 }
 
 @media (min-width: 768px) {
-  .finance-flow__root::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: -1.35rem;
-    width: 1px;
-    height: 1.35rem;
-    transform: translateX(-50%);
-    background: color-mix(in oklab, var(--line) 62%, var(--primary));
-  }
-
   .finance-flow__branches {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding-top: 1.35rem;
-  }
-
-  .finance-flow__branches::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 25%;
-    right: 25%;
-    height: 1px;
-    background: color-mix(in oklab, var(--line) 62%, var(--primary));
-  }
-
-  .finance-flow__branch::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: -1.35rem;
-    width: 1px;
-    height: 1.35rem;
-    transform: translateX(-50%);
-    background: color-mix(in oklab, var(--line) 62%, var(--primary));
   }
 }
 
 @media (max-width: 767px) {
   .finance-flow__branches {
-    padding-left: 1rem;
-  }
-
-  .finance-flow__branches::before {
-    content: '';
-    position: absolute;
-    left: 0.15rem;
-    top: 0.5rem;
-    bottom: 0.5rem;
-    width: 1px;
-    background: color-mix(in oklab, var(--line) 62%, var(--primary));
-  }
-
-  .finance-flow__branch::before {
-    content: '';
-    position: absolute;
-    left: -0.85rem;
-    top: 1.8rem;
-    width: 0.85rem;
-    height: 1px;
-    background: color-mix(in oklab, var(--line) 62%, var(--primary));
+    gap: 1rem;
   }
 }
 </style>

@@ -190,14 +190,14 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
 
           <article class="page-cut paper-card space-y-6 p-5 sm:p-6 lg:p-7">
             <div>
-              <p class="kicker">{{ objectivesPanel.eyebrow ?? 'Objectifs pédagogiques' }}</p>
-              <h2 class="mt-4 text-[clamp(1.45rem,2.3vw,1.95rem)] font-semibold tracking-[-0.04em] text-foreground">
+              <p class="kicker text-center">{{ objectivesPanel.eyebrow ?? 'Objectifs pédagogiques' }}</p>
+              <h2 class="mt-4 text-center text-[clamp(1.45rem,2.3vw,1.95rem)] font-semibold tracking-[-0.04em] text-foreground">
                 {{
                   objectivesPanel.title ??
                   'À l’issue de la formation, les apprenants seront capables de :'
                 }}
               </h2>
-              <p class="mt-4 max-w-4xl text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
+              <p class="mx-auto mt-4 max-w-4xl text-center text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
                 {{
                   objectivesPanel.description ??
                   "Le parcours se suit entièrement à distance, en e-learning, avec une organisation souple pensée pour progresser sans interrompre votre activité professionnelle."
@@ -224,11 +224,11 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
             </div>
 
             <article class="program-eval-card p-5 sm:p-6">
-              <p class="kicker">{{ evaluationSection.eyebrow ?? 'Durée et évaluation' }}</p>
-              <h2 class="mt-4 whitespace-pre-line text-[clamp(1.4rem,2.2vw,1.9rem)] font-semibold tracking-[-0.04em] text-foreground">
+              <p class="kicker text-center">{{ evaluationSection.eyebrow ?? 'Durée et évaluation' }}</p>
+              <h2 class="mt-4 whitespace-pre-line text-center text-[clamp(1.4rem,2.2vw,1.9rem)] font-semibold tracking-[-0.04em] text-foreground">
                 {{ evaluationSection.title ?? '300h de formation,\nExamen de 1h35.' }}
               </h2>
-              <p class="mt-4 text-sm leading-7 text-muted-foreground">
+              <p class="mx-auto mt-4 max-w-4xl text-center text-sm leading-7 text-muted-foreground">
                 {{ evaluationSection.description ?? "La fiche RNCP38575 précise le déroulé de l'épreuve finale." }}
               </p>
 

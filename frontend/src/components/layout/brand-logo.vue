@@ -1,6 +1,8 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 
+const logoSrc = '/CITYZ%20FRANCE.png'
+
 defineProps({
   compact: {
     type: Boolean,
@@ -18,39 +20,21 @@ defineProps({
     :to="to"
     :class="[
       'inline-flex items-center rounded-lg text-left leading-none transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-      compact ? 'h-10 gap-1.5 py-0' : 'min-h-11 gap-2.5 py-1'
+      compact ? 'py-0' : 'py-1'
     ]"
     aria-label="Retour à l'accueil CITYZ'France"
   >
     <span
       :class="[
-        'brand-symbol relative inline-flex items-center justify-center',
-        compact ? 'h-[1.82rem] w-[1.82rem] rounded-[0.82rem]' : 'h-9 w-9 rounded-[0.95rem] sm:h-10 sm:w-10'
+        'relative block overflow-hidden rounded-lg',
+        compact ? 'h-9 w-[5.8rem] sm:h-10 sm:w-[6.6rem]' : 'h-12 w-[7.6rem] sm:h-14 sm:w-[8.8rem]'
       ]"
     >
-      <svg :class="compact ? 'h-[1rem] w-[1rem]' : 'h-5.5 w-5.5'" viewBox="0 0 56 56" aria-hidden="true">
-        <path d="M20 38V18h16v20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
-        <path d="M18 22h20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
-        <path d="M24 14h8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3" />
-        <path d="M22 38h12" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3" />
-      </svg>
+      <img
+        :src="logoSrc"
+        alt="CITYZ FRANCE"
+        class="block h-full w-full object-cover object-center"
+      />
     </span>
-
-    <div class="leading-[1.01]">
-      <p
-        :class="[
-          'font-heading font-extrabold tracking-[-0.03em] text-foreground',
-          compact ? 'text-[0.84rem] sm:text-[0.88rem]' : 'text-[0.96rem] sm:text-[1rem]'
-        ]"
-      >
-        CITYZ'France
-      </p>
-      <p
-        v-if="!compact"
-        class="mt-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:text-[0.66rem]"
-      >
-        RPMS · RNCP38575
-      </p>
-    </div>
   </RouterLink>
 </template>

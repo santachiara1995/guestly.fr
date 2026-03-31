@@ -166,7 +166,8 @@ export const siteContent = {
         },
         {
           title: 'Financer la formation',
-          text: "Retrouvez le prix, les modalités de paiement et les conditions de l'offre."
+          text:
+            "Retrouvez le prix, les modalités de paiement et les conditions de l'offre. Paiement en 3 fois sans frais possible."
         },
         {
           title: "Passer à l'inscription",

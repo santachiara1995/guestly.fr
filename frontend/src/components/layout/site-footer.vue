@@ -38,6 +38,17 @@ const legalItems = computed(() =>
             <p>RNCP38575 · Qualiopi · E-learning</p>
             <p>SIRET 992 448 936 00011 · NDA 11923039192</p>
           </div>
+          <div class="qualiopi-badge">
+            <div class="qualiopi-badge__flag" aria-hidden="true">
+              <span class="qualiopi-badge__flag-line qualiopi-badge__flag-line--blue"></span>
+              <span class="qualiopi-badge__flag-line qualiopi-badge__flag-line--red"></span>
+            </div>
+            <div class="qualiopi-badge__copy">
+              <p class="qualiopi-badge__title">Qualiopi</p>
+              <p class="qualiopi-badge__subtitle">Processus certifié</p>
+              <p class="qualiopi-badge__caption">Actions de formation</p>
+            </div>
+          </div>
         </div>
 
         <div class="grid gap-4 lg:justify-end">
@@ -107,5 +118,66 @@ const legalItems = computed(() =>
   outline: 2px solid var(--ring);
   outline-offset: 3px;
   border-radius: 0.375rem;
+}
+
+.qualiopi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid color-mix(in oklab, var(--line) 82%, white);
+  border-radius: 0.95rem;
+  background: color-mix(in oklab, white 84%, var(--paper-tint));
+  padding: 0.8rem 0.95rem;
+  box-shadow: 0 10px 22px rgb(17 39 65 / 0.08);
+}
+
+.qualiopi-badge__flag {
+  display: grid;
+  gap: 0.28rem;
+}
+
+.qualiopi-badge__flag-line {
+  display: block;
+  width: 1.6rem;
+  height: 0.22rem;
+  border-radius: 999px;
+}
+
+.qualiopi-badge__flag-line--blue {
+  background: var(--primary);
+}
+
+.qualiopi-badge__flag-line--red {
+  background: var(--tricolor-red);
+}
+
+.qualiopi-badge__copy {
+  display: grid;
+  gap: 0.08rem;
+}
+
+.qualiopi-badge__title {
+  color: var(--primary);
+  font-size: 1.18rem;
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.qualiopi-badge__subtitle,
+.qualiopi-badge__caption {
+  color: var(--ink);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+
+.qualiopi-badge__caption {
+  color: var(--muted-foreground);
 }
 </style>

@@ -63,7 +63,10 @@ const hero = computed(() => ({
               <LeadForm
                 source-page="/contact"
                 :show-date-of-birth="false"
+                show-appointment-picker
                 :show-payment-section="false"
+                appointment-support="Indiquez si vous le souhaitez une date et une heure de rappel pour être recontacté plus facilement."
+                appointment-title="Créneau de rappel"
                 consent-label="J’accepte que CITYZ'France utilise ces informations pour me recontacter."
                 submission-message="Demande de rappel via formulaire de contact."
                 submit-label="Être rappelé"

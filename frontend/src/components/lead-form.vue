@@ -80,7 +80,8 @@ const form = reactive({
   email: '',
   phone: '',
   dateOfBirth: '',
-  appointmentDateTime: '',
+  appointmentDate: '',
+  appointmentTime: '',
   consentRgpd: false
 })
 
@@ -117,10 +118,15 @@ const defaultMessage = computed(() =>
 )
 
 const messageWithAppointment = computed(() => {
-  const appointmentNote =
-    props.showAppointmentPicker && form.appointmentDateTime
-      ? ` Créneau souhaité : ${form.appointmentDateTime}.`
-      : ''
+  let appointmentNote = ''
+
+  if (props.showAppointmentPicker && form.appointmentDate && form.appointmentTime) {
+    appointmentNote = ` Créneau souhaité : ${form.appointmentDate} à ${form.appointmentTime}.`
+  } else if (props.showAppointmentPicker && form.appointmentDate) {
+    appointmentNote = ` Date souhaitée : ${form.appointmentDate}.`
+  } else if (props.showAppointmentPicker && form.appointmentTime) {
+    appointmentNote = ` Heure souhaitée : ${form.appointmentTime}.`
+  }
 
   return `${defaultMessage.value}${appointmentNote}`.trim()
 })
@@ -291,15 +297,27 @@ async function submitForm() {
         </p>
       </div>
 
-      <label class="form-field min-w-0">
-        <span>Date et heure souhaitées</span>
-        <Input
-          v-model="form.appointmentDateTime"
-          class="min-w-0 max-w-full"
-          name="appointment-datetime"
-          type="datetime-local"
-        />
-      </label>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <label class="form-field min-w-0">
+          <span>Date de rappel</span>
+          <Input
+            v-model="form.appointmentDate"
+            class="min-w-0 max-w-full"
+            name="appointment-date"
+            type="date"
+          />
+        </label>
+
+        <label class="form-field min-w-0">
+          <span>Heure de rappel</span>
+          <Input
+            v-model="form.appointmentTime"
+            class="min-w-0 max-w-full"
+            name="appointment-time"
+            type="time"
+          />
+        </label>
+      </div>
     </section>
 
     <label class="elevated-item flex items-start gap-3 rounded-[1rem] p-4">

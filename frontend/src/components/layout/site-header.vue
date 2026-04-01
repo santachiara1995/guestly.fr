@@ -16,7 +16,7 @@ const desktopNavigationItems = computed(() =>
   primaryNavigation.map((item) => ({
     ...item,
     href: toWithExperience(item.to)
-  })).filter((item) => ['/programme', '/financement', '/faq'].includes(item.to))
+  })).filter((item) => ['/', '/programme', '/financement', '/faq'].includes(item.to))
 )
 const mobileMenuRef = ref(null)
 const mobileMenuItems = computed(() =>

@@ -221,38 +221,18 @@ async function submitForm() {
         />
       </label>
 
-      <label v-if="showDateOfBirth" class="form-field sm:col-span-2">
+      <label v-if="showDateOfBirth" class="form-field min-w-0 sm:col-span-2">
         <span>Date de naissance</span>
         <Input
           v-model="form.dateOfBirth"
           autocomplete="bday"
+          class="min-w-0 max-w-full"
           name="birth-date"
           required
           type="date"
         />
       </label>
     </div>
-
-    <section
-      v-if="showAppointmentPicker"
-      class="space-y-3 rounded-[1rem] border border-border/70 bg-white/70 p-4"
-    >
-      <div class="space-y-1">
-        <p class="detail-key">{{ appointmentTitle }}</p>
-        <p class="text-sm leading-6 text-muted-foreground">
-          {{ appointmentSupport }}
-        </p>
-      </div>
-
-      <label class="form-field">
-        <span>Date et heure souhaitées</span>
-        <Input
-          v-model="form.appointmentDateTime"
-          name="appointment-datetime"
-          type="datetime-local"
-        />
-      </label>
-    </section>
 
     <section
       v-if="showPaymentSection"
@@ -296,6 +276,28 @@ async function submitForm() {
       <p v-if="!hasPaymentLinks" class="text-sm leading-6 text-muted-foreground">
         Les URLs de paiement Stripe ne sont pas encore renseignées dans la configuration.
       </p>
+    </section>
+
+    <section
+      v-if="showAppointmentPicker"
+      class="space-y-3 rounded-[1rem] border border-border/70 bg-white/70 p-4"
+    >
+      <div class="space-y-1">
+        <p class="detail-key">{{ appointmentTitle }}</p>
+        <p class="text-sm leading-6 text-muted-foreground">
+          {{ appointmentSupport }}
+        </p>
+      </div>
+
+      <label class="form-field min-w-0">
+        <span>Date et heure souhaitées</span>
+        <Input
+          v-model="form.appointmentDateTime"
+          class="min-w-0 max-w-full"
+          name="appointment-datetime"
+          type="datetime-local"
+        />
+      </label>
     </section>
 
     <label class="elevated-item flex items-start gap-3 rounded-[1rem] p-4">

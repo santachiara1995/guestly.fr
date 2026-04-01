@@ -34,7 +34,7 @@ function onInput(event) {
     :value="props.modelValue"
     :class="
       cn(
-        'min-h-12 w-full rounded-[0.9rem] border border-input bg-white px-3.5 text-sm text-foreground shadow-[inset_0_1px_0_rgb(255_255_255_/_0.8)] transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50',
+        'min-h-12 min-w-0 max-w-full w-full rounded-[0.9rem] border border-input bg-white px-3.5 text-sm text-foreground shadow-[inset_0_1px_0_rgb(255_255_255_/_0.8)] transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50',
         attrs.class
       )
     "

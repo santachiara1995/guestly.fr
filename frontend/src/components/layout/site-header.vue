@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 
 import BrandLogo from '@/components/layout/brand-logo.vue'
@@ -18,6 +18,18 @@ const navigationItems = computed(() =>
     href: toWithExperience(item.to)
   }))
 )
+const mobileMenuRef = ref(null)
+const mobileMenuItems = computed(() =>
+  primaryNavigation
+    .filter((item) => ['/programme', '/financement', '/faq'].includes(item.to))
+    .map((item) => ({
+      ...item,
+      href: toWithExperience(item.to)
+    }))
+)
+const mobileMenuActive = computed(() =>
+  mobileMenuItems.value.some((item) => isActive(item.to))
+)
 
 const isActive = (target) => {
   if (target === '/') {
@@ -25,13 +37,22 @@ const isActive = (target) => {
   }
   return route.path.startsWith(target)
 }
+
+watch(
+  () => route.fullPath,
+  () => {
+    if (mobileMenuRef.value) {
+      mobileMenuRef.value.open = false
+    }
+  }
+)
 </script>
 
 <template>
   <header class="sticky top-0 z-50">
     <div class="w-full px-4 pt-6 sm:px-6 sm:pt-7 lg:px-8 lg:pt-6">
       <div
-        class="header-shell shell-track grid grid-cols-[2.35rem_minmax(0,_1fr)_4.9rem] items-center gap-2 px-2.5 py-[0.5rem] sm:grid-cols-[auto_minmax(0,_1fr)_auto] sm:gap-3 sm:px-3.5 sm:py-[0.64rem]"
+        class="header-shell shell-track flex items-center gap-2 px-2.5 py-[0.5rem] sm:grid sm:grid-cols-[auto_minmax(0,_1fr)_auto] sm:gap-3 sm:px-3.5 sm:py-[0.64rem]"
       >
         <brand-logo
           :to="homeLink"
@@ -40,11 +61,53 @@ const isActive = (target) => {
           class="header-brand justify-self-start shrink-0"
         />
 
+        <div class="header-mobile-nav min-w-0 flex-1 items-center justify-center gap-1.5 sm:hidden">
+          <RouterLink
+            :to="homeLink"
+            :aria-current="isActive('/') ? 'page' : undefined"
+            :class="[
+              'nav-link nav-link--header-item nav-link--header-home',
+              isActive('/') ? 'nav-link--header-active' : null
+            ]"
+          >
+            Accueil
+          </RouterLink>
+
+          <details ref="mobileMenuRef" class="header-menu-details">
+            <summary
+              :class="[
+                'header-menu-summary',
+                mobileMenuActive ? 'header-menu-summary--active' : null
+              ]"
+              aria-label="Ouvrir le menu mobile"
+            >
+              <span class="sr-only">Ouvrir le menu</span>
+              <span class="header-menu-icon" aria-hidden="true">
+                <span class="header-menu-icon-bar" />
+                <span class="header-menu-icon-bar" />
+                <span class="header-menu-icon-bar" />
+              </span>
+            </summary>
+
+            <div class="header-menu-panel">
+              <RouterLink
+                v-for="item in mobileMenuItems"
+                :key="item.to"
+                :to="item.href"
+                :aria-current="isActive(item.to) ? 'page' : undefined"
+                class="header-menu-link"
+              >
+                {{ item.label }}
+              </RouterLink>
+            </div>
+          </details>
+        </div>
+
         <nav
           aria-label="Navigation principale"
-          class="header-nav min-w-0 justify-self-stretch overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          class="header-nav hidden min-w-0 justify-self-stretch sm:flex"
         >
-          <ul class="header-nav__list mx-auto flex min-w-max items-center gap-2 sm:gap-3">
+          <ul class="header-nav__list mx-auto flex min-w-max items-center gap-3">
             <li v-for="item in navigationItems" :key="item.to" class="header-nav__item shrink-0">
               <RouterLink
                 :to="item.href"
@@ -74,7 +137,7 @@ const isActive = (target) => {
 
 <style scoped>
 .header-nav {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: stretch;
 }
@@ -85,6 +148,94 @@ const isActive = (target) => {
 
 .header-nav__item {
   scroll-snap-align: center;
+}
+
+.header-mobile-nav {
+  display: flex;
+}
+
+.header-menu-details {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.header-menu-summary {
+  display: inline-flex;
+  height: 2.45rem;
+  width: 2.45rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--border) 78%, white);
+  background: color-mix(in oklab, white 94%, var(--paper-soft));
+  color: var(--muted-ink);
+  cursor: pointer;
+  list-style: none;
+  transition:
+    color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.header-menu-summary::-webkit-details-marker {
+  display: none;
+}
+
+.header-menu-summary--active,
+.header-menu-details[open] .header-menu-summary {
+  color: var(--primary);
+  border-color: color-mix(in oklab, var(--primary) 42%, white);
+  box-shadow: 0 8px 22px rgb(15 31 58 / 0.12);
+}
+
+.header-menu-icon {
+  display: grid;
+  gap: 0.17rem;
+  width: 0.95rem;
+}
+
+.header-menu-icon-bar {
+  display: block;
+  height: 2px;
+  width: 100%;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.header-menu-panel {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 0.5rem);
+  z-index: 30;
+  display: grid;
+  min-width: 11.5rem;
+  gap: 0.2rem;
+  transform: translateX(-50%);
+  border-radius: 1rem;
+  border: 1px solid color-mix(in oklab, var(--border) 78%, white);
+  background: rgb(255 255 255 / 0.98);
+  padding: 0.55rem;
+  box-shadow: 0 18px 40px rgb(15 31 58 / 0.14);
+}
+
+.header-menu-link {
+  display: inline-flex;
+  min-height: 2.45rem;
+  align-items: center;
+  border-radius: 0.8rem;
+  padding-inline: 0.75rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ink);
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.header-menu-link:hover,
+.header-menu-link[aria-current="page"] {
+  background: color-mix(in oklab, var(--primary) 10%, white);
+  color: var(--primary);
 }
 
 :deep(.nav-link--header-active) {
@@ -100,6 +251,10 @@ const isActive = (target) => {
 }
 
 @media (min-width: 640px) {
+  .header-mobile-nav {
+    display: none;
+  }
+
   .header-nav {
     justify-content: center;
   }
@@ -116,12 +271,18 @@ const isActive = (target) => {
 }
 
 @media (max-width: 639px) {
+  .header-shell {
+    overflow: visible;
+  }
+
   .header-brand {
     min-width: 2.4rem;
   }
 
-  .header-nav {
-    scroll-snap-type: x proximity;
+  :deep(.nav-link--header-home) {
+    min-height: 2.35rem;
+    padding-inline: 0.42rem;
+    font-size: 0.77rem;
   }
 }
 </style>

@@ -439,7 +439,11 @@
   }
 
   .form-field {
-    @apply grid gap-2 text-sm font-semibold text-foreground;
+    @apply grid min-w-0 gap-2 text-sm font-semibold text-foreground;
+  }
+
+  .form-field > * {
+    min-width: 0;
   }
 
   .form-field > span {

@@ -107,7 +107,7 @@ watch(
           aria-label="Navigation principale"
           class="header-nav hidden min-w-0 justify-self-stretch sm:flex"
         >
-          <ul class="header-nav__list mx-auto flex min-w-max items-center gap-3">
+          <ul class="header-nav__list mx-auto flex min-w-max items-center gap-5 lg:gap-7">
             <li
               v-for="item in desktopNavigationItems"
               :key="item.to"

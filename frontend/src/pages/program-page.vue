@@ -188,6 +188,51 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
             </div>
           </article>
 
+          <section class="program-section px-0 pb-0 pt-0">
+            <div class="shell-track">
+              <div class="mx-auto mb-6 max-w-3xl py-1 text-center lg:mb-8">
+                <p v-if="blocksSection.eyebrow" class="kicker">{{ blocksSection.eyebrow }}</p>
+                <h2
+                  class="editorial-title text-[clamp(1.7rem,3vw,2.35rem)] text-primary"
+                  :class="blocksSection.eyebrow ? 'mt-4' : ''"
+                >
+                  {{
+                    blocksSection.title ??
+                    'Trois blocs de compétences essentielles pour piloter une structure avec méthode.'
+                  }}
+                </h2>
+                <p
+                  v-if="blocksSection.description"
+                  class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]"
+                >
+                  {{ blocksSection.description }}
+                </p>
+              </div>
+
+              <div class="block-ladder programme-ladder">
+                <article
+                  v-for="(block, index) in blocks"
+                  :key="block.code"
+                  class="block-row programme-block"
+                  v-motion
+                  :initial="motionVariants.block.initial"
+                  :enter="staggerEnter(index, 56, 28)"
+                >
+                  <span class="programme-block__badge">{{ index + 1 }}</span>
+                  <p class="programme-block__code">{{ block.code }}</p>
+                  <h3 class="text-[1.08rem] font-semibold leading-tight tracking-[-0.03em] text-foreground">
+                    {{ block.title }}
+                  </h3>
+                  <ul class="programme-skills">
+                    <li v-for="skill in block.skills" :key="skill">
+                      {{ skill }}
+                    </li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </section>
+
           <article class="page-cut paper-card space-y-6 p-5 sm:p-6 lg:p-7">
             <div>
               <p class="kicker text-center">{{ objectivesPanel.eyebrow ?? 'Objectifs pédagogiques' }}</p>
@@ -258,51 +303,6 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
               </p>
             </article>
           </article>
-        </div>
-      </section>
-
-      <section class="program-section px-4 pb-0 pt-6 sm:px-6 lg:px-8 lg:pb-0 lg:pt-8">
-        <div class="shell-track">
-          <div class="mx-auto mb-6 max-w-3xl py-1 text-center lg:mb-8">
-            <p v-if="blocksSection.eyebrow" class="kicker">{{ blocksSection.eyebrow }}</p>
-            <h2
-              class="editorial-title text-[clamp(1.7rem,3vw,2.35rem)] text-primary"
-              :class="blocksSection.eyebrow ? 'mt-4' : ''"
-            >
-              {{
-                blocksSection.title ??
-                'Trois blocs de compétences essentielles pour piloter une structure avec méthode.'
-              }}
-            </h2>
-            <p
-              v-if="blocksSection.description"
-              class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]"
-            >
-              {{ blocksSection.description }}
-            </p>
-          </div>
-
-          <div class="block-ladder programme-ladder">
-            <article
-              v-for="(block, index) in blocks"
-              :key="block.code"
-              class="block-row programme-block"
-              v-motion
-              :initial="motionVariants.block.initial"
-              :enter="staggerEnter(index, 56, 28)"
-            >
-              <span class="programme-block__badge">{{ index + 1 }}</span>
-              <p class="programme-block__code">{{ block.code }}</p>
-              <h3 class="text-[1.08rem] font-semibold leading-tight tracking-[-0.03em] text-foreground">
-                {{ block.title }}
-              </h3>
-              <ul class="programme-skills">
-                <li v-for="skill in block.skills" :key="skill">
-                  {{ skill }}
-                </li>
-              </ul>
-            </article>
-          </div>
         </div>
       </section>
 

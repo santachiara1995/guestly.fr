@@ -9,6 +9,7 @@ export const primaryNavigation = [
 export const footerNavigation = [
   ...primaryNavigation,
   { label: 'Accès et accompagnement', to: '/acces-et-accompagnement' },
+  { label: 'CGV / CGU', to: '/cgv-cgu' },
   { label: 'Mentions légales', to: '/mentions-legales' },
   { label: 'Politique de confidentialité', to: '/politique-confidentialite' }
 ]

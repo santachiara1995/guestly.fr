@@ -13,7 +13,9 @@ const legalItems = computed(() =>
   footerNavigation
     .filter(
       (item) =>
-        item.to === '/mentions-legales' || item.to === '/politique-confidentialite'
+        item.to === '/mentions-legales' ||
+        item.to === '/politique-confidentialite' ||
+        item.to === '/cgv-cgu'
     )
     .map((item) => ({
       ...item,

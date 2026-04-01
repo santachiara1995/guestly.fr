@@ -20,6 +20,10 @@ const props = defineProps({
     type: Boolean,
     default: true
   },
+  showAppointmentPicker: {
+    type: Boolean,
+    default: false
+  },
   paymentLinks: {
     type: Object,
     default: () => ({
@@ -51,6 +55,15 @@ const props = defineProps({
   submissionMessage: {
     type: String,
     default: ''
+  },
+  appointmentTitle: {
+    type: String,
+    default: 'Créneau souhaité'
+  },
+  appointmentSupport: {
+    type: String,
+    default:
+      "Choisissez si vous le souhaitez une date et une heure pour être recontacté ou finaliser votre inscription."
   }
 })
 
@@ -67,6 +80,7 @@ const form = reactive({
   email: '',
   phone: '',
   dateOfBirth: '',
+  appointmentDateTime: '',
   consentRgpd: false
 })
 
@@ -102,6 +116,15 @@ const defaultMessage = computed(() =>
     : 'Demande de rappel via formulaire de contact.')
 )
 
+const messageWithAppointment = computed(() => {
+  const appointmentNote =
+    props.showAppointmentPicker && form.appointmentDateTime
+      ? ` Créneau souhaité : ${form.appointmentDateTime}.`
+      : ''
+
+  return `${defaultMessage.value}${appointmentNote}`.trim()
+})
+
 async function submitForm() {
   errorMessage.value = ''
 
@@ -117,7 +140,7 @@ async function submitForm() {
       lastName: form.lastName,
       email: form.email,
       phone: form.phone,
-      message: defaultMessage.value,
+      message: messageWithAppointment.value,
       sourcePage: sourcePageWithExperience.value,
       honeypot: ''
     }
@@ -209,6 +232,27 @@ async function submitForm() {
         />
       </label>
     </div>
+
+    <section
+      v-if="showAppointmentPicker"
+      class="space-y-3 rounded-[1rem] border border-border/70 bg-white/70 p-4"
+    >
+      <div class="space-y-1">
+        <p class="detail-key">{{ appointmentTitle }}</p>
+        <p class="text-sm leading-6 text-muted-foreground">
+          {{ appointmentSupport }}
+        </p>
+      </div>
+
+      <label class="form-field">
+        <span>Date et heure souhaitées</span>
+        <Input
+          v-model="form.appointmentDateTime"
+          name="appointment-datetime"
+          type="datetime-local"
+        />
+      </label>
+    </section>
 
     <section
       v-if="showPaymentSection"

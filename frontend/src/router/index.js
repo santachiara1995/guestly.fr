@@ -11,6 +11,7 @@ import PrivacyPage from '@/pages/privacy-page.vue'
 import ProgramPage from '@/pages/program-page.vue'
 import SignupPage from '@/pages/signup-page.vue'
 import ThankYouPage from '@/pages/thank-you-page.vue'
+import TermsPage from '@/pages/terms-page.vue'
 
 const brandName = "CITYZ'France"
 
@@ -116,6 +117,14 @@ const routes = [
     component: LegalPage,
     meta: {
       title: 'Mentions légales'
+    }
+  },
+  {
+    path: '/cgv-cgu',
+    name: 'cgv-cgu',
+    component: TermsPage,
+    meta: {
+      title: 'CGV / CGU'
     }
   },
   {

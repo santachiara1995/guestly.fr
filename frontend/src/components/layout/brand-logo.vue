@@ -8,6 +8,10 @@ defineProps({
     type: Boolean,
     default: false
   },
+  mobileWordmarkHidden: {
+    type: Boolean,
+    default: false
+  },
   to: {
     type: String,
     default: '/'
@@ -40,6 +44,7 @@ defineProps({
     <div
       :class="[
         'leading-[0.96]',
+        mobileWordmarkHidden ? 'hidden sm:block' : '',
         compact ? 'ml-2.5' : 'ml-3'
       ]"
     >

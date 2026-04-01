@@ -1,12 +1,14 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 
 import LeadForm from '@/components/lead-form.vue'
+import { useExperienceVariant } from '@/composables/use-experience-variant'
 import { api } from '@/lib/api'
 import { motionVariants } from '@/lib/motion'
 
 const route = useRoute()
+const { toWithExperience } = useExperienceVariant()
 const site = ref({
   signup: {},
   finance: {}
@@ -42,6 +44,8 @@ const paymentLinks = computed(() => ({
   cashUrl: site.value.finance?.paymentLinks?.cashUrl ?? '',
   installmentsUrl: site.value.finance?.paymentLinks?.installmentsUrl ?? ''
 }))
+
+const termsLink = computed(() => toWithExperience('/cgv-cgu'))
 </script>
 
 <template>
@@ -74,12 +78,23 @@ const paymentLinks = computed(() => ({
             <div class="mt-5 border-t border-border/70 pt-5">
               <LeadForm
                 source-page="/inscription"
+                appointment-support="Choisissez si vous le souhaitez un créneau de rappel ou d'échange pour finaliser votre inscription."
+                appointment-title="Calendrier de rappel"
                 :payment-links="paymentLinks"
                 :payment-support="signupCopy.paymentSupport"
                 :payment-title="signupCopy.paymentTitle"
                 :selected-payment="selectedPayment"
+                show-appointment-picker
                 submit-label="S'inscrire"
               />
+            </div>
+
+            <div class="mt-6 border-t border-border/70 pt-4 text-sm leading-6 text-muted-foreground">
+              En poursuivant votre inscription, vous reconnaissez avoir pris connaissance des
+              <RouterLink :to="termsLink" class="font-semibold text-primary underline-offset-4 hover:text-secondary hover:underline">
+                CGV / CGU
+              </RouterLink>
+              applicables au site et à la formation.
             </div>
           </article>
         </div>

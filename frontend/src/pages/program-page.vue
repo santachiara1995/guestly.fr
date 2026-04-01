@@ -261,7 +261,7 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
         </div>
       </section>
 
-      <section class="program-section px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+      <section class="program-section px-4 pb-0 pt-6 sm:px-6 lg:px-8 lg:pb-0 lg:pt-8">
         <div class="shell-track">
           <div class="mx-auto mb-6 max-w-3xl py-1 text-center lg:mb-8">
             <p v-if="blocksSection.eyebrow" class="kicker">{{ blocksSection.eyebrow }}</p>

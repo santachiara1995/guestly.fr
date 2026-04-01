@@ -278,7 +278,7 @@ export const siteContent = {
       title: 'Tarif annoncé pour la formation RPMS',
       amount: '3 500 € TTC',
       description:
-        "Préparation à l’examen et accès aux formateurs inclus.",
+        "Préparation à l’examen, passage de l’examen et accès aux formateurs inclus.",
       footnote:
         "L'accès au paiement puis à la formation est conditionné à la validation de votre inscription."
     },

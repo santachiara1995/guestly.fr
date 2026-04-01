@@ -155,7 +155,7 @@ const paymentOptions = computed(() => {
                 <p class="max-w-2xl text-sm leading-6 text-muted-foreground">
                   {{
                     pricing.description ??
-                    "Préparation à l’examen et accès aux formateurs inclus."
+                    "Préparation à l’examen, passage de l’examen et accès aux formateurs inclus."
                   }}
                 </p>
               </div>

@@ -12,11 +12,11 @@ const { toWithExperience } = useExperienceVariant()
 
 const homeLink = computed(() => toWithExperience('/'))
 const signupLink = computed(() => toWithExperience('/inscription'))
-const navigationItems = computed(() =>
+const desktopNavigationItems = computed(() =>
   primaryNavigation.map((item) => ({
     ...item,
     href: toWithExperience(item.to)
-  }))
+  })).filter((item) => ['/programme', '/financement', '/faq'].includes(item.to))
 )
 const mobileMenuRef = ref(null)
 const mobileMenuItems = computed(() =>
@@ -108,7 +108,11 @@ watch(
           class="header-nav hidden min-w-0 justify-self-stretch sm:flex"
         >
           <ul class="header-nav__list mx-auto flex min-w-max items-center gap-3">
-            <li v-for="item in navigationItems" :key="item.to" class="header-nav__item shrink-0">
+            <li
+              v-for="item in desktopNavigationItems"
+              :key="item.to"
+              class="header-nav__item shrink-0"
+            >
               <RouterLink
                 :to="item.href"
                 :aria-current="isActive(item.to) ? 'page' : undefined"
@@ -256,6 +260,7 @@ watch(
   }
 
   .header-nav {
+    display: flex;
     justify-content: center;
   }
 

@@ -49,7 +49,7 @@ const termsLink = computed(() => toWithExperience('/cgv-cgu'))
 </script>
 
 <template>
-  <div class="page-stack -mx-4 sm:-mx-6 lg:-mx-8">
+  <div class="page-stack sm:-mx-6 lg:-mx-8">
     <p v-if="loading" class="text-sm text-muted-foreground">Chargement de l’inscription…</p>
 
     <template v-else>

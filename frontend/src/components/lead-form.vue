@@ -175,64 +175,66 @@ async function submitForm() {
       <input id="lead-website" autocomplete="off" name="website" tabindex="-1" type="text">
     </div>
 
-    <div class="grid gap-4 sm:grid-cols-2">
-      <label class="form-field">
-        <span>Prénom</span>
-        <Input
-          v-model="form.firstName"
-          autocomplete="given-name"
-          name="first-name"
-          placeholder="Votre prénom"
-          required
-        />
-      </label>
+    <section class="space-y-3 rounded-[1rem] border border-border/70 bg-white/70 p-4">
+      <div class="grid gap-4 sm:grid-cols-2">
+        <label class="form-field">
+          <span>Prénom</span>
+          <Input
+            v-model="form.firstName"
+            autocomplete="given-name"
+            name="first-name"
+            placeholder="Votre prénom"
+            required
+          />
+        </label>
 
-      <label class="form-field">
-        <span>Nom</span>
-        <Input
-          v-model="form.lastName"
-          autocomplete="family-name"
-          name="last-name"
-          placeholder="Votre nom"
-          required
-        />
-      </label>
+        <label class="form-field">
+          <span>Nom</span>
+          <Input
+            v-model="form.lastName"
+            autocomplete="family-name"
+            name="last-name"
+            placeholder="Votre nom"
+            required
+          />
+        </label>
 
-      <label class="form-field">
-        <span>Email</span>
-        <Input
-          v-model="form.email"
-          autocomplete="email"
-          name="email"
-          placeholder="nom@domaine.fr"
-          required
-          type="email"
-        />
-      </label>
+        <label class="form-field">
+          <span>Email</span>
+          <Input
+            v-model="form.email"
+            autocomplete="email"
+            name="email"
+            placeholder="nom@domaine.fr"
+            required
+            type="email"
+          />
+        </label>
 
-      <label class="form-field">
-        <span>Téléphone</span>
-        <Input
-          v-model="form.phone"
-          autocomplete="tel"
-          name="phone"
-          placeholder="06 00 00 00 00"
-          type="tel"
-        />
-      </label>
+        <label class="form-field">
+          <span>Téléphone</span>
+          <Input
+            v-model="form.phone"
+            autocomplete="tel"
+            name="phone"
+            placeholder="06 00 00 00 00"
+            type="tel"
+          />
+        </label>
 
-      <label v-if="showDateOfBirth" class="form-field min-w-0 sm:col-span-2">
-        <span>Date de naissance</span>
-        <Input
-          v-model="form.dateOfBirth"
-          autocomplete="bday"
-          class="min-w-0 max-w-full"
-          name="birth-date"
-          required
-          type="date"
-        />
-      </label>
-    </div>
+        <label v-if="showDateOfBirth" class="form-field min-w-0 sm:col-span-2">
+          <span>Date de naissance</span>
+          <Input
+            v-model="form.dateOfBirth"
+            autocomplete="bday"
+            class="min-w-0 max-w-full"
+            name="birth-date"
+            required
+            type="date"
+          />
+        </label>
+      </div>
+    </section>
 
     <section
       v-if="showPaymentSection"

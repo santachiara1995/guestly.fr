@@ -25,21 +25,45 @@ onMounted(async () => {
 const faqCopy = computed(() => site.value.faq ?? {})
 
 const hero = computed(() => ({
-  eyebrow: faqCopy.value.hero?.eyebrow ?? 'FAQ RPMS',
-  title: faqCopy.value.hero?.title ?? 'Les réponses utiles avant de choisir le RPMS.',
+  eyebrow: faqCopy.value.hero?.eyebrow ?? 'QUESTIONS FRÉQUENTES',
+  title:
+    faqCopy.value.hero?.title ?? 'Tout ce que vous devez savoir avant de vous lancer',
   description:
     faqCopy.value.hero?.description ??
-    'En cinq questions, vérifiez le titre, le programme, le format et le financement, puis avancez si le RPMS correspond à votre projet.'
+    'Vous hésitez encore ? Voici les réponses aux questions que se posent la plupart de nos futurs apprenants.'
 }))
 
-const topItems = computed(() => items.value)
+const faqSchema = computed(() =>
+  JSON.stringify(
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: items.value.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer
+        }
+      }))
+    },
+    null,
+    2
+  )
+)
 </script>
 
 <template>
   <div class="page-stack -mx-4 sm:-mx-6 lg:-mx-8">
-    <p v-if="loading" class="text-sm text-muted-foreground">Chargement de la FAQ…</p>
+    <p v-if="loading" class="px-4 py-6 text-sm text-muted-foreground sm:px-6 lg:px-8">
+      Chargement de la FAQ…
+    </p>
 
     <template v-else>
+      <component :is="'script'" type="application/ld+json">
+        {{ faqSchema }}
+      </component>
+
       <section
         class="px-4 pb-0 pt-6 sm:px-6 lg:px-8 lg:pb-0 lg:pt-8"
         v-motion
@@ -47,10 +71,10 @@ const topItems = computed(() => items.value)
         :enter="motionVariants.block.enter"
       >
         <div class="shell-track space-y-6">
-          <article class="page-hero p-5 sm:p-6 lg:p-7">
+          <article class="page-hero p-5 sm:p-6 lg:p-8">
             <div class="mx-auto max-w-3xl space-y-4 text-center">
               <p class="kicker">{{ hero.eyebrow }}</p>
-              <h1 class="editorial-title text-[clamp(1.75rem,3vw,2.6rem)] text-foreground">
+              <h1 class="editorial-title text-[clamp(1.85rem,3.05vw,2.8rem)] text-foreground">
                 {{ hero.title }}
               </h1>
               <p class="text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
@@ -59,14 +83,14 @@ const topItems = computed(() => items.value)
             </div>
           </article>
 
-          <div class="mx-auto grid max-w-4xl gap-4">
+          <div class="mx-auto grid max-w-5xl gap-4">
             <details
-              v-for="(item, index) in topItems"
+              v-for="(item, index) in items"
               :key="item.question"
-              class="accordion-card paper-card px-5 py-4 sm:px-6 sm:py-5"
+              class="accordion-card page-cut px-5 py-4 sm:px-6 sm:py-5"
               v-motion
               :initial="motionVariants.block.initial"
-              :enter="staggerEnter(index, 40, 18)"
+              :enter="staggerEnter(index, 42, 18)"
             >
               <summary class="faq-summary accordion-summary">
                 <span class="text-base font-semibold leading-6 text-foreground">{{ item.question }}</span>

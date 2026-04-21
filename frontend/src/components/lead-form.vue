@@ -24,6 +24,10 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
+  showPromoCode: {
+    type: Boolean,
+    default: false
+  },
   phoneRequired: {
     type: Boolean,
     default: false
@@ -84,9 +88,11 @@ const form = reactive({
   lastName: '',
   email: '',
   phone: '',
+  promoCode: '',
   dateOfBirth: '',
   appointmentDate: '',
   appointmentTime: '',
+  wantsCallback: false,
   consentRgpd: false
 })
 
@@ -128,7 +134,7 @@ const paymentOptions = computed(() => [
   {
     id: 'state',
     title: "Financement par l'État",
-    support: 'AIF / OPCO avec rappel programmé pour lancer votre dossier.',
+    support: 'AIF / OPCO avec rappel prioritaire pour lancer votre dossier et répondre à vos questions.',
     href: ''
   }
 ])
@@ -152,31 +158,58 @@ const defaultMessage = computed(() =>
 )
 
 const resolvedAppointmentTitle = computed(() =>
-  paymentPreference.value === 'state' ? 'Rappel programmé' : props.appointmentTitle
+  paymentPreference.value === 'state' ? 'Rappel prioritaire' : props.appointmentTitle
 )
 
 const resolvedAppointmentSupport = computed(() =>
   paymentPreference.value === 'state'
-    ? "Choisissez un créneau pour que l'équipe CITYZ lance avec vous votre dossier AIF ou OPCO."
+    ? "Choisissez un créneau pour que l'équipe CITYZ vous rappelle, réponde à vos questions et lance avec vous votre dossier AIF ou OPCO."
     : props.appointmentSupport
 )
 
-const messageWithAppointment = computed(() => {
-  let appointmentNote = ''
+const shouldShowAppointmentFields = computed(
+  () => props.showAppointmentPicker && (form.wantsCallback || paymentPreference.value === 'state')
+)
 
-  if (props.showAppointmentPicker && form.appointmentDate && form.appointmentTime) {
-    appointmentNote = ` Créneau souhaité : ${form.appointmentDate} à ${form.appointmentTime}.`
-  } else if (props.showAppointmentPicker && form.appointmentDate) {
-    appointmentNote = ` Date souhaitée : ${form.appointmentDate}.`
-  } else if (props.showAppointmentPicker && form.appointmentTime) {
-    appointmentNote = ` Heure souhaitée : ${form.appointmentTime}.`
+const messageWithAppointment = computed(() => {
+  const notes = []
+
+  if (props.showPromoCode && String(form.promoCode ?? '').trim()) {
+    notes.push(`Code promo indiqué : ${String(form.promoCode).trim()}.`)
   }
 
-  return `${defaultMessage.value}${appointmentNote}`.trim()
+  if (props.showAppointmentPicker && form.wantsCallback) {
+    notes.push("Le prospect souhaite être rappelé(e) par l'équipe pour répondre à ses questions.")
+  }
+
+  if (shouldShowAppointmentFields.value && form.appointmentDate && form.appointmentTime) {
+    notes.push(`Créneau souhaité : ${form.appointmentDate} à ${form.appointmentTime}.`)
+  } else if (shouldShowAppointmentFields.value && form.appointmentDate) {
+    notes.push(`Date souhaitée : ${form.appointmentDate}.`)
+  } else if (shouldShowAppointmentFields.value && form.appointmentTime) {
+    notes.push(`Heure souhaitée : ${form.appointmentTime}.`)
+  }
+
+  return [defaultMessage.value, ...notes].join(' ').trim()
 })
 
 async function submitForm() {
   errorMessage.value = ''
+
+  if (!String(form.firstName ?? '').trim()) {
+    errorMessage.value = 'Le prénom est obligatoire.'
+    return
+  }
+
+  if (!String(form.lastName ?? '').trim()) {
+    errorMessage.value = 'Le nom est obligatoire.'
+    return
+  }
+
+  if (!String(form.email ?? '').trim()) {
+    errorMessage.value = "L'adresse email est obligatoire."
+    return
+  }
 
   if (!form.consentRgpd) {
     errorMessage.value = 'Le consentement RGPD est obligatoire.'
@@ -288,6 +321,16 @@ async function submitForm() {
             type="date"
           />
         </label>
+
+        <label v-if="showPromoCode" class="form-field sm:col-span-2">
+          <span>Code promo (optionnel)</span>
+          <Input
+            v-model="form.promoCode"
+            autocomplete="off"
+            name="promo-code"
+            placeholder="Votre code promo"
+          />
+        </label>
       </div>
     </section>
 
@@ -373,7 +416,20 @@ async function submitForm() {
         </p>
       </div>
 
-      <div class="grid gap-4 sm:grid-cols-2">
+      <label class="elevated-item flex items-start gap-3 rounded-[1rem] p-4">
+        <input
+          v-model="form.wantsCallback"
+          class="mt-1 h-4 w-4 rounded border-input bg-white accent-primary"
+          name="callback-request"
+          type="checkbox"
+        >
+        <span class="text-sm leading-relaxed text-muted-foreground">
+          Je souhaite être rappelé(e) par l’équipe CITYZ pour obtenir des réponses sur la formation,
+          le financement ou mon inscription.
+        </span>
+      </label>
+
+      <div v-if="shouldShowAppointmentFields" class="grid gap-4 sm:grid-cols-2">
         <label class="form-field min-w-0">
           <span>Date de rappel</span>
           <Input

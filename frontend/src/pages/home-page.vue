@@ -224,7 +224,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <article class="page-cut p-5 sm:p-6 lg:p-8">
           <div class="mx-auto max-w-3xl text-center">
-            <p class="home-section-title">
+            <p class="kicker home-section-title">
               {{ painPointSection.title }}
             </p>
             <h2 class="home-section-heading mt-3">
@@ -260,7 +260,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-3xl text-center">
-          <h2 class="home-section-heading">Les repères clés du parcours</h2>
+          <h2 class="home-section-heading">Les avantages du parcours</h2>
         </div>
 
         <div class="home-proof-grid mt-8">
@@ -290,7 +290,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
             <h2 class="home-section-heading mt-4">
               {{ personasSection.title }}
             </h2>
-            <p class="mt-4 text-lg leading-8 text-muted-foreground sm:text-[1.08rem]">
+            <p
+              v-if="personasSection.description"
+              class="mt-4 text-lg leading-8 text-muted-foreground sm:text-[1.08rem]"
+            >
               {{ personasSection.description }}
             </p>
           </div>
@@ -321,10 +324,12 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <div class="home-dual-grid">
           <article class="page-cut p-5 sm:p-6 lg:p-8">
-            <p class="kicker">LE TITRE RPMS</p>
-            <h2 class="home-section-heading mt-4">
-              {{ rpmsSection.title }}
-            </h2>
+            <div class="text-center">
+              <p class="kicker">LE TITRE RPMS</p>
+              <h2 class="home-section-heading mt-4">
+                {{ rpmsSection.title }}
+              </h2>
+            </div>
 
             <ul class="home-feature-list mt-8">
               <li v-for="(item, index) in rpmsSection.items ?? []" :key="item.title" class="home-feature-row">
@@ -344,10 +349,12 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
           </article>
 
           <article class="home-cityz-card page-cut p-5 sm:p-6 lg:p-8">
-            <p class="kicker">POURQUOI CITYZ FORMATION ?</p>
-            <h2 class="home-section-heading mt-4">
-              {{ cityzSection.title }}
-            </h2>
+            <div class="text-center">
+              <p class="kicker home-cityz-card__kicker">POURQUOI CITYZ FORMATION ?</p>
+              <h2 class="home-section-heading mt-4 home-cityz-card__title">
+                {{ cityzSection.title }}
+              </h2>
+            </div>
 
             <ul class="home-cityz-list mt-8">
               <li
@@ -525,9 +532,9 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 }
 
 .home-section-title {
-  font-size: clamp(1.55rem, 2.4vw, 2rem);
+  font-size: 0.78rem;
   font-weight: 800;
-  line-height: 1.08;
+  line-height: 1.2;
 }
 
 .home-section-heading {
@@ -733,8 +740,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 }
 
 .home-cityz-card {
-  border-color: color-mix(in oklab, var(--primary) 22%, white);
-  background: linear-gradient(180deg, color-mix(in oklab, white 90%, var(--paper-tint)) 0%, white 100%);
+  border-color: color-mix(in oklab, var(--navy-deep) 56%, black);
+  background:
+    radial-gradient(circle at top right, rgb(255 255 255 / 0.08), transparent 36%),
+    linear-gradient(160deg, #0d1a35 0%, #13284f 62%, #0b1630 100%);
 }
 
 .home-cityz-row {
@@ -742,6 +751,20 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   grid-template-columns: auto 1fr;
   gap: 0.8rem;
   align-items: start;
+  color: #ffffff;
+}
+
+.home-cityz-card__kicker {
+  color: rgb(255 255 255 / 0.82);
+}
+
+.home-cityz-card__title,
+.home-cityz-card .home-cityz-row__label {
+  color: #ffffff;
+}
+
+.home-cityz-card .home-cityz-row__description {
+  color: rgb(255 255 255 / 0.88);
 }
 
 .home-zero-grid {

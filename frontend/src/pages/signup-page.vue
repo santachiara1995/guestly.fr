@@ -82,9 +82,10 @@ const termsLink = computed(() => toWithExperience('/cgv-cgu'))
             <div class="mt-5 border-t border-border/70 pt-5">
               <LeadForm
                 source-page="/inscription"
-                appointment-support="Choisissez si vous le souhaitez un créneau de rappel ou d'échange pour finaliser votre inscription."
-                appointment-title="Calendrier de rappel"
+                appointment-support="Si vous le souhaitez, programmez un rappel avec nos équipes pour obtenir des réponses claires sur la formation, le financement ou votre inscription."
+                appointment-title="Être rappelé(e) par nos équipes"
                 phone-required
+                show-promo-code
                 :payment-links="paymentLinks"
                 :payment-support="signupCopy.paymentSupport"
                 :payment-title="signupCopy.paymentTitle"

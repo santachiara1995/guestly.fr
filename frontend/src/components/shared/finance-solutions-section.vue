@@ -146,9 +146,9 @@ const solutions = computed(() =>
 
         <div class="finance-solution-card__content">
           <div class="space-y-4">
-            <div class="flex items-start gap-3">
+            <div class="finance-solution-card__header">
               <span :class="[
-                'finance-price-card__icon mt-0.5',
+                'finance-price-card__icon',
                 solution.id === 'state' ? 'finance-price-card__icon--dark' : ''
               ]" aria-hidden="true">
                 <component :is="solution.icon" class="h-5 w-5" />
@@ -231,13 +231,14 @@ const solutions = computed(() =>
 
 .finance-section__title {
   font-size: clamp(1.9rem, 3.3vw, 2.9rem);
+  color: var(--navy-deep);
 }
 
 .finance-section__subtitle {
   font-size: clamp(1.35rem, 2.2vw, 1.8rem);
   font-weight: 800;
   letter-spacing: -0.04em;
-  color: var(--foreground);
+  color: var(--navy-deep);
 }
 
 .finance-section__description {
@@ -275,7 +276,7 @@ const solutions = computed(() =>
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.06em;
-  color: var(--foreground);
+  color: var(--navy-deep);
 }
 
 .finance-price-card__description {
@@ -304,6 +305,13 @@ const solutions = computed(() =>
   gap: 1.4rem;
 }
 
+.finance-solution-card__header {
+  display: grid;
+  justify-items: center;
+  gap: 0.9rem;
+  text-align: center;
+}
+
 .finance-solution-card__badge {
   position: absolute;
   right: 1.15rem;
@@ -327,12 +335,11 @@ const solutions = computed(() =>
 }
 
 .finance-solution-card__title {
-  padding-right: 6rem;
   font-size: 1.35rem;
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.04em;
-  color: var(--foreground);
+  color: var(--navy-deep);
 }
 
 .finance-solution-card__description,
@@ -340,6 +347,7 @@ const solutions = computed(() =>
   font-size: 0.94rem;
   line-height: 1.7;
   color: var(--muted-foreground);
+  text-align: center;
 }
 
 .finance-solution-card__detail {
@@ -350,6 +358,7 @@ const solutions = computed(() =>
   font-size: 0.93rem;
   line-height: 1.65;
   color: var(--foreground);
+  text-align: center;
 }
 
 .finance-solution-card__detail--soft {
@@ -359,6 +368,7 @@ const solutions = computed(() =>
 .finance-solution-card__points {
   display: grid;
   gap: 0.85rem;
+  justify-items: center;
 }
 
 .finance-solution-card__points li {
@@ -368,6 +378,7 @@ const solutions = computed(() =>
   font-size: 0.94rem;
   line-height: 1.65;
   color: var(--foreground);
+  text-align: center;
 }
 
 .finance-solution-card__actions {

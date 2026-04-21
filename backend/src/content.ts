@@ -211,8 +211,7 @@ export const siteContent = {
     ],
     personasSection: {
       title: 'Cette formation est faite pour vous si...',
-      description:
-        'Cinq profils, un même objectif : passer d’une expertise terrain à une capacité reconnue de pilotage.',
+      description: '',
       items: [
         {
           title: "Vous êtes manager ou chef d'équipe",
@@ -350,7 +349,7 @@ export const siteContent = {
     finalCta: {
       title: 'Prêt à briser votre plafond de verre ?',
       description:
-        "Réservez votre appel de 15 minutes. Nos experts valident votre éligibilité au financement en direct, sans engagement.",
+        "Nos experts répondent à vos questions sur la formation, le financement et votre éligibilité, sans engagement. Réservez ensuite votre appel de 15 minutes.",
       note: 'NOMBRE DE PLACES LIMITÉ POUR CHAQUE SESSION'
     }
   },
@@ -462,6 +461,7 @@ export const siteContent = {
           description: 'La solution la plus simple pour démarrer immédiatement.',
           detail:
             'Réglez 3 500 € en une seule fois et accédez instantanément à votre espace de formation.',
+          badge: 'LE PLUS POPULAIRE',
           ctaLabel: "S'inscrire",
           secondaryLabel: 'Lien de paiement Stripe à renseigner'
         },
@@ -473,7 +473,6 @@ export const siteContent = {
             'Étalez votre investissement sans frais supplémentaires avec notre partenaire Alma.',
           detail: '4 mensualités de 875 € — 0 € de frais, 0 € d’intérêts.',
           extraDetail: 'Décision immédiate, sans dossier complexe.',
-          badge: 'LE PLUS POPULAIRE',
           ctaLabel: "S'inscrire",
           secondaryLabel: 'Lien Alma à renseigner'
         },
@@ -483,10 +482,10 @@ export const siteContent = {
           title: "Formation financée par l'État",
           description:
             "Pour les demandeurs d'emploi (AIF) et les salariés via leur OPCO d'entreprise.",
-          badge: '0 € À SORTIR',
+          badge: '100 % FINANCÉE',
           emphasis: 'dark',
           points: [
-            'Prise en charge totale — 0 € à sortir de votre poche',
+            'Prise en charge totale selon votre éligibilité',
             'Maintien de vos allocations pendant la formation',
             'Dossier administratif intégralement géré par CITYZ'
           ],
@@ -573,7 +572,7 @@ export const siteContent = {
       "Choisissez votre modalité de financement, laissez vos coordonnées, puis validez votre demande.",
     paymentTitle: 'Choisissez votre mode de financement',
     paymentSupport:
-      "Sélectionnez le règlement comptant, le 4 fois Alma ou le financement par l'État. Si vous choisissez l'option État, programmez un rappel pour lancer votre dossier.",
+      "Sélectionnez le règlement comptant, le 4 fois Alma ou le financement par l'État. Vous pouvez aussi demander à être rappelé(e) par nos équipes pour répondre à vos questions sur la formation, le financement ou l'inscription.",
     footerBand: {
       eyebrow: 'Avant de valider',
       title: 'Programme et financement restent accessibles à tout moment',

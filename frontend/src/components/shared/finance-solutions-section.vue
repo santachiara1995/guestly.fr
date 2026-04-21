@@ -131,7 +131,6 @@ const solutions = computed(() =>
         :key="solution.id"
         :class="[
           'finance-solution-card page-cut p-5 sm:p-6',
-          solution.emphasis === 'dark' ? 'finance-solution-card--dark' : '',
           `finance-solution-card--${solution.id}`
         ]"
         v-motion
@@ -140,7 +139,7 @@ const solutions = computed(() =>
       >
         <p v-if="solution.badge" :class="[
           'finance-solution-card__badge',
-          solution.emphasis === 'dark' ? 'finance-solution-card__badge--accent' : ''
+          solution.id === 'state' ? 'finance-solution-card__badge--accent' : ''
         ]">
           {{ solution.badge }}
         </p>
@@ -150,7 +149,7 @@ const solutions = computed(() =>
             <div class="flex items-start gap-3">
               <span :class="[
                 'finance-price-card__icon mt-0.5',
-                solution.emphasis === 'dark' ? 'finance-price-card__icon--dark' : ''
+                solution.id === 'state' ? 'finance-price-card__icon--dark' : ''
               ]" aria-hidden="true">
                 <component :is="solution.icon" class="h-5 w-5" />
               </span>
@@ -197,10 +196,7 @@ const solutions = computed(() =>
               :as="solution.primaryTag"
               v-bind="solution.primaryProps"
               size="lg"
-              :class="[
-                'w-full justify-center',
-                solution.emphasis === 'dark' ? 'finance-solution-card__cta--accent' : ''
-              ]"
+              class="w-full justify-center"
             >
               {{ solution.ctaLabel ?? "S'inscrire" }}
               <ArrowRight class="ml-2 h-4 w-4" />
@@ -308,22 +304,6 @@ const solutions = computed(() =>
   gap: 1.4rem;
 }
 
-.finance-solution-card--dark {
-  border-color: color-mix(in oklab, var(--navy-deep) 56%, black);
-  background:
-    radial-gradient(circle at top right, rgb(255 255 255 / 0.08), transparent 42%),
-    linear-gradient(160deg, #0d1a35 0%, #13284f 62%, #0b1630 100%);
-  color: #f5f7fb;
-}
-
-.finance-solution-card--dark :deep(.detail-key),
-.finance-solution-card--dark .finance-solution-card__title,
-.finance-solution-card--dark .finance-solution-card__description,
-.finance-solution-card--dark .finance-solution-card__note,
-.finance-solution-card--dark .finance-solution-card__points li {
-  color: inherit;
-}
-
 .finance-solution-card__badge {
   position: absolute;
   right: 1.15rem;
@@ -376,12 +356,6 @@ const solutions = computed(() =>
   background: color-mix(in oklab, var(--paper-soft) 92%, white);
 }
 
-.finance-solution-card--dark .finance-solution-card__detail {
-  border-color: rgb(255 255 255 / 0.12);
-  background: rgb(255 255 255 / 0.08);
-  color: #f5f7fb;
-}
-
 .finance-solution-card__points {
   display: grid;
   gap: 0.85rem;
@@ -416,17 +390,9 @@ const solutions = computed(() =>
   text-underline-offset: 0.24em;
 }
 
-.finance-solution-card__cta--accent {
-  border-color: var(--tricolor-red);
-  background: var(--tricolor-red);
-  color: #ffffff;
-  box-shadow: 0 18px 36px rgb(225 0 15 / 0.24);
-}
-
-.finance-solution-card__cta--accent:hover {
-  border-color: color-mix(in oklab, var(--tricolor-red) 82%, black);
-  background: color-mix(in oklab, var(--tricolor-red) 88%, black);
-  color: #ffffff;
+.finance-solution-card--state .finance-price-card__icon {
+  background: color-mix(in oklab, var(--tricolor-red) 10%, white);
+  color: var(--tricolor-red);
 }
 
 @media (min-width: 768px) {

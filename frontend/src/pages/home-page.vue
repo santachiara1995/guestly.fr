@@ -39,6 +39,7 @@ const homeHeroImage = '/hero-office-gemini.jpg'
 const painIcons = [TrendingUp, ShieldAlert, Landmark]
 const personaIcons = [BriefcaseBusiness, RefreshCcw, ShieldCheck, Building2, Rocket]
 const rpmsIcons = [TrendingUp, Users, WalletCards]
+const cityzIcons = [Clock3, Users, ShieldCheck, Building2, WalletCards]
 const zeroPaperIcon = FileText
 
 onMounted(async () => {
@@ -194,7 +195,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
                 :to="diagnosticLink"
                 size="lg"
                 variant="outline"
-                class="w-full justify-center whitespace-normal px-4 text-center leading-snug"
+                class="home-hero-actions__button w-full justify-center whitespace-normal px-4 text-center leading-snug"
               >
                 Demander mon diagnostic gratuit
               </Button>
@@ -202,7 +203,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
                 :as="RouterLink"
                 :to="signupLink"
                 size="lg"
-                class="w-full justify-center whitespace-normal px-4 text-center leading-snug"
+                class="home-hero-actions__button w-full justify-center whitespace-normal px-4 text-center leading-snug"
               >
                 Commencer ma formation
                 <ArrowRight class="ml-2 h-4 w-4" />
@@ -223,10 +224,13 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <article class="page-cut p-5 sm:p-6 lg:p-8">
           <div class="mx-auto max-w-3xl text-center">
-            <h2 class="mt-4 text-[clamp(1.8rem,3vw,2.6rem)] font-extrabold tracking-[-0.05em] text-primary">
+            <p class="home-section-title">
+              {{ painPointSection.title }}
+            </p>
+            <h2 class="home-section-heading mt-3">
               {{ painPointSection.subtitle ?? painPointSection.title }}
             </h2>
-            <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
+            <p class="mt-4 text-lg leading-8 text-muted-foreground sm:text-[1.08rem]">
               {{ painPointSection.description }}
             </p>
           </div>
@@ -255,7 +259,11 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <div class="home-proof-grid">
+        <div class="mx-auto max-w-3xl text-center">
+          <h2 class="home-section-heading">Les repères clés du parcours</h2>
+        </div>
+
+        <div class="home-proof-grid mt-8">
           <article
             v-for="(item, index) in proofItems"
             :key="item.label"
@@ -279,10 +287,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
         <article class="page-cut p-5 sm:p-6 lg:p-8">
           <div class="mx-auto max-w-3xl text-center">
             <p class="kicker">POUR QUI ?</p>
-            <h2 class="mt-4 text-[clamp(1.75rem,3vw,2.45rem)] font-extrabold tracking-[-0.05em] text-foreground">
+            <h2 class="home-section-heading mt-4">
               {{ personasSection.title }}
             </h2>
-            <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
+            <p class="mt-4 text-lg leading-8 text-muted-foreground sm:text-[1.08rem]">
               {{ personasSection.description }}
             </p>
           </div>
@@ -305,34 +313,16 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
                 </h3>
                 <p class="text-sm leading-7 text-muted-foreground" v-html="item.detailsHtml"></p>
               </div>
-
-              <div v-if="item.sources?.length" class="home-persona-card__sources">
-                <a
-                  v-for="source in item.sources"
-                  :key="source.id"
-                  :href="source.url"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  {{ source.label }}
-                </a>
-              </div>
             </article>
           </div>
         </article>
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-3xl text-center">
-          <h2 class="text-[clamp(1.8rem,3vw,2.55rem)] font-extrabold tracking-[-0.05em] text-foreground">
-            La Formation RPMS par CITYZ.
-          </h2>
-        </div>
-
-        <div class="home-dual-grid mt-8">
+        <div class="home-dual-grid">
           <article class="page-cut p-5 sm:p-6 lg:p-8">
             <p class="kicker">LE TITRE RPMS</p>
-            <h2 class="mt-4 text-[clamp(1.7rem,2.75vw,2.35rem)] font-extrabold tracking-[-0.05em] text-foreground">
+            <h2 class="home-section-heading mt-4">
               {{ rpmsSection.title }}
             </h2>
 
@@ -354,19 +344,27 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
           </article>
 
           <article class="home-cityz-card page-cut p-5 sm:p-6 lg:p-8">
-            <p class="kicker text-white/80">POURQUOI CITYZ FORMATION ?</p>
-            <h2 class="mt-4 text-[clamp(1.7rem,2.75vw,2.35rem)] font-extrabold tracking-[-0.05em] text-white">
+            <p class="kicker">POURQUOI CITYZ FORMATION ?</p>
+            <h2 class="home-section-heading mt-4">
               {{ cityzSection.title }}
             </h2>
 
             <ul class="home-cityz-list mt-8">
-              <li v-for="item in cityzSection.items ?? []" :key="item.label" class="home-cityz-row">
-                <ShieldCheck class="mt-1 h-4 w-4 shrink-0" aria-hidden="true" />
-                <p class="text-sm leading-7 text-white/86">
-                  <strong class="font-semibold text-white">{{ item.label }} :</strong>
-                  <span v-if="item.description">{{ item.description }}</span>
-                  <span v-else v-html="item.descriptionHtml"></span>
-                </p>
+              <li
+                v-for="(item, index) in cityzSection.items ?? []"
+                :key="item.label"
+                class="home-cityz-row"
+              >
+                <span class="home-cityz-row__icon" aria-hidden="true">
+                  <component :is="cityzIcons[index] ?? ShieldCheck" class="h-5 w-5" />
+                </span>
+                <div>
+                  <p class="home-cityz-row__label">{{ item.label }}</p>
+                  <p v-if="item.description" class="home-cityz-row__description">
+                    {{ item.description }}
+                  </p>
+                  <p v-else class="home-cityz-row__description" v-html="item.descriptionHtml"></p>
+                </div>
               </li>
             </ul>
           </article>
@@ -395,10 +393,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
               </span>
               <div class="space-y-4">
                 <p class="kicker">SERVICE ADMINISTRATIF</p>
-                <h2 class="text-[clamp(1.85rem,3vw,2.55rem)] font-extrabold tracking-[-0.05em] text-foreground">
+                <h2 class="home-section-heading">
                   {{ zeroPaperSection.title }}
                 </h2>
-                <p class="text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
+                <p class="text-lg leading-8 text-muted-foreground sm:text-[1.08rem]">
                   {{ zeroPaperSection.description }}
                 </p>
               </div>
@@ -439,10 +437,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
         <article class="page-cut p-5 sm:p-6 lg:p-8">
           <div class="mx-auto max-w-3xl text-center">
             <p class="kicker">{{ faqHero.eyebrow ?? 'QUESTIONS FRÉQUENTES' }}</p>
-            <h2 class="mt-4 text-[clamp(1.8rem,3vw,2.55rem)] font-extrabold tracking-[-0.05em] text-foreground">
+            <h2 class="home-section-heading mt-4">
               {{ faqHero.title ?? 'Tout ce que vous devez savoir avant de vous lancer' }}
             </h2>
-            <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
+            <p class="mt-4 text-lg leading-8 text-muted-foreground sm:text-[1.08rem]">
               {{ faqHero.description }}
             </p>
           </div>
@@ -473,28 +471,29 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
         </article>
       </section>
 
-      <section class="home-final-section mt-2 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-        <div class="home-final-shell">
-          <p class="kicker home-final-shell__kicker">DIAGNOSTIC DE FINANCEMENT</p>
-          <h2 class="editorial-title home-final-shell__title">
-            {{ finalCta.title }}
-          </h2>
-          <p class="home-final-shell__description">
-            {{ finalCta.description }}
-          </p>
-          <Button
-            :as="RouterLink"
-            :to="diagnosticLink"
-            size="lg"
-            class="home-final-shell__button justify-center"
-          >
-            Demander mon diagnostic de financement gratuit
-            <Clock3 class="ml-2 h-4 w-4" />
-          </Button>
-          <p class="home-final-shell__note">
-            {{ finalCta.note }}
-          </p>
-        </div>
+      <section class="page-shell px-4 pb-6 pt-0 sm:px-6 lg:px-8 lg:pb-8">
+        <article class="home-final-panel page-cut p-6 sm:p-8 lg:p-10">
+          <div class="home-final-shell">
+            <h2 class="editorial-title home-final-shell__title">
+              {{ finalCta.title }}
+            </h2>
+            <p class="home-final-shell__description">
+              {{ finalCta.description }}
+            </p>
+            <Button
+              :as="RouterLink"
+              :to="diagnosticLink"
+              size="lg"
+              class="home-final-shell__button justify-center whitespace-normal text-center"
+            >
+              Demander mon diagnostic gratuit
+              <Clock3 class="ml-2 h-4 w-4" />
+            </Button>
+            <p class="home-final-shell__note">
+              {{ finalCta.note }}
+            </p>
+          </div>
+        </article>
       </section>
     </template>
   </div>
@@ -517,6 +516,24 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 .home-hook-stack {
   display: grid;
   gap: 0.25rem;
+}
+
+.home-section-title,
+.home-section-heading {
+  color: var(--navy-deep);
+  letter-spacing: -0.05em;
+}
+
+.home-section-title {
+  font-size: clamp(1.55rem, 2.4vw, 2rem);
+  font-weight: 800;
+  line-height: 1.08;
+}
+
+.home-section-heading {
+  font-size: clamp(1.9rem, 3vw, 2.65rem);
+  font-weight: 800;
+  line-height: 1.05;
 }
 
 .home-hook-title {
@@ -577,6 +594,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   align-items: stretch;
 }
 
+.home-hero-actions__button {
+  min-height: 4.1rem;
+}
+
 .home-visual-card {
   min-height: 100%;
 }
@@ -604,8 +625,34 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   text-align: center;
 }
 
+.home-pain-card :deep(.paper-card__icon) {
+  height: 3.25rem;
+  width: 3.25rem;
+}
+
+.home-pain-card h3 {
+  color: var(--navy-deep);
+  font-size: 1.2rem;
+}
+
+.home-pain-card p {
+  font-size: 1rem;
+}
+
 .home-proof-card {
   min-height: 100%;
+}
+
+.home-proof-card .detail-key {
+  font-size: 0.84rem;
+}
+
+.home-proof-card p:nth-of-type(2) {
+  color: var(--navy-deep);
+}
+
+.home-proof-card p:last-child {
+  font-size: 0.98rem;
 }
 
 .home-persona-card {
@@ -623,6 +670,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   justify-items: center;
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .home-persona-card__body {
@@ -631,21 +679,18 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   gap: 0.9rem;
 }
 
-.home-persona-card__sources {
-  margin-top: 1rem;
-  display: grid;
-  gap: 0.35rem;
-  border-top: 1px solid color-mix(in oklab, var(--line) 75%, white);
-  padding-top: 0.95rem;
+.home-persona-card__icon {
+  height: 3.25rem;
+  width: 3.25rem;
 }
 
-.home-persona-card__sources a {
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1.5;
-  color: var(--primary);
-  text-decoration: underline;
-  text-underline-offset: 0.24em;
+.home-persona-card h3 {
+  color: var(--navy-deep);
+  font-size: 1.18rem;
+}
+
+.home-persona-card p {
+  font-size: 1rem;
 }
 
 .home-feature-list,
@@ -662,8 +707,21 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   align-items: start;
 }
 
+.home-feature-row h3,
+.home-cityz-row__label {
+  color: var(--navy-deep);
+  font-size: 1.15rem;
+}
+
+.home-feature-row p,
+.home-cityz-row__description {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
 .home-feature-row__icon,
-.home-zero-icon {
+.home-zero-icon,
+.home-cityz-row__icon {
   display: inline-flex;
   height: 3.4rem;
   width: 3.4rem;
@@ -675,10 +733,8 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 }
 
 .home-cityz-card {
-  border-color: color-mix(in oklab, var(--navy-deep) 56%, black);
-  background:
-    radial-gradient(circle at top right, rgb(255 255 255 / 0.08), transparent 36%),
-    linear-gradient(160deg, #0d1a35 0%, #13284f 62%, #0b1630 100%);
+  border-color: color-mix(in oklab, var(--primary) 22%, white);
+  background: linear-gradient(180deg, color-mix(in oklab, white 90%, var(--paper-tint)) 0%, white 100%);
 }
 
 .home-cityz-row {
@@ -686,7 +742,6 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   grid-template-columns: auto 1fr;
   gap: 0.8rem;
   align-items: start;
-  color: #ffffff;
 }
 
 .home-zero-grid {
@@ -728,16 +783,17 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   color: color-mix(in oklab, var(--line) 86%, white);
 }
 
-.home-final-section {
+.home-final-panel {
+  border-color: color-mix(in oklab, var(--primary) 24%, white);
   background:
-    radial-gradient(circle at top right, rgb(225 0 15 / 0.16), transparent 34%),
-    linear-gradient(145deg, #001a78 0%, #000f56 52%, #00063a 100%);
-  border-bottom: 1px solid rgb(225 0 15 / 0.18);
+    radial-gradient(circle at top right, rgb(225 0 15 / 0.08), transparent 28%),
+    linear-gradient(180deg, white 0%, color-mix(in oklab, white 92%, var(--paper-tint)) 100%);
+  box-shadow: 0 18px 36px rgb(17 39 65 / 0.1);
 }
 
 .home-final-shell {
   margin-inline: auto;
-  width: min(100%, 62rem);
+  width: min(100%, 60rem);
   display: grid;
   justify-items: center;
   gap: 1.2rem;
@@ -746,32 +802,30 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
 .home-final-shell__title {
   font-size: clamp(2rem, 4vw, 3.35rem);
-  color: #ffffff;
+  color: var(--navy-deep);
 }
 
 .home-final-shell__description {
   max-width: 42rem;
-  font-size: 1rem;
+  font-size: 1.08rem;
   line-height: 1.75;
-  color: rgb(255 255 255 / 0.88);
-}
-
-.home-final-shell__kicker {
-  color: rgb(255 255 255 / 0.78);
+  color: var(--muted-foreground);
 }
 
 .home-final-shell__button {
   width: min(100%, 36rem);
-  background: #ffffff;
-  border-color: #ffffff;
-  color: var(--primary);
-  box-shadow: 0 20px 44px rgb(0 0 0 / 0.2);
+  min-height: 4.1rem;
+  border-radius: 1rem;
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 20px 44px rgb(0 0 107 / 0.18);
 }
 
 .home-final-shell__button:hover {
-  background: color-mix(in oklab, white 88%, var(--paper-tint));
-  border-color: color-mix(in oklab, white 88%, var(--paper-tint));
-  color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 88%, black);
+  border-color: color-mix(in oklab, var(--primary) 88%, black);
+  color: #ffffff;
 }
 
 .home-final-shell__note {
@@ -779,7 +833,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgb(255 255 255 / 0.74);
+  color: color-mix(in oklab, var(--tricolor-red) 86%, var(--navy-deep));
 }
 
 @media (min-width: 640px) {
@@ -798,10 +852,6 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   .home-dual-grid,
   .home-zero-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .home-persona-grid {
-    gap: 1.1rem;
   }
 }
 </style>

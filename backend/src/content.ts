@@ -217,7 +217,7 @@ export const siteContent = {
         {
           title: "Vous êtes manager ou chef d'équipe",
           detailsHtml:
-            "Vous pilotez déjà une équipe mais visez un poste de direction. Le RPMS valide officiellement vos compétences avec un titre Bac+2 reconnu par l'État, et vous ouvre l'accès à des postes observés entre <strong>40 000 €</strong> et <strong>50 000 € brut/an</strong> selon les fiches métiers du secteur.",
+            "Vous pilotez déjà une équipe mais visez un poste de direction. Le RPMS valide officiellement vos compétences avec un titre Bac+2 reconnu par l'État, et vous ouvre l'accès à des postes observés <br>entre <strong>40 000 €</strong> et <strong>50 000 € brut/an</strong> selon les fiches métiers du secteur.",
           sourceRefs: ['salary']
         },
         {
@@ -468,9 +468,9 @@ export const siteContent = {
         {
           id: 'installments',
           eyebrow: 'SOLUTION 02',
-          title: 'Paiement en 4 fois sans frais',
+          title: 'Paiement en 4 fois sans frais avec Alma',
           description:
-            'Étalez votre investissement sans frais supplémentaires grâce à notre partenariat Alma.',
+            'Étalez votre investissement sans frais supplémentaires avec notre partenaire Alma.',
           detail: '4 mensualités de 875 € — 0 € de frais, 0 € d’intérêts.',
           extraDetail: 'Décision immédiate, sans dossier complexe.',
           badge: 'LE PLUS POPULAIRE',

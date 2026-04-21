@@ -30,20 +30,20 @@ const signupLink = computed(() => toWithExperience('/inscription'))
       <div class="prefooter-panel__actions">
         <Button
           :as="RouterLink"
-          :to="signupLink"
-          size="lg"
-          class="prefooter-panel__primary w-full justify-center sm:w-auto"
-        >
-          Je m'inscris maintenant
-        </Button>
-        <Button
-          :as="RouterLink"
           :to="diagnosticLink"
           size="lg"
           variant="outline"
           class="w-full justify-center sm:w-auto"
         >
           Je réserve mon diagnostic gratuit
+        </Button>
+        <Button
+          :as="RouterLink"
+          :to="signupLink"
+          size="lg"
+          class="prefooter-panel__primary w-full justify-center sm:w-auto"
+        >
+          Je m'inscris maintenant
         </Button>
       </div>
     </div>

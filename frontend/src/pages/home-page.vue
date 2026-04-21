@@ -85,6 +85,33 @@ const financeLinks = computed(() => ({
   })
 }))
 
+const homeFaqItems = computed(() => faqItems.value.slice(0, 4))
+
+const heroHookLines = computed(() =>
+  (hero.value.hookLines ?? []).map((line) => {
+    const targets = ["par l'Etat", 'par l’État']
+
+    for (const target of targets) {
+      const accentIndex = line.indexOf(target)
+      if (accentIndex !== -1) {
+        return {
+          raw: line,
+          baseStart: line.slice(0, accentIndex),
+          accent: target,
+          baseEnd: line.slice(accentIndex + target.length)
+        }
+      }
+    }
+
+    return {
+      raw: line,
+      baseStart: line,
+      accent: '',
+      baseEnd: ''
+    }
+  })
+)
+
 const sourceMap = computed(() =>
   Object.fromEntries((homeCopy.value.sources ?? []).map((item) => [item.id, item]))
 )
@@ -142,9 +169,11 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
             <p class="kicker">RNCP 38575 · Bac+2 · 100 % distanciel</p>
 
             <div class="home-hook-stack">
-              <h1 class="editorial-title home-hook-title text-foreground">
-                <span v-for="line in hero.hookLines ?? []" :key="line" class="home-hook-line">
-                  {{ line }}
+              <h1 class="editorial-title home-hook-title">
+                <span v-for="line in heroHookLines" :key="line.raw" class="home-hook-line">
+                  <span class="home-hook-line__base">{{ line.baseStart }}</span>
+                  <span v-if="line.accent" class="home-hook-line__accent">{{ line.accent }}</span>
+                  <span v-if="line.baseEnd" class="home-hook-line__base">{{ line.baseEnd }}</span>
                 </span>
               </h1>
             </div>
@@ -165,7 +194,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
                 :to="diagnosticLink"
                 size="lg"
                 variant="outline"
-                class="w-full justify-center sm:w-auto"
+                class="w-full justify-center whitespace-normal px-4 text-center leading-snug"
               >
                 Demander mon diagnostic gratuit
               </Button>
@@ -173,7 +202,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
                 :as="RouterLink"
                 :to="signupLink"
                 size="lg"
-                class="w-full justify-center sm:w-auto"
+                class="w-full justify-center whitespace-normal px-4 text-center leading-snug"
               >
                 Commencer ma formation
                 <ArrowRight class="ml-2 h-4 w-4" />
@@ -194,13 +223,9 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <article class="page-cut p-5 sm:p-6 lg:p-8">
           <div class="mx-auto max-w-3xl text-center">
-            <p class="kicker">LE COÛT DE L'IMMOBILISME</p>
             <h2 class="mt-4 text-[clamp(1.8rem,3vw,2.6rem)] font-extrabold tracking-[-0.05em] text-primary">
-              {{ painPointSection.title }}
+              {{ painPointSection.subtitle ?? painPointSection.title }}
             </h2>
-            <p class="mt-2 text-lg font-semibold leading-8 text-foreground">
-              {{ painPointSection.subtitle }}
-            </p>
             <p class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
               {{ painPointSection.description }}
             </p>
@@ -271,38 +296,40 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
               :initial="motionVariants.block.initial"
               :enter="staggerEnter(index, 46, 22)"
             >
-              <div class="flex items-start gap-3">
-                <span class="paper-card__icon" aria-hidden="true">
+              <div class="home-persona-card__body">
+                <span class="paper-card__icon home-persona-card__icon" aria-hidden="true">
                   <component :is="personaIcons[index] ?? BriefcaseBusiness" class="h-4 w-4" />
                 </span>
-                <div>
-                  <h3 class="text-[1.08rem] font-semibold leading-tight tracking-[-0.03em] text-foreground">
-                    {{ item.title }}
-                  </h3>
-                  <p class="mt-3 text-sm leading-7 text-muted-foreground" v-html="item.detailsHtml"></p>
-                </div>
+                <h3 class="text-[1.08rem] font-semibold leading-tight tracking-[-0.03em] text-foreground">
+                  {{ item.title }}
+                </h3>
+                <p class="text-sm leading-7 text-muted-foreground" v-html="item.detailsHtml"></p>
               </div>
-            </article>
-          </div>
 
-          <div class="home-sources mt-8">
-            <p class="detail-key">Sources & méthodologie</p>
-            <p class="mt-3 text-sm leading-7 text-muted-foreground">
-              Les indicateurs réglementaires et d’insertion renvoient aux sources officielles. Les fourchettes salariales restent indicatives et dépendent du poste, du secteur et de la localisation.
-            </p>
-            <ul class="home-source-list mt-4">
-              <li v-for="source in homeCopy.sources ?? []" :key="source.id">
-                <a :href="source.url" rel="noreferrer" target="_blank">
+              <div v-if="item.sources?.length" class="home-persona-card__sources">
+                <a
+                  v-for="source in item.sources"
+                  :key="source.id"
+                  :href="source.url"
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   {{ source.label }}
                 </a>
-              </li>
-            </ul>
+              </div>
+            </article>
           </div>
         </article>
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <div class="home-dual-grid">
+        <div class="mx-auto max-w-3xl text-center">
+          <h2 class="text-[clamp(1.8rem,3vw,2.55rem)] font-extrabold tracking-[-0.05em] text-foreground">
+            La Formation RPMS par CITYZ.
+          </h2>
+        </div>
+
+        <div class="home-dual-grid mt-8">
           <article class="page-cut p-5 sm:p-6 lg:p-8">
             <p class="kicker">LE TITRE RPMS</p>
             <h2 class="mt-4 text-[clamp(1.7rem,2.75vw,2.35rem)] font-extrabold tracking-[-0.05em] text-foreground">
@@ -422,7 +449,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
           <div class="mx-auto mt-8 grid max-w-5xl gap-4">
             <details
-              v-for="(item, index) in faqItems"
+              v-for="(item, index) in homeFaqItems"
               :key="item.question"
               class="accordion-card page-cut px-5 py-4 sm:px-6 sm:py-5"
               v-motion
@@ -448,8 +475,8 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
       <section class="home-final-section mt-2 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div class="home-final-shell">
-          <p class="kicker text-[color:#5d4700]">DIAGNOSTIC DE FINANCEMENT</p>
-          <h2 class="editorial-title home-final-shell__title text-[#13284f]">
+          <p class="kicker home-final-shell__kicker">DIAGNOSTIC DE FINANCEMENT</p>
+          <h2 class="editorial-title home-final-shell__title">
             {{ finalCta.title }}
           </h2>
           <p class="home-final-shell__description">
@@ -495,17 +522,27 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 .home-hook-title {
   font-size: clamp(2.2rem, 4vw, 3.65rem);
   line-height: 0.98;
+  color: var(--primary);
 }
 
 .home-hook-line {
   display: block;
 }
 
+.home-hook-line__base {
+  color: inherit;
+}
+
+.home-hook-line__accent {
+  color: var(--tricolor-red);
+}
+
 .home-hero-copy {
   max-width: 42rem;
   font-size: 1rem;
   line-height: 1.75;
-  color: var(--muted-foreground);
+  font-weight: 700;
+  color: var(--foreground);
 }
 
 .home-hero-list {
@@ -534,9 +571,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 }
 
 .home-hero-actions {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.85rem;
+  align-items: stretch;
 }
 
 .home-visual-card {
@@ -554,7 +592,6 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
 .home-pain-grid,
 .home-proof-grid,
-.home-persona-grid,
 .home-zero-stats {
   display: grid;
   gap: 1rem;
@@ -562,6 +599,9 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
 .home-pain-card {
   padding: 1.15rem;
+  display: grid;
+  justify-items: center;
+  text-align: center;
 }
 
 .home-proof-card {
@@ -570,16 +610,39 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
 .home-persona-card {
   min-height: 100%;
+  display: flex;
+  flex: 1 1 20rem;
+  max-width: 22.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
 }
 
-.home-source-list {
+.home-persona-grid {
+  justify-content: center;
+  justify-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.home-persona-card__body {
   display: grid;
-  gap: 0.75rem;
+  justify-items: center;
+  gap: 0.9rem;
 }
 
-.home-source-list a {
-  font-size: 0.92rem;
-  font-weight: 600;
+.home-persona-card__sources {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.35rem;
+  border-top: 1px solid color-mix(in oklab, var(--line) 75%, white);
+  padding-top: 0.95rem;
+}
+
+.home-persona-card__sources a {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.5;
   color: var(--primary);
   text-decoration: underline;
   text-underline-offset: 0.24em;
@@ -667,9 +730,9 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
 .home-final-section {
   background:
-    linear-gradient(180deg, transparent 0%, transparent 10%),
-    linear-gradient(135deg, #ffe17c 0%, #ffd34a 52%, #f7c500 100%);
-  border-bottom: 1px solid rgb(19 40 79 / 0.18);
+    radial-gradient(circle at top right, rgb(225 0 15 / 0.16), transparent 34%),
+    linear-gradient(145deg, #001a78 0%, #000f56 52%, #00063a 100%);
+  border-bottom: 1px solid rgb(225 0 15 / 0.18);
 }
 
 .home-final-shell {
@@ -683,26 +746,32 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
 .home-final-shell__title {
   font-size: clamp(2rem, 4vw, 3.35rem);
+  color: #ffffff;
 }
 
 .home-final-shell__description {
   max-width: 42rem;
   font-size: 1rem;
   line-height: 1.75;
-  color: rgb(19 40 79 / 0.9);
+  color: rgb(255 255 255 / 0.88);
+}
+
+.home-final-shell__kicker {
+  color: rgb(255 255 255 / 0.78);
 }
 
 .home-final-shell__button {
   width: min(100%, 36rem);
-  background: #13284f;
-  border-color: #13284f;
-  color: white;
-  box-shadow: 0 20px 44px rgb(19 40 79 / 0.22);
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--primary);
+  box-shadow: 0 20px 44px rgb(0 0 0 / 0.2);
 }
 
 .home-final-shell__button:hover {
-  background: #0e1d39;
-  border-color: #0e1d39;
+  background: color-mix(in oklab, white 88%, var(--paper-tint));
+  border-color: color-mix(in oklab, white 88%, var(--paper-tint));
+  color: var(--primary);
 }
 
 .home-final-shell__note {
@@ -710,24 +779,13 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgb(19 40 79 / 0.78);
+  color: rgb(255 255 255 / 0.74);
 }
 
 @media (min-width: 640px) {
-  .home-hero-actions {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
   .home-pain-grid,
   .home-proof-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 768px) {
-  .home-persona-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -743,7 +801,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   }
 
   .home-persona-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.1rem;
   }
 }
 </style>

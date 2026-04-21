@@ -131,7 +131,8 @@ const solutions = computed(() =>
         :key="solution.id"
         :class="[
           'finance-solution-card page-cut p-5 sm:p-6',
-          solution.emphasis === 'dark' ? 'finance-solution-card--dark' : ''
+          solution.emphasis === 'dark' ? 'finance-solution-card--dark' : '',
+          `finance-solution-card--${solution.id}`
         ]"
         v-motion
         :initial="motionVariants.block.initial"
@@ -268,8 +269,8 @@ const solutions = computed(() =>
 }
 
 .finance-price-card__icon--dark {
-  background: color-mix(in oklab, var(--paper) 16%, white);
-  color: #fff6cf;
+  background: color-mix(in oklab, var(--tricolor-red) 18%, white);
+  color: #fff4f5;
 }
 
 .finance-price-card__amount {
@@ -341,8 +342,8 @@ const solutions = computed(() =>
 }
 
 .finance-solution-card__badge--accent {
-  background: #ffe06a;
-  color: #09152b;
+  background: var(--tricolor-red);
+  color: #ffffff;
 }
 
 .finance-solution-card__title {
@@ -416,16 +417,16 @@ const solutions = computed(() =>
 }
 
 .finance-solution-card__cta--accent {
-  border-color: #ffe06a;
-  background: #ffe06a;
-  color: #09152b;
-  box-shadow: 0 18px 36px rgb(255 224 106 / 0.24);
+  border-color: var(--tricolor-red);
+  background: var(--tricolor-red);
+  color: #ffffff;
+  box-shadow: 0 18px 36px rgb(225 0 15 / 0.24);
 }
 
 .finance-solution-card__cta--accent:hover {
-  border-color: #ffe991;
-  background: #ffe991;
-  color: #09152b;
+  border-color: color-mix(in oklab, var(--tricolor-red) 82%, black);
+  background: color-mix(in oklab, var(--tricolor-red) 88%, black);
+  color: #ffffff;
 }
 
 @media (min-width: 768px) {
@@ -433,18 +434,8 @@ const solutions = computed(() =>
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .finance-solution-card--dark {
+  .finance-solution-card--state {
     grid-column: 1 / -1;
-  }
-}
-
-@media (min-width: 1024px) {
-  .finance-solution-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .finance-solution-card--dark {
-    grid-column: auto;
   }
 }
 </style>

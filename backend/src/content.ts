@@ -74,7 +74,7 @@ export const faqSeed = [
   {
     question: 'Quels sont les prérequis pour suivre la formation ?',
     answer:
-      "La fiche RNCP n'indique pas de prérequis distincts à l'entrée en formation. En pratique, une bonne aisance avec la lecture, la rédaction et les outils numériques du quotidien est recommandée, ainsi que la capacité à organiser un travail personnel régulier dans un parcours à distance.",
+      "Vous devez justifier d'un diplôme de niveau 4 (Bac ou équivalent) ou d'une expérience professionnelle significative. Une bonne aisance avec la lecture, la rédaction et les outils numériques du quotidien est recommandée, ainsi que la capacité à organiser un travail personnel régulier dans un parcours à distance.",
     audience: 'particulier',
     sortOrder: 4
   },
@@ -217,13 +217,13 @@ export const siteContent = {
         {
           title: "Vous êtes manager ou chef d'équipe",
           detailsHtml:
-            "Vous pilotez déjà une équipe mais visez un poste de direction. Le RPMS valide officiellement vos compétences avec un titre Bac+2 reconnu par l'État, et vous ouvre l'accès à des postes observés entre <strong>35 000 €</strong> et <strong>50 000 € brut/an</strong> selon les fiches métiers du secteur.",
+            "Vous pilotez déjà une équipe mais visez un poste de direction. Le RPMS valide officiellement vos compétences avec un titre Bac+2 reconnu par l'État, et vous ouvre l'accès à des postes observés entre <strong>40 000 €</strong> et <strong>50 000 € brut/an</strong> selon les fiches métiers du secteur.",
           sourceRefs: ['salary']
         },
         {
           title: 'Vous êtes salarié en reconversion',
           detailsHtml:
-            "Vous voulez évoluer vers la gestion d'entreprise sans repasser par un cursus universitaire long. Le titre est accessible sans Bac+2 préalable, et la fiche RNCP n'indique pas de prérequis distincts à l'entrée en formation. Le parcours se prépare à votre rythme en <strong>100 % distanciel</strong>.",
+            "Vous voulez évoluer vers la gestion d'entreprise sans repasser par un cursus universitaire long. Le RPMS est accessible sans Bac+2 préalable, avec un niveau 4 / Bac ou une expérience professionnelle significative, et se prépare à votre rythme en <strong>100 % distanciel</strong>.",
           sourceRefs: ['rncp']
         },
         {
@@ -398,7 +398,7 @@ export const siteContent = {
       summaryCards: [
         {
           label: 'Volume',
-          value: '364 h de formation',
+          value: '364 heures de formation',
           note: 'Parcours 100 % distanciel avec accompagnement pédagogique.'
         },
         {

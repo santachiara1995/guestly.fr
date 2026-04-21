@@ -1,5 +1,5 @@
 <script setup>
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
 import { useExperienceVariant } from '@/composables/use-experience-variant'
@@ -21,6 +21,10 @@ const props = defineProps({
     default: true
   },
   showAppointmentPicker: {
+    type: Boolean,
+    default: false
+  },
+  phoneRequired: {
     type: Boolean,
     default: false
   },
@@ -73,6 +77,7 @@ const { toWithExperience } = useExperienceVariant()
 const submitting = ref(false)
 const errorMessage = ref('')
 const sourcePageWithExperience = computed(() => toWithExperience(props.sourcePage))
+const paymentChoice = ref('cash')
 
 const form = reactive({
   firstName: '',
@@ -85,36 +90,75 @@ const form = reactive({
   consentRgpd: false
 })
 
+function normalizePaymentChoice(value) {
+  const normalized = String(value ?? '').trim().toLowerCase()
+
+  if (normalized === 'installments' || normalized === 'state' || normalized === 'cash') {
+    return normalized
+  }
+
+  if (normalized === 'etat') {
+    return 'state'
+  }
+
+  return 'cash'
+}
+
+watch(
+  () => props.selectedPayment,
+  (value) => {
+    paymentChoice.value = normalizePaymentChoice(value)
+  },
+  { immediate: true }
+)
+
 const paymentOptions = computed(() => [
   {
     id: 'cash',
-    title: 'Paiement Stripe',
-    support: 'Règlement comptant',
+    title: 'Paiement comptant',
+    support: 'Règlement en une seule fois via Stripe.',
     href: props.paymentLinks?.cashUrl ?? ''
   },
   {
     id: 'installments',
-    title: 'Paiement en plusieurs fois',
-    support: '3x ou 4x sans frais',
+    title: 'Paiement en 4 fois avec Alma',
+    support: '4 mensualités de 875 € sans frais.',
     href: props.paymentLinks?.installmentsUrl ?? ''
+  },
+  {
+    id: 'state',
+    title: "Financement par l'État",
+    support: 'AIF / OPCO avec rappel programmé pour lancer votre dossier.',
+    href: ''
   }
 ])
 
-const paymentPreference = computed(() =>
-  props.selectedPayment === 'installments' ? 'installments' : 'cash'
-)
+const paymentPreference = computed(() => paymentChoice.value)
 
 const hasPaymentLinks = computed(() =>
-  props.showPaymentSection && paymentOptions.value.some((option) => option.href)
+  props.showPaymentSection &&
+  paymentOptions.value.some((option) => option.id !== 'state' && option.href)
 )
 
 const defaultMessage = computed(() =>
   props.submissionMessage ||
   (props.showPaymentSection
     ? paymentPreference.value === 'installments'
-      ? 'Inscription RPMS. Préférence de paiement : plusieurs fois.'
-      : 'Inscription RPMS. Préférence de paiement : comptant.'
+      ? 'Inscription RPMS. Préférence de paiement : 4 fois avec Alma.'
+      : paymentPreference.value === 'state'
+        ? "Inscription RPMS. Préférence de financement : État / AIF / OPCO avec rappel programmé."
+        : 'Inscription RPMS. Préférence de paiement : comptant.'
     : 'Demande de rappel via formulaire de contact.')
+)
+
+const resolvedAppointmentTitle = computed(() =>
+  paymentPreference.value === 'state' ? 'Rappel programmé' : props.appointmentTitle
+)
+
+const resolvedAppointmentSupport = computed(() =>
+  paymentPreference.value === 'state'
+    ? "Choisissez un créneau pour que l'équipe CITYZ lance avec vous votre dossier AIF ou OPCO."
+    : props.appointmentSupport
 )
 
 const messageWithAppointment = computed(() => {
@@ -136,6 +180,11 @@ async function submitForm() {
 
   if (!form.consentRgpd) {
     errorMessage.value = 'Le consentement RGPD est obligatoire.'
+    return
+  }
+
+  if (props.phoneRequired && !String(form.phone ?? '').trim()) {
+    errorMessage.value = 'Le numéro de téléphone est obligatoire.'
     return
   }
 
@@ -224,18 +273,18 @@ async function submitForm() {
             autocomplete="tel"
             name="phone"
             placeholder="06 00 00 00 00"
+            :required="phoneRequired"
             type="tel"
           />
         </label>
 
         <label v-if="showDateOfBirth" class="form-field min-w-0 sm:col-span-2">
-          <span>Date de naissance</span>
+          <span>Date de naissance (optionnel)</span>
           <Input
             v-model="form.dateOfBirth"
             autocomplete="bday"
             class="min-w-0 max-w-full"
             name="birth-date"
-            required
             type="date"
           />
         </label>
@@ -253,7 +302,7 @@ async function submitForm() {
         </p>
       </div>
 
-      <div class="grid gap-3 sm:grid-cols-2">
+      <div class="grid gap-3 lg:grid-cols-3">
         <article
           v-for="option in paymentOptions"
           :key="option.id"
@@ -264,25 +313,52 @@ async function submitForm() {
               : 'border-border/70 bg-white'
           ]"
         >
+          <button
+            type="button"
+            class="w-full text-left"
+            @click="paymentChoice = option.id"
+          >
           <p class="text-base font-semibold text-foreground">{{ option.title }}</p>
           <p class="mt-1 text-sm leading-6 text-muted-foreground">{{ option.support }}</p>
+          </button>
+
+          <div class="mt-4 grid gap-3">
+            <Button
+              type="button"
+              class="w-full justify-center"
+              size="sm"
+              :variant="paymentPreference === option.id ? 'default' : 'outline'"
+              @click="paymentChoice = option.id"
+            >
+              {{ paymentPreference === option.id ? 'Option sélectionnée' : 'Choisir cette option' }}
+            </Button>
+
           <Button
-            :as="option.href ? 'a' : 'button'"
-            :disabled="!option.href"
+            v-if="option.href"
+            as="a"
             :href="option.href || undefined"
-            class="mt-4 w-full justify-center"
+            class="w-full justify-center"
             rel="noreferrer"
             size="sm"
             target="_blank"
             variant="outline"
           >
-            {{ option.href ? 'Ouvrir le lien de paiement' : 'Lien de paiement à activer' }}
+            Ouvrir le lien de paiement
           </Button>
+
+            <p v-else-if="option.id === 'state'" class="text-sm leading-6 text-muted-foreground">
+              Sélectionnez cette option puis programmez un rappel pour lancer votre dossier.
+            </p>
+
+            <p v-else class="text-sm leading-6 text-muted-foreground">
+              Lien de paiement à activer.
+            </p>
+          </div>
         </article>
       </div>
 
       <p v-if="!hasPaymentLinks" class="text-sm leading-6 text-muted-foreground">
-        Les URLs de paiement Stripe ne sont pas encore renseignées dans la configuration.
+        Les URLs Stripe et Alma ne sont pas encore renseignées dans la configuration.
       </p>
     </section>
 
@@ -291,9 +367,9 @@ async function submitForm() {
       class="space-y-3 rounded-[1rem] border border-border/70 bg-white/70 p-4"
     >
       <div class="space-y-1">
-        <p class="detail-key">{{ appointmentTitle }}</p>
+        <p class="detail-key">{{ resolvedAppointmentTitle }}</p>
         <p class="text-sm leading-6 text-muted-foreground">
-          {{ appointmentSupport }}
+          {{ resolvedAppointmentSupport }}
         </p>
       </div>
 

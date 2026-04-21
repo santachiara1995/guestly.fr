@@ -92,9 +92,10 @@ const overviewCards = computed(() => [
       "Rendez-vous individuel, accompagnement pédagogique d'experts et suivi régulier pour augmenter vos chances de réussite."
   },
   {
-    label: 'Paiement',
-    value: '3 fois sans frais possible',
-    note: 'Une solution de règlement plus souple pour engager votre projet sereinement.'
+    label: 'Financement',
+    value: 'Comptant, Alma ou État',
+    note:
+      "Trois solutions de financement pour lancer votre projet sans bloquer votre trésorerie."
   }
 ])
 const evaluationSteps = computed(() => evaluationSection.value.steps ?? [])
@@ -271,7 +272,7 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
             <article class="program-eval-card p-5 sm:p-6">
               <p class="kicker text-center">{{ evaluationSection.eyebrow ?? 'Durée et évaluation' }}</p>
               <h2 class="mt-4 whitespace-pre-line text-center text-[clamp(1.4rem,2.2vw,1.9rem)] font-semibold tracking-[-0.04em] text-foreground">
-                {{ evaluationSection.title ?? '300h de formation,\nExamen de 1h35.' }}
+                {{ evaluationSection.title ?? '364 heures de formation,\nExamen de 1 h 35.' }}
               </h2>
               <p class="mx-auto mt-4 max-w-4xl text-center text-sm leading-7 text-muted-foreground">
                 {{ evaluationSection.description ?? "La fiche RNCP38575 précise le déroulé de l'épreuve finale." }}

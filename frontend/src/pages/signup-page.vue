@@ -30,14 +30,18 @@ const hero = computed(() => ({
   title: signupCopy.value.heroTitle ?? 'Inscrivez-vous à la formation RPMS.',
   support:
     signupCopy.value.heroSupport ??
-    "Complétez le formulaire pour lancer votre demande d'inscription et accéder ensuite au bon mode de règlement.",
+    "Complétez le formulaire pour lancer votre demande, choisir votre mode de financement et programmer un rappel si nécessaire.",
   intro:
     signupCopy.value.formIntro ??
-    "Quelques informations suffisent pour démarrer votre demande d'inscription."
+    "Toutes les informations sont obligatoires sauf la date de naissance, qui reste optionnelle."
 }))
 
 const selectedPayment = computed(() =>
-  route.query.payment === 'installments' ? 'installments' : 'cash'
+  route.query.payment === 'installments'
+    ? 'installments'
+    : route.query.payment === 'state'
+      ? 'state'
+      : 'cash'
 )
 
 const paymentLinks = computed(() => ({
@@ -80,6 +84,7 @@ const termsLink = computed(() => toWithExperience('/cgv-cgu'))
                 source-page="/inscription"
                 appointment-support="Choisissez si vous le souhaitez un créneau de rappel ou d'échange pour finaliser votre inscription."
                 appointment-title="Calendrier de rappel"
+                phone-required
                 :payment-links="paymentLinks"
                 :payment-support="signupCopy.paymentSupport"
                 :payment-title="signupCopy.paymentTitle"

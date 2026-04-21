@@ -107,7 +107,7 @@ function normalizeEmail(value) {
 
 function normalizePaymentPreference(value) {
   const normalized = normalizeText(value).toLowerCase()
-  if (normalized === 'cash' || normalized === 'installments') {
+  if (normalized === 'cash' || normalized === 'installments' || normalized === 'state') {
     return normalized
   }
   return ''
@@ -324,10 +324,12 @@ const app = new Elysia()
       const lastName = normalizeText(body.lastName)
       const email = normalizeEmail(body.email)
       const message = normalizeText(body.message) || 'Inscription RPMS'
+      const phone = normalizeText(body.phone)
       const dateOfBirth = normalizeText(body.dateOfBirth)
       const paymentPreference = normalizePaymentPreference(body.paymentPreference)
+      const sourcePage = normalizeText(body.sourcePage)
 
-      if (!firstName || !lastName || !email) {
+      if (!firstName || !lastName || !email || (sourcePage.includes('/inscription') && !phone)) {
         set.status = 400
         return { error: 'Champs obligatoires manquants' }
       }
@@ -337,13 +339,13 @@ const app = new Elysia()
         $firstName: firstName,
         $lastName: lastName,
         $email: email,
-        $phone: normalizeText(body.phone) || null,
+        $phone: phone || null,
         $dateOfBirth: dateOfBirth || null,
         $paymentPreference: paymentPreference || null,
         $targetProgramSlug: 'rpms',
         $message: message,
         $consentRgpd: body.consentRgpd ? 1 : 0,
-        $sourcePage: normalizeText(body.sourcePage) || null,
+        $sourcePage: sourcePage || null,
         $status: 'new'
       })
 

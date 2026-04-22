@@ -201,7 +201,7 @@ export const siteContent = {
       {
         label: 'Format souple',
         value: '100 % à distance',
-        note: 'E-learning avec accompagnement pédagogique'
+        note: 'E-learning avec accompagnement pédagogique individuel'
       },
       {
         label: 'Durée du parcours',

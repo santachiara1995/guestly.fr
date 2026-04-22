@@ -260,7 +260,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-3xl text-center">
-          <h2 class="home-section-heading">Les avantages du parcours</h2>
+          <h2 class="home-section-heading">Les avantages du parcours RPMS chez CITYZ</h2>
         </div>
 
         <div class="home-proof-grid mt-8">
@@ -535,6 +535,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   font-size: 0.78rem;
   font-weight: 800;
   line-height: 1.2;
+  color: var(--muted-foreground);
 }
 
 .home-section-heading {
@@ -700,6 +701,16 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   font-size: 1rem;
 }
 
+.home-hero-card :deep(strong),
+.home-persona-card :deep(strong),
+.home-final-shell :deep(strong),
+.home-proof-card :deep(strong),
+.home-zero-grid :deep(strong) {
+  color: var(--navy-deep);
+  font-size: 1.08em;
+  font-weight: 800;
+}
+
 .home-feature-list,
 .home-cityz-list,
 .home-zero-steps {
@@ -767,6 +778,12 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   color: rgb(255 255 255 / 0.88);
 }
 
+.home-cityz-card :deep(strong) {
+  color: #ffffff;
+  font-size: 1.06em;
+  font-weight: 800;
+}
+
 .home-zero-grid {
   align-items: start;
 }
@@ -788,7 +805,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.05em;
-  color: var(--foreground);
+  color: var(--blue-eclipse);
 }
 
 .home-zero-step-card {

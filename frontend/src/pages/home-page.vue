@@ -527,7 +527,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
 .home-section-title,
 .home-section-heading {
-  color: var(--navy-deep);
+  color: var(--primary);
   letter-spacing: -0.05em;
 }
 
@@ -639,7 +639,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 }
 
 .home-pain-card h3 {
-  color: var(--navy-deep);
+  color: var(--primary);
   font-size: 1.2rem;
 }
 
@@ -656,7 +656,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 }
 
 .home-proof-card p:nth-of-type(2) {
-  color: var(--navy-deep);
+  color: var(--primary);
 }
 
 .home-proof-card p:last-child {
@@ -693,7 +693,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 }
 
 .home-persona-card h3 {
-  color: var(--navy-deep);
+  color: var(--primary);
   font-size: 1.18rem;
 }
 
@@ -706,7 +706,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 .home-final-shell :deep(strong),
 .home-proof-card :deep(strong),
 .home-zero-grid :deep(strong) {
-  color: var(--navy-deep);
+  color: var(--primary);
   font-size: 1.08em;
   font-weight: 800;
 }
@@ -727,7 +727,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
 .home-feature-row h3,
 .home-cityz-row__label {
-  color: var(--navy-deep);
+  color: var(--primary);
   font-size: 1.15rem;
 }
 
@@ -842,7 +842,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
 .home-final-shell__title {
   font-size: clamp(2rem, 4vw, 3.35rem);
-  color: var(--navy-deep);
+  color: var(--primary);
 }
 
 .home-final-shell__description {

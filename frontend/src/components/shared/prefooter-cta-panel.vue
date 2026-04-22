@@ -22,7 +22,7 @@ const signupLink = computed(() => toWithExperience('/inscription'))
     <div class="space-y-6 text-center">
       <div class="space-y-3">
         <p class="kicker">PRÊT À PASSER À L'ACTION ?</p>
-        <h2 class="editorial-title prefooter-panel__title text-foreground">
+        <h2 class="editorial-title prefooter-panel__title text-primary">
           Donnez un nouvel élan à votre carrière.
         </h2>
       </div>

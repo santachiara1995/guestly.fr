@@ -3,7 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { ArrowRight } from 'lucide-vue-next'
 
-import PrefooterCtaPanel from '@/components/shared/prefooter-cta-panel.vue'
+import FinalDiagnosticCtaPanel from '@/components/shared/final-diagnostic-cta-panel.vue'
 import { Button } from '@/components/ui/button'
 import { useExperienceVariant } from '@/composables/use-experience-variant'
 import { api } from '@/lib/api'
@@ -42,6 +42,7 @@ function firstLine(value) {
 }
 
 const pageCopy = computed(() => site.value.program ?? {})
+const homeFinalCta = computed(() => site.value.home?.finalCta ?? {})
 const signupLink = computed(() => toWithExperience('/inscription'))
 const financeLink = computed(() => toWithExperience('/financement'))
 const programDownloadHref = '/plaquette-titre-pro-rpms.pdf'
@@ -52,7 +53,7 @@ const hero = computed(() => {
     eyebrow:
       value.eyebrow ??
       'Programme du titre professionnel Responsable de petite et moyenne structure',
-    title: value.title ?? 'Préparez un Bac+2 certifié pour piloter une structure.',
+    title: value.title ?? 'Obtenez votre Bac+2 certifié pour piloter une structure.',
     description:
       value.description ?? 'Titre professionnel RPMS, RNCP38575, niveau 5 / Bac+2.',
     note:
@@ -128,7 +129,7 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
               <div class="space-y-5">
                 <div class="space-y-4">
                   <p class="kicker">{{ hero.eyebrow }}</p>
-                  <h1 class="editorial-title max-w-4xl text-[clamp(2rem,3.35vw,3.1rem)] text-foreground">
+                  <h1 class="editorial-title max-w-4xl text-[clamp(2rem,3.35vw,3.1rem)] text-primary">
                     {{ hero.title }}
                   </h1>
                   <p class="hero-lead max-w-3xl text-base leading-7 text-muted-foreground sm:text-[1rem]">
@@ -177,7 +178,7 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
                     :enter="staggerEnter(index, 40, 18)"
                   >
                     <p class="detail-key">{{ card.label }}</p>
-                    <p class="mt-2 text-base font-semibold leading-6 text-foreground">
+                    <p class="mt-2 text-base font-semibold leading-6 text-primary">
                       {{ card.value }}
                     </p>
                     <p v-if="card.note" class="mt-2 text-sm leading-6 text-muted-foreground">
@@ -221,7 +222,7 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
                 >
                   <span class="programme-block__badge">{{ index + 1 }}</span>
                   <p class="programme-block__code">{{ block.code }}</p>
-                  <h3 class="text-[1.08rem] font-semibold leading-tight tracking-[-0.03em] text-foreground">
+                  <h3 class="text-[1.08rem] font-semibold leading-tight tracking-[-0.03em] text-primary">
                     {{ block.title }}
                   </h3>
                   <ul class="programme-skills">
@@ -237,7 +238,7 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
           <article class="page-cut paper-card space-y-6 p-5 sm:p-6 lg:p-7">
             <div>
               <p class="kicker text-center">{{ objectivesPanel.eyebrow ?? 'Objectifs pédagogiques' }}</p>
-              <h2 class="mt-4 text-center text-[clamp(1.45rem,2.3vw,1.95rem)] font-semibold tracking-[-0.04em] text-foreground">
+              <h2 class="mt-4 text-center text-[clamp(1.45rem,2.3vw,1.95rem)] font-semibold tracking-[-0.04em] text-primary">
                 {{
                   objectivesPanel.title ??
                   'À l’issue de la formation, les apprenants seront capables de :'
@@ -271,7 +272,7 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
 
             <article class="program-eval-card p-5 sm:p-6">
               <p class="kicker text-center">{{ evaluationSection.eyebrow ?? 'Durée et évaluation' }}</p>
-              <h2 class="mt-4 whitespace-pre-line text-center text-[clamp(1.4rem,2.2vw,1.9rem)] font-semibold tracking-[-0.04em] text-foreground">
+              <h2 class="mt-4 whitespace-pre-line text-center text-[clamp(1.4rem,2.2vw,1.9rem)] font-semibold tracking-[-0.04em] text-primary">
                 {{ evaluationSection.title ?? '364 heures de formation,\nExamen de 1 h 35.' }}
               </h2>
               <p class="mx-auto mt-4 max-w-4xl text-center text-sm leading-7 text-muted-foreground">
@@ -309,7 +310,7 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
 
       <section class="program-section px-4 pb-0 pt-6 sm:px-6 lg:px-8 lg:pb-0 lg:pt-8">
         <div class="shell-track">
-          <PrefooterCtaPanel />
+          <FinalDiagnosticCtaPanel :copy="homeFinalCta" />
         </div>
       </section>
     </template>

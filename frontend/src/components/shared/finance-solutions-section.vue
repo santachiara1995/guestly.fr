@@ -93,7 +93,7 @@ const solutions = computed(() =>
   <section :id="sectionId || undefined" class="finance-section">
     <div class="space-y-4 text-center">
       <p class="kicker">{{ hero.eyebrow ?? 'FINANCEMENT RPMS' }}</p>
-      <h2 class="editorial-title finance-section__title text-foreground">
+      <h2 class="editorial-title finance-section__title text-primary">
         {{ hero.title ?? 'Financez votre formation sans compromis' }}
       </h2>
       <p class="finance-section__description">
@@ -231,14 +231,14 @@ const solutions = computed(() =>
 
 .finance-section__title {
   font-size: clamp(1.9rem, 3.3vw, 2.9rem);
-  color: var(--navy-deep);
+  color: var(--primary);
 }
 
 .finance-section__subtitle {
   font-size: clamp(1.35rem, 2.2vw, 1.8rem);
   font-weight: 800;
   letter-spacing: -0.04em;
-  color: var(--navy-deep);
+  color: var(--primary);
 }
 
 .finance-section__description {
@@ -276,7 +276,7 @@ const solutions = computed(() =>
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.06em;
-  color: var(--navy-deep);
+  color: var(--primary);
 }
 
 .finance-price-card__description {
@@ -339,7 +339,7 @@ const solutions = computed(() =>
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.04em;
-  color: var(--navy-deep);
+  color: var(--primary);
 }
 
 .finance-solution-card__description,

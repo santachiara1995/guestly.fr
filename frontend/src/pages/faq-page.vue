@@ -74,7 +74,7 @@ const faqSchema = computed(() =>
           <article class="page-hero p-5 sm:p-6 lg:p-8">
             <div class="mx-auto max-w-3xl space-y-4 text-center">
               <p class="kicker">{{ hero.eyebrow }}</p>
-              <h1 class="editorial-title text-[clamp(1.85rem,3.05vw,2.8rem)] text-foreground">
+              <h1 class="editorial-title text-[clamp(1.85rem,3.05vw,2.8rem)] text-primary">
                 {{ hero.title }}
               </h1>
               <p class="text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
@@ -93,7 +93,7 @@ const faqSchema = computed(() =>
               :enter="staggerEnter(index, 42, 18)"
             >
               <summary class="faq-summary accordion-summary">
-                <span class="text-base font-semibold leading-6 text-foreground">{{ item.question }}</span>
+                <span class="text-base font-semibold leading-6 text-primary">{{ item.question }}</span>
                 <ChevronDown class="accordion-summary__icon mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
               </summary>
               <p class="accordion-panel">

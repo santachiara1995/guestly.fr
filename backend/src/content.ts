@@ -356,7 +356,7 @@ export const siteContent = {
   program: {
     hero: {
       eyebrow: 'Programme du titre professionnel Responsable de petite et moyenne structure',
-      title: 'Préparez un Bac+2 certifié pour piloter une structure.',
+      title: 'Obtenez votre Bac+2 certifié pour piloter une structure.',
       description:
         'Titre professionnel RPMS, RNCP38575, niveau 5 / Bac+2.',
       note:

@@ -1,26 +1,27 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { ChevronDown } from 'lucide-vue-next'
 
 import PrefooterCtaPanel from '@/components/shared/prefooter-cta-panel.vue'
-import { api } from '@/lib/api'
 import { motionVariants, staggerEnter } from '@/lib/motion'
 
 const site = ref({
   faq: {}
 })
-const items = ref([])
-const loading = ref(true)
-
-onMounted(async () => {
-  try {
-    const [sitePayload, faqPayload] = await Promise.all([api.getSite(), api.getFaq()])
-    site.value = sitePayload
-    items.value = faqPayload
-  } finally {
-    loading.value = false
-  }
-})
+const items = ref([
+  { question: 'Peut-on vraiment obtenir un Bac+2 sans avoir le Bac ?', answer: 'Oui. Le Titre Professionnel RPMS est délivré par le Ministère du Travail et ne nécessite pas le Baccalauréat.' },
+  { question: 'Puis-je suivre la formation tout en gardant mon emploi ?', answer: 'Oui. Le format est 100 % à distance, en asynchrone.' },
+  { question: "Comment se déroule l'examen final ?", answer: "L'examen dure 1h35 au total : présentation, entretien technique, entretien final." },
+  { question: 'Quelle différence entre le RPMS et un BTS Management ?', answer: 'Les deux délivrent un Bac+2, mais le RPMS est plus court, professionnel et accessible sans Bac.' },
+  { question: 'Combien de temps entre mon inscription et le démarrage ?', answer: 'Paiement comptant ou acompte + échéancier : démarrage sous 10 jours.' },
+  { question: "Que se passe-t-il si je rate l'examen ?", answer: 'Vous pouvez repasser les blocs non validés lors d’une session suivante.' },
+  { question: 'Puis-je utiliser mon CPF ?', answer: 'Oui, le RPMS est éligible au CPF.' },
+  { question: 'Y a-t-il un stage obligatoire ?', answer: "Pour les candidats en emploi, non. Pour les demandeurs d'emploi, un stage peut être requis." },
+  { question: "Combien d'heures par semaine dois-je y consacrer ?", answer: 'Entre 8 et 12 heures par semaine sur 6 à 12 mois.' },
+  { question: "Compatible avec le RSA ou l'ARE ?", answer: 'Oui, selon votre situation et votre dossier.' },
+  { question: 'Quel est le niveau de salaire après obtention du titre ?', answer: 'Selon la fiche ROME M1302, la rémunération observée est entre 35 000 et 55 000 € brut annuels.' },
+  { question: 'Est-ce que CITYZ est certifié Qualiopi ?', answer: 'Oui, CITYZ Formation est certifié Qualiopi.' }
+])
 
 const faqCopy = computed(() => site.value.faq ?? {})
 

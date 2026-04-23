@@ -18,6 +18,8 @@ import {
   WalletCards
 } from 'lucide-vue-next'
 
+import BrochureCapture from '@/components/brochure-capture.vue'
+import EligibilityQuiz from '@/components/eligibility-quiz.vue'
 import FinanceSolutionsSection from '@/components/shared/finance-solutions-section.vue'
 import { Button } from '@/components/ui/button'
 import { useExperienceVariant } from '@/composables/use-experience-variant'
@@ -32,6 +34,7 @@ const site = ref({
 const faqItems = ref([])
 const loading = ref(true)
 const errorMessage = ref('')
+const quizOpen = ref(false)
 
 const { toWithExperience } = useExperienceVariant()
 
@@ -41,12 +44,43 @@ const personaIcons = [BriefcaseBusiness, RefreshCcw, ShieldCheck, Building2, Roc
 const rpmsIcons = [TrendingUp, Users, WalletCards]
 const cityzIcons = [Clock3, Users, ShieldCheck, Building2, WalletCards]
 const zeroPaperIcon = FileText
+const quickStartText =
+  'Démarrage de votre formation sous 10 jours · Places limitées pour garantir un suivi personnalisé'
+const testimonials = [
+  {
+    stat: 'Pilotage industrialisé',
+    quote:
+      "Je gérais la partie technique au feeling. Le RPMS m'a donné le cadre : indicateurs, analyse et management d'équipe.",
+    name: 'Anna-Ketsia P.',
+    role: 'Co-fondatrice & Directrice technique',
+    company: 'Ma Petite Maison Verte',
+    sector: 'Construction éco-responsable'
+  },
+  {
+    stat: '2 nouvelles subventions obtenues',
+    quote:
+      "Diriger sans diplôme de gestion, c'est tenir sur la bonne volonté. Avec le RPMS, j'ai structuré notre pilotage financier.",
+    name: '[Prénom]',
+    role: 'Directeur',
+    company: 'Association MJS',
+    sector: 'Jeunesse & action sociale'
+  },
+  {
+    stat: 'Financement bancaire débloqué',
+    quote:
+      "Le RPMS valide l'expérience terrain et ouvre des portes quand il faut négocier avec une banque ou un investisseur.",
+    name: '[Prénom]',
+    role: 'Dirigeant',
+    company: 'Gobuse',
+    sector: 'Services aux entreprises'
+  }
+]
 
 onMounted(async () => {
   try {
     const [sitePayload, faqPayload] = await Promise.all([api.getSite(), api.getFaq()])
     site.value = sitePayload
-    faqItems.value = faqPayload
+    faqItems.value = staticFaqItems.length ? staticFaqItems : faqPayload
   } catch (error) {
     errorMessage.value = error instanceof Error ? error.message : 'Contenu indisponible.'
   } finally {
@@ -57,6 +91,20 @@ onMounted(async () => {
 const homeCopy = computed(() => site.value.home ?? {})
 const financeCopy = computed(() => site.value.finance ?? {})
 const faqCopy = computed(() => site.value.faq ?? {})
+const staticFaqItems = [
+  { question: 'Peut-on vraiment obtenir un Bac+2 sans avoir le Bac ?', answer: 'Oui. Le Titre Professionnel RPMS est délivré par le Ministère du Travail et ne nécessite pas le Baccalauréat.' },
+  { question: 'Puis-je suivre la formation tout en gardant mon emploi ?', answer: 'Oui. Le format est 100 % à distance, en asynchrone.' },
+  { question: "Comment se déroule l'examen final ?", answer: "L'examen dure 1h35 au total : présentation, entretien technique, entretien final." },
+  { question: 'Quelle différence entre le RPMS et un BTS Management ?', answer: 'Les deux délivrent un Bac+2, mais le RPMS est plus court, professionnel et accessible sans Bac.' },
+  { question: 'Combien de temps entre mon inscription et le démarrage ?', answer: 'Paiement comptant ou acompte + échéancier : démarrage sous 10 jours.' },
+  { question: "Que se passe-t-il si je rate l'examen ?", answer: 'Vous pouvez repasser les blocs non validés lors d’une session suivante.' },
+  { question: 'Puis-je utiliser mon CPF ?', answer: 'Oui, le RPMS est éligible au CPF.' },
+  { question: 'Y a-t-il un stage obligatoire ?', answer: "Pour les candidats en emploi, non. Pour les demandeurs d'emploi, un stage peut être requis." },
+  { question: "Combien d'heures par semaine dois-je y consacrer ?", answer: 'Entre 8 et 12 heures par semaine sur 6 à 12 mois.' },
+  { question: "Compatible avec le RSA ou l'ARE ?", answer: 'Oui, selon votre situation et votre dossier.' },
+  { question: 'Quel est le niveau de salaire après obtention du titre ?', answer: 'Selon la fiche ROME M1302, la rémunération observée est entre 35 000 et 55 000 € brut annuels.' },
+  { question: 'Est-ce que CITYZ est certifié Qualiopi ?', answer: 'Oui, CITYZ Formation est certifié Qualiopi.' }
+]
 
 const diagnosticLink = computed(() =>
   toWithExperience({
@@ -67,6 +115,14 @@ const diagnosticLink = computed(() =>
 )
 const signupLink = computed(() => toWithExperience('/inscription'))
 const faqLink = computed(() => toWithExperience('/faq'))
+
+function openQuiz() {
+  quizOpen.value = true
+}
+
+function closeQuiz() {
+  quizOpen.value = false
+}
 
 const financeLinks = computed(() => ({
   cash: toWithExperience({
@@ -191,24 +247,37 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
             <div class="home-hero-actions">
               <Button
-                :as="RouterLink"
-                :to="diagnosticLink"
                 size="lg"
-                variant="outline"
-                class="home-hero-actions__button w-full justify-center whitespace-normal px-4 text-center leading-snug"
+                class="home-hero-actions__button w-full justify-center whitespace-normal px-4 text-center leading-snug bg-red-600 text-white"
+                @click="openQuiz"
               >
-                Demander mon diagnostic gratuit
-              </Button>
-              <Button
-                :as="RouterLink"
-                :to="signupLink"
-                size="lg"
-                class="home-hero-actions__button w-full justify-center whitespace-normal px-4 text-center leading-snug"
-              >
-                Commencer ma formation
+                Calculer mon financement en 2 min
                 <ArrowRight class="ml-2 h-4 w-4" />
               </Button>
             </div>
+
+            <div class="flex flex-wrap gap-3 mt-6">
+              <span class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-wider border-slate-300 bg-slate-50 text-slate-900">
+                🛡️ Titre d'État · RNCP 38575
+              </span>
+              <span class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-wider border-slate-300 bg-slate-50 text-slate-900">
+                💻 100 % à distance
+              </span>
+              <span class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-wider border-red-200 bg-red-50 text-red-600">
+                🎓 Accessible sans le Bac
+              </span>
+            </div>
+
+            <div class="mt-6 flex items-center gap-3 border-t border-slate-200 pt-6">
+              <div class="flex -space-x-2">
+                <div v-for="i in 4" :key="i" class="h-8 w-8 rounded-full border-2 border-white bg-slate-300"></div>
+              </div>
+              <div class="text-sm">
+                <div class="flex items-center gap-1 font-bold text-red-600">★★★★★ <span class="text-slate-900">4,8/5</span></div>
+                <span class="text-xs text-slate-500">+450 certifiés · 69 % en emploi 6 mois après*</span>
+              </div>
+            </div>
+            <p class="mt-2 text-[10px] text-slate-400">*Source : Fiche RNCP 38575, France compétences, statistiques 2022</p>
           </article>
 
           <article class="home-visual-card page-cut p-3 sm:p-4">
@@ -284,6 +353,12 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
+        <article class="rounded-[1.2rem] bg-red-600 px-4 py-3 text-center text-sm font-bold text-white">
+          {{ quickStartText }}
+        </article>
+      </section>
+
+      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <article class="page-cut p-5 sm:p-6 lg:p-8">
           <div class="mx-auto max-w-3xl text-center">
             <p class="kicker">POUR QUI ?</p>
@@ -319,6 +394,24 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
             </article>
           </div>
         </article>
+      </section>
+
+      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <p class="kicker text-red-600">Ils nous ont fait confiance</p>
+          <h2 class="home-section-heading mt-4">Des dirigeants réels, des parcours réels.</h2>
+        </div>
+        <div class="mt-8 grid gap-5 lg:grid-cols-3">
+          <article v-for="item in testimonials" :key="item.stat" class="page-cut p-5 sm:p-6">
+            <p class="inline-flex rounded-full bg-red-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-red-600">{{ item.stat }}</p>
+            <p class="mt-5 text-sm leading-7 text-slate-600">"{{ item.quote }}"</p>
+            <div class="mt-6 border-t border-slate-200 pt-5">
+              <p class="font-semibold text-slate-900">{{ item.name }}</p>
+              <p class="text-xs text-slate-500">{{ item.role }}</p>
+              <p class="text-xs font-semibold text-red-600">{{ item.company }} · {{ item.sector }}</p>
+            </div>
+          </article>
+        </div>
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
@@ -390,6 +483,8 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
           />
         </article>
       </section>
+
+      <BrochureCapture />
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <article class="page-cut p-5 sm:p-6 lg:p-8">
@@ -502,6 +597,8 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
           </div>
         </article>
       </section>
+
+      <EligibilityQuiz v-if="quizOpen" @close="closeQuiz" />
     </template>
   </div>
 </template>

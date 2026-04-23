@@ -87,36 +87,40 @@ function handleSubmit() {
 
 <template>
   <Teleport to="body">
-    <div class="fixed inset-0 z-[70] bg-slate-950/70 p-4 backdrop-blur-sm">
+    <div class="fixed inset-0 z-[70] bg-slate-950/70 p-3 backdrop-blur-sm sm:p-4">
       <div class="flex min-h-full items-center justify-center">
-        <div class="w-full max-w-2xl rounded-[1.8rem] border border-white/15 bg-white p-6 shadow-2xl md:p-10">
-          <button class="absolute right-6 top-6" @click="emit('close')"><X /></button>
+        <div class="relative max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-[1.8rem] border border-white/15 bg-white p-5 shadow-2xl sm:p-6 md:p-10">
+          <button class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm sm:right-6 sm:top-6" @click="emit('close')">
+            <X class="h-5 w-5" />
+          </button>
           <template v-if="!submitted">
             <template v-if="currentQuestion">
-              <div class="mb-6 flex gap-2"><div v-for="(q,i) in questions" :key="q.id" class="h-1.5 flex-1 rounded-full" :style="{backgroundColor: i <= step ? '#dc2626' : '#e2e8f0'}"></div></div>
+              <div class="mb-6 flex gap-2">
+                <div v-for="(q,i) in questions" :key="q.id" class="h-1.5 flex-1 rounded-full" :style="{backgroundColor: i <= step ? '#dc2626' : '#e2e8f0'}"></div>
+              </div>
               <p class="mb-2 text-[11px] font-bold uppercase tracking-[0.22em] text-red-600">Question {{ step + 1 }} / {{ questions.length }}</p>
-              <h3 class="text-3xl font-black text-slate-900">{{ currentQuestion.title }}</h3>
-              <p class="mt-3 text-slate-500">{{ currentQuestion.subtitle }}</p>
+              <h3 class="text-2xl font-black leading-tight text-slate-900 sm:text-3xl">{{ currentQuestion.title }}</h3>
+              <p class="mt-3 text-sm leading-6 text-slate-500 sm:text-base">{{ currentQuestion.subtitle }}</p>
               <div class="mt-8 space-y-3">
-                <button v-for="option in currentQuestion.options" :key="option.value" type="button" class="flex w-full items-center gap-4 rounded-xl border border-slate-200 bg-white p-4 text-left hover:border-red-500 hover:bg-red-50" @click="handleAnswer(currentQuestion.id, option.value)">
+                <button v-for="option in currentQuestion.options" :key="option.value" type="button" class="flex w-full items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 text-left transition hover:border-red-500 hover:bg-red-50 sm:gap-4" @click="handleAnswer(currentQuestion.id, option.value)">
                   <component :is="option.icon" class="h-5 w-5 text-slate-700" />
-                  <span class="flex-1 font-semibold text-slate-900">{{ option.label }}</span>
-                  <ArrowRight class="h-4 w-4 text-slate-300" />
+                  <span class="flex-1 text-sm font-semibold leading-6 text-slate-900 sm:text-base">{{ option.label }}</span>
+                  <ArrowRight class="h-4 w-4 flex-none text-slate-300" />
                 </button>
               </div>
             </template>
             <template v-else>
               <div class="text-center">
-                <div class="mx-auto flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br from-red-600 to-slate-900 text-4xl font-black text-white">{{ score }}%</div>
-                <h3 class="mt-6 text-3xl font-black text-slate-900">Profil analysé</h3>
+                <div class="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-red-600 to-slate-900 text-3xl font-black text-white sm:h-28 sm:w-28 sm:text-4xl">{{ score }}%</div>
+                <h3 class="mt-6 text-2xl font-black text-slate-900 sm:text-3xl">Profil analysé</h3>
               </div>
-              <div class="mt-8 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+              <div class="mt-8 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4 sm:p-5">
                 <div class="grid gap-3 md:grid-cols-2">
                   <Input v-model="lead.firstName" placeholder="Prénom" />
                   <Input v-model="lead.phone" placeholder="Téléphone" type="tel" />
                   <Input v-model="lead.email" class="md:col-span-2" placeholder="Email" type="email" />
                 </div>
-                <label class="mt-4 flex items-start gap-2 text-sm text-slate-600"><input v-model="lead.consent" class="mt-1 h-4 w-4" type="checkbox" />J'accepte d'être contacté par Guestly dans le cadre de cette simulation.</label>
+                <label class="mt-4 flex items-start gap-2 text-sm leading-6 text-slate-600"><input v-model="lead.consent" class="mt-1 h-4 w-4 flex-none" type="checkbox" />J'accepte d'être contacté par Guestly dans le cadre de cette simulation.</label>
               </div>
               <Button class="mt-6 w-full bg-slate-900 text-white" size="lg" @click="handleSubmit">{{ submitting ? 'Envoi…' : 'Réserver mon appel diagnostic gratuit' }} <ArrowRight class="ml-2 h-4 w-4" /></Button>
             </template>
@@ -124,8 +128,8 @@ function handleSubmit() {
           <template v-else>
             <div class="py-10 text-center">
               <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-emerald-500/10 text-4xl">✅</div>
-              <h3 class="mt-5 text-3xl font-black text-slate-900">Merci {{ lead.firstName }} !</h3>
-              <p class="mt-3 text-slate-600">Votre simulation est enregistrée. Un conseiller vous contactera sous 24h au {{ lead.phone }}.</p>
+              <h3 class="mt-5 text-2xl font-black text-slate-900 sm:text-3xl">Merci {{ lead.firstName }} !</h3>
+              <p class="mt-3 text-sm leading-6 text-slate-600 sm:text-base">Votre simulation est enregistrée. Un conseiller vous contactera sous 24h au {{ lead.phone }}.</p>
               <Button class="mt-6 bg-red-600 text-white" @click="emit('close')">Fermer</Button>
             </div>
           </template>

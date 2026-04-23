@@ -35,7 +35,7 @@ const signupLink = computed(() => toWithExperience('/inscription'))
           variant="outline"
           class="w-full justify-center sm:w-auto"
         >
-          Je réserve mon diagnostic gratuit
+          Demander mon diagnostic gratuit
         </Button>
         <Button
           :as="RouterLink"
@@ -43,7 +43,7 @@ const signupLink = computed(() => toWithExperience('/inscription'))
           size="lg"
           class="prefooter-panel__primary w-full justify-center sm:w-auto"
         >
-          Je m'inscris maintenant
+          Commencer ma formation
         </Button>
       </div>
     </div>

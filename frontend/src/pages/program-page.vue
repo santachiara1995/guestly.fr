@@ -43,9 +43,14 @@ function firstLine(value) {
 
 const pageCopy = computed(() => site.value.program ?? {})
 const homeFinalCta = computed(() => site.value.home?.finalCta ?? {})
+const diagnosticLink = computed(() =>
+  toWithExperience({
+    path: '/inscription',
+    query: { payment: 'state' },
+    hash: '#formulaire-inscription'
+  })
+)
 const signupLink = computed(() => toWithExperience('/inscription'))
-const financeLink = computed(() => toWithExperience('/financement'))
-const programDownloadHref = '/plaquette-titre-pro-rpms.pdf'
 
 const hero = computed(() => {
   const value = pageCopy.value.hero ?? {}
@@ -141,28 +146,18 @@ const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
                 </div>
 
                 <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-start">
-                  <Button :as="RouterLink" :to="signupLink" size="lg" class="w-full justify-center sm:w-auto">
-                    S'inscrire
-                    <ArrowRight class="ml-2 h-4 w-4" />
-                  </Button>
                   <Button
                     :as="RouterLink"
-                    :to="financeLink"
+                    :to="diagnosticLink"
                     size="lg"
                     variant="outline"
                     class="w-full justify-center sm:w-auto"
                   >
-                    Voir le financement
+                    Demander mon diagnostic gratuit
                   </Button>
-                  <Button
-                    as="a"
-                    :href="programDownloadHref"
-                    download
-                    size="lg"
-                    variant="outline"
-                    class="w-full justify-center sm:w-auto"
-                  >
-                    Télécharger le programme
+                  <Button :as="RouterLink" :to="signupLink" size="lg" class="w-full justify-center sm:w-auto">
+                    Commencer ma formation
+                    <ArrowRight class="ml-2 h-4 w-4" />
                   </Button>
                 </div>
               </div>

@@ -349,8 +349,8 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
         <article class="page-cut bg-primary px-5 py-6 text-white sm:px-6 lg:px-8">
           <div class="mx-auto max-w-3xl text-center">
             <p class="kicker text-red-600">LE RACHAT DE TEMPS</p>
-            <h3 class="home-rachat-quote text-white">« Un diplôme d'État, pensé pour les profils qui veulent agir, pas attendre. »</h3>
-            <h2 class="home-section-heading mt-2 text-white">
+            <h3 class="home-rachat-quote" style="color: #ffffff;">« Un diplôme d'État, pensé pour les profils qui veulent agir, pas attendre. »</h3>
+            <h2 class="home-section-heading mt-2" style="color: #ffffff;">
               Pourquoi sacrifier 6 ans quand vous pouvez décrocher votre Bac+2 d'État
               en 6 mois ?
             </h2>
@@ -612,18 +612,6 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
               <ArrowRight class="h-4 w-4" />
             </RouterLink>
           </div>
-        </article>
-      </section>
-
-      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <article class="rounded-[1.2rem] bg-red-600 px-4 py-3 text-center text-sm font-bold text-white">
-          {{ quickStartText }}
-        </article>
-      </section>
-
-      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <article class="rounded-[1.2rem] bg-red-600 px-4 py-3 text-center text-sm font-bold text-white">
-          {{ quickStartText }}
         </article>
       </section>
 

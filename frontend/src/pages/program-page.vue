@@ -138,8 +138,8 @@ const transformSteps = [
         </div>
       </section>
 
-      <section class="program-section bg-slate-50 px-4 py-8 sm:px-6 lg:px-8">
-        <div class="shell-track space-y-6">
+      <section class="program-section px-4 py-8 sm:px-6 lg:px-8">
+        <article class="shell-track space-y-6 rounded-3xl border border-slate-200 bg-slate-50 p-5 shadow-sm sm:p-6 lg:p-8">
           <div class="mx-auto max-w-3xl text-center">
             <p class="kicker text-red-600">LE PARCOURS DE TRANSFORMATION</p>
             <h2 class="editorial-title text-[clamp(1.75rem,3vw,2.45rem)] text-primary">Comment nous allons forger votre posture de dirigeant.</h2>
@@ -154,11 +154,11 @@ const transformSteps = [
               <p class="mt-3 text-sm leading-7 text-slate-600">{{ step.description }}</p>
             </article>
           </div>
-        </div>
+        </article>
       </section>
 
-      <section class="program-section bg-primary px-4 py-8 text-white sm:px-6 lg:px-8">
-        <div class="shell-track grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-start">
+      <section class="program-section px-4 py-8 sm:px-6 lg:px-8">
+        <article class="shell-track grid gap-8 rounded-3xl border border-slate-200 bg-primary p-5 text-white shadow-sm sm:p-6 lg:grid-cols-[1fr_0.9fr] lg:items-start lg:p-8">
           <div class="space-y-5">
             <p class="kicker text-red-600">VOTRE FUTUR ARSENAL FINANCIER</p>
             <h2 class="editorial-title text-[clamp(1.85rem,3vw,2.7rem)] text-white">Ne subissez plus vos bilans, <span class="text-red-600">pilotez votre rentabilité</span>.</h2>
@@ -178,7 +178,7 @@ const transformSteps = [
               <div class="flex items-center gap-3"><span class="h-10 w-10 rounded-xl bg-slate-100"></span><div><p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">Accompagnement</p><p class="font-bold text-primary">Mentor individuel dédié</p></div></div>
             </div>
           </article>
-        </div>
+        </article>
       </section>
 
       <section class="program-section px-4 py-8 sm:px-6 lg:px-8">

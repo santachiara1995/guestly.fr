@@ -47,7 +47,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
     </div>
 
     <div class="finance-solution-grid">
-      <article class="finance-card finance-card--blue finance-card--balanced">
+      <article class="finance-card finance-card--light finance-card--balanced">
         <p class="finance-card__label">OPTION 01</p>
         <h3 class="finance-card__title">Paiement Comptant</h3>
         <p class="finance-card__subtitle">Réglez la totalité et consacrez-vous à 100 % à votre réussite.</p>
@@ -69,13 +69,13 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
             <li><BadgeCheck class="finance-card__check h-4 w-4 shrink-0" /> Priorité sur le choix de dates d'examen</li>
           </ul>
         </div>
-        <Button :as="RouterLink" :to="cashHref" size="lg" class="finance-card__cta finance-card__cta--blue w-full justify-center">
+        <Button :as="RouterLink" :to="cashHref" size="lg" class="finance-card__cta finance-card__cta--classic w-full justify-center">
           S'inscrire en 2 minutes →
           <ArrowRight class="ml-2 h-4 w-4" />
         </Button>
       </article>
 
-      <article class="finance-card finance-card--white finance-card--balanced">
+      <article class="finance-card finance-card--featured finance-card--balanced">
         <p class="finance-card__label">OPTION 02 — FLEXIBILITÉ</p>
         <h3 class="finance-card__title">Plusieurs fois sans frais</h3>
         <p class="finance-card__subtitle">Démarrez maintenant sans alourdir votre trésorerie.</p>
@@ -98,13 +98,13 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
           <li><BadgeCheck class="finance-card__check h-4 w-4 shrink-0" /> Soldable à tout moment</li>
         </ul>
 
-        <Button :as="RouterLink" :to="installmentsHref" size="lg" class="finance-card__cta finance-card__cta--white w-full justify-center">
+        <Button :as="RouterLink" :to="installmentsHref" size="lg" class="finance-card__cta finance-card__cta--featured w-full justify-center">
           S'inscrire en 2 minutes
           <ArrowRight class="ml-2 h-4 w-4" />
         </Button>
       </article>
 
-      <article class="finance-card finance-card--red finance-card--balanced">
+      <article class="finance-card finance-card--light finance-card--balanced">
         <p class="finance-card__label">OPTION 03</p>
         <h3 class="finance-card__title">Dossier OPCO / AIF</h3>
         <p class="finance-card__subtitle">Idéal pour les salariés ou demandeurs d'emploi. Prise en charge totale par les organismes publics ou votre entreprise.</p>
@@ -117,7 +117,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
           <li><BadgeCheck class="finance-card__check h-4 w-4 shrink-0" /> Maintien de vos aides</li>
           <li><BadgeCheck class="finance-card__check h-4 w-4 shrink-0" /> CITYZ gère le montage</li>
         </ul>
-        <Button :as="RouterLink" :to="stateHref" size="lg" class="finance-card__cta finance-card__cta--red w-full justify-center">
+        <Button :as="RouterLink" :to="stateHref" size="lg" class="finance-card__cta finance-card__cta--classic w-full justify-center">
           Vérifier mon éligibilité →
           <ArrowRight class="ml-2 h-4 w-4" />
         </Button>
@@ -177,27 +177,16 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
   justify-content: space-between;
 }
 
-.finance-card--blue {
-  border-color: color-mix(in oklab, var(--primary) 76%, white);
-  background:
-    linear-gradient(145deg, color-mix(in oklab, var(--primary) 94%, black), var(--primary));
-  color: white;
-  box-shadow: 0 22px 48px rgb(0 0 145 / 0.2);
-}
-
-.finance-card--white {
-  border-color: color-mix(in oklab, var(--primary) 18%, var(--border));
-  background:
-    linear-gradient(180deg, white 0%, color-mix(in oklab, white 92%, var(--paper-tint)) 100%);
+.finance-card--light {
+  background: white;
   box-shadow: 0 18px 42px rgb(17 39 65 / 0.11);
 }
 
-.finance-card--red {
-  border-color: color-mix(in oklab, var(--tricolor-red) 78%, white);
-  background:
-    linear-gradient(145deg, color-mix(in oklab, var(--tricolor-red) 88%, #7a0010), var(--tricolor-red));
+.finance-card--featured {
+  background: var(--primary);
   color: white;
-  box-shadow: 0 22px 48px rgb(225 0 15 / 0.2);
+  border-color: color-mix(in oklab, var(--tricolor-red) 35%, white);
+  box-shadow: 0 22px 48px rgb(0 0 145 / 0.2);
 }
 
 .finance-card__chip {
@@ -226,8 +215,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
   background: color-mix(in oklab, var(--tricolor-red-soft) 90%, white);
 }
 
-.finance-card--blue .finance-card__label,
-.finance-card--red .finance-card__label {
+.finance-card--featured .finance-card__label {
   border: 1px solid rgb(255 255 255 / 0.18);
   background: rgb(255 255 255 / 0.12);
   color: white;
@@ -242,8 +230,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
   overflow-wrap: anywhere;
 }
 
-.finance-card--blue .finance-card__title,
-.finance-card--red .finance-card__title {
+.finance-card--featured .finance-card__title {
   color: white;
 }
 
@@ -254,12 +241,9 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
   overflow-wrap: anywhere;
 }
 
-.finance-card--blue .finance-card__subtitle,
-.finance-card--blue .finance-card__price-note,
-.finance-card--blue .finance-card__points li,
-.finance-card--red .finance-card__subtitle,
-.finance-card--red .finance-card__price-note,
-.finance-card--red .finance-card__points li {
+.finance-card--featured .finance-card__subtitle,
+.finance-card--featured .finance-card__price-note,
+.finance-card--featured .finance-card__points li {
   color: rgb(255 255 255 / 0.85);
 }
 
@@ -276,8 +260,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
   min-width: 0;
 }
 
-.finance-card--blue .finance-card__price-row,
-.finance-card--red .finance-card__price-row {
+.finance-card--featured .finance-card__price-row {
   border-color: rgb(255 255 255 / 0.14);
 }
 
@@ -289,8 +272,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
   color: var(--primary);
 }
 
-.finance-card--blue .finance-card__price,
-.finance-card--red .finance-card__price {
+.finance-card--featured .finance-card__price {
   color: white;
 }
 
@@ -358,11 +340,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
   color: var(--tricolor-red);
 }
 
-.finance-card--blue .finance-card__check {
-  color: white;
-}
-
-.finance-card--red .finance-card__check {
+.finance-card--featured .finance-card__check {
   color: white;
 }
 
@@ -373,8 +351,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
   padding-top: 0.9rem;
 }
 
-.finance-card--blue .finance-card__bonus,
-.finance-card--red .finance-card__bonus {
+.finance-card--featured .finance-card__bonus {
   border-color: rgb(255 255 255 / 0.16);
 }
 
@@ -390,8 +367,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
   text-transform: uppercase;
 }
 
-.finance-card--blue .finance-card__bonus-label,
-.finance-card--red .finance-card__bonus-label {
+.finance-card--featured .finance-card__bonus-label {
   background: white;
   color: var(--tricolor-red);
 }
@@ -402,42 +378,35 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
   text-align: center;
 }
 
-.finance-card__cta--blue {
+.finance-card__cta--classic {
+  border-color: var(--tricolor-red);
+  background: var(--tricolor-red);
+  color: white;
+  box-shadow: 0 18px 34px rgb(225 0 15 / 0.14);
+}
+
+.finance-card__cta--classic:hover {
+  border-color: color-mix(in oklab, var(--tricolor-red) 88%, black);
+  background: color-mix(in oklab, var(--tricolor-red) 88%, black);
+  color: white;
+}
+
+.finance-card__cta--featured {
   border-color: white;
   background: white;
   color: var(--primary);
   box-shadow: 0 18px 34px rgb(0 0 0 / 0.14);
 }
 
-.finance-card__cta--blue:hover {
+.finance-card__cta--featured:hover {
   border-color: white;
   background: color-mix(in oklab, white 90%, var(--paper-tint));
   color: var(--primary);
 }
 
-.finance-card__cta--white {
-  border-color: var(--primary);
-  background: var(--primary);
+.finance-card__cta--featured:active,
+.finance-card__cta--classic:active {
   color: white;
-}
-
-.finance-card__cta--white:hover {
-  border-color: color-mix(in oklab, var(--primary) 88%, black);
-  background: color-mix(in oklab, var(--primary) 88%, black);
-  color: white;
-}
-
-.finance-card__cta--red {
-  border-color: white;
-  background: white;
-  color: var(--tricolor-red);
-  box-shadow: 0 18px 34px rgb(0 0 0 / 0.14);
-}
-
-.finance-card__cta--red:hover {
-  border-color: white;
-  background: color-mix(in oklab, white 90%, var(--tricolor-red-soft));
-  color: var(--tricolor-red);
 }
 
 .finance-card__points--bonus {
@@ -449,7 +418,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .finance-card--white {
+  .finance-card--featured {
     transform: scale(1.025);
   }
 }

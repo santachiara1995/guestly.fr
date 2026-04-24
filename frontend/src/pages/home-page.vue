@@ -439,21 +439,23 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-3xl text-center">
-          <p class="kicker text-red-600">Ils nous ont fait confiance</p>
-          <h2 class="home-section-heading mt-4">Des dirigeants réels, des parcours réels.</h2>
-        </div>
-        <div class="mt-8 grid gap-5 lg:grid-cols-3">
-          <article v-for="item in testimonials" :key="item.stat" class="page-cut p-5 text-center sm:p-6">
-            <p class="mx-auto inline-flex rounded-full bg-red-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-red-600">{{ item.stat }}</p>
-            <p class="mt-5 text-sm leading-7 text-slate-600">"{{ item.quote }}"</p>
-            <div class="mt-6 border-t border-slate-200 pt-5">
-              <p class="font-semibold text-slate-900">{{ item.name }}</p>
-              <p class="text-xs text-slate-500">{{ item.role }}</p>
-              <p class="text-xs font-semibold text-red-600">{{ item.company }} · {{ item.sector }}</p>
-            </div>
-          </article>
-        </div>
+        <article class="home-testimonials-section page-cut p-5 sm:p-6 lg:p-8">
+          <div class="mx-auto max-w-3xl text-center">
+            <p class="kicker text-red-600">Ils nous ont fait confiance</p>
+            <h2 class="home-section-heading mt-4 text-white">Des dirigeants réels, des parcours réels.</h2>
+          </div>
+          <div class="mt-8 grid gap-5 lg:grid-cols-3">
+            <article v-for="item in testimonials" :key="item.stat" class="home-testimonial-card p-5 text-center sm:p-6">
+              <p class="mx-auto inline-flex rounded-full bg-white px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-red-600">{{ item.stat }}</p>
+              <p class="mt-5 text-sm leading-7 text-slate-200">"{{ item.quote }}"</p>
+              <div class="mt-6 border-t border-white/12 pt-5">
+                <p class="font-semibold text-white">{{ item.name }}</p>
+                <p class="text-xs text-slate-300">{{ item.role }}</p>
+                <p class="text-xs font-semibold text-red-500">{{ item.company }} · {{ item.sector }}</p>
+              </div>
+            </article>
+          </div>
+        </article>
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
@@ -846,6 +848,18 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
 .home-pain-section .home-pain-card p {
   color: rgb(255 255 255 / 0.8);
+}
+
+.home-testimonials-section {
+  border-color: color-mix(in oklab, var(--primary) 76%, white);
+  background: var(--primary);
+  box-shadow: 0 22px 48px rgb(0 0 145 / 0.2);
+}
+
+.home-testimonial-card {
+  border-radius: 1.2rem;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  background: rgb(255 255 255 / 0.06);
 }
 
 .home-proof-card {

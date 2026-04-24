@@ -29,7 +29,6 @@ const description = computed(
     props.copy?.description ??
     "Nos experts répondent à vos questions sur la formation, le financement et votre éligibilité, sans engagement. Réservez ensuite votre appel de 15 minutes."
 )
-const note = computed(() => props.copy?.note ?? 'NOMBRE DE PLACES LIMITÉ POUR CHAQUE SESSION')
 </script>
 
 <template>
@@ -45,14 +44,11 @@ const note = computed(() => props.copy?.note ?? 'NOMBRE DE PLACES LIMITÉ POUR C
         :as="RouterLink"
         :to="diagnosticLink"
         size="lg"
-        class="final-diagnostic-shell__button justify-center whitespace-normal text-center"
+        class="final-diagnostic-shell__button justify-center whitespace-normal text-center bg-red-600 border-red-600 text-white"
       >
-        Demander mon diagnostic gratuit
+        Demandez votre diagnostic gratuit →
         <Clock3 class="ml-2 h-4 w-4" />
       </Button>
-      <p class="final-diagnostic-shell__note">
-        {{ note }}
-      </p>
     </div>
   </article>
 </template>
@@ -91,23 +87,15 @@ const note = computed(() => props.copy?.note ?? 'NOMBRE DE PLACES LIMITÉ POUR C
   width: min(100%, 36rem);
   min-height: 4.1rem;
   border-radius: 1rem;
-  background: var(--primary);
-  border-color: var(--primary);
+  background: var(--tricolor-red);
+  border-color: var(--tricolor-red);
   color: #ffffff;
-  box-shadow: 0 20px 44px rgb(0 0 107 / 0.18);
+  box-shadow: 0 20px 44px rgb(225 0 15 / 0.18);
 }
 
 .final-diagnostic-shell__button:hover {
-  background: color-mix(in oklab, var(--primary) 88%, black);
-  border-color: color-mix(in oklab, var(--primary) 88%, black);
+  background: color-mix(in oklab, var(--tricolor-red) 88%, black);
+  border-color: color-mix(in oklab, var(--tricolor-red) 88%, black);
   color: #ffffff;
-}
-
-.final-diagnostic-shell__note {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: color-mix(in oklab, var(--tricolor-red) 86%, var(--primary));
 }
 </style>

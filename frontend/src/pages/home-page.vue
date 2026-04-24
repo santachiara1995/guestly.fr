@@ -259,11 +259,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
             </div>
 
             <p class="home-hero-copy">
-              <strong style="color: var(--hero-title);">Devenez responsable de structure sans repartir de zéro.</strong>
-            </p>
-
-            <p class="home-hero-copy">
-              {{ hero.lead }}
+              <span class="text-primary">{{ hero.lead }}</span>
             </p>
 
             <ul class="home-hero-list" aria-label="Compétences clés du titre professionnel RPMS">
@@ -334,7 +330,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <article class="page-cut bg-primary px-5 py-6 text-white sm:px-6 lg:px-8">
           <div class="mx-auto max-w-3xl text-center">
-            <p class="kicker text-red-600">⚡ LE RACHAT DE TEMPS</p>
+            <p class="kicker text-red-600">LE RACHAT DE TEMPS</p>
             <h2 class="home-section-heading mt-4 text-white">
               Pourquoi sacrifier 6 ans quand vous pouvez décrocher votre Bac+2 d'État en 6 mois ?
             </h2>
@@ -386,17 +382,6 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
             « Un diplôme d'État, pensé pour les profils qui veulent agir, pas attendre. »
           </div>
         </article>
-      </section>
-
-      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <article class="rounded-[1.2rem] bg-red-600 px-4 py-3 text-center text-sm font-bold text-white">
-          {{ quickStartText }}
-        </article>
-      </section>
-      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <Button class="bg-red-600 text-white" @click="openQuiz">S'inscrire en 2 minutes →</Button>
-        </div>
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
@@ -651,10 +636,13 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
               Demandez votre diagnostic gratuit →
               <Clock3 class="ml-2 h-4 w-4" />
             </Button>
-            <p class="home-final-shell__note">
-              {{ finalCta.note }}
-            </p>
           </div>
+        </article>
+      </section>
+
+      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
+        <article class="rounded-[1.2rem] bg-red-600 px-4 py-3 text-center text-sm font-bold text-white">
+          {{ quickStartText }}
         </article>
       </section>
 
@@ -931,10 +919,8 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 }
 
 .home-cityz-card {
-  border-color: color-mix(in oklab, var(--navy-deep) 56%, black);
-  background:
-    radial-gradient(circle at top right, rgb(255 255 255 / 0.08), transparent 36%),
-    linear-gradient(160deg, #0d1a35 0%, #13284f 62%, #0b1630 100%);
+  border-color: color-mix(in oklab, var(--primary) 42%, black);
+  background: var(--primary);
 }
 
 .home-cityz-row {

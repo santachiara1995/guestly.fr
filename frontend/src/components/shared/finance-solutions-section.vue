@@ -61,6 +61,14 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
           <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Zéro gestion mensuelle</li>
           <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Support prioritaire</li>
         </ul>
+        <div class="finance-card__bonus">
+          <p class="finance-card__bonus-label">EXCLUSIF COMPTANT</p>
+          <ul class="finance-card__points finance-card__points--bonus">
+            <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Support prioritaire 24h</li>
+            <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Session individuelle de coaching offerte</li>
+            <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Priorité sur le choix de dates d'examen</li>
+          </ul>
+        </div>
         <Button :as="RouterLink" :to="cashHref" size="lg" class="w-full justify-center bg-red-600 text-white">
           S'inscrire en 2 minutes →
           <ArrowRight class="ml-2 h-4 w-4" />
@@ -291,6 +299,29 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
   font-size: 0.94rem;
   line-height: 1.65;
   color: var(--muted-foreground);
+}
+
+.finance-card__bonus {
+  display: grid;
+  gap: 0.65rem;
+  border-top: 1px solid color-mix(in oklab, var(--border) 90%, white);
+  padding-top: 0.9rem;
+}
+
+.finance-card__bonus-label {
+  width: fit-content;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--tricolor-red-soft) 88%, white);
+  color: var(--tricolor-red);
+  padding: 0.34rem 0.7rem;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.finance-card__points--bonus {
+  gap: 0.55rem;
 }
 
 @media (min-width: 1024px) {

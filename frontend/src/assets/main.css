@@ -7,9 +7,9 @@
   --paper-soft: #eef2f6;
   --paper-tint: #e2e8ef;
   --ink: #112741;
-  --navy-deep: #00234E;
-  --cobalt-sky: #00234E;
-  --blue-eclipse: #00234E;
+  --navy-deep: #000091;
+  --cobalt-sky: #000091;
+  --blue-eclipse: #000091;
   --harbor-haze: #e7ebf0;
   --tricolor-red: #e1000f;
   --tricolor-red-soft: #fdebed;
@@ -32,6 +32,7 @@
   --popover: var(--paper);
   --popover-foreground: var(--ink);
   --primary: var(--cobalt-sky);
+  --hero-title: #0000a8;
   --primary-foreground: #ffffff;
   --secondary: var(--blue-eclipse);
   --secondary-foreground: #ffffff;

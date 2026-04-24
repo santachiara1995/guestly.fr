@@ -46,6 +46,8 @@ const cityzIcons = [Clock3, Users, ShieldCheck, Building2, WalletCards]
 const zeroPaperIcon = FileText
 const quickStartText =
   'Démarrage de votre formation sous 10 jours · Places limitées pour garantir un suivi personnalisé'
+const showCallbackModal = ref(false)
+const callbackLead = ref({ fullName: '', phone: '', slot: 'Dès que possible' })
 const testimonials = [
   {
     stat: 'Pilotage industrialisé',
@@ -122,6 +124,20 @@ function openQuiz() {
 
 function closeQuiz() {
   quizOpen.value = false
+}
+
+function openCallback() {
+  showCallbackModal.value = true
+}
+
+function closeCallback() {
+  showCallbackModal.value = false
+}
+
+function submitCallback() {
+  console.log('Callback request:', callbackLead.value)
+  alert('Un conseiller vous rappelle dans les 24h')
+  closeCallback()
 }
 
 const financeLinks = computed(() => ({
@@ -225,25 +241,28 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
           <article class="home-hero-card page-hero p-5 sm:p-6 lg:p-8">
             <h1 class="editorial-title home-hook-title">
               <span class="home-hook-line">Décrochez votre BAC+2,</span>
-              <span class="home-hook-line">Certifié par l'Etat,</span>
+              <span class="home-hook-line">Certifié <span class="text-red-600">par l'Etat,</span></span>
               <span class="home-hook-line">100 % à distance,</span>
               <span class="home-hook-line">En 364 heures.</span>
             </h1>
 
-            <div class="flex flex-wrap gap-3">
-              <span class="inline-flex items-center gap-2 rounded-full border border-red-600/25 bg-red-50 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-red-600">
+            <div class="flex flex-wrap gap-2">
+              <span class="inline-flex items-center gap-2 rounded-full border border-red-600/25 bg-red-50 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-red-600 whitespace-nowrap">
                 🎓 Accessible sans le Bac
               </span>
-              <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-primary">
+              <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-primary whitespace-nowrap">
                 🛡️ Titre d'État · RNCP 38575
               </span>
-              <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-primary">
+              <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-primary whitespace-nowrap">
                 💻 100 % à distance
               </span>
             </div>
 
             <p class="home-hero-copy">
-              Devenez responsable de structure sans repartir de zéro.
+              <strong style="color: var(--hero-title);">Devenez responsable de structure sans repartir de zéro.</strong>
+            </p>
+
+            <p class="home-hero-copy">
               {{ hero.lead }}
             </p>
 
@@ -253,7 +272,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
               </li>
             </ul>
 
-            <div class="home-hero-actions">
+            <div class="home-hero-actions justify-items-center">
               <Button
                 size="lg"
                 class="home-hero-actions__button w-full justify-center whitespace-normal px-4 text-center leading-snug bg-red-600 text-white"
@@ -315,7 +334,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <article class="page-cut bg-primary px-5 py-6 text-white sm:px-6 lg:px-8">
           <div class="mx-auto max-w-3xl text-center">
-            <p class="kicker text-red-600">Le rachat de temps</p>
+            <p class="kicker text-red-600">⚡ LE RACHAT DE TEMPS</p>
             <h2 class="home-section-heading mt-4 text-white">
               Pourquoi sacrifier 6 ans quand vous pouvez décrocher votre Bac+2 d'État en 6 mois ?
             </h2>
@@ -363,7 +382,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
             </article>
           </div>
 
-          <div class="mt-8 rounded-3xl border border-white/10 bg-white/5 px-6 py-6 text-center text-lg italic text-slate-100">
+          <div class="mt-6 rounded-3xl border border-white/10 bg-white/5 px-6 py-6 text-center text-lg italic text-slate-100">
             « Un diplôme d'État, pensé pour les profils qui veulent agir, pas attendre. »
           </div>
         </article>
@@ -372,6 +391,19 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <article class="rounded-[1.2rem] bg-red-600 px-4 py-3 text-center text-sm font-bold text-white">
           {{ quickStartText }}
+        </article>
+      </section>
+      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <Button class="bg-red-600 text-white" @click="openQuiz">S'inscrire en 2 minutes →</Button>
+        </div>
+      </section>
+
+      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
+        <article class="rounded-[1.2rem] bg-primary px-5 py-6 text-center text-white">
+          <h3 class="text-xl font-bold sm:text-2xl">Votre parcours atypique est votre force.</h3>
+          <p class="mt-2 text-sm text-slate-300 sm:text-base">Validez votre éligibilité en 2 minutes, sans engagement.</p>
+          <Button class="mt-5 bg-red-600 text-white" @click="openQuiz">Demandez votre diagnostic gratuit →</Button>
         </article>
       </section>
 
@@ -419,8 +451,8 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
           <h2 class="home-section-heading mt-4">Des dirigeants réels, des parcours réels.</h2>
         </div>
         <div class="mt-8 grid gap-5 lg:grid-cols-3">
-          <article v-for="item in testimonials" :key="item.stat" class="page-cut p-5 sm:p-6">
-            <p class="inline-flex rounded-full bg-red-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-red-600">{{ item.stat }}</p>
+          <article v-for="item in testimonials" :key="item.stat" class="page-cut p-5 text-center sm:p-6">
+            <p class="mx-auto inline-flex rounded-full bg-red-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-red-600">{{ item.stat }}</p>
             <p class="mt-5 text-sm leading-7 text-slate-600">"{{ item.quote }}"</p>
             <div class="mt-6 border-t border-slate-200 pt-5">
               <p class="font-semibold text-slate-900">{{ item.name }}</p>
@@ -429,6 +461,13 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
             </div>
           </article>
         </div>
+      </section>
+
+      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
+        <article class="rounded-[1.2rem] bg-white px-4 py-5 text-center">
+          <h3 class="text-xl font-bold text-primary">Ils l'ont fait. Pourquoi pas vous ?</h3>
+          <Button class="mt-5 bg-red-600 text-white" @click="openQuiz">Je vérifie mon éligibilité →</Button>
+        </article>
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
@@ -498,11 +537,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
             :payment-section="paymentSection"
             :pricing="pricing"
             section-id="financement-rpms"
+            @request-callback="openCallback"
           />
         </article>
       </section>
-
-      <BrochureCapture />
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <article class="page-cut p-5 sm:p-6 lg:p-8">
@@ -517,7 +555,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
                   {{ zeroPaperSection.title }}
                 </h2>
                 <p class="text-lg leading-8 text-muted-foreground sm:text-[1.08rem]">
-                  {{ zeroPaperSection.description }}
+              {{ zeroPaperSection.description }}
                 </p>
               </div>
 
@@ -551,6 +589,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
             </div>
           </div>
         </article>
+      </section>
+
+      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
+        <BrochureCapture />
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
@@ -604,9 +646,9 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
               :as="RouterLink"
               :to="diagnosticLink"
               size="lg"
-              class="home-final-shell__button justify-center whitespace-normal text-center"
+              class="home-final-shell__button justify-center whitespace-normal text-center bg-red-600 border-red-600 text-white"
             >
-              Demander mon diagnostic gratuit
+              Demandez votre diagnostic gratuit →
               <Clock3 class="ml-2 h-4 w-4" />
             </Button>
             <p class="home-final-shell__note">
@@ -615,6 +657,27 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
           </div>
         </article>
       </section>
+
+      <div v-if="showCallbackModal" class="fixed inset-0 z-[75] bg-slate-950/70 p-4 backdrop-blur-sm" @click.self="closeCallback">
+        <div class="mx-auto flex min-h-full max-w-xl items-center">
+          <div class="relative w-full rounded-3xl bg-white p-6 shadow-2xl">
+            <button type="button" class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600" @click="closeCallback">×</button>
+            <h3 class="text-2xl font-black text-primary">Être rappelé par un conseiller</h3>
+            <p class="mt-2 text-sm text-slate-600">Laissez vos coordonnées et un conseiller vous rappelle dans les 24h.</p>
+            <div class="mt-6 grid gap-3">
+              <input v-model="callbackLead.fullName" class="rounded-xl border border-slate-200 px-4 py-3" placeholder="Prénom + Nom" />
+              <input v-model="callbackLead.phone" class="rounded-xl border border-slate-200 px-4 py-3" placeholder="Téléphone" type="tel" />
+              <select v-model="callbackLead.slot" class="rounded-xl border border-slate-200 px-4 py-3">
+                <option>Dès que possible</option>
+                <option>Matin</option>
+                <option>Après-midi</option>
+                <option>Fin de journée</option>
+              </select>
+            </div>
+            <Button class="mt-6 w-full bg-red-600 text-white" @click="submitCallback">Demander à être rappelé</Button>
+          </div>
+        </div>
+      </div>
 
       <EligibilityQuiz v-if="quizOpen" @close="closeQuiz" />
     </template>
@@ -662,7 +725,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 .home-hook-title {
   font-size: clamp(2.2rem, 4vw, 3.65rem);
   line-height: 0.98;
-  color: var(--primary);
+  color: var(--hero-title);
 }
 
 .home-hook-line {
@@ -712,9 +775,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
 .home-hero-actions {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 24rem);
   gap: 0.85rem;
   align-items: stretch;
+  justify-content: center;
 }
 
 .home-hero-actions__button {

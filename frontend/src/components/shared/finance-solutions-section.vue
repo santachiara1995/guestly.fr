@@ -5,6 +5,8 @@ import { ArrowRight, BadgeCheck, CircleDollarSign } from 'lucide-vue-next'
 
 import { Button } from '@/components/ui/button'
 
+const emit = defineEmits(['request-callback'])
+
 const props = defineProps({
   hero: { type: Object, default: () => ({}) },
   pricing: { type: Object, default: () => ({}) },
@@ -54,12 +56,13 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
           <span class="finance-card__price-note">règlement unique</span>
         </div>
         <ul class="finance-card__points">
+          <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Satisfait ou remboursé 14 jours</li>
           <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Règlement par carte sécurisé</li>
           <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Zéro gestion mensuelle</li>
           <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Support prioritaire</li>
         </ul>
-        <Button :as="RouterLink" :to="cashHref" size="lg" variant="outline" class="w-full justify-center border-primary text-primary">
-          Choisir cette option
+        <Button :as="RouterLink" :to="cashHref" size="lg" class="w-full justify-center bg-red-600 text-white">
+          S'inscrire en 2 minutes →
           <ArrowRight class="ml-2 h-4 w-4" />
         </Button>
       </article>
@@ -81,6 +84,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
         </div>
 
         <ul class="finance-card__points finance-card__points--light">
+          <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Satisfait ou remboursé 14 jours</li>
           <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Prélèvement SEPA automatique</li>
           <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> 0 € d'intérêts · 0 € de frais</li>
           <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Accès immédiat après acompte</li>
@@ -106,8 +110,8 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
           <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Maintien de vos aides</li>
           <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> CITYZ gère le montage</li>
         </ul>
-        <Button :as="RouterLink" :to="stateHref" size="lg" variant="outline" class="w-full justify-center border-primary text-primary">
-          Simuler mes aides
+        <Button size="lg" variant="outline" class="w-full justify-center border-primary text-primary" @click="emit('request-callback')">
+          Être rappelé par un conseiller →
           <ArrowRight class="ml-2 h-4 w-4" />
         </Button>
       </article>

@@ -17,7 +17,7 @@ function submitForm() {
 <template>
   <section class="py-20 bg-slate-50">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col items-center gap-6 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 md:flex-row md:gap-8 md:p-12">
+      <div class="flex flex-col items-center gap-6 rounded-[1.85rem] border border-slate-200 bg-white p-6 sm:p-8 md:flex-row md:gap-8 md:p-12">
         <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-red-50 text-3xl sm:h-24 sm:w-24 sm:text-4xl">
           📘
         </div>
@@ -28,7 +28,7 @@ function submitForm() {
             <p class="mt-3 text-sm leading-6 text-slate-600 sm:text-base">Programme détaillé, financement, témoignages, FAQ. PDF envoyé par email.</p>
             <div class="mt-6 flex flex-col gap-3 sm:flex-row">
               <Input v-model="email" class="flex-1" placeholder="votre@email.fr" type="email" />
-              <Button class="bg-slate-900 text-white" size="lg" @click="submitForm">Recevoir la brochure</Button>
+              <Button class="bg-red-600 text-white" size="lg" @click="submitForm">Recevoir la brochure</Button>
             </div>
           </template>
           <template v-else>

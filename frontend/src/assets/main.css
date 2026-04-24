@@ -7,9 +7,9 @@
   --paper-soft: #eef2f6;
   --paper-tint: #e2e8ef;
   --ink: #112741;
-  --navy-deep: #00006b;
-  --cobalt-sky: #000091;
-  --blue-eclipse: #000091;
+  --navy-deep: #00234E;
+  --cobalt-sky: #00234E;
+  --blue-eclipse: #00234E;
   --harbor-haze: #e7ebf0;
   --tricolor-red: #e1000f;
   --tricolor-red-soft: #fdebed;
@@ -42,7 +42,7 @@
   --border: var(--line);
   --input: var(--line);
   --ring: var(--cobalt-sky);
-  --destructive: #c43d59;
+  --destructive: #E1000F;
 
   --surface-shadow: 0 26px 58px rgb(17 39 65 / 0.18);
   --surface-shadow-soft: 0 16px 34px rgb(17 39 65 / 0.12);

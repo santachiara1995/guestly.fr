@@ -223,17 +223,24 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       >
         <div class="home-hero-grid">
           <article class="home-hero-card page-hero p-5 sm:p-6 lg:p-8">
-            <p class="kicker">RNCP 38575 · Bac+2 · 100 % distanciel</p>
-
-            <div class="home-hook-stack">
-              <h1 class="editorial-title home-hook-title">
-                <span v-for="line in heroHookLines" :key="line.raw" class="home-hook-line">
-                  <span class="home-hook-line__base">{{ line.baseStart }}</span>
-                  <span v-if="line.accent" class="home-hook-line__accent">{{ line.accent }}</span>
-                  <span v-if="line.baseEnd" class="home-hook-line__base">{{ line.baseEnd }}</span>
-                </span>
-              </h1>
+            <div class="flex flex-wrap gap-3">
+              <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-primary">
+                🛡️ Titre d'État · RNCP 38575
+              </span>
+              <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-primary">
+                💻 100 % à distance
+              </span>
+              <span class="inline-flex items-center gap-2 rounded-full border border-red-600/25 bg-red-50 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-red-600">
+                🎓 Accessible sans le Bac
+              </span>
             </div>
+
+            <h1 class="editorial-title home-hook-title">
+              <span class="home-hook-line">Décrochez votre BAC+2,</span>
+              <span class="home-hook-line">Certifié par l'Etat,</span>
+              <span class="home-hook-line">100 % à distance,</span>
+              <span class="home-hook-line">En 364 heures.</span>
+            </h1>
 
             <p class="home-hero-copy">
               {{ hero.lead }}
@@ -251,33 +258,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
                 class="home-hero-actions__button w-full justify-center whitespace-normal px-4 text-center leading-snug bg-red-600 text-white"
                 @click="openQuiz"
               >
-                Calculer mon financement en 2 min
+                Demandez votre diagnostic gratuit →
                 <ArrowRight class="ml-2 h-4 w-4" />
               </Button>
             </div>
-
-            <div class="flex flex-wrap gap-3 mt-6">
-              <span class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-wider border-slate-300 bg-slate-50 text-slate-900">
-                🛡️ Titre d'État · RNCP 38575
-              </span>
-              <span class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-wider border-slate-300 bg-slate-50 text-slate-900">
-                💻 100 % à distance
-              </span>
-              <span class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-wider border-red-200 bg-red-50 text-red-600">
-                🎓 Accessible sans le Bac
-              </span>
-            </div>
-
-            <div class="mt-6 flex items-center gap-3 border-t border-slate-200 pt-6">
-              <div class="flex -space-x-2">
-                <div v-for="i in 4" :key="i" class="h-8 w-8 rounded-full border-2 border-white bg-slate-300"></div>
-              </div>
-              <div class="text-sm">
-                <div class="flex items-center gap-1 font-bold text-red-600">★★★★★ <span class="text-slate-900">4,8/5</span></div>
-                <span class="text-xs text-slate-500">+450 certifiés · 69 % en emploi 6 mois après*</span>
-              </div>
-            </div>
-            <p class="mt-2 text-[10px] text-slate-400">*Source : Fiche RNCP 38575, France compétences, statistiques 2022</p>
           </article>
 
           <article class="home-visual-card page-cut p-3 sm:p-4">
@@ -328,28 +312,60 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-3xl text-center">
-          <h2 class="home-section-heading">Les avantages du parcours RPMS chez CITYZ</h2>
-        </div>
+        <article class="page-cut bg-primary px-5 py-6 text-white sm:px-6 lg:px-8">
+          <div class="mx-auto max-w-3xl text-center">
+            <p class="kicker text-red-600">Le rachat de temps</p>
+            <h2 class="home-section-heading mt-4 text-white">
+              Pourquoi sacrifier 6 ans quand vous pouvez décrocher votre Bac+2 d'État en 6 mois ?
+            </h2>
+            <p class="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-300 sm:text-[1.02rem]">
+              Le Titre Pro RPMS est le seul Bac+2 accessible <span class="underline decoration-red-600 decoration-2">sans le Baccalauréat</span>. L'accélérateur officiel des parcours atypiques.
+            </p>
+          </div>
 
-        <div class="home-proof-grid mt-8">
-          <article
-            v-for="(item, index) in proofItems"
-            :key="item.label"
-            class="home-proof-card page-cut p-5 text-center sm:p-6"
-            v-motion
-            :initial="motionVariants.pop.initial"
-            :enter="staggerEnter(index, 42, 18)"
-          >
-            <p class="detail-key">{{ item.label }}</p>
-            <p class="mt-3 text-[1.4rem] font-extrabold tracking-[-0.04em] text-foreground">
-              {{ item.value }}
-            </p>
-            <p class="mt-3 text-sm leading-7 text-muted-foreground">
-              {{ item.note }}
-            </p>
-          </article>
-        </div>
+          <div class="mt-8 grid gap-5 lg:grid-cols-2">
+            <article class="rounded-3xl border border-white/10 bg-white/5 p-6 opacity-70">
+              <h3 class="text-xl font-bold text-white">⏱ Parcours classique — Le long chemin</h3>
+              <div class="mt-8 space-y-8">
+                <div v-for="step in [
+                  { year: 'Année 1-2', title: 'Reprise d\'études ou VAE', desc: 'Démarches administratives interminables pour décrocher une équivalence Bac.' },
+                  { year: 'Année 3-4', title: 'BTS ou DUT', desc: 'Deux ans de théorie en présentiel, difficile à concilier avec un emploi.' },
+                  { year: 'Année 5-6', title: 'Bachelor ou Licence pro', desc: 'Vous atteignez enfin le niveau visé, après avoir sacrifié 6 ans de salaire et de carrière.' }
+                ]" :key="step.title" class="relative pl-10">
+                  <span class="absolute left-0 top-1.5 h-4 w-4 rounded-full bg-slate-500"></span>
+                  <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">{{ step.year }}</p>
+                  <h4 class="mt-1 text-xl font-bold text-white/90">{{ step.title }}</h4>
+                  <p class="mt-2 text-sm leading-7 text-slate-300">{{ step.desc }}</p>
+                </div>
+              </div>
+              <p class="mt-10 border-t border-white/8 pt-5 text-center text-sm font-semibold text-slate-300">~ 6 ans · parcours scolaire contraint</p>
+            </article>
+
+            <article class="relative rounded-3xl border-2 border-red-600/35 bg-gradient-to-br from-[#001a3b] to-primary p-6 shadow-2xl">
+              <div class="absolute right-6 top-[-0.9rem] rounded-full bg-red-600 px-4 py-1 text-[11px] font-black uppercase tracking-[0.18em] text-white">
+                Le raccourci officiel
+              </div>
+              <h3 class="text-xl font-bold text-white">⚡ Parcours CITYZ — La voie directe</h3>
+              <div class="mt-8 space-y-8">
+                <div v-for="step in [
+                  { time: 'Mois 0', title: 'Diagnostic gratuit', desc: 'On valide votre projet en 15 min. Votre expérience pèse plus qu\'un diplôme.' },
+                  { time: 'Mois 1-6', title: 'Titre Pro RPMS immersif', desc: '364 heures 100 % distanciel. Vous apprenez à piloter une structure, pas à réciter des cours.' },
+                  { time: 'Mois 7+', title: 'Poste de direction ou cycle supérieur', desc: 'Avec votre Bac+2 d\'État, vous visez les postes de management ou poursuivez en Bachelor / Master.' }
+                ]" :key="step.title" class="relative pl-10">
+                  <span class="absolute left-0 top-1.5 h-4 w-4 rounded-full bg-red-600 shadow-lg shadow-red-600/40"></span>
+                  <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-red-500">{{ step.time }}</p>
+                  <h4 class="mt-1 text-xl font-bold text-white">{{ step.title }}</h4>
+                  <p class="mt-2 text-sm leading-7 text-slate-300">{{ step.desc }}</p>
+                </div>
+              </div>
+              <p class="mt-10 border-t border-white/10 pt-5 text-center text-lg font-black text-red-500">6 mois pour racheter 5 ans</p>
+            </article>
+          </div>
+
+          <div class="mt-8 rounded-3xl border border-white/10 bg-white/5 px-6 py-6 text-center text-lg italic text-slate-100">
+            « Un diplôme d'État, pensé pour les profils qui veulent agir, pas attendre. »
+          </div>
+        </article>
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
@@ -419,9 +435,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
           <article class="page-cut p-5 sm:p-6 lg:p-8">
             <div class="text-center">
               <p class="kicker">LE TITRE RPMS</p>
-              <h2 class="home-section-heading mt-4">
-                {{ rpmsSection.title }}
-              </h2>
+              <h2 class="home-section-heading mt-4">Pourquoi sacrifier 6 ans quand vous pouvez décrocher votre Bac+2 d'État en 6 mois ?</h2>
+              <p class="mx-auto mt-4 max-w-3xl text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
+                Le Titre Pro RPMS est le seul Bac+2 accessible sans le Baccalauréat. L'accélérateur officiel des parcours atypiques.
+              </p>
             </div>
 
             <ul class="home-feature-list mt-8">
@@ -443,7 +460,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
           <article class="home-cityz-card page-cut p-5 sm:p-6 lg:p-8">
             <div class="text-center">
-              <p class="kicker home-cityz-card__kicker">POURQUOI CITYZ FORMATION ?</p>
+              <p class="kicker text-red-600">POURQUOI CITYZ FORMATION ?</p>
               <h2 class="home-section-heading mt-4 home-cityz-card__title">
                 {{ cityzSection.title }}
               </h2>
@@ -714,6 +731,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   width: 100%;
   border-radius: 1.1rem;
   object-fit: cover;
+  object-position: center 20%;
 }
 
 .home-pain-grid,

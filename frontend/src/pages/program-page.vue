@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { ArrowRight } from 'lucide-vue-next'
+import { ArrowRight, Building2, Check, LineChart, Rocket, ShieldCheck, Users } from 'lucide-vue-next'
 
 import FinalDiagnosticCtaPanel from '@/components/shared/final-diagnostic-cta-panel.vue'
 import { Button } from '@/components/ui/button'
@@ -10,12 +10,9 @@ import { api } from '@/lib/api'
 import { motionVariants, staggerEnter } from '@/lib/motion'
 
 const program = ref(null)
-const site = ref({
-  program: {}
-})
+const site = ref({ program: {} })
 const loading = ref(true)
 const errorMessage = ref('')
-
 const { toWithExperience } = useExperienceVariant()
 
 onMounted(async () => {
@@ -31,10 +28,7 @@ onMounted(async () => {
 })
 
 function splitLines(value) {
-  return String(value ?? '')
-    .split('\n')
-    .map((item) => item.trim())
-    .filter(Boolean)
+  return String(value ?? '').split('\n').map((item) => item.trim()).filter(Boolean)
 }
 
 function firstLine(value) {
@@ -43,33 +37,21 @@ function firstLine(value) {
 
 const pageCopy = computed(() => site.value.program ?? {})
 const homeFinalCta = computed(() => site.value.home?.finalCta ?? {})
-const diagnosticLink = computed(() =>
-  toWithExperience({
-    path: '/inscription',
-    query: { payment: 'state' },
-    hash: '#formulaire-inscription'
-  })
-)
-const signupLink = computed(() => toWithExperience('/inscription'))
 
 const hero = computed(() => {
   const value = pageCopy.value.hero ?? {}
   return {
-    eyebrow:
-      value.eyebrow ??
-      'Programme du titre professionnel Responsable de petite et moyenne structure',
-    title: value.title ?? 'Obtenez votre Bac+2 certifié pour piloter une structure.',
+    eyebrow: value.eyebrow ?? 'Programme du titre professionnel Responsable de petite et moyenne structure',
+    title: value.title ?? 'Passez de l’Expertise Technique au Pilotage de PME — Certifié d’État.',
     description:
-      value.description ?? 'Titre professionnel RPMS, RNCP38575, niveau 5 / Bac+2.',
-    note:
-      value.note ?? 'Formation 100 % distanciel, en e-learning, avec accompagnement pédagogique.'
+      value.description ?? 'Accessible sans le Bac. 100 % à distance en 364 h. Le sésame pour briser votre plafond de verre salarial.',
+    note: value.note ?? 'Formation 100 % distanciel, en e-learning, avec accompagnement pédagogique.'
   }
 })
 
 const objectivesPanel = computed(() => pageCopy.value.objectivesPanel ?? {})
 const evaluationSection = computed(() => pageCopy.value.evaluationSection ?? {})
 const blocksSection = computed(() => pageCopy.value.blocksSection ?? {})
-
 const blocks = computed(() =>
   (program.value?.blocks ?? []).map((block) => ({
     ...block,
@@ -78,229 +60,171 @@ const blocks = computed(() =>
   }))
 )
 
-const overviewCards = computed(() => [
-  {
-    label: "Diplôme certifié par l'État",
-    value: `RPMS · ${program.value?.rncpCode ?? 'RNCP38575'} · ${program.value?.levelLabel ?? 'Niveau 5 / Bac+2'}`,
-    note:
-      "Diplôme certifié par l'État français pour valoriser vos compétences et renforcer votre crédibilité professionnelle."
-  },
-  {
-    label: 'Format distanciel',
-    value: program.value?.formatLabel ?? '100 % distanciel',
-    note:
-      'E-learning souple pour apprendre où vous voulez, à votre rythme, sans interrompre votre activité.'
-  },
-  {
-    label: 'Accompagnement',
-    value: 'Avec un formateur',
-    note:
-      "Rendez-vous individuel, accompagnement pédagogique d'experts et suivi régulier pour augmenter vos chances de réussite."
-  },
-  {
-    label: 'Financement',
-    value: 'Comptant, Alma ou État',
-    note:
-      "Trois solutions de financement pour lancer votre projet sans bloquer votre trésorerie."
-  }
-])
-const evaluationSteps = computed(() => evaluationSection.value.steps ?? [])
-const mainEvaluationSteps = computed(() => evaluationSteps.value.slice(0, 3))
-const evaluationFootnote = computed(() => evaluationSteps.value[3] ?? '')
+const overviewCards = [
+  { label: "Diplôme certifié par l'État", value: 'RPMS · RNCP38575 · Niveau 5 / Bac+2', note: 'Diplôme certifié par l’État français pour valoriser vos compétences et renforcer votre crédibilité.' },
+  { label: 'Format distanciel', value: '100 % distanciel', note: 'E-learning souple pour apprendre où vous voulez, à votre rythme.' },
+  { label: 'Accompagnement', value: 'Avec un formateur', note: 'Rendez-vous individuel et suivi régulier pour augmenter vos chances de réussite.' },
+  { label: 'Financement', value: 'Comptant, Alma ou État', note: 'Trois solutions de financement pour lancer votre projet sans bloquer votre trésorerie.' }
+]
+
+const whyCards = [
+  { icon: ShieldCheck, title: 'Leadership à 360°', description: 'Sortez du cadre opérationnel pour piloter une organisation dans toute sa complexité stratégique.' },
+  { icon: LineChart, title: 'Performance ROI', description: 'Transformez chaque action en résultat mesurable. Apprenez le pilotage par les indicateurs clés.' },
+  { icon: Users, title: "Management d'Élite", description: 'Recrutez, fédérez et animez une équipe qui produit des résultats, même sans votre présence constante.' },
+  { icon: Building2, title: 'Business Networking', description: 'Maîtrisez l’art des partenariats stratégiques pour verrouiller la croissance de votre PME.' },
+  { icon: Rocket, title: 'Domination Locale', description: 'Comprenez les enjeux de votre territoire pour installer une présence imbattable sur votre secteur.' },
+  { icon: Check, title: 'Décision Exécutive', description: 'Éliminez l’hésitation. Prenez des décisions basées sur des faits, pas des intuitions.' }
+]
+
+const transformSteps = [
+  { number: '01', label: 'E-LEARNING IMMERSIF', title: 'Théorie Connectée', description: 'Accédez 24/7 à des modules interactifs. Maîtrisez les concepts à votre rythme avant la pratique.' },
+  { number: '02', label: 'CLASSES VIRTUELLES', title: 'Impact en Direct', description: 'Challengez vos connaissances avec des experts du secteur. Études de cas réels et échanges collectifs.' },
+  { number: '03', label: 'MENTORAT INDIVIDUEL', title: 'Focus Résultat', description: 'Votre coach dédié valide vos acquis et vous aide à adapter le RPMS à votre projet spécifique.' },
+  { number: '04', label: 'CERTIFICATION D’ÉTAT', title: 'Consécration', description: 'Sortez diplômé Bac+2 après un examen final en conditions réelles devant un jury professionnel.' }
+]
 </script>
 
 <template>
   <div class="program-reference -mx-4 grid gap-0 sm:-mx-6 lg:-mx-8">
-    <p v-if="loading" class="px-4 py-6 text-sm text-muted-foreground sm:px-6 lg:px-8">
-      Chargement du programme…
-    </p>
-    <p
-      v-else-if="errorMessage"
-      class="mx-4 rounded-[1rem] border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive sm:mx-6 lg:mx-8"
-    >
-      {{ errorMessage }}
-    </p>
+    <p v-if="loading" class="px-4 py-6 text-sm text-muted-foreground sm:px-6 lg:px-8">Chargement du programme…</p>
+    <p v-else-if="errorMessage" class="mx-4 rounded-[1rem] border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive sm:mx-6 lg:mx-8">{{ errorMessage }}</p>
 
     <template v-else-if="program">
-      <section
-        class="program-section program-section--hero px-4 py-6 sm:px-6 lg:px-8 lg:py-8"
-        v-motion
-        :initial="motionVariants.block.initial"
-        :enter="motionVariants.block.enter"
-      >
-        <div class="shell-track space-y-6">
-          <article class="program-hero-card page-hero p-5 sm:p-6 lg:p-7">
-            <div class="grid gap-6 lg:grid-cols-[minmax(0,1.04fr)_minmax(0,0.96fr)] lg:items-start">
+      <section class="program-section program-section--hero px-4 py-6 sm:px-6 lg:px-8 lg:py-8" v-motion :initial="motionVariants.block.initial" :enter="motionVariants.block.enter">
+        <div class="shell-track">
+          <article class="rounded-[1.75rem] bg-primary p-6 text-white shadow-2xl sm:p-8 lg:p-10">
+            <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
               <div class="space-y-5">
-                <div class="space-y-4">
-                  <p class="kicker">{{ hero.eyebrow }}</p>
-                  <h1 class="editorial-title max-w-4xl text-[clamp(2rem,3.35vw,3.1rem)] text-primary">
-                    {{ hero.title }}
-                  </h1>
-                  <p class="hero-lead max-w-3xl text-base leading-7 text-muted-foreground sm:text-[1rem]">
-                    {{ hero.description }}
-                  </p>
-                  <p class="hero-support-line max-w-3xl text-sm leading-6 text-foreground sm:text-[0.96rem]">
-                    <strong>{{ hero.note }}</strong>
-                  </p>
-                </div>
-
-                <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-start">
-                  <Button
-                    :as="RouterLink"
-                    :to="diagnosticLink"
-                    size="lg"
-                    variant="outline"
-                    class="w-full justify-center sm:w-auto"
-                  >
+                <span class="inline-flex rounded-full border border-red-600/40 bg-white/5 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-red-600">⚡ Attention · uniquement pour les profils ambitieux</span>
+                <h1 class="editorial-title text-[clamp(2.1rem,4vw,3.7rem)] leading-[0.95] text-white">
+                  Passez de l’Expertise Technique<br>
+                  au <span class="text-red-600">Pilotage de PME</span><br>
+                  — Certifié d’État.
+                </h1>
+                <p class="max-w-3xl text-base leading-7 text-slate-300 sm:text-[1.05rem]">{{ hero.description }}</p>
+                <div class="flex flex-wrap gap-3">
+                  <Button :as="RouterLink" :to="toWithExperience('/inscription')" size="lg" class="bg-red-600 text-white">
                     Demander mon diagnostic gratuit
-                  </Button>
-                  <Button :as="RouterLink" :to="signupLink" size="lg" class="w-full justify-center sm:w-auto">
-                    Commencer ma formation
                     <ArrowRight class="ml-2 h-4 w-4" />
                   </Button>
                 </div>
               </div>
-
-              <aside class="space-y-4">
-                <div class="grid gap-3 sm:grid-cols-2">
-                  <article
-                    v-for="(card, index) in overviewCards"
-                    :key="card.label"
-                    class="program-note-card program-overview-card p-4"
-                    v-motion
-                    :initial="motionVariants.pop.initial"
-                    :enter="staggerEnter(index, 40, 18)"
-                  >
-                    <p class="detail-key">{{ card.label }}</p>
-                    <p class="mt-2 text-base font-semibold leading-6 text-primary">
-                      {{ card.value }}
-                    </p>
-                    <p v-if="card.note" class="mt-2 text-sm leading-6 text-muted-foreground">
-                      {{ card.note }}
-                    </p>
-                  </article>
-                </div>
+              <aside class="grid gap-3 sm:grid-cols-2">
+                <article v-for="(card, index) in overviewCards" :key="card.label" class="rounded-2xl border border-white/10 bg-white/5 p-4" v-motion :initial="motionVariants.pop.initial" :enter="staggerEnter(index, 40, 18)">
+                  <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">{{ card.label }}</p>
+                  <p class="mt-2 text-base font-semibold text-white">{{ card.value }}</p>
+                  <p class="mt-2 text-sm leading-6 text-slate-300">{{ card.note }}</p>
+                </article>
               </aside>
             </div>
           </article>
+        </div>
+      </section>
 
-          <section class="program-section px-0 pb-0 pt-0">
-            <div class="shell-track">
-              <div class="mx-auto mb-6 max-w-3xl py-1 text-center lg:mb-8">
-                <p v-if="blocksSection.eyebrow" class="kicker">{{ blocksSection.eyebrow }}</p>
-                <h2
-                  class="editorial-title text-[clamp(1.7rem,3vw,2.35rem)] text-primary"
-                  :class="blocksSection.eyebrow ? 'mt-4' : ''"
-                >
-                  {{
-                    blocksSection.title ??
-                    'Trois blocs de compétences essentielles pour piloter une structure avec méthode.'
-                  }}
-                </h2>
-                <p
-                  v-if="blocksSection.description"
-                  class="mt-4 text-base leading-8 text-muted-foreground sm:text-[1.02rem]"
-                >
-                  {{ blocksSection.description }}
-                </p>
-              </div>
-
-              <div class="block-ladder programme-ladder">
-                <article
-                  v-for="(block, index) in blocks"
-                  :key="block.code"
-                  class="block-row programme-block"
-                  v-motion
-                  :initial="motionVariants.block.initial"
-                  :enter="staggerEnter(index, 56, 28)"
-                >
-                  <span class="programme-block__badge">{{ index + 1 }}</span>
-                  <p class="programme-block__code">{{ block.code }}</p>
-                  <h3 class="text-[1.08rem] font-semibold leading-tight tracking-[-0.03em] text-primary">
-                    {{ block.title }}
-                  </h3>
-                  <ul class="programme-skills">
-                    <li v-for="skill in block.skills" :key="skill">
-                      {{ skill }}
-                    </li>
-                  </ul>
-                </article>
-              </div>
-            </div>
-          </section>
-
-          <article class="page-cut paper-card space-y-6 p-5 sm:p-6 lg:p-7">
-            <div>
-              <p class="kicker text-center">{{ objectivesPanel.eyebrow ?? 'Objectifs pédagogiques' }}</p>
-              <h2 class="mt-4 text-center text-[clamp(1.45rem,2.3vw,1.95rem)] font-semibold tracking-[-0.04em] text-primary">
-                {{
-                  objectivesPanel.title ??
-                  'À l’issue de la formation, les apprenants seront capables de :'
-                }}
-              </h2>
-              <p class="mx-auto mt-4 max-w-4xl text-center text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
-                {{
-                  objectivesPanel.description ??
-                  "Le parcours se suit entièrement à distance, en e-learning, avec une organisation souple pensée pour progresser sans interrompre votre activité professionnelle."
-                }}
-              </p>
-
-              <div class="mt-6 grid gap-3 sm:grid-cols-2">
-                <article
-                  v-for="(item, index) in objectivesPanel.items ?? []"
-                  :key="item"
-                  class="paper-card paper-card--soft objective-mini-card"
-                  v-motion
-                  :initial="motionVariants.pop.initial"
-                  :enter="staggerEnter(index, 42, 20)"
-                >
-                  <div class="flex items-start gap-3">
-                    <span class="finance-badge">{{ index + 1 }}</span>
-                    <p class="text-sm leading-6 text-foreground">
-                      {{ item }}
-                    </p>
-                  </div>
-                </article>
-              </div>
-            </div>
-
-            <article class="program-eval-card p-5 sm:p-6">
-              <p class="kicker text-center">{{ evaluationSection.eyebrow ?? 'Durée et évaluation' }}</p>
-              <h2 class="mt-4 whitespace-pre-line text-center text-[clamp(1.4rem,2.2vw,1.9rem)] font-semibold tracking-[-0.04em] text-primary">
-                {{ evaluationSection.title ?? '364 heures de formation,\nExamen de 1 h 35.' }}
-              </h2>
-              <p class="mx-auto mt-4 max-w-4xl text-center text-sm leading-7 text-muted-foreground">
-                {{ evaluationSection.description ?? "La fiche RNCP38575 précise le déroulé de l'épreuve finale." }}
-              </p>
-
-              <div class="mt-5 grid gap-3">
-                <article
-                  v-for="(step, index) in mainEvaluationSteps"
-                  :key="step"
-                  class="program-note-card p-4"
-                  v-motion
-                  :initial="motionVariants.pop.initial"
-                  :enter="staggerEnter(index, 40, 18)"
-                >
-                  <div class="flex flex-col items-center gap-3 text-center">
-                    <span class="finance-badge">{{ index + 1 }}</span>
-                    <p class="text-sm leading-6 text-foreground">
-                      {{ step }}
-                    </p>
-                  </div>
-                </article>
-              </div>
-
-              <p
-                v-if="evaluationFootnote"
-                class="program-eval-footnote mt-4 text-center text-sm leading-6 text-muted-foreground"
-              >
-                {{ evaluationFootnote }}
-              </p>
+      <section class="program-section px-4 py-0 sm:px-6 lg:px-8">
+        <div class="shell-track space-y-6">
+          <div class="mx-auto max-w-3xl text-center">
+            <p class="kicker text-red-600">POURQUOI LE RPMS ?</p>
+            <h2 class="editorial-title text-[clamp(1.75rem,3vw,2.55rem)] text-primary">Le fossé entre « Bien faire son travail » et « Diriger une entreprise ».</h2>
+            <p class="mt-4 text-base leading-8 text-slate-600 sm:text-[1.02rem]">La plupart des managers échouent parce qu'ils gèrent des tâches, pas des organisations. Notre programme comble ce manque en 364 h d'immersion totale, 100 % à distance.</p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            <article v-for="(card, index) in whyCards" :key="card.title" class="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm" v-motion :initial="motionVariants.pop.initial" :enter="staggerEnter(index, 42, 18)">
+              <component :is="card.icon" class="h-6 w-6 text-primary" />
+              <h3 class="mt-4 text-[1.08rem] font-bold tracking-[-0.03em] text-primary">{{ card.title }}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{{ card.description }}</p>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="program-section bg-slate-50 px-4 py-8 sm:px-6 lg:px-8">
+        <div class="shell-track space-y-6">
+          <div class="mx-auto max-w-3xl text-center">
+            <p class="kicker text-red-600">LE PARCOURS DE TRANSFORMATION</p>
+            <h2 class="editorial-title text-[clamp(1.75rem,3vw,2.45rem)] text-primary">Comment nous allons forger votre posture de dirigeant.</h2>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <article v-for="(step, index) in transformSteps" :key="step.number" class="rounded-[1.25rem] border border-slate-200 bg-white p-5">
+              <div class="flex items-start justify-between">
+                <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-white font-black">{{ step.number }}</div>
+                <span class="h-2.5 w-2.5 rounded-full bg-red-600"></span>
+              </div>
+              <p class="mt-4 text-[11px] font-bold uppercase tracking-[0.18em] text-red-600">{{ step.label }}</p>
+              <h3 class="mt-2 text-[1.08rem] font-bold tracking-[-0.03em] text-primary">{{ step.title }}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{{ step.description }}</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="program-section bg-primary px-4 py-8 text-white sm:px-6 lg:px-8">
+        <div class="shell-track grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-start">
+          <div class="space-y-5">
+            <p class="kicker text-red-600">VOTRE FUTUR ARSENAL FINANCIER</p>
+            <h2 class="editorial-title text-[clamp(1.85rem,3vw,2.7rem)] text-white">Ne subissez plus vos bilans, <span class="text-red-600">pilotez votre rentabilité</span>.</h2>
+            <p class="max-w-3xl text-base leading-8 text-slate-300">Le Bloc 3 (RNCP38575BC03) n'est pas qu'une liste de tableaux comptables. C'est le centre de contrôle de votre future réussite.</p>
+            <ul class="space-y-4">
+              <li class="flex gap-3 text-slate-100"><Check class="mt-1 h-4 w-4 shrink-0 text-red-600" /> <strong>Décryptage de bilan</strong> — Comprenez enfin ce que vos chiffres disent de la santé réelle de votre structure.</li>
+              <li class="flex gap-3 text-slate-100"><Check class="mt-1 h-4 w-4 shrink-0 text-red-600" /> <strong>Optimisation du résultat</strong> — Traquez les fuites de rentabilité dans votre compte de résultat.</li>
+              <li class="flex gap-3 text-slate-100"><Check class="mt-1 h-4 w-4 shrink-0 text-red-600" /> <strong>Reporting de direction</strong> — Sachez présenter un rapport d'activité qui convainc banquiers et actionnaires.</li>
+            </ul>
+          </div>
+          <article class="rounded-[1.35rem] border border-white/10 bg-white p-5 text-slate-900">
+            <h3 class="text-xl font-bold text-primary">Transformation garantie</h3>
+            <div class="mt-5 grid gap-4">
+              <div class="flex items-center gap-3"><span class="h-10 w-10 rounded-xl bg-slate-100"></span><div><p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">Durée</p><p class="font-bold text-primary">364 heures intensives</p></div></div>
+              <div class="flex items-center gap-3"><span class="h-10 w-10 rounded-xl bg-slate-100"></span><div><p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">Niveau</p><p class="font-bold text-primary">Bac+2 reconnu par l'État</p></div></div>
+              <div class="flex items-center gap-3"><span class="h-10 w-10 rounded-xl bg-slate-100"></span><div><p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">Format</p><p class="font-bold text-primary">100 % distanciel (accès 24/7)</p></div></div>
+              <div class="flex items-center gap-3"><span class="h-10 w-10 rounded-xl bg-slate-100"></span><div><p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">Accompagnement</p><p class="font-bold text-primary">Mentor individuel dédié</p></div></div>
+            </div>
           </article>
         </div>
+      </section>
+
+      <section class="program-section px-4 py-8 sm:px-6 lg:px-8">
+        <div class="shell-track space-y-6">
+          <div class="mx-auto max-w-3xl text-center">
+            <p v-if="blocksSection.eyebrow" class="kicker text-red-600">{{ blocksSection.eyebrow }}</p>
+            <h2 class="editorial-title text-[clamp(1.75rem,3vw,2.45rem)] text-primary">{{ blocksSection.title ?? 'Programme détaillé' }}</h2>
+            <p v-if="blocksSection.description" class="mt-4 text-base leading-8 text-slate-600">{{ blocksSection.description }}</p>
+          </div>
+
+          <div class="grid gap-4 lg:grid-cols-3">
+            <article v-for="(block, index) in blocks" :key="block.code" class="rounded-[1.25rem] border border-slate-200 bg-white p-5" v-motion :initial="motionVariants.block.initial" :enter="staggerEnter(index, 56, 28)">
+              <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-red-600">{{ block.code }}</p>
+              <h3 class="mt-2 text-[1.08rem] font-bold tracking-[-0.03em] text-primary">{{ block.title }}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{{ block.summary }}</p>
+              <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-600">
+                <li v-for="skill in block.skills" :key="skill">• {{ skill }}</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="program-section px-4 py-8 sm:px-6 lg:px-8">
+        <article class="rounded-[1.25rem] border border-slate-200 bg-white p-5 sm:p-6 lg:p-8">
+          <div class="mx-auto max-w-3xl text-center">
+            <p class="kicker text-red-600">{{ objectivesPanel.eyebrow ?? 'Objectifs pédagogiques' }}</p>
+            <h2 class="editorial-title mt-4 text-[clamp(1.5rem,2.5vw,2rem)] text-primary">{{ objectivesPanel.title ?? 'À l’issue de la formation, les apprenants seront capables de :' }}</h2>
+            <p class="mt-4 text-base leading-8 text-slate-600">{{ objectivesPanel.description ?? "Le parcours se suit entièrement à distance, en e-learning, avec une organisation souple pensée pour progresser sans interrompre votre activité professionnelle." }}</p>
+          </div>
+
+          <div class="mt-6 grid gap-3 sm:grid-cols-2">
+            <article v-for="(item, index) in objectivesPanel.items ?? []" :key="item" class="rounded-[1rem] border border-slate-200 bg-slate-50 p-4">
+              <div class="flex items-start gap-3">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">{{ index + 1 }}</span>
+                <p class="text-sm leading-6 text-slate-700">{{ item }}</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="mt-8 mx-auto max-w-3xl text-center">
+            <h2 class="editorial-title text-[clamp(1.45rem,2.2vw,1.9rem)] text-primary">{{ evaluationSection.title ?? '364 heures de formation, Examen de 1 h 35.' }}</h2>
+            <p class="mt-4 text-sm leading-7 text-slate-600">{{ evaluationSection.description ?? "La fiche RNCP38575 précise le déroulé de l'épreuve finale." }}</p>
+          </div>
+        </article>
       </section>
 
       <section class="program-section px-4 pb-0 pt-6 sm:px-6 lg:px-8 lg:pb-0 lg:pt-8">

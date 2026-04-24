@@ -26,3 +26,4 @@ backend/.env
 backend/.env.*
 frontend/.env
 frontend/.env.*
+.gstack/

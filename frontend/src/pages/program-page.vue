@@ -68,12 +68,12 @@ const overviewCards = [
 ]
 
 const whyCards = [
-  { icon: ShieldCheck, title: 'Leadership à 360°', description: 'Sortez du cadre opérationnel pour piloter une organisation dans toute sa complexité stratégique.' },
-  { icon: LineChart, title: 'Performance ROI', description: 'Transformez chaque action en résultat mesurable. Apprenez le pilotage par les indicateurs clés.' },
-  { icon: Users, title: "Management d'Élite", description: 'Recrutez, fédérez et animez une équipe qui produit des résultats, même sans votre présence constante.' },
-  { icon: Building2, title: 'Business Networking', description: 'Maîtrisez l’art des partenariats stratégiques pour verrouiller la croissance de votre PME.' },
-  { icon: Rocket, title: 'Domination Locale', description: 'Comprenez les enjeux de votre territoire pour installer une présence imbattable sur votre secteur.' },
-  { icon: Check, title: 'Décision Exécutive', description: 'Éliminez l’hésitation. Prenez des décisions basées sur des faits, pas des intuitions.' }
+  { icon: ShieldCheck, emoji: '🛡️', title: 'Leadership à 360°', description: 'Sortez du cadre opérationnel pour piloter une organisation dans toute sa complexité stratégique.' },
+  { icon: LineChart, emoji: '📈', title: 'Performance ROI', description: 'Transformez chaque action en résultat mesurable. Apprenez le pilotage par les indicateurs clés.' },
+  { icon: Users, emoji: '👥', title: "Management d'Élite", description: 'Recrutez, fédérez et animez une équipe qui produit des résultats, même sans votre présence constante.' },
+  { icon: Building2, emoji: '🤝', title: 'Business Networking', description: 'Maîtrisez l’art des partenariats stratégiques pour verrouiller la croissance de votre PME.' },
+  { icon: Rocket, emoji: '🚀', title: 'Domination Locale', description: 'Comprenez les enjeux de votre territoire pour installer une présence imbattable sur votre secteur.' },
+  { icon: Check, emoji: '✅', title: 'Décision Exécutive', description: 'Éliminez l’hésitation. Prenez des décisions basées sur des faits, pas des intuitions.' }
 ]
 
 const transformSteps = [
@@ -99,10 +99,10 @@ const financeSkillCards = [
 ]
 
 const transformationStats = [
-  { emoji: '⏱', label: 'Durée', value: '364 heures intensives' },
-  { emoji: '🎓', label: 'Niveau', value: "Bac+2 reconnu par l'État" },
-  { emoji: '💻', label: 'Format', value: '100 % distanciel (accès 24/7)' },
-  { emoji: '🤝', label: 'Accompagnement', value: 'Mentor individuel dédié' }
+  { emoji: '⏱', colorClass: 'bg-blue-100 text-blue-700', label: 'Durée', value: '364 heures intensives' },
+  { emoji: '🎓', colorClass: 'bg-red-100 text-red-600', label: 'Niveau', value: "Bac+2 reconnu par l'État" },
+  { emoji: '💻', colorClass: 'bg-indigo-100 text-indigo-700', label: 'Format', value: '100 % distanciel (accès 24/7)' },
+  { emoji: '🤝', colorClass: 'bg-emerald-100 text-emerald-700', label: 'Accompagnement', value: 'Mentor individuel dédié' }
 ]
 </script>
 
@@ -152,7 +152,9 @@ const transformationStats = [
           </div>
           <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             <article v-for="card in whyCards" :key="card.title" class="rounded-3xl border border-white/10 bg-white/8 p-5 text-center shadow-sm">
-              <component :is="card.icon" class="mx-auto h-6 w-6 text-white" />
+              <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-white/14 text-2xl shadow-sm">
+                <span aria-hidden="true">{{ card.emoji }}</span>
+              </div>
               <h3 class="mt-4 text-[1.08rem] font-bold tracking-[-0.03em] text-white">{{ card.title }}</h3>
               <p class="mt-3 text-sm leading-7 text-slate-200">{{ card.description }}</p>
             </article>
@@ -203,7 +205,7 @@ const transformationStats = [
             <h3 class="text-xl font-bold text-primary">Transformation garantie</h3>
             <div class="mt-5 grid gap-4">
               <div v-for="item in transformationStats" :key="item.label" class="flex items-center gap-3">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-lg">{{ item.emoji }}</span>
+                <span :class="['flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-lg', item.colorClass]">{{ item.emoji }}</span>
                 <div>
                   <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">{{ item.label }}</p>
                   <p class="font-bold text-primary">{{ item.value }}</p>

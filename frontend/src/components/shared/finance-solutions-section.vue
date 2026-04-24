@@ -222,9 +222,11 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
   color: white;
 }
 
-.finance-card__label--blue {
+.finance-card__label--blue,
+.finance-card--featured .finance-card__label--blue {
   color: var(--primary);
   background: color-mix(in oklab, var(--primary) 10%, white);
+  border-color: color-mix(in oklab, var(--primary) 18%, white);
 }
 
 .finance-card__title {

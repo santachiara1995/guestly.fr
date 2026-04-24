@@ -205,7 +205,7 @@ const transformationStats = [
               </article>
             </div>
           </div>
-          <article class="rounded-3xl border border-white/10 bg-white p-5 text-slate-900">
+          <article class="rounded-3xl border border-white/10 bg-white p-5 text-slate-900 lg:self-center">
             <h3 class="text-xl font-bold text-primary">Transformation garantie</h3>
             <div class="mt-5 grid gap-4">
               <div v-for="item in transformationStats" :key="item.label" class="flex items-center gap-3">

@@ -26,7 +26,8 @@ const props = defineProps({
       state: '/inscription?payment=state'
     })
   },
-  sectionId: { type: String, default: '' }
+  sectionId: { type: String, default: '' },
+  blueInstallmentLabel: { type: Boolean, default: false }
 })
 
 const cashHref = computed(() => props.internalLinks?.cash ?? '/inscription')
@@ -81,7 +82,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
         <p class="finance-card__subtitle">Démarrez maintenant sans alourdir votre trésorerie.</p>
 
         <div class="finance-card__installment-box">
-          <p class="finance-card__label">Acompte à l'inscription</p>
+          <p :class="['finance-card__label', { 'finance-card__label--blue': blueInstallmentLabel }]">Acompte à l'inscription</p>
           <div class="finance-card__installment-amount">1 000 €</div>
           <p class="text-sm text-slate-600">puis au choix :</p>
           <div class="finance-card__mini-grid">
@@ -219,6 +220,11 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
   border: 1px solid rgb(255 255 255 / 0.18);
   background: rgb(255 255 255 / 0.12);
   color: white;
+}
+
+.finance-card__label--blue {
+  color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 10%, white);
 }
 
 .finance-card__title {

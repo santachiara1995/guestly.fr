@@ -520,6 +520,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
         <article class="page-cut p-5 sm:p-6 lg:p-8">
           <FinanceSolutionsSection
             :hero="financeHero"
+            blue-installment-label
             :internal-links="financeLinks"
             :payment-links="paymentLinks"
             :payment-section="paymentSection"

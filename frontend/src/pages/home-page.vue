@@ -223,18 +223,6 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       >
         <div class="home-hero-grid">
           <article class="home-hero-card page-hero p-5 sm:p-6 lg:p-8">
-            <div class="flex flex-wrap gap-3">
-              <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-primary">
-                🛡️ Titre d'État · RNCP 38575
-              </span>
-              <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-primary">
-                💻 100 % à distance
-              </span>
-              <span class="inline-flex items-center gap-2 rounded-full border border-red-600/25 bg-red-50 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-red-600">
-                🎓 Accessible sans le Bac
-              </span>
-            </div>
-
             <h1 class="editorial-title home-hook-title">
               <span class="home-hook-line">Décrochez votre BAC+2,</span>
               <span class="home-hook-line">Certifié par l'Etat,</span>
@@ -242,7 +230,20 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
               <span class="home-hook-line">En 364 heures.</span>
             </h1>
 
+            <div class="flex flex-wrap gap-3">
+              <span class="inline-flex items-center gap-2 rounded-full border border-red-600/25 bg-red-50 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-red-600">
+                🎓 Accessible sans le Bac
+              </span>
+              <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-primary">
+                🛡️ Titre d'État · RNCP 38575
+              </span>
+              <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-primary">
+                💻 100 % à distance
+              </span>
+            </div>
+
             <p class="home-hero-copy">
+              Devenez responsable de structure sans repartir de zéro.
               {{ hero.lead }}
             </p>
 

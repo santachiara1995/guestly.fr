@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { ArrowRight, Building2, Check, LineChart, Rocket, ShieldCheck, Users } from 'lucide-vue-next'
+import { ArrowRight, Building2, Check, Download, LineChart, Rocket, ShieldCheck, Users } from 'lucide-vue-next'
 
 import FinalDiagnosticCtaPanel from '@/components/shared/final-diagnostic-cta-panel.vue'
 import { Button } from '@/components/ui/button'
@@ -64,7 +64,7 @@ const overviewCards = [
   { label: "Diplôme certifié par l'État", value: 'RPMS · RNCP38575 · Niveau 5 / Bac+2', note: 'Diplôme certifié par l’État français pour valoriser vos compétences et renforcer votre crédibilité.' },
   { label: 'Format distanciel', value: '100 % distanciel', note: 'E-learning souple pour apprendre où vous voulez, à votre rythme.' },
   { label: 'Accompagnement', value: 'Avec un formateur', note: 'Rendez-vous individuel et suivi régulier pour augmenter vos chances de réussite.' },
-  { label: 'Financement', value: 'Comptant, Alma ou État', note: 'Trois solutions de financement pour lancer votre projet sans bloquer votre trésorerie.' }
+  { label: 'Financement', value: 'Comptant, plusieurs fois sans frais ou État', note: 'Trois solutions de financement pour lancer votre projet sans bloquer votre trésorerie.' }
 ]
 
 const whyCards = [
@@ -130,9 +130,13 @@ const transformationStats = [
                     <ArrowRight class="ml-2 h-4 w-4" />
                   </Button>
                 </div>
+                <a href="/plaquette-titre-pro-rpms.pdf" target="_blank" rel="noreferrer" class="inline-flex w-fit items-center gap-2 text-sm font-semibold text-primary underline decoration-primary/30 underline-offset-4 transition-colors hover:text-red-600 hover:decoration-red-600/40">
+                  <Download class="h-4 w-4" />
+                  Télécharger la brochure
+                </a>
               </div>
               <aside class="grid gap-3 sm:grid-cols-2">
-                <article v-for="(card, index) in overviewCards" :key="card.label" class="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm" v-motion :initial="motionVariants.pop.initial" :enter="staggerEnter(index, 40, 18)">
+                <article v-for="(card, index) in overviewCards" :key="card.label" class="rounded-3xl border border-slate-200 bg-white p-4 text-center shadow-sm" v-motion :initial="motionVariants.pop.initial" :enter="staggerEnter(index, 40, 18)">
                   <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">{{ card.label }}</p>
                   <p class="mt-2 text-base font-bold text-primary">{{ card.value }}</p>
                   <p class="mt-2 text-sm leading-6 text-slate-600">{{ card.note }}</p>

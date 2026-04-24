@@ -92,28 +92,28 @@ const transformSteps = [
     <template v-else-if="program">
       <section class="program-section program-section--hero px-4 py-6 sm:px-6 lg:px-8 lg:py-8" v-motion :initial="motionVariants.block.initial" :enter="motionVariants.block.enter">
         <div class="shell-track">
-          <article class="rounded-[1.75rem] bg-primary p-6 text-white shadow-2xl sm:p-8 lg:p-10">
+          <article class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
             <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
               <div class="space-y-5">
-                <span class="inline-flex rounded-full border border-red-600/40 bg-white/5 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-red-600">⚡ Attention · uniquement pour les profils ambitieux</span>
-                <h1 class="editorial-title text-[clamp(2.1rem,4vw,3.7rem)] leading-[0.95] text-white">
+                <span class="inline-flex rounded-full border border-red-600/20 bg-red-50 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-red-600">⚡ Attention · uniquement pour les profils ambitieux</span>
+                <h1 class="editorial-title text-[clamp(2.1rem,4vw,3.7rem)] leading-[0.95] text-primary">
                   Passez de l’Expertise Technique<br>
                   au <span class="text-red-600">Pilotage de PME</span><br>
                   — Certifié d’État.
                 </h1>
-                <p class="max-w-3xl text-base leading-7 text-slate-300 sm:text-[1.05rem]">{{ hero.description }}</p>
+                <p class="max-w-3xl text-base leading-7 text-slate-600 sm:text-[1.05rem]">{{ hero.eyebrow ?? 'Titre professionnel RPMS, RNCP38575, niveau 5 / Bac+2.' }}</p>
                 <div class="flex flex-wrap gap-3">
-                  <Button :as="RouterLink" :to="toWithExperience('/inscription')" size="lg" class="bg-red-600 text-white">
-                    Demander mon diagnostic gratuit
+                  <Button :as="RouterLink" :to="toWithExperience('/inscription')" size="lg" class="bg-red-600 text-white px-6 py-5 text-xl">
+                    Demander mon diagnostic gratuit →
                     <ArrowRight class="ml-2 h-4 w-4" />
                   </Button>
                 </div>
               </div>
               <aside class="grid gap-3 sm:grid-cols-2">
-                <article v-for="(card, index) in overviewCards" :key="card.label" class="rounded-2xl border border-white/10 bg-white/5 p-4" v-motion :initial="motionVariants.pop.initial" :enter="staggerEnter(index, 40, 18)">
+                <article v-for="(card, index) in overviewCards" :key="card.label" class="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm" v-motion :initial="motionVariants.pop.initial" :enter="staggerEnter(index, 40, 18)">
                   <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">{{ card.label }}</p>
-                  <p class="mt-2 text-base font-semibold text-white">{{ card.value }}</p>
-                  <p class="mt-2 text-sm leading-6 text-slate-300">{{ card.note }}</p>
+                  <p class="mt-2 text-base font-bold text-primary">{{ card.value }}</p>
+                  <p class="mt-2 text-sm leading-6 text-slate-600">{{ card.note }}</p>
                 </article>
               </aside>
             </div>
@@ -125,11 +125,11 @@ const transformSteps = [
         <div class="shell-track space-y-6">
           <div class="mx-auto max-w-3xl text-center">
             <p class="kicker text-red-600">POURQUOI LE RPMS ?</p>
-            <h2 class="editorial-title text-[clamp(1.75rem,3vw,2.55rem)] text-primary">Le fossé entre « Bien faire son travail » et « Diriger une entreprise ».</h2>
+            <h2 class="editorial-title text-[clamp(1.75rem,3vw,2.55rem)] text-primary">Le fossé entre « Bien faire son travail »<br>et « Diriger une entreprise ».</h2>
             <p class="mt-4 text-base leading-8 text-slate-600 sm:text-[1.02rem]">La plupart des managers échouent parce qu'ils gèrent des tâches, pas des organisations. Notre programme comble ce manque en 364 h d'immersion totale, 100 % à distance.</p>
           </div>
           <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            <article v-for="(card, index) in whyCards" :key="card.title" class="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm" v-motion :initial="motionVariants.pop.initial" :enter="staggerEnter(index, 42, 18)">
+            <article v-for="(card, index) in whyCards" :key="card.title" class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm" v-motion :initial="motionVariants.pop.initial" :enter="staggerEnter(index, 42, 18)">
               <component :is="card.icon" class="h-6 w-6 text-primary" />
               <h3 class="mt-4 text-[1.08rem] font-bold tracking-[-0.03em] text-primary">{{ card.title }}</h3>
               <p class="mt-3 text-sm leading-7 text-slate-600">{{ card.description }}</p>
@@ -145,10 +145,9 @@ const transformSteps = [
             <h2 class="editorial-title text-[clamp(1.75rem,3vw,2.45rem)] text-primary">Comment nous allons forger votre posture de dirigeant.</h2>
           </div>
           <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            <article v-for="(step, index) in transformSteps" :key="step.number" class="rounded-[1.25rem] border border-slate-200 bg-white p-5">
-              <div class="flex items-start justify-between">
+            <article v-for="(step, index) in transformSteps" :key="step.number" class="rounded-3xl border border-slate-200 bg-white p-5 text-center">
+              <div class="flex justify-center">
                 <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-white font-black">{{ step.number }}</div>
-                <span class="h-2.5 w-2.5 rounded-full bg-red-600"></span>
               </div>
               <p class="mt-4 text-[11px] font-bold uppercase tracking-[0.18em] text-red-600">{{ step.label }}</p>
               <h3 class="mt-2 text-[1.08rem] font-bold tracking-[-0.03em] text-primary">{{ step.title }}</h3>
@@ -170,7 +169,7 @@ const transformSteps = [
               <li class="flex gap-3 text-slate-100"><Check class="mt-1 h-4 w-4 shrink-0 text-red-600" /> <strong>Reporting de direction</strong> — Sachez présenter un rapport d'activité qui convainc banquiers et actionnaires.</li>
             </ul>
           </div>
-          <article class="rounded-[1.35rem] border border-white/10 bg-white p-5 text-slate-900">
+          <article class="rounded-3xl border border-white/10 bg-white p-5 text-slate-900">
             <h3 class="text-xl font-bold text-primary">Transformation garantie</h3>
             <div class="mt-5 grid gap-4">
               <div class="flex items-center gap-3"><span class="h-10 w-10 rounded-xl bg-slate-100"></span><div><p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">Durée</p><p class="font-bold text-primary">364 heures intensives</p></div></div>
@@ -191,8 +190,8 @@ const transformSteps = [
           </div>
 
           <div class="grid gap-4 lg:grid-cols-3">
-            <article v-for="(block, index) in blocks" :key="block.code" class="rounded-[1.25rem] border border-slate-200 bg-white p-5" v-motion :initial="motionVariants.block.initial" :enter="staggerEnter(index, 56, 28)">
-              <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-red-600">{{ block.code }}</p>
+            <article v-for="(block, index) in blocks" :key="block.code" class="rounded-3xl border border-slate-200 bg-white p-5 text-center" v-motion :initial="motionVariants.block.initial" :enter="staggerEnter(index, 56, 28)">
+              <p class="mx-auto text-[11px] font-bold uppercase tracking-[0.18em] text-red-600">{{ block.code }}</p>
               <h3 class="mt-2 text-[1.08rem] font-bold tracking-[-0.03em] text-primary">{{ block.title }}</h3>
               <p class="mt-3 text-sm leading-7 text-slate-600">{{ block.summary }}</p>
               <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-600">

@@ -118,7 +118,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
           <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Maintien de vos aides</li>
           <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> CITYZ gère le montage</li>
         </ul>
-        <Button size="lg" variant="outline" class="w-full justify-center border-primary text-primary" @click="emit('request-callback')">
+        <Button size="lg" class="w-full justify-center bg-red-600 text-white" @click="emit('request-callback')">
           Être rappelé par un conseiller →
           <ArrowRight class="ml-2 h-4 w-4" />
         </Button>

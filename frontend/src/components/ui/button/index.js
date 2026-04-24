@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority'
 export { default as Button } from './Button.vue'
 
 export const buttonVariants = cva(
-  'inline-flex min-h-11 cursor-pointer items-center justify-center whitespace-nowrap rounded-[0.9rem] border text-sm font-semibold tracking-[-0.01em] transition-[transform,box-shadow,background-color,border-color,color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 aria-busy:pointer-events-none aria-busy:opacity-70 data-[loading=true]:pointer-events-none data-[loading=true]:opacity-70',
+  'inline-flex min-h-11 cursor-pointer items-center justify-center whitespace-nowrap rounded-[0.9rem] border text-sm font-bold tracking-[-0.01em] transition-[transform,box-shadow,background-color,border-color,color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/65 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 aria-busy:pointer-events-none aria-busy:opacity-70 data-[loading=true]:pointer-events-none data-[loading=true]:opacity-70',
   {
     variants: {
       variant: {

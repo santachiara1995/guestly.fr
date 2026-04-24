@@ -49,7 +49,7 @@ const showCallbackModal = ref(false)
 const callbackLead = ref({ fullName: '', phone: '', slot: 'Dès que possible' })
 const testimonials = [
   {
-    stat: 'Pilotage industrialisé',
+    stat: "DE L'ATELIER À LA DIRECTION",
     quote:
       "Je gérais la partie technique au feeling. Le RPMS m'a donné le cadre : indicateurs, analyse et management d'équipe.",
     name: 'Anna-Ketsia P.',
@@ -58,7 +58,7 @@ const testimonials = [
     sector: 'Construction éco-responsable'
   },
   {
-    stat: '2 nouvelles subventions obtenues',
+    stat: '+ 60 K€ DE FINANCEMENTS DÉBLOQUÉS',
     quote:
       "Diriger sans diplôme de gestion, c'est tenir sur la bonne volonté. Avec le RPMS, j'ai structuré notre pilotage financier.",
     name: '[Prénom]',
@@ -67,11 +67,11 @@ const testimonials = [
     sector: 'Jeunesse & action sociale'
   },
   {
-    stat: 'Financement bancaire débloqué',
+    stat: 'DE TECHNICIEN À DIRIGEANT',
     quote:
-      "Le RPMS valide l'expérience terrain et ouvre des portes quand il faut négocier avec une banque ou un investisseur.",
+      "J'étais opérateur depuis 5 ans sans perspective d'évolution. Le RPMS m'a donné les codes du management. 8 mois après le diplôme, je gérais ma propre équipe.",
     name: '[Prénom]',
-    role: 'Dirigeant',
+    role: "Chef d'équipe (ex-opérateur)",
     company: 'Gobuse',
     sector: 'Services aux entreprises'
   }
@@ -245,14 +245,14 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
             </h1>
 
             <div class="flex flex-wrap gap-2">
+              <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-primary whitespace-nowrap">
+                💻 100 % à distance
+              </span>
               <span class="inline-flex items-center gap-2 rounded-full border border-red-600/25 bg-red-50 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-red-600 whitespace-nowrap">
                 🎓 Accessible sans le Bac
               </span>
               <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-primary whitespace-nowrap">
                 🛡️ Titre d'État · RNCP 38575
-              </span>
-              <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-primary whitespace-nowrap">
-                💻 100 % à distance
               </span>
             </div>
 
@@ -329,16 +329,13 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
         <article class="page-cut bg-primary px-5 py-6 text-white sm:px-6 lg:px-8">
           <div class="mx-auto max-w-3xl text-center">
             <p class="kicker text-red-600">LE RACHAT DE TEMPS</p>
-            <h2 class="home-section-heading mt-4 text-white">
+            <h3 class="home-rachat-quote">« Un diplôme d'État, pensé pour les profils qui veulent agir, pas attendre. »</h3>
+            <h2 class="home-section-heading mt-2 text-white">
               Pourquoi sacrifier 6 ans quand vous pouvez décrocher votre Bac+2 d'État en 6 mois ?
             </h2>
             <p class="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-300 sm:text-[1.02rem]">
               Le Titre Pro RPMS est le seul Bac+2 accessible <span class="underline decoration-red-600 decoration-2">sans le Baccalauréat</span>. L'accélérateur officiel des parcours atypiques.
             </p>
-          </div>
-
-          <div class="mt-6 rounded-3xl border border-white/10 bg-white/5 px-6 py-6 text-center">
-            <h3 class="home-rachat-quote">« Un diplôme d'État, pensé pour les profils qui veulent agir, pas attendre. »</h3>
           </div>
 
           <div class="mt-6 grid gap-5 lg:grid-cols-2">
@@ -379,13 +376,6 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
               <p class="mt-10 border-t border-white/10 pt-5 text-center text-lg font-black text-red-500">6 mois pour racheter 5 ans</p>
             </article>
           </div>
-        </article>
-      </section>
-
-      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <article class="rounded-[1.2rem] bg-primary px-5 py-6 text-center text-white">
-          <h3 class="text-xl font-bold sm:text-2xl">Votre parcours atypique est votre force.</h3>
-          <Button class="mt-5 bg-red-600 text-white" @click="openQuiz">Demandez votre diagnostic gratuit →</Button>
         </article>
       </section>
 
@@ -446,18 +436,11 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <article class="rounded-[1.2rem] bg-white px-4 py-5 text-center">
-          <h3 class="text-xl font-bold text-primary">Ils l'ont fait. Pourquoi pas vous ?</h3>
-          <Button class="mt-5 bg-red-600 text-white" @click="openQuiz">Je vérifie mon éligibilité →</Button>
-        </article>
-      </section>
-
-      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <div class="home-dual-grid">
           <article class="page-cut p-5 sm:p-6 lg:p-8">
             <div class="text-center">
               <p class="kicker">LE TITRE RPMS</p>
-              <h2 class="home-section-heading mt-4">Pourquoi sacrifier 6 ans quand vous pouvez décrocher votre Bac+2 d'État en 6 mois ?</h2>
+              <h2 class="home-section-heading mt-4">Le Titre RPMS, votre passeport pour la direction.</h2>
               <p class="mx-auto mt-4 max-w-3xl text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
                 Le Titre Pro RPMS est le seul Bac+2 accessible sans le Baccalauréat. L'accélérateur officiel des parcours atypiques.
               </p>
@@ -611,6 +594,18 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
         </article>
       </section>
 
+      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
+        <article class="rounded-[1.2rem] bg-red-600 px-4 py-3 text-center text-sm font-bold text-white">
+          {{ quickStartText }}
+        </article>
+      </section>
+
+      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
+        <article class="rounded-[1.2rem] bg-red-600 px-4 py-3 text-center text-sm font-bold text-white">
+          {{ quickStartText }}
+        </article>
+      </section>
+
       <section class="page-shell px-4 pb-6 pt-0 sm:px-6 lg:px-8 lg:pb-8">
         <article class="home-final-panel page-cut p-6 sm:p-8 lg:p-10">
           <div class="home-final-shell">
@@ -618,13 +613,13 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
               {{ finalCta.title }}
             </h2>
             <p class="home-final-shell__description">
-              {{ finalCta.description }}
+              Votre parcours atypique est votre force.
             </p>
             <Button
               :as="RouterLink"
               :to="diagnosticLink"
               size="lg"
-              class="home-final-shell__button justify-center whitespace-normal text-center bg-red-600 border-red-600 text-white"
+              class="home-final-shell__button justify-center whitespace-normal text-center bg-red-600 border-red-600 text-white px-10 py-5 text-xl font-bold"
             >
               Demandez votre diagnostic gratuit →
               <Clock3 class="ml-2 h-4 w-4" />
@@ -634,8 +629,22 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <article class="rounded-[1.2rem] bg-red-600 px-4 py-3 text-center text-sm font-bold text-white">
-          {{ quickStartText }}
+        <article class="page-cut p-5 sm:p-6 lg:p-8">
+          <div class="mx-auto max-w-3xl text-center">
+            <p class="kicker text-red-600">POURQUOI CHOISIR CITYZ</p>
+            <h2 class="home-section-heading mt-4">Une formation pensée pour les résultats concrets.</h2>
+          </div>
+          <div class="home-benefits-grid mt-8">
+            <article v-for="item in [
+              { title: 'Reconnu par l\'État', description: 'Diplôme RNCP 38575 délivré par le Ministère du Travail. Aucune ambiguïté sur la valeur de votre titre.' },
+              { title: 'Mentor dédié de A à Z', description: 'Un seul interlocuteur du diagnostic à l’examen final. Zéro perte de temps en allers-retours administratifs.' },
+              { title: '100 % à distance, à votre rythme', description: 'Pas de présentiel imposé, pas de classe à horaires fixes. Vous avancez quand vous voulez, où vous voulez.' }
+            ]" :key="item.title" class="rounded-3xl border border-slate-200 bg-white p-5 text-center shadow-sm">
+              <Check class="mx-auto h-6 w-6 text-red-600" />
+              <h3 class="mt-4 text-[1.08rem] font-bold tracking-[-0.03em] text-primary">{{ item.title }}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{{ item.description }}</p>
+            </article>
+          </div>
         </article>
       </section>
 
@@ -941,6 +950,17 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   color: #ffffff;
   font-size: 1.06em;
   font-weight: 800;
+}
+
+.home-benefits-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .home-benefits-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .home-rachat-quote {

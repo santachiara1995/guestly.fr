@@ -234,7 +234,7 @@ export const siteContent = {
         {
           title: 'Vous êtes dirigeant ou repreneur de TPE/PME',
           detailsHtml:
-            "Vous gérez votre structure au feeling et voulez professionnaliser votre pilotage. Le RPMS structure ces trois dimensions en <strong>3 blocs de compétences indépendants</strong>, que vous pouvez capitaliser séparément selon vos priorités.",
+            "Vous gérez votre structure au feeling et voulez professionnaliser votre pilotage. Le RPMS structure ces trois dimensions en<br><strong>3 blocs de compétences indépendants</strong>, que vous pouvez capitaliser séparément selon vos priorités.",
           sourceRefs: ['arrete', 'rncp']
         },
         {

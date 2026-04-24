@@ -349,7 +349,6 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
         <article class="page-cut bg-primary px-5 py-6 text-white sm:px-6 lg:px-8">
           <div class="mx-auto max-w-3xl text-center">
             <p class="kicker text-red-600">LE RACHAT DE TEMPS</p>
-            <h3 class="home-rachat-quote" style="color: #ffffff;">« Un diplôme d'État, pensé pour les profils qui veulent agir, pas attendre. »</h3>
             <h2 class="home-section-heading mt-2" style="color: #ffffff;">
               Pourquoi sacrifier 6 ans quand vous pouvez décrocher votre Bac+2 d'État
               en 6 mois ?
@@ -397,6 +396,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
               <p class="mt-10 border-t border-white/10 pt-5 text-center text-lg font-black text-red-500">6 mois pour racheter 5 ans</p>
             </article>
           </div>
+
+          <p class="home-rachat-quote mt-8 text-center font-black text-white">
+            « Un diplôme d'État, pensé pour les profils qui veulent agir, pas attendre. »
+          </p>
         </article>
       </section>
 
@@ -442,7 +445,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
         <article class="home-testimonials-section page-cut p-5 sm:p-6 lg:p-8">
           <div class="mx-auto max-w-3xl text-center">
             <p class="kicker text-red-600">Ils nous ont fait confiance</p>
-            <h2 class="home-section-heading mt-4 text-white">Des dirigeants réels, des parcours réels.</h2>
+            <h2 class="home-section-heading mt-4 text-white" style="color: #ffffff;">Des dirigeants réels, des parcours réels.</h2>
           </div>
           <div class="mt-8 grid gap-5 lg:grid-cols-3">
             <article v-for="item in testimonials" :key="item.stat" class="home-testimonial-card p-5 text-center sm:p-6">
@@ -1014,11 +1017,13 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 }
 
 .home-rachat-quote {
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.35;
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  font-weight: 900;
+  line-height: 1.2;
   letter-spacing: -0.04em;
   color: #ffffff;
+  max-width: 46rem;
+  margin-inline: auto;
 }
 
 .home-zero-grid {

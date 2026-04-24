@@ -329,9 +329,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
         <article class="page-cut bg-primary px-5 py-6 text-white sm:px-6 lg:px-8">
           <div class="mx-auto max-w-3xl text-center">
             <p class="kicker text-red-600">LE RACHAT DE TEMPS</p>
-            <h3 class="home-rachat-quote">« Un diplôme d'État, pensé pour les profils qui veulent agir, pas attendre. »</h3>
+            <h3 class="home-rachat-quote text-white">« Un diplôme d'État, pensé pour les profils qui veulent agir, pas attendre. »</h3>
             <h2 class="home-section-heading mt-2 text-white">
-              Pourquoi sacrifier 6 ans quand vous pouvez décrocher votre Bac+2 d'État en 6 mois ?
+              Pourquoi sacrifier 6 ans quand vous pouvez décrocher votre Bac+2 d'État
+              en 6 mois ?
             </h2>
             <p class="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-300 sm:text-[1.02rem]">
               Le Titre Pro RPMS est le seul Bac+2 accessible <span class="underline decoration-red-600 decoration-2">sans le Baccalauréat</span>. L'accélérateur officiel des parcours atypiques.
@@ -440,7 +441,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
           <article class="page-cut p-5 sm:p-6 lg:p-8">
             <div class="text-center">
               <p class="kicker">LE TITRE RPMS</p>
-              <h2 class="home-section-heading mt-4">Le Titre RPMS, votre passeport pour la direction.</h2>
+              <h2 class="home-section-heading mt-4">De manager à dirigeant. En 364 heures.</h2>
               <p class="mx-auto mt-4 max-w-3xl text-base leading-8 text-muted-foreground sm:text-[1.02rem]">
                 Le Titre Pro RPMS est le seul Bac+2 accessible sans le Baccalauréat. L'accélérateur officiel des parcours atypiques.
               </p>
@@ -940,6 +941,10 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 .home-cityz-card__title,
 .home-cityz-card .home-cityz-row__label {
   color: #ffffff;
+}
+
+.home-cityz-card .home-cityz-row__label {
+  font-weight: 800;
 }
 
 .home-cityz-card .home-cityz-row__description {

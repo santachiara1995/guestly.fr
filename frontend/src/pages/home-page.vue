@@ -261,7 +261,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
             </p>
 
             <ul class="home-hero-list" aria-label="Compétences clés du titre professionnel RPMS">
-              <li v-for="item in hero.capabilities ?? []" :key="item">
+              <li v-for="item in hero.capabilities ?? []" :key="item" class="text-primary">
                 {{ item }}
               </li>
             </ul>

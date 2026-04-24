@@ -18,7 +18,6 @@ import {
   WalletCards
 } from 'lucide-vue-next'
 
-import BrochureCapture from '@/components/brochure-capture.vue'
 import EligibilityQuiz from '@/components/eligibility-quiz.vue'
 import FinanceSolutionsSection from '@/components/shared/finance-solutions-section.vue'
 import { Button } from '@/components/ui/button'
@@ -242,7 +241,6 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
             <h1 class="editorial-title home-hook-title">
               <span class="home-hook-line">Décrochez votre BAC+2,</span>
               <span class="home-hook-line">Certifié <span class="text-red-600">par l'Etat,</span></span>
-              <span class="home-hook-line">100 % à distance,</span>
               <span class="home-hook-line">En 364 heures.</span>
             </h1>
 
@@ -339,7 +337,11 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
             </p>
           </div>
 
-          <div class="mt-8 grid gap-5 lg:grid-cols-2">
+          <div class="mt-6 rounded-3xl border border-white/10 bg-white/5 px-6 py-6 text-center">
+            <h3 class="home-rachat-quote">« Un diplôme d'État, pensé pour les profils qui veulent agir, pas attendre. »</h3>
+          </div>
+
+          <div class="mt-6 grid gap-5 lg:grid-cols-2">
             <article class="rounded-3xl border border-white/10 bg-white/5 p-6 opacity-70">
               <h3 class="text-xl font-bold text-white">⏱ Parcours classique — Le long chemin</h3>
               <div class="mt-8 space-y-8">
@@ -377,17 +379,12 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
               <p class="mt-10 border-t border-white/10 pt-5 text-center text-lg font-black text-red-500">6 mois pour racheter 5 ans</p>
             </article>
           </div>
-
-          <div class="mt-6 rounded-3xl border border-white/10 bg-white/5 px-6 py-6 text-center text-lg italic text-slate-100">
-            « Un diplôme d'État, pensé pour les profils qui veulent agir, pas attendre. »
-          </div>
         </article>
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <article class="rounded-[1.2rem] bg-primary px-5 py-6 text-center text-white">
           <h3 class="text-xl font-bold sm:text-2xl">Votre parcours atypique est votre force.</h3>
-          <p class="mt-2 text-sm text-slate-300 sm:text-base">Validez votre éligibilité en 2 minutes, sans engagement.</p>
           <Button class="mt-5 bg-red-600 text-white" @click="openQuiz">Demandez votre diagnostic gratuit →</Button>
         </article>
       </section>
@@ -574,10 +571,6 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
             </div>
           </div>
         </article>
-      </section>
-
-      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <BrochureCapture />
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
@@ -948,6 +941,14 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
   color: #ffffff;
   font-size: 1.06em;
   font-weight: 800;
+}
+
+.home-rachat-quote {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.04em;
+  color: #ffffff;
 }
 
 .home-zero-grid {

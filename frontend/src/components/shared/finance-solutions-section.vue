@@ -47,7 +47,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
     </div>
 
     <div class="finance-solution-grid">
-      <article class="finance-card finance-card--light">
+      <article class="finance-card finance-card--light finance-card--balanced">
         <p class="finance-card__label">OPTION 01</p>
         <h3 class="finance-card__title">Paiement Comptant</h3>
         <p class="finance-card__subtitle">Réglez la totalité et consacrez-vous à 100 % à votre réussite.</p>
@@ -65,7 +65,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
           <p class="finance-card__bonus-label">EXCLUSIF COMPTANT</p>
           <ul class="finance-card__points finance-card__points--bonus">
             <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Support prioritaire 24h</li>
-            <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Session individuelle de coaching offerte</li>
+            <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Accompagnement 3 mois supplémentaires post-formation</li>
             <li><BadgeCheck class="h-4 w-4 shrink-0 text-red-600" /> Priorité sur le choix de dates d'examen</li>
           </ul>
         </div>
@@ -75,7 +75,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
         </Button>
       </article>
 
-      <article class="finance-card finance-card--featured">
+      <article class="finance-card finance-card--featured finance-card--balanced">
         <div class="finance-card__chip">LE PLUS CHOISI</div>
         <p class="finance-card__label finance-card__label--light">OPTION 02 — FLEXIBILITÉ</p>
         <h3 class="finance-card__title finance-card__title--light">Plusieurs fois sans frais</h3>
@@ -105,7 +105,7 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
         </Button>
       </article>
 
-      <article class="finance-card finance-card--light">
+      <article class="finance-card finance-card--light finance-card--balanced">
         <p class="finance-card__label">OPTION 03</p>
         <h3 class="finance-card__title">Dossier OPCO / AIF</h3>
         <p class="finance-card__subtitle">Idéal pour les salariés ou demandeurs d'emploi. Prise en charge totale par les organismes publics ou votre entreprise.</p>
@@ -159,6 +159,13 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
   border-radius: 1.4rem;
   border: 1px solid var(--border);
   background: white;
+}
+
+.finance-card--balanced {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .finance-card--featured {

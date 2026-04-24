@@ -289,7 +289,7 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <article class="page-cut p-5 sm:p-6 lg:p-8">
+        <article class="home-pain-section page-cut p-5 sm:p-6 lg:p-8">
           <div class="mx-auto max-w-3xl text-center">
             <p class="kicker home-section-title">
               {{ painPointSection.title }}
@@ -804,6 +804,48 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
 
 .home-pain-card p {
   font-size: 1rem;
+}
+
+.home-pain-section {
+  border-color: color-mix(in oklab, var(--primary) 76%, white);
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 22px 48px rgb(0 0 145 / 0.2);
+}
+
+.home-pain-section .home-section-title {
+  color: var(--tricolor-red);
+}
+
+.home-pain-section .home-section-heading {
+  color: #ffffff;
+}
+
+.home-pain-section > div > p:last-child {
+  color: rgb(255 255 255 / 0.78);
+}
+
+.home-pain-section .home-pain-card {
+  border-color: rgb(255 255 255 / 0.13);
+  background: rgb(255 255 255 / 0.06);
+}
+
+.home-pain-section .home-pain-card::before {
+  background: var(--tricolor-red);
+}
+
+.home-pain-section .home-pain-card :deep(.paper-card__icon) {
+  border: 1px solid rgb(255 255 255 / 0.14);
+  background: rgb(255 255 255 / 0.1);
+  color: #ffffff;
+}
+
+.home-pain-section .home-pain-card h3 {
+  color: #ffffff;
+}
+
+.home-pain-section .home-pain-card p {
+  color: rgb(255 255 255 / 0.8);
 }
 
 .home-proof-card {

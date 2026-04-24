@@ -82,6 +82,28 @@ const transformSteps = [
   { number: '03', label: 'MENTORAT INDIVIDUEL', title: 'Focus Résultat', description: 'Votre coach dédié valide vos acquis et vous aide à adapter le RPMS à votre projet spécifique.' },
   { number: '04', label: 'CERTIFICATION D’ÉTAT', title: 'Consécration', description: 'Sortez diplômé Bac+2 après un examen final en conditions réelles devant un jury professionnel.' }
 ]
+
+const financeSkillCards = [
+  {
+    title: 'Décryptage de bilan',
+    description: 'Comprenez enfin ce que vos chiffres disent de la santé réelle de votre structure.'
+  },
+  {
+    title: 'Optimisation du résultat',
+    description: 'Traquez les fuites de rentabilité dans votre compte de résultat.'
+  },
+  {
+    title: 'Reporting de direction',
+    description: "Sachez présenter un rapport d'activité qui convainc banquiers et actionnaires."
+  }
+]
+
+const transformationStats = [
+  { emoji: '⏱', label: 'Durée', value: '364 heures intensives' },
+  { emoji: '🎓', label: 'Niveau', value: "Bac+2 reconnu par l'État" },
+  { emoji: '💻', label: 'Format', value: '100 % distanciel (accès 24/7)' },
+  { emoji: '🤝', label: 'Accompagnement', value: 'Mentor individuel dédié' }
+]
 </script>
 
 <template>
@@ -122,17 +144,17 @@ const transformSteps = [
       </section>
 
       <section class="program-section px-4 py-0 sm:px-6 lg:px-8">
-        <div class="shell-track space-y-6">
+        <div class="shell-track space-y-6 rounded-3xl border border-primary/40 bg-primary p-5 text-white shadow-sm sm:p-6 lg:p-8">
           <div class="mx-auto max-w-3xl text-center">
             <p class="kicker text-red-600">POURQUOI LE RPMS ?</p>
-            <h2 class="editorial-title text-[clamp(1.75rem,3vw,2.55rem)] text-primary">Le fossé entre « Bien faire son travail »<br>et « Diriger une entreprise ».</h2>
-            <p class="mt-4 text-base leading-8 text-slate-600 sm:text-[1.02rem]">La plupart des managers échouent parce qu'ils gèrent des tâches, pas des organisations. Notre programme comble ce manque en 364 h d'immersion totale, 100 % à distance.</p>
+            <h2 class="editorial-title text-[clamp(1.75rem,3vw,2.55rem)] text-white">Le fossé entre « Bien faire son travail »<br>et « Diriger une entreprise ».</h2>
+            <p class="mt-4 text-base leading-8 text-slate-200 sm:text-[1.02rem]">La plupart des managers échouent parce qu'ils gèrent des tâches, pas des organisations. Notre programme comble ce manque en 364 h d'immersion totale, 100 % à distance.</p>
           </div>
           <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            <article v-for="(card, index) in whyCards" :key="card.title" class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm" v-motion :initial="motionVariants.pop.initial" :enter="staggerEnter(index, 42, 18)">
-              <component :is="card.icon" class="h-6 w-6 text-primary" />
-              <h3 class="mt-4 text-[1.08rem] font-bold tracking-[-0.03em] text-primary">{{ card.title }}</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-600">{{ card.description }}</p>
+            <article v-for="card in whyCards" :key="card.title" class="rounded-3xl border border-white/10 bg-white/8 p-5 text-center shadow-sm">
+              <component :is="card.icon" class="mx-auto h-6 w-6 text-white" />
+              <h3 class="mt-4 text-[1.08rem] font-bold tracking-[-0.03em] text-white">{{ card.title }}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-200">{{ card.description }}</p>
             </article>
           </div>
         </div>
@@ -163,19 +185,30 @@ const transformSteps = [
             <p class="kicker text-red-600">VOTRE FUTUR ARSENAL FINANCIER</p>
             <h2 class="editorial-title text-[clamp(1.85rem,3vw,2.7rem)] text-white">Ne subissez plus vos bilans, <span class="text-red-600">pilotez votre rentabilité</span>.</h2>
             <p class="max-w-3xl text-base leading-8 text-slate-300">Le Bloc 3 (RNCP38575BC03) n'est pas qu'une liste de tableaux comptables. C'est le centre de contrôle de votre future réussite.</p>
-            <ul class="space-y-4">
-              <li class="flex gap-3 text-slate-100"><Check class="mt-1 h-4 w-4 shrink-0 text-red-600" /> <strong>Décryptage de bilan</strong> — Comprenez enfin ce que vos chiffres disent de la santé réelle de votre structure.</li>
-              <li class="flex gap-3 text-slate-100"><Check class="mt-1 h-4 w-4 shrink-0 text-red-600" /> <strong>Optimisation du résultat</strong> — Traquez les fuites de rentabilité dans votre compte de résultat.</li>
-              <li class="flex gap-3 text-slate-100"><Check class="mt-1 h-4 w-4 shrink-0 text-red-600" /> <strong>Reporting de direction</strong> — Sachez présenter un rapport d'activité qui convainc banquiers et actionnaires.</li>
-            </ul>
+            <div class="grid gap-3">
+              <article v-for="item in financeSkillCards" :key="item.title" class="rounded-2xl border border-white/10 bg-white/8 p-4">
+                <div class="flex items-start gap-3">
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-red-600/18 text-red-500">
+                    <Check class="h-4 w-4" />
+                  </span>
+                  <div>
+                    <h3 class="text-base font-black tracking-[-0.03em] text-white">{{ item.title }}</h3>
+                    <p class="mt-1 text-sm leading-7 text-slate-300">{{ item.description }}</p>
+                  </div>
+                </div>
+              </article>
+            </div>
           </div>
           <article class="rounded-3xl border border-white/10 bg-white p-5 text-slate-900">
             <h3 class="text-xl font-bold text-primary">Transformation garantie</h3>
             <div class="mt-5 grid gap-4">
-              <div class="flex items-center gap-3"><span class="h-10 w-10 rounded-xl bg-slate-100"></span><div><p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">Durée</p><p class="font-bold text-primary">364 heures intensives</p></div></div>
-              <div class="flex items-center gap-3"><span class="h-10 w-10 rounded-xl bg-slate-100"></span><div><p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">Niveau</p><p class="font-bold text-primary">Bac+2 reconnu par l'État</p></div></div>
-              <div class="flex items-center gap-3"><span class="h-10 w-10 rounded-xl bg-slate-100"></span><div><p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">Format</p><p class="font-bold text-primary">100 % distanciel (accès 24/7)</p></div></div>
-              <div class="flex items-center gap-3"><span class="h-10 w-10 rounded-xl bg-slate-100"></span><div><p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">Accompagnement</p><p class="font-bold text-primary">Mentor individuel dédié</p></div></div>
+              <div v-for="item in transformationStats" :key="item.label" class="flex items-center gap-3">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-lg">{{ item.emoji }}</span>
+                <div>
+                  <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">{{ item.label }}</p>
+                  <p class="font-bold text-primary">{{ item.value }}</p>
+                </div>
+              </div>
             </div>
           </article>
         </article>
@@ -211,10 +244,10 @@ const transformSteps = [
           </div>
 
           <div class="mt-6 grid gap-3 sm:grid-cols-2">
-            <article v-for="(item, index) in objectivesPanel.items ?? []" :key="item" class="rounded-[1rem] border border-slate-200 bg-slate-50 p-4">
-              <div class="flex items-start gap-3">
+            <article v-for="(item, index) in objectivesPanel.items ?? []" :key="item" class="rounded-[1rem] border border-slate-200 bg-slate-50 p-4 text-center">
+              <div class="flex h-full flex-col items-center justify-start gap-3">
                 <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">{{ index + 1 }}</span>
-                <p class="text-sm leading-6 text-slate-700">{{ item }}</p>
+                <p class="text-center text-sm font-semibold leading-6 text-slate-700">{{ item }}</p>
               </div>
             </article>
           </div>

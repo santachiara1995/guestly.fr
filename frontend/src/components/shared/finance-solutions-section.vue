@@ -76,7 +76,6 @@ const stateHref = computed(() => props.internalLinks?.state ?? '/inscription')
       </article>
 
       <article class="finance-card finance-card--featured finance-card--balanced">
-        <div class="finance-card__chip">LE PLUS CHOISI</div>
         <p class="finance-card__label finance-card__label--light">OPTION 02 — FLEXIBILITÉ</p>
         <h3 class="finance-card__title finance-card__title--light">Plusieurs fois sans frais</h3>
         <p class="finance-card__subtitle finance-card__subtitle--light">Démarrez maintenant sans alourdir votre trésorerie.</p>

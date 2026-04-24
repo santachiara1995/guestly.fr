@@ -326,6 +326,26 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
       </section>
 
       <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
+        <article class="page-cut p-5 sm:p-6 lg:p-8">
+          <div class="mx-auto max-w-3xl text-center">
+            <p class="kicker text-red-600">POURQUOI CHOISIR CITYZ</p>
+            <h2 class="home-section-heading mt-4">Une formation pensée pour les résultats concrets.</h2>
+          </div>
+          <div class="home-benefits-grid mt-8">
+            <article v-for="item in [
+              { title: 'Reconnu par l\'État', description: 'Diplôme RNCP 38575 délivré par le Ministère du Travail. Aucune ambiguïté sur la valeur de votre titre.' },
+              { title: 'Mentor dédié de A à Z', description: 'Un seul interlocuteur du diagnostic à l’examen final. Zéro perte de temps en allers-retours administratifs.' },
+              { title: '100 % à distance, à votre rythme', description: 'Pas de présentiel imposé, pas de classe à horaires fixes. Vous avancez quand vous voulez, où vous voulez.' }
+            ]" :key="item.title" class="rounded-3xl border border-slate-200 bg-white p-5 text-center shadow-sm">
+              <Check class="mx-auto h-6 w-6 text-red-600" />
+              <h3 class="mt-4 text-[1.08rem] font-bold tracking-[-0.03em] text-primary">{{ item.title }}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{{ item.description }}</p>
+            </article>
+          </div>
+        </article>
+      </section>
+
+      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
         <article class="page-cut bg-primary px-5 py-6 text-white sm:px-6 lg:px-8">
           <div class="mx-auto max-w-3xl text-center">
             <p class="kicker text-red-600">LE RACHAT DE TEMPS</p>
@@ -625,26 +645,6 @@ const faqHero = computed(() => faqCopy.value.hero ?? {})
               Demandez votre diagnostic gratuit →
               <Clock3 class="ml-2 h-4 w-4" />
             </Button>
-          </div>
-        </article>
-      </section>
-
-      <section class="page-shell px-4 py-0 sm:px-6 lg:px-8">
-        <article class="page-cut p-5 sm:p-6 lg:p-8">
-          <div class="mx-auto max-w-3xl text-center">
-            <p class="kicker text-red-600">POURQUOI CHOISIR CITYZ</p>
-            <h2 class="home-section-heading mt-4">Une formation pensée pour les résultats concrets.</h2>
-          </div>
-          <div class="home-benefits-grid mt-8">
-            <article v-for="item in [
-              { title: 'Reconnu par l\'État', description: 'Diplôme RNCP 38575 délivré par le Ministère du Travail. Aucune ambiguïté sur la valeur de votre titre.' },
-              { title: 'Mentor dédié de A à Z', description: 'Un seul interlocuteur du diagnostic à l’examen final. Zéro perte de temps en allers-retours administratifs.' },
-              { title: '100 % à distance, à votre rythme', description: 'Pas de présentiel imposé, pas de classe à horaires fixes. Vous avancez quand vous voulez, où vous voulez.' }
-            ]" :key="item.title" class="rounded-3xl border border-slate-200 bg-white p-5 text-center shadow-sm">
-              <Check class="mx-auto h-6 w-6 text-red-600" />
-              <h3 class="mt-4 text-[1.08rem] font-bold tracking-[-0.03em] text-primary">{{ item.title }}</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-600">{{ item.description }}</p>
-            </article>
           </div>
         </article>
       </section>
